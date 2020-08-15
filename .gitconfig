@@ -1,0 +1,8 @@
+[core]
+        hooksPath = ../.githooks
+[diff]
+        submodule = diff
+[push]
+        recurseSubmodules = check
+[status]
+        submoduleSummary = 1
