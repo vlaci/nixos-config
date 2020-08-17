@@ -4,12 +4,13 @@ with pkgs;
 
 mkShell {
   buildInputs = [
+    git
     gitAndTools.git-crypt
     gnumake
     nixpkgs-fmt
   ];
 
   shellHook = ''
-    git config --local include.path .gitconfig
+    echo "For help, run \`make help\`"
   '';
 }

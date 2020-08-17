@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "home": {
+    "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs"
       },
@@ -16,6 +16,21 @@
         "owner": "rycee",
         "ref": "bqv-flakes",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1597353046,
+        "narHash": "sha256-+DAotmZ/GKaknMo0KvodsWAYxFgEFvUwMNM3wnX20F0=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "984c72f65312c82be2d20b82345b22c99e0508f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
         "type": "github"
       }
     },
@@ -51,7 +66,8 @@
     },
     "root": {
       "inputs": {
-        "home": "home",
+        "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2"
       }
     }
