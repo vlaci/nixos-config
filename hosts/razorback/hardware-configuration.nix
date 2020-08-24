@@ -5,30 +5,34 @@
 
 {
   imports =
-    [ #<nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    [
+      #<nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [];
 
   fileSystems."/" =
-    { device = "/dev/mapper/vg00-nix";
+    {
+      device = "/dev/mapper/vg00-nix";
       fsType = "xfs";
     };
 
   fileSystems."/home" =
-    { device = "/dev/mapper/vg00-nix--home";
+    {
+      device = "/dev/mapper/vg00-nix--home";
       fsType = "xfs";
     };
 
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D4BF-2263";
+    {
+      device = "/dev/disk/by-uuid/D4BF-2263";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   nix.maxJobs = lib.mkDefault 12;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

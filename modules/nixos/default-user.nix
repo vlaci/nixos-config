@@ -1,15 +1,15 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkIf mkOption types;
   cfg = config._.defaultUser;
 
   defaultUser = {
     options = {
       name = mkOption { type = types.str; };
       fullName = mkOption { type = types.str; };
-      email = mkOption { type = types.str; };
       hashedPassword = mkOption { type = types.str; };
+      email = mkOption { type = types.str; };
     };
   };
 in

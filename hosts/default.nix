@@ -1,31 +1,31 @@
-{ self, system, nixpkgs, inputs, ... }:
+{ self, nixpkgs, home-manager, nixos-hardware, ... }:
 
 let
-  inherit (nixpkgs.lib) attrNames filterAttrs genAttrs;
+  defaultModules = [
+    (home-manager + "/nixos")
+    nixpkgs.nixosModules.notDetected
 
-  config = hostname:
-    nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = let
-        default =
-            { pkgs, ... }: {
+    ../modules/nixos
+    {
 
-              # Let 'nixos-version --json' know about the Git revision
-              # of this flake.
-              system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-            };
-        in
-        [
-          nixpkgs.nixosModules.notDetected
-          default
-          (import "${toString ./.}/${hostname}")
-        ];
-      specialArgs = inputs;
-    };
-  hosts = let
-    files = builtins.readDir ./.;
-    dirs = filterAttrs (n: v: v == "directory") files;
-  in
-    attrNames dirs;
+      nix.nixPath = [
+        "home-manager=${home-manager}"
+        "nixpkgs=${nixpkgs}"
+      ];
+      nixpkgs.overlays = [ self.overlay ];
+      _.home-manager.forAllUsers.nixpkgs.overlays = [ self.overlay ];
+    }
+  ];
+
 in
-genAttrs hosts config
+{
+  razorback = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = defaultModules ++ [
+      ./razorback
+      (nixos-hardware + "/common/cpu/intel")
+      (nixos-hardware + "/common/pc/ssd")
+      (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
+    ];
+  };
+}

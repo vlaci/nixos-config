@@ -1,19 +1,29 @@
-user:
-{ config, options, lib, ... }:
+{ config, lib, ... }:
 
 let
-  inherit (lib) mkOption types;
+  inherit (lib) const mkIf mkOption mkOptionType types;
 
-  cfg = config.home-manager;
+  cfg = config._.home-manager;
 
-  overrideHmModule = types.submodule ({ name, ... }: {
-    cfg.users.${name}.stateVersion = cfg.stateVersion;
-  });
-in {
+  overrideHmModule = types.submoduleWith {
+    modules =
+      cfg.forAllUsers;
+  };
+
+  mergedAttrs = mkOptionType {
+    name = "mergedAttrs";
+    merge = const (map (x: x.value));
+  };
+in
+{
   options = {
     home-manager.users = mkOption { type = types.attrsOf overrideHmModule; };
-    home-manager.stateVersion = mkOption { type = types.str; default = "20.09"; };
+    _.home-manager.forAllUsers = mkOption { type = mergedAttrs; default = {}; };
+    _.home-manager.defaultUser = mkOption { type = mergedAttrs; default = {}; };
   };
   config = {
+    home-manager.users."${config._.defaultUser.name}" = {
+      imports = cfg.defaultUser;
+    };
   };
 }

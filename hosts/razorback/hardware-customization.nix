@@ -1,12 +1,6 @@
-{ pkgs, nixos-hardware, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    (nixos-hardware + "/common/cpu/intel")
-    (nixos-hardware + "/common/pc/ssd")
-    (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
-  ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;

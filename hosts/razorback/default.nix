@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ secrets, config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -6,8 +6,22 @@
     ./hardware-customization.nix
   ];
 
-  users.users.vlaci = {
-    uid = 1000;
-    initialHashedPassword = "$6$oFK5fkdOi.$viE6mLxHE4V/T3kiIpFsfuAbKVQ9UrZPRYrMtAPtS6Pe/i9XaUbE8Mb3D81OSXvNGd14waN2EXzqNDCxXdxVJ.";
+  users.mutableUsers = false;
+
+  _.defaultUser = secrets.users.default;
+  _.home-manager.defaultUser = { pkgs, ... }: {
+    programs.git = {
+      enable = true;
+    };
+
+    home.packages = with pkgs; [
+      bind
+      jetbrains.pycharm-community
+      transmission-remote-gtk
+      pkgs._.mozilla.latest.firefox-bin
+    ];
   };
+
+  environment.systemPackages = [
+  ];
 }
