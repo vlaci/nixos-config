@@ -4,6 +4,7 @@ let
   inherit (lib) mkDefault;
 in {
   imports = [
+    ./gui
     ./command-line.nix
     ./default-user.nix
     ./home-manager.nix

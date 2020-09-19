@@ -24,10 +24,7 @@ lib.mkProfile "tools" {
   programs.htop.enable = true;
   programs.home-manager.enable = true;
   programs.jq.enable = true;
-  programs.keychain.enable = true;
-  programs.keychain.enableBashIntegration = false;
-  programs.keychain.enableFishIntegration = false;
-  programs.keychain.enableZshIntegration = false;
+  #programs.keychain.enable = true;
   programs.lesspipe.enable = true;
 
   programs.mcfly.enable = true;
