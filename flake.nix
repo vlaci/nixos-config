@@ -2,15 +2,12 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:rycee/home-manager";
-    home-manager.flake = false;
-    mozilla.url = "github:mozilla/nixpkgs-mozilla";
-    mozilla.flake = false;
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, home-manager, mozilla, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
     in
@@ -18,12 +15,9 @@
         nixosConfigurations = import ./hosts inputs;
         overlay = final: prev:
           let
-            pkgs = prev;
-            callPackage = pkgs.newScope prev;
-            mozilla = import (inputs.mozilla + "/package-set.nix") { pkgs = prev; };
-            unstable = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}";
+            unstable = inputs.nixpkgs-unstable.legacyPackages."${final.system}";
           in {
-            _ = { inherit mozilla unstable; };
+            _ = { inherit unstable; };
         };
 
         checks."x86_64-linux" =

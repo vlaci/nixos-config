@@ -4,13 +4,17 @@ let
   inherit (lib) mkDefault;
 in {
   imports = [
+    ./command-line.nix
     ./default-user.nix
     ./home-manager.nix
     ./locale.nix
+    ./networkmanager.nix
+    ./sshd.nix
   ];
 
-
-  _module.args.secrets = import ../../secrets;
+  _module.args = {
+    secrets = import ../../secrets;
+  };
 
   nix.package = mkDefault pkgs.nixUnstable;
   nix.extraOptions = mkDefault ''

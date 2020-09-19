@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
@@ -10,6 +10,8 @@ let
       fullName = mkOption { type = types.str; };
       hashedPassword = mkOption { type = types.str; };
       email = mkOption { type = types.str; };
+      authorizedKeys = mkOption { type = types.listOf types.str; };
+      extraGroups = mkOption { type = types.listOf types.str; default = [ ]; };
     };
   };
 in
@@ -27,13 +29,8 @@ in
       description = cfg.fullName;
       extraGroups = [ "wheel" ];
       isNormalUser = true;
-    };
-
-    home-manager.users."${cfg.name}" = {
-      programs.git = lib.mkDefault {
-        userName = cfg.fullName;
-        userEmail = cfg.email;
-      };
+      openssh.authorizedKeys.keys = cfg.authorizedKeys;
+      shell = pkgs.zsh;
     };
   };
 }
