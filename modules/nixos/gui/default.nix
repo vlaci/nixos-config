@@ -34,6 +34,37 @@ lib.mkProfile "gui" {
       };
     };
 
+    programs.dconf.profiles.gdm-cursor =
+    let
+      customDconf = pkgs.writeTextFile {
+        name = "gdm-dconf";
+        destination = "/dconf/gdm-cursor";
+        text = ''
+          [org/gnome/desktop/interface]
+          cursor-theme='Bibata Ice'
+        '';
+      };
+
+      customDconfDb = pkgs.stdenv.mkDerivation {
+        name = "gdm-cursor-dconf-db";
+        buildCommand = ''
+          ${pkgs.dconf}/bin/dconf compile $out ${customDconf}/dconf
+        '';
+      };
+      inherit (pkgs.gnome3) gdm;
+    in pkgs.stdenv.mkDerivation {
+      name = "dconf-gdm-cursor-profile";
+      buildCommand = ''
+        # Check that the GDM profile starts with what we expect.
+        if [ $(head -n 1 ${gdm}/share/dconf/profile/gdm) != "user-db:user" ]; then
+          echo "GDM dconf profile changed, please update gdm.nix"
+          exit 1
+        fi
+        # Insert our custom DB behind it.
+        sed '2ifile-db:${customDconfDb}' ${gdm}/share/dconf/profile/gdm > $out
+      '';
+    };
+
     location.provider = "geoclue2";
     services.xserver = {
       enable = true;
