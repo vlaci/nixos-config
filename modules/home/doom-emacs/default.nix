@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nix-doom-emacs, ... }: with lib;
+{ config, lib, pkgs, ... }: with lib;
 
 let
   cfg = config._.doom-emacs;
@@ -9,25 +9,16 @@ in {
       description = ''
         Directory containing customizations, `init.el`, `config.el` and `packages.el`
       '';
-      default = ./doom.d;
     };
     extraConfig = mkOption {
       description = "Extra configuration options to pass to doom-emacs";
       type = with types; lines;
       default = "";
     };
-    extraPackages = mkOption {
-      description = "Extra packages to install";
-      type = with types; listOf package;
-      default = [];
-    };
     spellCheckDictionaries = mkOption {
       description = "Use these dictionaries for spell-checking";
       type = with types; listOf package;
       default = [];
-    };
-    package = mkOption {
-      internal = true;
     };
   };
 
@@ -49,35 +40,17 @@ in {
         (ispell-hunspell-add-multi-dic ispell-dictionary))
       ${cfg.extraConfig}
     '';
-    #emacs = pkgs.callPackage (builtins.fetchTarball {
-    #  url = https://github.com/vlaci/nix-doom-emacs/archive/develop.tar.gz;
-    #}) {
-    emacs = pkgs.callPackage nix-doom-emacs {
-      extraPackages = (epkgs: cfg.extraPackages);
-      inherit (cfg) doomPrivateDir; inherit extraConfig;
-    };
   in {
-    home.file.".emacs.d/init.el".text = ''
-      (load "default.el")
-      (after! lsp-mode
-        (setq lsp-csharp-server-path "omnisharp")
-        (lsp-register-client
-        (make-lsp-client :new-connection (lsp-stdio-connection
-                                          #'lsp-csharp--language-server-command
-                                          )
-
-                          :major-modes '(csharp-mode)
-                          :server-id 'csharp
-                          )))
-    '';
+    programs.doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./doom.d;
+      inherit extraConfig;
+    };
     home.packages = with pkgs; [
-      ghc
       python3Packages.grip
       nodePackages.bash-language-server
       shellcheck
+      ghc
     ];
-    programs.emacs.package = emacs;
-    programs.emacs.enable = true;
-    _.doom-emacs.package = emacs;
   });
 }

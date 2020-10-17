@@ -1,4 +1,4 @@
-{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
+  { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nix-doom-emacs, doomPrivateDir, ... }:
 
 let
   defaultModules = [
@@ -18,7 +18,6 @@ let
         })
       ];
       _.home-manager.forAllUsers = { config, ...}: {
-        _module.args = inputs;
         nixpkgs.overlays = [
           self.overlay
           #(self: super: {
@@ -27,7 +26,8 @@ let
         ];
       };
       _.home-manager.defaultUser = {
-        imports = [ ../modules/home ];
+        imports = [ ../modules/home nix-doom-emacs.hmModule ];
+        _.doom-emacs.doomPrivateDir = doomPrivateDir;
       };
     })
   ];
