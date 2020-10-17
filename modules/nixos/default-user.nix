@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
@@ -22,12 +22,12 @@ in
     };
   };
 
-  config = {
+  config = mkIf options._.defaultUser.isDefined {
     users.users."${cfg.name}" = {
       createHome = true;
       uid = 1000;
       description = cfg.fullName;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" ] ++ cfg.extraGroups;
       isNormalUser = true;
       openssh.authorizedKeys.keys = cfg.authorizedKeys;
       shell = pkgs.zsh;

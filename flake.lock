@@ -33,6 +33,23 @@
         "type": "github"
       }
     },
+    "nix-doom-emacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1602952454,
+        "narHash": "sha256-Y+oMTGxTSnTgTNkBNa2FlMmfBN2zGC9lQNHbqWbgSXE=",
+        "owner": "vlaci",
+        "repo": "nix-doom-emacs",
+        "rev": "1b56256e21a7dc0000c80ec21901053e5d6478be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vlaci",
+        "ref": "develop",
+        "repo": "nix-doom-emacs",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1597353046,
@@ -80,11 +97,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1599827374,
-        "narHash": "sha256-46OG6P2V6z46Tf4UfFQll+36T/lIFAhfvvoAMUM33cg=",
+        "lastModified": 1600419171,
+        "narHash": "sha256-IN9fAah/ZMA1klQO3NLyff5XOaft4OwKKMEXvuO27AA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "18f9a651f5c697b0aff5e86072111a5678d06dcb",
+        "rev": "be92e21e2519143f8c6ea70fa8052deff5126ce5",
         "type": "github"
       },
       "original": {
@@ -98,6 +115,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable"

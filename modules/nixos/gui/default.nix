@@ -1,4 +1,3 @@
-
 { lib, pkgs, ... }:
 
 lib.mkProfile "gui" {
@@ -10,6 +9,10 @@ lib.mkProfile "gui" {
     #environment.systemPackages = with pkgs; [
     #  gvfs  # automounting and mtp
     #];
+    #
+    environment.systemPackages = with pkgs; [
+      bibata-cursors
+    ];
 
     fonts = {
       fonts = with pkgs; [
@@ -91,35 +94,37 @@ lib.mkProfile "gui" {
       ];
 
       desktopManager.xterm.enable = false;
-     # desktopManager.session = [{
-     #   name = "home-manager";
-     #   start = ''
-     #   ${pkgs.stdenv.shell} $HOME/.xsession-hm &
-     #   waitPID=$!
-     #   '';
-     # }];
+      desktopManager.session = [{
+        name = "home-manager";
+        start = ''
+        ${pkgs.stdenv.shell} $HOME/.xsession-hm &
+        waitPID=$!
+        '';
+      }];
 
-      displayManager.lightdm =
-      {
-        enable = mkDefault true;
-        greeters.enso = {
-          enable = mkDefault true;
-          blur = !(hasAttr "vm" config.system.build);
-          cursorTheme = {
-            package = pkgs.bibata-cursors;
-            name = "Bibata Ice";
-          };
-          theme = {
-            package = pkgs.materia-theme;
-            name = "Materia-dark";
-          };
-          iconTheme = {
-            package = pkgs.paper-icon-theme;
-            name = "Paper";
-          };
-        };
+      windowManager.herbstluftwm.enable = true;
+      displayManager.gdm.enable = true;
+    #   displayManager.lightdm =
+    #   {
+    #    enable = true;
+    #    greeters.enso = {
+    #      enable = true;
+    #      blur = !(lib.hasAttr "vm" config.system.build);
+    #      cursorTheme = {
+    #        package = pkgs.bibata-cursors;
+    #        name = "Bibata Ice";
+    #      };
+    #      theme = {
+    #        package = pkgs.materia-theme;
+    #        name = "Materia-dark";
+    #      };
+    #      iconTheme = {
+    #        package = pkgs.paper-icon-theme;
+    #        name = "Paper";
+    #      };
+    #    };
+    #   };
       };
-    };
 
     # # to allow virt-manager and stuff write their settings
     # services.dbus.packages = with pkgs; [ gnome3.dconf ];

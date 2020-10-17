@@ -12,9 +12,11 @@
   };
 
   imports = [
+    ./doom-emacs
+    ./gui
+    ./zsh
     ./git.nix
     ./tools.nix
     ./user.nix
-    ./zsh
   ];
 }

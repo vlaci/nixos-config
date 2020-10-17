@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, options, lib, ... }:
 
 let
   inherit (lib) const mkIf mkOption mkOptionType types;
@@ -21,7 +21,7 @@ in
     _.home-manager.forAllUsers = mkOption { type = mergedAttrs; default = {}; };
     _.home-manager.defaultUser = mkOption { type = mergedAttrs; default = {}; };
   };
-  config = {
+  config = mkIf options._.defaultUser.isDefined {
     home-manager.users."${config._.defaultUser.name}" = {
       imports = cfg.defaultUser;
     };

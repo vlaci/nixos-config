@@ -1,37 +1,42 @@
 { config, options, lib }:
 
 let
-  inherit (lib) forEach mkEnableOption mkIf mkMerge mkOption types;
+  inherit (lib) attrValues mkEnableOption mkIf mkMerge mkOption types;
+
+  cfg = config._.conditionalModules;
 
   conditionalModule = types.submoduleWith {
+    check = false;
     modules = [
-      { name, ...}: {
+      ({ name, config, ... }: {
         options = {
-          options = mkOption {
-            type = types.attrs;
-          };
+          # options = mkOption {
+          #   type = types.attrs;
+          #   default = { };
+          # };
           config = mkOption {
             type = types.attrs;
           };
         };
-        config = {
-          options = {
-            enable = mkEnableOption name;
-          };
-          config = mkIf config.enable config.config;
-        };
-      }
+        imports = [
+          ({
+            options = {
+              enable = mkEnableOption name;
+            };# // config.options;
+            config = {};#mkIf config.enable config.config;
+          })
+        ];
+      })
     ];
   };
 in
 {
   options = {
     _.conditionalModules = mkOption {
-      type = conditionalModule;
+      #type = types.attrsOf conditionalModule;
+      default = { };
     };
-
-    config = mkMerge forEach config._.conditionalModules (m:
-      m.config
-    );
   };
+
+  imports = attrValues cfg;
 }

@@ -26,7 +26,7 @@
   boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
+  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   hardware.opengl.driSupport32Bit = true;
 
   services.xserver = {

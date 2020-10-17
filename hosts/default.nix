@@ -1,4 +1,4 @@
-{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }:
+{ self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ... }@inputs:
 
 let
   defaultModules = [
@@ -6,7 +6,7 @@ let
     nixpkgs.nixosModules.notDetected
 
     ../modules/nixos
-    ({ config, ... }: {
+    ({ config, lib, ... }: {
       nix.nixPath = [
         "home-manager=${home-manager}"
         "nixpkgs=${nixpkgs}"
@@ -14,14 +14,15 @@ let
       nixpkgs.overlays = [
         self.overlay
         (self: super: {
-          lib = super.lib.extend (self: super: (import ../lib) { lib = super; });
+          inherit lib;
         })
       ];
       _.home-manager.forAllUsers = { config, ...}: {
+        _module.args = inputs;
         nixpkgs.overlays = [
           self.overlay
           #(self: super: {
-          #  lib = super.lib.extend (self: super: (import ../lib) { lib = super; inherit config; });
+          #  lib = super.lib.extend (self: super: (import ../lib) { lib = super; });
           #})
         ];
       };
@@ -31,14 +32,18 @@ let
     })
   ];
 
+  nixos = { modules, ...}@args: nixpkgs.lib.nixosSystem ({
+    system = "x86_64-linux";
+    specialArgs = {
+      lib = nixpkgs.lib.extend (self: super: (import ../lib) { lib = super; });
+    };
+    modules = defaultModules ++ modules;
+  } // (builtins.removeAttrs args [ "modules" ]));
+
 in
 {
-  razorback = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    #specialArgs = {
-    #  lib = nixpkgs.lib.extend (self: super: (import ../lib) { lib = super; });
-    #};
-    modules = defaultModules ++ [
+  razorback = nixos {
+    modules = [
       ./razorback
       ./razorback/hardware-configuration.nix
       ./razorback/hardware-customization.nix
@@ -48,9 +53,7 @@ in
     ];
   };
 
-  iso = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-
+  iso = nixos {
     modules = let
       iso = { modulesPath, pkgs, lib, ... }: {
         imports = [
@@ -92,8 +95,7 @@ in
         mount -oremount,size=7G /nix/.rw-store/
         /mnt/etc/nixos/scripts/nixos-install --flake path:/mnt/etc/nixos#vm
   */
-  vm = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+  vm = nixos {
     modules = let
       qemu-guest = { modulesPath, config, lib, pkgs, ... }: {
         imports =
@@ -106,6 +108,16 @@ in
         boot.kernelModules = [ "kvm-intel" ];
         boot.loader.systemd-boot.enable = true;
         boot.loader.efi.canTouchEfiVariables = true;
+
+        hardware.opengl.package = (pkgs.mesa.override {
+          enableGalliumNine = false;
+          galliumDrivers = [ "swrast" "virgl" ];
+        }).drivers;
+
+        # services.xserver.videoDrivers = [ "qxl" ];
+        # services.xserver.modules = [ pkgs.xorg.xf86videoqxl ];
+         services.qemuGuest.enable = true;
+        services.spice-vdagentd.enable = true;
 
         fileSystems."/" =
           { device = "/dev/mapper/vg-root";
@@ -128,7 +140,7 @@ in
 
         nix.maxJobs = lib.mkDefault 2;
       };
-    in defaultModules ++ [
+    in [
       qemu-guest
       ./razorback
     ];
