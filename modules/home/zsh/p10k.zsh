@@ -52,6 +52,7 @@
     context                   # user@host
     dir                       # current directory
     vcs                       # git status
+    git_useremail
     command_execution_time    # previous command duration
     # =========================[ Line #2 ]=========================
     newline                   # \n

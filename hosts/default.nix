@@ -1,4 +1,4 @@
-  { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nix-doom-emacs, doomPrivateDir, ... }:
+  { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nix-doom-emacs, ... }:
 
 let
   defaultModules = [
@@ -27,7 +27,6 @@ let
       };
       _.home-manager.defaultUser = {
         imports = [ ../modules/home nix-doom-emacs.hmModule ];
-        _.doom-emacs.doomPrivateDir = doomPrivateDir;
       };
     })
   ];

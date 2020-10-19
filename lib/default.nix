@@ -8,14 +8,14 @@ in {
     imports = [
       ({ config, ... }: let
         cfg = config._."${name}".enable;
-        configAttr = conf;
-        importsAttr = [];
+        configAttr = if conf ? config then conf.config else (removeAttrs conf ["imports"]);
+        importsAttr = if conf ? imports then conf.imports else [];
       in {
         options = {
           _."${name}".enable = mkEnableOption name;
         };
         config = mkIf cfg configAttr;
-        imports = [];
+        imports = importsAttr;
       })
     ];
   };

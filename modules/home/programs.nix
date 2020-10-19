@@ -6,21 +6,25 @@ lib.mkProfile "tools" {
     diskus
     du-dust
     fd
-    hyperfine
-    sd
-    tokei
-    ytop
-    zenith
+    hexyl
+    hyperfine  # benchmark
     mc
+    python3
+    procs  # ps on steroids
     ranger
-    unzip
-    zip
     # for emacs too
     ripgrep
+    sd  # sed
+    tokei  # loc
+    unzip
+    ytop  # top
+    zenith  # top
+    zip
   ];
 
   programs.bash.enable = true;
   programs.bat.enable = true;
+  programs.broot.enable = true;
   programs.direnv.enable = true;
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = false;

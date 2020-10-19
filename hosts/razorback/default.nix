@@ -13,8 +13,12 @@
   _.home-manager.defaultUser = { secrets, ... }: {
     _.user = secrets.users.default;
     _.git.enable = true;
+    _.gpg.enable = true;
+    _.gui.enable = true;
     _.tools.enable = true;
     _.doom-emacs.enable = true;
+
+    programs.git.extraConfig = secrets.git.extraConfig;
   };
   home-manager.users.root = {};
 }

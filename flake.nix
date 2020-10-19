@@ -5,9 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nix-doom-emacs.url = "/etc/nixos/nix-doom-emacs";
-    doomPrivateDir.url = "/etc/nixos/modules/home/doom-emacs/doom.d";
-    doomPrivateDir.flake = false;
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/flake";
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
