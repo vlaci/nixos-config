@@ -16,7 +16,9 @@
     ./gui
     ./zsh
     ./git.nix
-    ./tools.nix
+    ./gpg.nix
+    ./programs.nix
+    ./services.nix
     ./user.nix
   ];
 }

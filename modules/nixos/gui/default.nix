@@ -37,19 +37,19 @@ lib.mkProfile "gui" {
       };
     };
 
-    programs.dconf.profiles.gdm-cursor =
+    programs.dconf.profiles.gdm = lib.mkForce (
     let
       customDconf = pkgs.writeTextFile {
         name = "gdm-dconf";
-        destination = "/dconf/gdm-cursor";
+        destination = "/dconf/gdm-custom";
         text = ''
           [org/gnome/desktop/interface]
-          cursor-theme='Bibata Ice'
+          cursor-theme='Bibata_Ice'
         '';
       };
 
       customDconfDb = pkgs.stdenv.mkDerivation {
-        name = "gdm-cursor-dconf-db";
+        name = "gdm-dconf-db";
         buildCommand = ''
           ${pkgs.dconf}/bin/dconf compile $out ${customDconf}/dconf
         '';
@@ -66,7 +66,7 @@ lib.mkProfile "gui" {
         # Insert our custom DB behind it.
         sed '2ifile-db:${customDconfDb}' ${gdm}/share/dconf/profile/gdm > $out
       '';
-    };
+    });
 
     location.provider = "geoclue2";
     services.xserver = {

@@ -10,7 +10,7 @@ in {
     ./home-manager.nix
     ./locale.nix
     ./networkmanager.nix
-    ./sshd.nix
+    ./services.nix
   ];
 
   _module.args = {

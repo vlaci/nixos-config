@@ -15,12 +15,15 @@ lib.mkProfile "tools" {
     ranger
     unzip
     zip
+    # for emacs too
+    ripgrep
   ];
 
   programs.bash.enable = true;
   programs.bat.enable = true;
   programs.direnv.enable = true;
   programs.fzf.enable = true;
+  programs.fzf.enableZshIntegration = false;
   programs.htop.enable = true;
   programs.home-manager.enable = true;
   programs.jq.enable = true;
@@ -28,10 +31,10 @@ lib.mkProfile "tools" {
   programs.lesspipe.enable = true;
 
   programs.mcfly.enable = true;
-  programs.mcfly.enableZshIntegration = false;
-  programs.zsh.initExtra = lib.mkAfter ''
-    source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
- '';
+  #programs.mcfly.enableZshIntegration = false;
+  #programs.zsh.initExtra = lib.mkAfter ''
+  #  source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
+  #'';
 
   programs.zoxide.enable = true;
 

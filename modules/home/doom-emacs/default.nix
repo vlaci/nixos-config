@@ -9,6 +9,7 @@ in {
       description = ''
         Directory containing customizations, `init.el`, `config.el` and `packages.el`
       '';
+      default = ./doom.d;
     };
     extraConfig = mkOption {
       description = "Extra configuration options to pass to doom-emacs";
@@ -33,17 +34,19 @@ in {
         (insert
         (x-get-selection 'PRIMARY)))
       (global-set-key (kbd "S-<insert>") 'paste-primary-selection)
+
       (setq ispell-program-name "${hunspell}/bin/hunspell"
             ispell-dictionary "${languages}")
       (after! ispell
         (ispell-set-spellchecker-params)
         (ispell-hunspell-add-multi-dic ispell-dictionary))
+
       ${cfg.extraConfig}
     '';
   in {
     programs.doom-emacs = {
       enable = true;
-      doomPrivateDir = ./doom.d;
+      inherit (cfg) doomPrivateDir;
       inherit extraConfig;
     };
     home.packages = with pkgs; [
