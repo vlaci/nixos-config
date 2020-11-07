@@ -5,7 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/flake";
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/develop";
+    # nix-doom-emacs.url = "/etc/nixos/nix-doom-emacs";
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
@@ -19,6 +20,7 @@
             unstable = inputs.nixpkgs-unstable.legacyPackages."${final.system}";
           in {
             _ = { inherit unstable; };
+            bat = unstable.bat;
         };
 
         checks."x86_64-linux" =

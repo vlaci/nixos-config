@@ -1,4 +1,4 @@
-  { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nix-doom-emacs, ... }:
+  { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nix-doom-emacs, ... }@inputs:
 
 let
   defaultModules = [
@@ -20,12 +20,9 @@ let
       _.home-manager.forAllUsers = { config, ...}: {
         nixpkgs.overlays = [
           self.overlay
-          #(self: super: {
-          #  lib = super.lib.extend (self: super: (import ../lib) { lib = super; });
-          #})
+          (import nix-doom-emacs.inputs.emacs-overlay)
         ];
-      };
-      _.home-manager.defaultUser = {
+        _module.args = inputs;
         imports = [ ../modules/home nix-doom-emacs.hmModule ];
       };
     })
@@ -35,6 +32,7 @@ let
     system = "x86_64-linux";
     specialArgs = {
       lib = nixpkgs.lib.extend (self: super: (import ../lib) { lib = super; });
+      secrets = import ../secrets;
     };
     modules = defaultModules ++ modules;
   } // (builtins.removeAttrs args [ "modules" ]));

@@ -1,7 +1,10 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 lib.mkProfile "gui" {
-  imports = [ ./herbstluftwm ];
+  imports = [
+    ./colors.nix
+    ./herbstluftwm
+  ];
   xsession = {
     enable = true;
     scriptPath = ".xsession-hm";
@@ -28,5 +31,14 @@ lib.mkProfile "gui" {
       "75:class_g = 'kitty'"
     ];
     vSync = true;
+  };
+
+  programs.firefox.enable = true;
+  programs.kitty = {
+    enable = true;
+  };
+
+  programs.rofi = {
+    enable = true;
   };
 }

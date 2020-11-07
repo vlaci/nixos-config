@@ -5,17 +5,12 @@ let
 in {
   imports = [
     ./gui
-    ./command-line.nix
-    ./default-user.nix
+    #./default-user.nix
     ./home-manager.nix
     ./locale.nix
     ./networkmanager.nix
     ./services.nix
   ];
-
-  _module.args = {
-    secrets = import ../../secrets;
-  };
 
   nix.package = mkDefault pkgs.nixUnstable;
   nix.extraOptions = mkDefault ''

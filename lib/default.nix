@@ -1,8 +1,6 @@
-{ lib }:
+{ lib }: with lib;
 
-let
-  inherit (lib) mkIf mkEnableOption optionals;
-in {
+{
   mkProfile = name: conf:
   {
     imports = [
@@ -18,5 +16,10 @@ in {
         imports = importsAttr;
       })
     ];
+  };
+
+  mergedAttrs = mkOptionType {
+    name = "mergedAttrs";
+    merge = const (map (x: x.value));
   };
 }

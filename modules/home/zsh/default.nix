@@ -30,7 +30,7 @@ in {
       expireDuplicatesFirst = true;
       extended = true;
       ignoreSpace = true;
-      path = "${dotDir}/.zsh_history";
+      path = "$HOME/${dotDir}/.zsh_history";
     };
     plugins = [
       {
@@ -77,5 +77,7 @@ in {
   };
 
   home.file."${dotDir}/.p10k.zsh".source = ./p10k.zsh;
-  home.packages = [ pkgs.nix-zsh-completions ];
+  home.packages = with pkgs; [
+    nix-zsh-completions
+  ];
 }

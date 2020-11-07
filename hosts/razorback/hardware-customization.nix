@@ -23,7 +23,7 @@
   boot.extraModprobeConfig = ''
     options vfio-pci ids=10de:1b81,10de:10f0,1b21:2142
   '';
-  boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ];
+  boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" "dm_thin_pool" "dm_mirror"];
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];

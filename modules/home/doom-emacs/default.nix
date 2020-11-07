@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: with lib;
+{ config, lib, pkgs, nix-doom-emacs, ... }: with lib;
 
 let
   cfg = config._.doom-emacs;
@@ -46,6 +46,9 @@ in {
   in {
     programs.doom-emacs = {
       enable = true;
+      #emacsPackage = pkgs.emacsGcc.overrideAttrs (super: {
+      #  patches = super.patches ++ [ ./gccemacs.patch ];
+      #});
       inherit (cfg) doomPrivateDir;
       inherit extraConfig;
     };
