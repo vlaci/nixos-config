@@ -10,18 +10,14 @@ let
       nix.nixPath = [
         "home-manager=${home-manager}"
         "nixpkgs=${nixpkgs}"
+        "nixpkgs-overlays=${toString ../overlays}"
       ];
       nixpkgs.overlays = [
-        self.overlay
         (self: super: {
           inherit lib;
         })
-      ];
+      ] ++ self.overlays;
       _.home-manager.forAllUsers = { config, ...}: {
-        nixpkgs.overlays = [
-          self.overlay
-          (import nix-doom-emacs.inputs.emacs-overlay)
-        ];
         _module.args = inputs;
         imports = [ ../modules/home nix-doom-emacs.hmModule ];
       };
@@ -90,7 +86,7 @@ in
         swapon /dev/mapper/vg-swap
         mount nixos-config -t9p -otrans=virtio /mnt/etc/nixos/
         mount -oremount,size=7G /nix/.rw-store/
-        /mnt/etc/nixos/scripts/nixos-install --flake path:/mnt/etc/nixos#vm
+        nixos-install --flake path:/mnt/etc/nixos#vm
   */
   vm = nixos {
     modules = let

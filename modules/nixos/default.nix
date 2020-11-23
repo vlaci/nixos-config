@@ -10,6 +10,8 @@ in {
     ./locale.nix
     ./networkmanager.nix
     ./services.nix
+    ./users.nix
+    ./zsh.nix
   ];
 
   nix.package = mkDefault pkgs.nixUnstable;
@@ -18,4 +20,14 @@ in {
   '';
 
   _.home-manager.forAllUsers.home.stateVersion = mkDefault "20.09";
+
+  environment.systemPackages = with pkgs; [
+    bind
+    cifs-utils
+    exfat
+    exfat-utils
+    git
+    ntfs3g
+    xdg-user-dirs
+  ];
 }

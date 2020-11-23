@@ -7,8 +7,11 @@ in {
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = false;
+    enableVteIntegration = true;
     inherit dotDir;
-    initExtra = lib.mkAfter ''
+    initExtra = ''
+      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+      source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
       # Initialization code that may require console input (password prompts, [y/n]
       # confirmations, etc.) must go above this block; everything else may go below.
@@ -19,12 +22,10 @@ in {
       function prompt_git_useremail() {
         p10k segment -t "$(git_prompt_useremail_symbol)"
       }
-      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
       export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias: "
-      alias gst="git status"
     '';
     history = {
       expireDuplicatesFirst = true;
@@ -74,10 +75,10 @@ in {
         };
       }
     ];
+    shellAliases = {
+      gst="git status";
+    };
   };
 
   home.file."${dotDir}/.p10k.zsh".source = ./p10k.zsh;
-  home.packages = with pkgs; [
-    nix-zsh-completions
-  ];
 }

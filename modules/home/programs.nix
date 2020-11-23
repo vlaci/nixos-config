@@ -35,11 +35,11 @@ lib.mkProfile "tools" {
   programs.lesspipe.enable = true;
 
   programs.mcfly.enable = true;
+  programs.mcfly.enableZshIntegration = false;
+  programs.zsh.initExtra = lib.mkAfter ''
+    #source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
+  '';
   programs.pazi.enable = true;
-  #programs.mcfly.enableZshIntegration = false;
-  #programs.zsh.initExtra = lib.mkAfter ''
-  #  source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
-  #'';
 
   services.lorri.enable = true;
 }

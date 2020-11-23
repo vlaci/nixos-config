@@ -16,6 +16,7 @@
     })
     (lib.mkProfile "libvirt" {
       virtualisation.libvirtd.enable = true;
+      _.users.defaultGroups = [ "libvirtd" ];
     })
   ];
 }

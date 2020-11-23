@@ -1,7 +1,7 @@
 { config, options, lib, ... }:
 
 let
-  inherit (lib) attrNames genAttrs intersectLists mergedAttrs mkIf mkOption types;
+  inherit (lib) attrNames genAttrs intersectLists mapAttrs mergedAttrs mkIf mkOption types;
 
   cfg = config._.home-manager;
 
@@ -23,5 +23,9 @@ in
   options = {
     home-manager.users = mkOption { type = types.attrsOf overrideHmModule; };
     _.home-manager.forAllUsers = mkOption { type = mergedAttrs; default = {}; };
+  };
+  config = {
+    home-manager.useGlobalPkgs = true;
+    home-manager.useUserPackages = true;
   };
 }

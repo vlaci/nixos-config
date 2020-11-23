@@ -2,13 +2,13 @@
 
 let
   cfg = config._.colors;
-  inherit (lib) mkOption;
+  inherit (lib) concatStrings mapAttrsToList mkOption;
 in {
   options._.colors = {
     background = mkOption {
       default = cfg.color0;
     };
-    foregrpund = mkOption {
+    foreground = mkOption {
       default = cfg.color15;
     };
     color0 = mkOption {
@@ -63,5 +63,7 @@ in {
 
   config = {
     programs.kitty.settings = cfg;
+    programs.rofi.theme = "gruvbox-dark";
+    xdg.configFile."colors.sh".text = concatStrings (mapAttrsToList (n: v: "export ${n}='${v}'\n") cfg);
   };
 }

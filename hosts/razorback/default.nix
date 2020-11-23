@@ -9,18 +9,18 @@
   _.gui.enable = true;
   _.libvirt.enable = true;
 
-  users.mutableUsers = false;
-  users.users.vlaci = {
-    extraGroups = [ "libvirtd" "networkmanager" "wheel" ];
-    isNormalUser = true;
-    shell = pkgs.zsh;
+  _.users.users.vlaci = {
+    isAdmin = true;
     uid = 1000;
-  };
-
-  home-manager.users.vlaci = {
-    _.git.enable = true;
-    _.gpg.enable = true;
-    _.tools.enable = true;
-    _.doom-emacs.enable = true;
+    home-manager = {
+      _.git.enable = true;
+      _.gpg.enable = true;
+      _.tools.enable = true;
+      _.doom-emacs.enable = true;
+      #home.packages = with pkgs; [
+      #  emacs-all-the-icons-fonts
+      #  emacs
+      #];
+    };
   };
 }

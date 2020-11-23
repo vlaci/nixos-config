@@ -6,10 +6,9 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/develop";
-    # nix-doom-emacs.url = "/etc/nixos/nix-doom-emacs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nix-doom-emacs, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
     in
@@ -20,8 +19,13 @@
             unstable = inputs.nixpkgs-unstable.legacyPackages."${final.system}";
           in {
             _ = { inherit unstable; };
-            bat = unstable.bat;
-        };
+          };
+
+        overlays = [
+          (import nix-doom-emacs.inputs.emacs-overlay)
+          (import overlays/nix-zsh-completions.nix)
+          self.overlay
+        ];
 
         checks."x86_64-linux" =
           with import (nixpkgs + "/nixos/lib/testing-python.nix") {
@@ -46,8 +50,11 @@
             };
           };
       } // eachDefaultSystem (
-        system: {
-          devShell = import ./shell.nix { inherit (nixpkgs.legacyPackages."${system}") pkgs; };
-        }
+        system: let
+            pkgs = import nixpkgs { inherit system; overlays = self.overlays; };
+          in {
+            packages = pkgs;
+            devShell = import ./shell.nix { inherit pkgs; };
+          }
       );
 }

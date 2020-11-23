@@ -52,6 +52,10 @@ in {
       inherit (cfg) doomPrivateDir;
       inherit extraConfig;
     };
+    services.emacs = {
+      enable = true;
+      client.enable = true;
+    };
     home.packages = with pkgs; [
       python3Packages.grip
       nodePackages.bash-language-server

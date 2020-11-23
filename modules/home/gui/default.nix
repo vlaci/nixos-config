@@ -28,7 +28,7 @@ lib.mkProfile "gui" {
       blur-method = "dual_kawase";
     '';
     opacityRule = [
-      "75:class_g = 'kitty'"
+      "90:class_g = 'kitty'"
     ];
     vSync = true;
   };

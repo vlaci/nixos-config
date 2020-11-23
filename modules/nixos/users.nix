@@ -11,6 +11,11 @@ in {
 
   options._.users.users = mkOption {
     type = with types; attrsOf attrs;
+    apply = mapAttrs (name: attrs@{isNormalUser ? true, ...}:
+      attrs // {
+        inherit isNormalUser;
+      }
+    );
   };
 
   options.users.users = mkOption {
@@ -39,6 +44,6 @@ in {
     _.users.users = defaultUsers;
     users.users = cfg.users;
 
-    home-manager.users = mapAttrs (name: v: config.users.users.${name}.home-manager) cfg.users;
+    home-manager.users = mapAttrs (name: v: { imports = config.users.users.${name}.home-manager;}) cfg.users;
   };
 }
