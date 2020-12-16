@@ -2,11 +2,12 @@
 # Format the Panel
 monitor=$1
 
-
+source ~/.config/colors.sh
 activecolor="$(herbstclient attr theme.tiling.active.color)"
-#activecolor="#9fbc00"
-
-emphbg="#505050" #emphasized background color
+visiblecolor=$color5
+emphbg="$bg0_s"
+fadefg="$color8"
+urgentbg="$color1"
 
 print_taglist() {
 	TAGS=( $(herbstclient tag_status $monitor) )
@@ -33,11 +34,11 @@ print_taglist() {
 		esac
 		tag=""
 		$here	 && tag+="%{B$emphbg}" || tag+="%{B-}"
-		$visible  && tag+="%{+o}" || tag+="%{-o}"
-		$occupied && tag+="%{F-}" || tag+="%{F#909090}"
-		$urgent   && tag+="%{B#eeD6156C}%{-o}"
+		$visible  && tag+="%{o$visiblecolor}" || tag+="%{-o}"
+		$occupied && tag+="%{F-}" || tag+="%{F$fadefg}"
+		$urgent   && tag+="%{B$urgentbg}%{-o}"
 		$focused  && tag+="%{Fwhite}%{u$activecolor}" \
-			  || tag+="%{u#454545}"
+			  || tag+="%{-u}"
 		tag+="%{A1:herbstclient chain , focus_monitor $monitor , use ${i:1}:} ${i:1} %{A}"
 		echo -n "$tag"
 	done

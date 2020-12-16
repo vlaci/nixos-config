@@ -8,15 +8,13 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #353535
-background-alt = #555
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+background = ${xrdb:background:353535}
+;background = #353535
+foreground = ${xrdb:foreground:#dfdfdf}
+;foreground = #dfdfdf
 foreground-alt = #879
-primary = #71b9f8
+primary = ${xrdb:color2:#71b9f8}
 secondary = #b769c3
-alert = #bd2c40
 
 [bar/example]
 monitor = ${env:MONITOR:}
@@ -103,74 +101,6 @@ mount-0 = /
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-format = <label-state> <label-mode>
-
-label-focused = %name%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied =%name%
-label-occupied-padding = 2
-
-label-urgent = %name%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = 
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 0
-
-label-monocle = 
-label-tiled = 
-label-fullscreen = 
-label-floating = 
-label-pseudotiled = 
-label-locked = 
-label-locked-foreground = #bd2c40
-label-sticky = 
-label-sticky-foreground = #fba922
-label-private = 
-label-private-foreground = #bd2c40
-
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
