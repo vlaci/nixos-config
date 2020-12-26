@@ -36,11 +36,11 @@
     "emacs-overlay": {
       "flake": false,
       "locked": {
-        "lastModified": 1608985145,
-        "narHash": "sha256-KisepoJydW779WZYXo8hHaf0nGNNdHjoVvob2lXSGCE=",
+        "lastModified": 1608999586,
+        "narHash": "sha256-0zUW3c3trwnxqvW/WcPBwsVV+aSJxKPhsW8b7UkPvm0=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "10ade2ee243f8073c0fd3983ea9c6a375153f7e7",
+        "rev": "105f0cb92622ca79c77ef32dd4973d980340c36a",
         "type": "github"
       },
       "original": {
@@ -173,7 +173,6 @@
         "evil-quick-diff": "evil-quick-diff",
         "explain-pause-mode": "explain-pause-mode",
         "nix-straight.el": "nix-straight.el",
-        "nixpkgs": "nixpkgs_2",
         "nose": "nose",
         "ob-racket": "ob-racket",
         "org-mode": "org-mode",
@@ -183,10 +182,12 @@
         "rotate-text.el": "rotate-text.el"
       },
       "locked": {
-        "lastModified": 1608999021,
-        "narHash": "sha256-lYFxS5NVnHD6NbCFeJLhmkZFcH+W++Fr+wJLwmm6wP0=",
-        "type": "git",
-        "url": "file:///home/vlaci/Dokumentumok/devel/git/github.com/vlaci/nix-doom-emacs"
+        "lastModified": 1608992397,
+        "narHash": "sha256-1hMfOAiQ1gIPDB6rHTDKcj4vvKUeA/myqkFsLWXFALg=",
+        "owner": "vlaci",
+        "repo": "nix-doom-emacs",
+        "rev": "58d03d14e26ad0c287567a7361e31dd57dff8bca",
+        "type": "github"
       },
       "original": {
         "owner": "vlaci",
@@ -258,20 +259,6 @@
       }
     },
     "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1609005737,
-        "narHash": "sha256-y78LNu8KxiPweC0CQhrjGy/ntplfqQaOKGEwx4Oqfd0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "74826cd912379e788b448d634d7aad6166c916a7",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_3": {
       "locked": {
         "lastModified": 1608904536,
         "narHash": "sha256-gU6eszXC/3njk9L1XdQq6tlmD1n/nl84WG99H9a6O0s=",
@@ -389,7 +376,7 @@
         "home-manager": "home-manager",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
