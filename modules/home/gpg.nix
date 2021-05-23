@@ -41,7 +41,7 @@ lib.mkProfile "gpg" {
       # Cross-certify subkeys are present and valid
       require-cross-certification = true;
       # Disable caching of passphrase for symmetrical ops
-      no-symkey-cache =  true;
+      no-symkey-cache = true;
       # Enable smartcard
       use-agent = true;
       ## Disable recipient key ID in messages

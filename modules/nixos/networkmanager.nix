@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 lib.mkProfile "networkmanager" {
   networking.networkmanager = {
@@ -6,9 +6,8 @@ lib.mkProfile "networkmanager" {
     dhcp = "dhcpcd";
     dns = "dnsmasq";
 
-    packages = [
+    packages = with pkgs; ([
       pkgs.dhcpcd
-    ];
+    ] ++ lib.optionals config._.networkmanager.enable [ networkmanagerapplet ]);
   };
-  _.users.defaultGroups = [ "libvirtd" ];
 }

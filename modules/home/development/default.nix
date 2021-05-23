@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+lib.mkProfile "development" {
   home.packages = with pkgs; [
     vscode
-    python39
-    julia
     pandoc
+    rnix-lsp
     rustup
+    rust-analyzer
   ];
 }

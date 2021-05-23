@@ -1,10 +1,8 @@
 { lib, ... }:
 
 {
-  options.lib = lib.mkOption {
-    type = lib.types.attrsOf lib.types.attrs;
-  };
   imports = [
+    ./development
     ./doom-emacs
     ./gui
     ./zsh
@@ -12,6 +10,5 @@
     ./gpg.nix
     ./programs.nix
     ./services.nix
-    ./user.nix
   ];
 }

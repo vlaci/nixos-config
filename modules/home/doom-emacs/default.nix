@@ -2,7 +2,8 @@
 
 let
   cfg = config._.doom-emacs;
-in {
+in
+{
   options._.doom-emacs = {
     enable = mkEnableOption "Doom Emacs configuration";
     doomPrivateDir = mkOption {
@@ -16,51 +17,58 @@ in {
       type = with types; lines;
       default = "";
     };
+    extraPackages = mkOption {
+      description = "Extra packages to install";
+      type = with types; listOf package;
+      default = [ ];
+    };
     spellCheckDictionaries = mkOption {
       description = "Use these dictionaries for spell-checking";
       type = with types; listOf package;
-      default = [];
+      default = [ ];
     };
   };
 
-  config = mkIf cfg.enable (let
-    extraConfig = let
-      hunspell = pkgs.hunspellWithDicts cfg.spellCheckDictionaries;
-      languages = lib.concatMapStringsSep "," (dct: dct.dictFileName) cfg.spellCheckDictionaries;
-    in ''
-      ;; Pull from PRIMARY (same as middle mouse click)
-      (defun paste-primary-selection ()
-        (interactive)
-        (insert
-        (x-get-selection 'PRIMARY)))
-      (global-set-key (kbd "S-<insert>") 'paste-primary-selection)
+  config = mkIf cfg.enable (
+    let
+      extraConfig =
+        let
+          hunspell = pkgs.hunspellWithDicts cfg.spellCheckDictionaries;
+          languages = lib.concatMapStringsSep "," (dct: dct.dictFileName) cfg.spellCheckDictionaries;
+        in
+        ''
+          ;; Pull from PRIMARY (same as middle mouse click)
+          (defun paste-primary-selection ()
+            (interactive)
+            (insert
+            (x-get-selection 'PRIMARY)))
+          (global-set-key (kbd "S-<insert>") 'paste-primary-selection)
 
-      (setq ispell-program-name "${hunspell}/bin/hunspell"
-            ispell-dictionary "${languages}")
-      (after! ispell
-        (ispell-set-spellchecker-params)
-        (ispell-hunspell-add-multi-dic ispell-dictionary))
+          (setq ispell-program-name "${hunspell}/bin/hunspell"
+                ispell-dictionary "${languages}")
+          (after! ispell
+            (ispell-set-spellchecker-params)
+            (ispell-hunspell-add-multi-dic ispell-dictionary))
 
-      ${cfg.extraConfig}
-    '';
-  in {
-    programs.doom-emacs = {
-      enable = true;
-      #emacsPackage = pkgs.emacsGcc.overrideAttrs (super: {
-      #  patches = super.patches ++ [ ./gccemacs.patch ];
-      #});
-      inherit (cfg) doomPrivateDir;
-      inherit extraConfig;
-    };
-    services.emacs = {
-      enable = true;
-      client.enable = true;
-    };
-    home.packages = with pkgs; [
-      python3Packages.grip
-      nodePackages.bash-language-server
-      shellcheck
-      ghc
-    ];
-  });
+          ${cfg.extraConfig}
+        '';
+    in
+    {
+      programs.doom-emacs = {
+        enable = true;
+        inherit (cfg) doomPrivateDir extraPackages;
+        inherit extraConfig;
+      };
+      services.emacs = {
+        enable = true;
+        client.enable = true;
+      };
+      home.packages = with pkgs; [
+        python3Packages.grip
+        nodePackages.bash-language-server
+        shellcheck
+        ghc
+      ];
+    }
+  );
 }

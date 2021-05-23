@@ -2,14 +2,16 @@
 
 let
   inherit (lib) mkDefault;
-in {
+in
+{
   imports = [
     ./gui
-    #./default-user.nix
+    ./yubikey
     ./home-manager.nix
     ./locale.nix
     ./networkmanager.nix
     ./services.nix
+    ./security.nix
     ./users.nix
     ./zsh.nix
   ];
@@ -18,6 +20,7 @@ in {
   nix.extraOptions = mkDefault ''
     experimental-features = nix-command flakes
   '';
+  nixpkgs.config.allowUnfree = true;
 
   _.home-manager.forAllUsers.home.stateVersion = mkDefault "20.09";
 

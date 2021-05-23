@@ -1,84 +1,110 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, system, ... }:
 
 let
   dotDir = ".config/zsh";
-in {
-  programs.zsh = {
-    enable = true;
-    enableAutosuggestions = true;
-    enableCompletion = false;
-    enableVteIntegration = true;
-    inherit dotDir;
-    initExtra = ''
-      source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
-      source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
-      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-      # Initialization code that may require console input (password prompts, [y/n]
-      # confirmations, etc.) must go above this block; everything else may go below.
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
+in
 
-      function prompt_git_useremail() {
-        p10k segment -t "$(git_prompt_useremail_symbol)"
-      }
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+{
+  programs.zsh = lib.mkMerge [
+    {
+      # grml configuration should be loaded before any other customization
+      # That way any defaults set by it can be overriden in subsequent
+      # initExtra assignments
+      initExtra = lib.mkBefore ''
+        source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+      '';
+    }
+    {
+      # powerlevel stuff should come at the very end because the instant prompt stuff
+      # may skip execution of the code after it.
+      initExtra = lib.mkAfter ''
+        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+        # Initialization code that may require console input (password prompts, [y/n]
+        # confirmations, etc.) must go above this block; everything else may go below.
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
 
-      export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias: "
-    '';
-    history = {
-      expireDuplicatesFirst = true;
-      extended = true;
-      ignoreSpace = true;
-      path = "$HOME/${dotDir}/.zsh_history";
-    };
-    plugins = [
-      {
-        name = "colors";
-        src = ./plugins;
-      }
-      {
-        name = "alias-tips";  # Depends: python
-        src = pkgs.fetchFromGitHub {
-          owner = "djui";
-          repo = "alias-tips";
-          rev = "40d8e206c6d6e41e039397eb455bedca578d2ef8";
-          sha256 = "17cifxi4zbzjh1damrwi2fyhj8x0y2m2qcnwgh4i62m1vysgv9xb";
-        };
-      }
-      {
-        name = "calc";
-        src = pkgs.fetchFromGitHub {
-          owner = "arzzen";
-          repo = "calc.plugin.zsh";
-          rev = "ea59bc2bfd1d2791de539c31c0c544d4dc16dad6";
-          sha256 = "0as30w1na8idrkxifim44ky0521r93r2qm201qnnl6by2qbmbiqv";
-        };
-      }
-      {
-        name = "git-prompt-useremail";
-        src = pkgs.fetchFromGitHub {
-          owner = "mroth";
-          repo = "git-prompt-useremail";
-          rev = "902541b73a23061e6cbeb889e0a7f179a87d047e";
-          sha256 = "1n543rjrjv6kby42pvgvn9n3dwk298pk1wkgajapbalfrlialg4m";
-        };
-      }
-      {
-        name = "fast-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zdharma";
-          repo = "fast-syntax-highlighting";
-          rev = "v1.55";
-          sha256 = "019hda2pj8lf7px4h1z07b9l6icxx4b2a072jw36lz9bh6jahp32";
-        };
-      }
-    ];
-    shellAliases = {
-      gst="git status";
-    };
-  };
+        function prompt_git_useremail() {
+          p10k segment -t "$(git_prompt_useremail_symbol)"
+        }
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
+        export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias: "
+      '';
+    }
+    {
+      enable = true;
+      enableAutosuggestions = true;
+      enableCompletion = false;
+      enableVteIntegration = true;
+      inherit dotDir;
+      history = {
+        expireDuplicatesFirst = true;
+        extended = true;
+        ignoreSpace = true;
+        path = "$HOME/${dotDir}/.zsh_history";
+      };
+      plugins = [
+        {
+          name = "command_not_found";
+          src = pkgs.runCommand "plugin"
+            {
+              inherit system;
+              inherit (pkgs) sqlite;
+              plugin = ./plugins/command_not_found/command_not_found.plugin.zsh;
+            } ''
+            mkdir $out
+            substituteAll $plugin $out/command_not_found.plugin.zsh
+          '';
+        }
+        {
+          name = "colors";
+          src = ./plugins/colors;
+        }
+        {
+          name = "doas";
+          src = ./plugins/doas;
+        }
+        {
+          name = "navigate";
+          src = ./plugins/navigate;
+        }
+        {
+          name = "alias-tips"; # Depends: python
+          src = pkgs.pkgsrcs.zsh-alias-tips;
+        }
+        {
+          name = "calc";
+          src = pkgs.pkgsrcs.zsh-calc;
+        }
+        {
+          name = "git-prompt-useremail";
+          src = pkgs.pkgsrcs.zsh-git-prompt-useremail;
+        }
+        {
+          name = "fast-syntax-highlighting";
+          src = pkgs.pkgsrcs.zsh-fast-syntax-highlighting;
+        }
+      ];
+      shellAliases = {
+        sshn = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no";
+        scpn = "scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no";
+        fd = "noglob fd";
+        find = "noglob find";
+        gg = "git grep -ni";
+        gco = "git checkout";
+        gcp = "git cherry-pick";
+        glg = "git log --stat";
+        grb = "git rebase";
+        gst = "git status";
+        gb = "git branch";
+        ec = "emacsclient";
+        ecw = "emacsclient -c";
+      };
+    }
+  ];
 
   home.file."${dotDir}/.p10k.zsh".source = ./p10k.zsh;
 }

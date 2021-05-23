@@ -2,27 +2,13 @@
 
 lib.mkProfile "gui" {
   imports = [
-    ./colors.nix
+    ./awesome
     ./herbstluftwm
+    ./theme
   ];
-  xsession = {
-    enable = true;
-    scriptPath = ".xsession-hm";
-    windowManager.command = "herbstluftwm";
-  };
 
   services.picom = {
     enable = true;
-    package = pkgs.picom.overrideAttrs (super: rec {
-      version = "9";
-      src = pkgs.fetchFromGitHub {
-        owner  = "yshui";
-        repo   = "picom";
-        rev    = "d00c1c7a1d32aa66bcfa5a0bb3fd6ce0fffb4fb9";
-        sha256 = "sha256-DAsPb9jyA0XgvANpoT/nHtgSsiol0IkuKgzt69MHygY=";
-        fetchSubmodules = true;
-      };
-    });
     experimentalBackends = true;
     extraOptions = ''
       blur-method = "dual_kawase";
@@ -41,4 +27,20 @@ lib.mkProfile "gui" {
   programs.rofi = {
     enable = true;
   };
+
+  services.screen-locker = {
+    enable = true;
+    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
+    xssLockExtraOptions = [
+      "--notifier ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
+      "--transfer-sleep-lock"
+    ];
+  };
+
+  home.packages = with pkgs; [
+    evince
+    flameshot
+    gimp
+    vivaldi
+  ];
 }

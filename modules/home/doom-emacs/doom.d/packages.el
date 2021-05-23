@@ -6,8 +6,7 @@
 ;; (package! another-package :recipe (:host github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
 
-(package! leuven-theme)
 (package! olivetti)
-(package! elfeed)
 (package! neuron-mode)
-;;(package! magit-delta)
+(package! poly-markdown)
+(package! lsp-julia)

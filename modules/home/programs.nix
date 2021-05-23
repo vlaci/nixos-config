@@ -3,22 +3,22 @@
 lib.mkProfile "tools" {
   home.packages = with pkgs; [
     atool
+    bottom # top
     diskus
     du-dust
     fd
     hexyl
-    hyperfine  # benchmark
+    hyperfine # benchmark
     mc
-    python3
-    procs  # ps on steroids
+    procs # ps on steroids
+    python39
     ranger
     # for emacs too
     ripgrep
-    sd  # sed
-    tokei  # loc
+    sd # sed
+    tokei # loc
     unzip
-    ytop  # top
-    zenith  # top
+    zenith # top
     zip
   ];
 
@@ -31,14 +31,11 @@ lib.mkProfile "tools" {
   programs.htop.enable = true;
   programs.home-manager.enable = true;
   programs.jq.enable = true;
-  #programs.keychain.enable = true;
   programs.lesspipe.enable = true;
 
   programs.mcfly.enable = true;
-  programs.mcfly.enableZshIntegration = false;
-  programs.zsh.initExtra = lib.mkAfter ''
-    #source ${pkgs.mcfly}/share/mcfly/mcfly.zsh
-  '';
+  programs.mcfly.enableZshIntegration = true;
+
   programs.pazi.enable = true;
 
   services.lorri.enable = true;

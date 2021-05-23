@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   # smart card (+yubikey)
@@ -16,7 +16,9 @@
     })
     (lib.mkProfile "libvirt" {
       virtualisation.libvirtd.enable = true;
+      virtualisation.spiceUSBRedirection.enable = true;
       _.users.defaultGroups = [ "libvirtd" ];
+      services.dbus.packages = with pkgs; [ gnome3.dconf ];
     })
   ];
 }

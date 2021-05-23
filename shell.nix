@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { } }:
 
 with pkgs;
 
@@ -7,6 +7,7 @@ mkShell {
     git
     gitAndTools.git-crypt
     gnumake
+    just
     nixpkgs-fmt
   ];
 

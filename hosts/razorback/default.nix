@@ -1,8 +1,15 @@
-{ secrets, config, lib, pkgs, ... }:
+{ secrets, config, lib, pkgs, nixos-hardware, ... }:
 
 {
   networking.hostName = "razorback";
-  imports = [ secrets.users.vlaci ];
+  imports = [
+    ./hardware-configuration.nix
+    ./hardware-customization.nix
+    (nixos-hardware + "/common/cpu/intel")
+    (nixos-hardware + "/common/pc/ssd")
+    (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
+    secrets.users.vlaci
+  ];
 
   _.networkmanager.enable = true;
   _.sshd.enable = true;
@@ -17,10 +24,6 @@
       _.gpg.enable = true;
       _.tools.enable = true;
       _.doom-emacs.enable = true;
-      #home.packages = with pkgs; [
-      #  emacs-all-the-icons-fonts
-      #  emacs
-      #];
     };
   };
 }
