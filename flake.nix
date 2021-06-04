@@ -6,12 +6,14 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/develop";
+    openconnect-sso.url = "github:vlaci/openconnect-sso";
+    openconnect-sso.flake = false;
 
     pkgsrcs.url = "path:./pkgs";
     pkgsrcs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, pkgsrcs, home-manager, flake-utils, nix-doom-emacs, ... }@inputs:
+  outputs = { self, nixpkgs, pkgsrcs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -36,6 +38,7 @@
 
       overlays = lib.importDir ./overlays // {
         emacs-overlay = final: prev: import nix-doom-emacs.inputs.emacs-overlay final prev;
+        openconnect-sso = import "${openconnect-sso}/overlay.nix";
         pkgsrcs = pkgsrcs.overlay;
         inherit (self) overlay;
       };

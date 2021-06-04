@@ -404,6 +404,22 @@
         "type": "github"
       }
     },
+    "openconnect-sso": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1622737647,
+        "narHash": "sha256-2WPMAYMfYdEts711/vVHAmhzdu5LRb9NhZXZRWQeqa8=",
+        "owner": "vlaci",
+        "repo": "openconnect-sso",
+        "rev": "54da0073732cc1cb445360c3d6f0c915ae223ec8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vlaci",
+        "repo": "openconnect-sso",
+        "type": "github"
+      }
+    },
     "org-mode": {
       "flake": false,
       "locked": {
@@ -517,6 +533,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "openconnect-sso": "openconnect-sso",
         "pkgsrcs": "pkgsrcs"
       }
     },
