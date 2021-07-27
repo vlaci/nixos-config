@@ -8,12 +8,16 @@
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/develop";
     openconnect-sso.url = "github:vlaci/openconnect-sso";
     openconnect-sso.flake = false;
+    emacsVlaci.url = "github:vlaci/emacs.d";
+    emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
+    github-nvim-theme.url = "github:projekt0n/github-nvim-theme";
+    github-nvim-theme.flake = false;
 
     pkgsrcs.url = "path:./pkgs";
     pkgsrcs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, pkgsrcs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, ... }@inputs:
+  outputs = { self, nixpkgs, pkgsrcs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, emacsVlaci, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -21,7 +25,7 @@
       system = "x86_64-linux";
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ nix-doom-emacs.hmModule ];
+        hmModules = [ nix-doom-emacs.hmModule emacsVlaci.lib.hmModule ];
         nixosModules = [ home-manager.nixosModules.home-manager ];
       } // inputs);
     in
@@ -34,11 +38,17 @@
         {
           _ = { inherit unstable; };
           inherit lib;
+          myVimPlugins.github-nvim-theme = final.vimUtils.buildVimPlugin {
+            name = "github-nvim-theme";
+            src = inputs.github-nvim-theme;
+            doCheck = false;  # lua-format
+            buildPhase = ":";
+          };
         };
 
       overlays = lib.importDir ./overlays // {
-        emacs-overlay = final: prev: import nix-doom-emacs.inputs.emacs-overlay final prev;
         openconnect-sso = import "${openconnect-sso}/overlay.nix";
+        emacsVlaci = emacsVlaci.overlay;
         pkgsrcs = pkgsrcs.overlay;
         inherit (self) overlay;
       };

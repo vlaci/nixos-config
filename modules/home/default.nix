@@ -6,6 +6,7 @@
     ./doom-emacs
     ./gui
     ./zsh
+    ./emacs.nix
     ./git.nix
     ./gpg.nix
     ./programs.nix
