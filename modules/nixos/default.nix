@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ./cachix
     ./gui
     ./yubikey
     ./home-manager.nix

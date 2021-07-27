@@ -13,6 +13,7 @@
     secrets.work
   ];
 
+  _.cachix.enable = true;
   _.networkmanager.enable = true;
   _.sshd.enable = false;
   _.gui.enable = true;

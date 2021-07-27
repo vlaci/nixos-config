@@ -11,6 +11,7 @@
     secrets.users.vlaci
   ];
 
+  _.cachix.enable = true;
   _.networkmanager.enable = true;
   _.sshd.enable = true;
   _.gui.enable = true;
