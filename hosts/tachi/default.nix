@@ -16,6 +16,7 @@
   _.networkmanager.enable = true;
   _.sshd.enable = false;
   _.gui.enable = true;
+  _.docker.enable = true;
   _.libvirt.enable = true;
   _.yubikey.enable = true;
   _.yubikey.pamU2f.enable = true;

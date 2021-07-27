@@ -20,5 +20,9 @@
       _.users.defaultGroups = [ "libvirtd" ];
       services.dbus.packages = with pkgs; [ gnome3.dconf ];
     })
+    (lib.mkProfile "docker" {
+      virtualisation.docker.enable = true;
+      _.users.defaultGroups = [ "docker" ];
+    })
   ];
 }
