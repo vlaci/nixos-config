@@ -44,10 +44,12 @@
     cursorTheme.name = "pixelfun3";
     cursorTheme.package = pkgs.xcursor-pixelfun;
 
-    theme.name = "Nordic";
-    theme.package = pkgs.nordic;
+    gtkTheme.name = "Nordic";
+    gtkTheme.package = pkgs.nordic;
 
     iconTheme.name = "Zafiro-icons";
     iconTheme.package = pkgs.zafiro-icons;
+
+    name = "Nord";
   };
 }

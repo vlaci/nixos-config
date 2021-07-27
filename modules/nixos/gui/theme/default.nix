@@ -72,17 +72,19 @@ in
     cursorTheme.name = mkOption { };
     cursorTheme.package = mkOption { };
 
-    theme.name = mkOption { };
-    theme.package = mkOption { };
+    gtkTheme.name = mkOption { };
+    gtkTheme.package = mkOption { };
 
     iconTheme.name = mkOption { };
     iconTheme.package = mkOption { };
+
+    name = mkOption { };
   };
 
   config.services.xserver.displayManager.lightdm = {
     background = config._.theme.wallpaper;
     greeters.enso = {
-      inherit (config._.theme) cursorTheme iconTheme theme;
+      inherit (config._.theme) cursorTheme iconTheme; theme = config._.theme.gtkTheme;
     };
   };
 }
