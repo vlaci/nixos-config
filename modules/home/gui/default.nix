@@ -22,6 +22,7 @@ lib.mkProfile "gui" {
   programs.firefox.enable = true;
   programs.kitty = {
     enable = true;
+    settings.select_by_word_characters = "@-./_~?&%+#";
   };
 
   programs.rofi = {
