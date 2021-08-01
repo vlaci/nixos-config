@@ -7,6 +7,7 @@ in
 {
   config = {
     gtk = { inherit (theme) iconTheme; theme = theme.gtkTheme; };
+    xsession.pointerCursor = theme.cursorTheme;
     programs.kitty.settings = theme.colors;
     programs.rofi.theme = ./nord.rasi;
     programs.bat.config.theme = theme.name;
