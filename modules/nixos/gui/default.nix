@@ -29,7 +29,7 @@ lib.mkProfile "gui" {
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Fira Mono" ];
+        monospace = [ "Iosevka Extended" ];
         sansSerif = [ "Noto Sans" ];
         serif = [ "Noto Serif" ];
       };
