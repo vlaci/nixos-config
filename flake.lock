@@ -54,11 +54,11 @@
     "corfu": {
       "flake": false,
       "locked": {
-        "lastModified": 1626474888,
-        "narHash": "sha256-2Y/TwGkzQuZx12vvvDqwxeGd3cz++ax75u5wtkSi+7k=",
+        "lastModified": 1627672128,
+        "narHash": "sha256-bm412o953fCc5ybF97Bq8cGwnRMe7Y//VEjTfU8wPWk=",
         "owner": "minad",
         "repo": "corfu",
-        "rev": "155af8de3e75f442beaf2bc1b44b9abcbc367ff0",
+        "rev": "f3e26eeec42f8bd293ffb698333fa48f8635b4f5",
         "type": "github"
       },
       "original": {
@@ -162,11 +162,11 @@
         "vertico": "vertico"
       },
       "locked": {
-        "lastModified": 1627368627,
-        "narHash": "sha256-LkTnPJ5ZZSiI5nqkEOM0XS+flnnpnU4LxpOBZQ9jsMk=",
+        "lastModified": 1627807800,
+        "narHash": "sha256-OMohixHSdzr9fee2iqxyuHGSz9xVQEOpuxC1ydWYB5A=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "fcc407229c3ec7ca1a591d41d1c9cfdb68b911b7",
+        "rev": "366bbf0e34dd06d4c012f4ca6624fac75b202a66",
         "type": "github"
       },
       "original": {
@@ -465,18 +465,13 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1627128856,
-        "narHash": "sha256-yw3lA8zyNFhj309lmxvNByEEymRT1rRy5oE+jEPnsP4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "dd14e5d78e90a2ccd6007e569820de9b4861a6c2",
-        "type": "github"
+        "narHash": "sha256-73RcLjZcHeQa4G5BXCwZ4VQ5VIHbbbe01/nzTPPUJtI=",
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
     "nixpkgs_2": {
@@ -496,18 +491,13 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1627128856,
-        "narHash": "sha256-yw3lA8zyNFhj309lmxvNByEEymRT1rRy5oE+jEPnsP4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "dd14e5d78e90a2ccd6007e569820de9b4861a6c2",
-        "type": "github"
+        "narHash": "sha256-73RcLjZcHeQa4G5BXCwZ4VQ5VIHbbbe01/nzTPPUJtI=",
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
     "nose": {

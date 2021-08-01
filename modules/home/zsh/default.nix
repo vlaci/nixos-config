@@ -1,4 +1,4 @@
-{ config, lib, pkgs, system, ... }:
+{ config, lib, pkgs, system, nixpkgs, ... }:
 
 let
   dotDir = ".config/zsh";
@@ -51,7 +51,7 @@ in
           name = "command_not_found";
           src = pkgs.runCommand "plugin"
             {
-              inherit system;
+              inherit nixpkgs system;
               inherit (pkgs) sqlite;
               plugin = ./plugins/command_not_found/command_not_found.plugin.zsh;
             } ''

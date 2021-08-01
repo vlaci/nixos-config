@@ -2,8 +2,8 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/develop";
     openconnect-sso.url = "github:vlaci/openconnect-sso";

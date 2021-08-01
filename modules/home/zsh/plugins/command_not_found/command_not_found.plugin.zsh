@@ -3,7 +3,7 @@ __try () {
     shift
     local EXE
     EXE=$(printf "%q" "${1/doas/$2}")
-    local DB="/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite"
+    local DB="@nixpkgs@/programs.sqlite"
     local QUERY="select package from Programs where system = \"@system@\" and name = \"$EXE\" and package <> \"busybox\""
     local -a CANDIDATES
 
