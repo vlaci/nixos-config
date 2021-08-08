@@ -24,7 +24,7 @@
       _.git.enable = true;
       _.gpg.enable = true;
       _.tools.enable = true;
-      _.doom-emacs.enable = true;
+      _.emacs.enable = true;
     };
   };
 }
