@@ -23,6 +23,9 @@
     (lib.mkProfile "docker" {
       virtualisation.docker.enable = true;
       _.users.defaultGroups = [ "docker" ];
+      environment.systemPackages = [
+        pkgs.docker-compose
+      ];
     })
   ];
 }
