@@ -1,7 +1,9 @@
-{ lib, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
-lib.mkProfile "tools" {
-  home.packages = with pkgs; [
+let
+  inherit (lib) mkProfile optionals;
+in mkProfile "tools" {
+  home.packages = with pkgs; ([
     atool
     bottom # top
     diskus
@@ -20,7 +22,9 @@ lib.mkProfile "tools" {
     unzip
     zenith # top
     zip
-  ];
+  ] ++ optionals config._.gui.enable [
+    libreoffice-fresh
+  ]);
 
   programs.bash.enable = true;
   programs.bat.enable = true;
