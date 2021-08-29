@@ -102,6 +102,7 @@ in
         gb = "git branch";
         ec = "emacsclient";
         ecw = "emacsclient -c";
+        nix = "noglob nix";
       };
     }
   ];
