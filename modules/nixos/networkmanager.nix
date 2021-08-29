@@ -8,7 +8,7 @@ lib.mkProfile "networkmanager" {
 
     packages = with pkgs; ([
       pkgs.dhcpcd
-    ] ++ lib.optionals config._.networkmanager.enable [ networkmanagerapplet ]);
+    ] ++ lib.optionals config._.gui.enable [ networkmanagerapplet ]);
   };
   _.users.defaultGroups = [ "networkmanager" ];
 }
