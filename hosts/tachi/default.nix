@@ -2,6 +2,7 @@
 
 {
   networking.hostName = "tachi";
+  services.tzupdate.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./hardware-customization.nix
