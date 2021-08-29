@@ -8,6 +8,7 @@ in
     ./cachix
     ./gui
     ./yubikey
+    ./development.nix
     ./home-manager.nix
     ./locale.nix
     ./networkmanager.nix
