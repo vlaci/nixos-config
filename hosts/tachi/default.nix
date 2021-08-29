@@ -8,7 +8,7 @@
     ./hardware-customization.nix
     (nixos-hardware + "/common/cpu/intel")
     (nixos-hardware + "/common/pc/ssd")
-    (nixos-hardware + "/lenovo/thinkpad/t480s")
+    (nixos-hardware + "/lenovo/thinkpad/t14")
 
     secrets.users.vlaci
     secrets.work

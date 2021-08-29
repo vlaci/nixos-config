@@ -1,13 +1,28 @@
 { config, pkgs, ... }:
 
 {
+  services.hardware.bolt.enable = true;
+  services.fwupd.enable = true;
+  services.throttled = {
+    enable = true;
+    extraConfig = with builtins; (
+      replaceStrings
+        [ "HWP_Mode: False" ]
+        [ "HWP_Mode: True" ]
+        (readFile "${pkgs.throttled}/etc/lenovo_fix.conf")
+    );
+  };
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="thunderbolt", ATTR{authorized}=="0", ATTR{authorized}="1"
+  '';
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.tmpOnTmpfs = true;
-  boot.kernelParams = [ "mitigations=off" "intel_iommu=on" "msr.allow_writes=on" ];
+  boot.kernelParams = [ "mitigations=off" "intel_iommu=on" "msr.allow_writes=on" "psmouse.synaptics_intertouch=0" ];
 
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
 
@@ -20,7 +35,7 @@
   services.fstrim.enable = true;
 
   boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/4533dfe8-6714-4841-93cd-c3421ac4a201";
+    device = "/dev/disk/by-uuid/d49073d3-599a-452d-ba9f-2903a0bab3a2";
     preLVM = true;
     allowDiscards = true;
   };
@@ -32,6 +47,7 @@
     brightnessctl
     powertop
     blueman
+    throttled
   ];
 
   services.tlp = {
