@@ -10,4 +10,5 @@ lib.mkProfile "networkmanager" {
       pkgs.dhcpcd
     ] ++ lib.optionals config._.networkmanager.enable [ networkmanagerapplet ]);
   };
+  _.users.defaultGroups = [ "networkmanager" ];
 }
