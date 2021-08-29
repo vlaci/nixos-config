@@ -15,12 +15,7 @@ let
       text = mkOption {
         apply = svc:
           if parentConfig._.yubikey.pamU2f.enable then
-          # # work-around that processing input through readFile-runCommand
-            # pair of commands removes contextual information
-            builtins.replaceStrings
-              [ "${parentConfig.system.build.pamEnvironment}" ]
-              [ "${parentConfig.system.build.pamEnvironment}" ]
-            (builtins.readFile (
+            builtins.readFile (
               pkgs.runCommand "pam-${name}-u2f"
                 { inherit svc; passAsFile = [ "svc" ]; } ''
                 ${./post-process-pam-service.sh} \
@@ -28,7 +23,7 @@ let
                   $out \
                   ${escapeShellArgs [ config.use2Factor config.u2fModuleArgs ]}
               ''
-            ))
+            )
           else
             svc
         ;
