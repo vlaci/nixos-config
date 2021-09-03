@@ -102,11 +102,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1630228697,
-        "narHash": "sha256-LhwbUdVSha/OdQCTCsuagYCZHeB4aBD47Z/NB4OHShQ=",
+        "lastModified": 1630689308,
+        "narHash": "sha256-1jL0IQJFytv9VsbOc1EKvkaFrZWwosoFAcSrpwvhulw=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "0f2e92d0624f5a6887c8a07e1a5ae6ab298e194b",
+        "rev": "efc5b40f6dfb4bffa8cd5965e9825f95cff3028b",
         "type": "github"
       },
       "original": {
@@ -116,6 +116,21 @@
       }
     },
     "emacs-overlay_2": {
+      "locked": {
+        "lastModified": 1630574807,
+        "narHash": "sha256-drJ+JSDE4w8Pbd4gdX2yY+atxc7PEjzZRbujNpjjlD0=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "95fee6e5b164a4c0f1e33d9fe30bb717fc74a66c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
+    "emacs-overlay_3": {
       "flake": false,
       "locked": {
         "lastModified": 1626972035,
@@ -150,7 +165,7 @@
     "emacsVlaci": {
       "inputs": {
         "corfu": "corfu",
-        "emacs-overlay": "emacs-overlay",
+        "emacs-overlay": "emacs-overlay_2",
         "embark": "embark",
         "evil-markdown": "evil-markdown",
         "flake-utils": "flake-utils",
@@ -161,11 +176,11 @@
         "vertico": "vertico"
       },
       "locked": {
-        "lastModified": 1630251494,
-        "narHash": "sha256-dHSQcciKVVGzy7IVnM1fRiU2ZhVX12hVacTy9X49Hlc=",
+        "lastModified": 1630706648,
+        "narHash": "sha256-6oD56gRjvB7gwcN6UfMe9iemm0mIcegtYHTsYLUsD0Q=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "bfadab8245374ab09206f0913059dde25d06d1a4",
+        "rev": "5cddb4ac57b759f28415e8fde50116717069d825",
         "type": "github"
       },
       "original": {
@@ -177,11 +192,11 @@
     "embark": {
       "flake": false,
       "locked": {
-        "lastModified": 1630249196,
-        "narHash": "sha256-9sawJtX+XjWP0CZ/rgT+YkhWRCIYh6pFpI+GIg9lzuY=",
+        "lastModified": 1630507863,
+        "narHash": "sha256-ChHUpKko0XMYpVJU4+VPhBE9LdS5Nl0m0p9erQeBoyc=",
         "owner": "oantolin",
         "repo": "embark",
-        "rev": "25be10cca5dc5c9354e99d0aca41ad0db80e7aac",
+        "rev": "d4bd8b989373c1c08923421a5748f90621e60fa1",
         "type": "github"
       },
       "original": {
@@ -318,11 +333,11 @@
     "github-nvim-theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1630148767,
-        "narHash": "sha256-tmkNry1HR6Ehutd4ZSnOh/KziMnRNny17OftTUcvpDU=",
+        "lastModified": 1630318166,
+        "narHash": "sha256-eCvqw9EZ8OOvOZDbA9/wSXLCYES4VTlMN4VPMdyH8B0=",
         "owner": "projekt0n",
         "repo": "github-nvim-theme",
-        "rev": "9fbdfa5ff43c73faaece94459a3e11d6762b32e1",
+        "rev": "82fe97448976a94dbf851aa0441f94706d7cb7f6",
         "type": "github"
       },
       "original": {
@@ -352,11 +367,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1630030114,
-        "narHash": "sha256-t5lptbv7rtNSawdwoA2JUAiqXgLYAO+dGqp8KRtOaDA=",
+        "lastModified": 1630428740,
+        "narHash": "sha256-394yJxkFjvg47vB0jK5WHCitLDilyGjO3HpuZkAM2GA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "33db7cc6a66d1c1cb77c23ae8e18cefd0425a0c8",
+        "rev": "21a2ff449620a9cb91802f9d1a9157b2ae8c6b39",
         "type": "github"
       },
       "original": {
@@ -385,7 +400,7 @@
       "inputs": {
         "doom-emacs": "doom-emacs",
         "doom-snippets": "doom-snippets",
-        "emacs-overlay": "emacs-overlay_2",
+        "emacs-overlay": "emacs-overlay_3",
         "emacs-so-long": "emacs-so-long",
         "evil-markdown": "evil-markdown_2",
         "evil-org-mode": "evil-org-mode",
@@ -452,8 +467,8 @@
     },
     "nixpkgs": {
       "locked": {
-        "narHash": "sha256-X/rwtPZKcfSy3pXfJn9jzkUMivIfaP56V/x2DUQgj/E=",
-        "path": "/nix/store/bcpxrhmrhqj6724jk4hvwcnlp7c1x177-source",
+        "narHash": "sha256-Eq0dfFzBsABJBe8/Qz3YIR7esxVqTHr+30vVkR+QXAs=",
+        "path": "/nix/store/kqzfq07zyks74i30x4i9i9wjn8dr29h9-source",
         "type": "path"
       },
       "original": {
@@ -463,7 +478,7 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "narHash": "sha256-de2vNKZ7moP/cDwVh+tHcL7VC/C4w/eGRReGez4ZgHs=",
+        "narHash": "sha256-GwctrfRWSrqoJSTmOXhTVsWxiF+aV22/gI+pRP/LbXo=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -489,7 +504,7 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "narHash": "sha256-de2vNKZ7moP/cDwVh+tHcL7VC/C4w/eGRReGez4ZgHs=",
+        "narHash": "sha256-GwctrfRWSrqoJSTmOXhTVsWxiF+aV22/gI+pRP/LbXo=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -669,6 +684,7 @@
     },
     "root": {
       "inputs": {
+        "emacs-overlay": "emacs-overlay",
         "emacsVlaci": "emacsVlaci",
         "flake-utils": "flake-utils_2",
         "github-nvim-theme": "github-nvim-theme",
