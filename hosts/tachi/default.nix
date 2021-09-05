@@ -20,6 +20,7 @@
   _.sshd.enable = false;
   _.gui.enable = true;
   _.docker.enable = true;
+  _.podman.enable = true;
   _.libvirt.enable = true;
   _.yubikey.enable = true;
   _.yubikey.pamU2f.enable = true;
