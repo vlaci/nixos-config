@@ -15,6 +15,7 @@
   ];
 
   _.cachix.enable = true;
+  _.development.enable = true;
   _.networkmanager.enable = true;
   _.sshd.enable = false;
   _.gui.enable = true;
@@ -29,7 +30,6 @@
     home-manager = {
       _.git.enable = true;
       _.gpg.enable = true;
-      _.development.enable = true;
       _.tools.enable = true;
       _.doom-emacs.enable = true;
       _.awesome.enable = true;
