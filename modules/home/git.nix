@@ -9,6 +9,7 @@ lib.mkProfile "git" {
     };
     extraConfig = {
       absorb.maxStack = 50;
+      merge.conflictStyle = "diff3";
     };
   };
 
