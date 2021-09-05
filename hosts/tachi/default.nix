@@ -33,7 +33,6 @@
       _.tools.enable = true;
       _.doom-emacs.enable = true;
       _.awesome.enable = true;
-      home.packages = with pkgs; [ openconnect-sso ];
     };
   };
 }
