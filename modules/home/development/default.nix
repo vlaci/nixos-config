@@ -9,5 +9,8 @@ lib.mkProfile "development" {
     rnix-lsp
     rustup
     rust-analyzer
+    mitmproxy
+    tcpdump
+    wireshark-qt
   ];
 }
