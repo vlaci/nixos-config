@@ -22,6 +22,7 @@ lib.mkProfile "gui" {
   programs.firefox.enable = true;
   programs.kitty = {
     enable = true;
+    keybindings."ctrl+shift+p>n" = ''kitten hints --type=linenum --linenum-action=window bat --pager "less --RAW-CONTROL-CHARS +{line}" -H {line} {path}'';
     settings.select_by_word_characters = "@-./_~?&%+#";
   };
 
