@@ -27,6 +27,13 @@ in mkProfile "tools" {
     libreoffice-fresh
   ]);
 
+  xdg.configFile."ripgreprc".text = ''
+    --smart-case
+    --no-heading
+  '';
+
+  home.sessionVariables."RIPGREP_CONFIG_PATH" = "${config.xdg.configHome}/ripgreprc";
+
   programs.bash.enable = true;
   programs.bat.enable = true;
   programs.broot.enable = true;
