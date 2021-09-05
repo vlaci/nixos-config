@@ -50,5 +50,11 @@ in mkProfile "tools" {
 
   programs.pazi.enable = true;
 
+  programs.ssh = {
+    enable = true;
+    controlMaster = "auto";
+    controlPersist = "600";
+  };
+
   services.lorri.enable = true;
 }
