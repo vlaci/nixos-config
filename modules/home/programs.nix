@@ -38,8 +38,6 @@ in mkProfile "tools" {
   programs.bat.enable = true;
   programs.broot.enable = true;
   programs.direnv.enable = true;
-  programs.fzf.enable = true;
-  programs.fzf.enableZshIntegration = false;
   programs.htop.enable = true;
   programs.home-manager.enable = true;
   programs.jq.enable = true;
