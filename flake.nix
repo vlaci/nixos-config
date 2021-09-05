@@ -10,8 +10,6 @@
     openconnect-sso.flake = false;
     emacsVlaci.url = "github:vlaci/emacs.d";
     emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
-    github-nvim-theme.url = "github:projekt0n/github-nvim-theme";
-    github-nvim-theme.flake = false;
 
     pkgsrcs.url = "path:./pkgs";
     pkgsrcs.inputs.nixpkgs.follows = "nixpkgs";
@@ -38,12 +36,6 @@
         {
           _ = { inherit unstable; };
           inherit lib;
-          myVimPlugins.github-nvim-theme = final.vimUtils.buildVimPlugin {
-            name = "github-nvim-theme";
-            src = inputs.github-nvim-theme;
-            doCheck = false;  # lua-format
-            buildPhase = ":";
-          };
         };
 
       overlays = lib.importDir ./overlays // {

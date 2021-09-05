@@ -295,22 +295,6 @@
         "type": "github"
       }
     },
-    "github-nvim-theme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1630318166,
-        "narHash": "sha256-eCvqw9EZ8OOvOZDbA9/wSXLCYES4VTlMN4VPMdyH8B0=",
-        "owner": "projekt0n",
-        "repo": "github-nvim-theme",
-        "rev": "82fe97448976a94dbf851aa0441f94706d7cb7f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "projekt0n",
-        "repo": "github-nvim-theme",
-        "type": "github"
-      }
-    },
     "hexdiff": {
       "flake": false,
       "locked": {
@@ -652,7 +636,6 @@
         "emacs-overlay": "emacs-overlay",
         "emacsVlaci": "emacsVlaci",
         "flake-utils": "flake-utils_2",
-        "github-nvim-theme": "github-nvim-theme",
         "home-manager": "home-manager",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
