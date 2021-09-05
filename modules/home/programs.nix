@@ -6,6 +6,7 @@ in mkProfile "tools" {
   home.packages = with pkgs; ([
     atool
     bottom # top
+    cntr
     diskus
     du-dust
     fd
