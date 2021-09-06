@@ -51,22 +51,6 @@
         "type": "github"
       }
     },
-    "corfu": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1628818193,
-        "narHash": "sha256-EZXWef145XssP7g2G46+z+z80oaIty1fAnTFqxzX6GY=",
-        "owner": "minad",
-        "repo": "corfu",
-        "rev": "3a6c3ed8a310d3da0899d2d391b3174abf1f6ecb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "minad",
-        "repo": "corfu",
-        "type": "github"
-      }
-    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -102,11 +86,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1630893136,
-        "narHash": "sha256-TwySlmIjvgHEHx2xllpDeY4Xrg7sEPi076t6y+kXfu8=",
+        "lastModified": 1630946153,
+        "narHash": "sha256-sywRzLIVz3rGv/e2OJ3heQj8HgtL0zw9OK1ofqODyxA=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "08398463502a50dab640e64c5cfb39ef29545c3c",
+        "rev": "f9d3ef7af22226d830341824655e929088b60e80",
         "type": "github"
       },
       "original": {
@@ -164,44 +148,25 @@
     },
     "emacsVlaci": {
       "inputs": {
-        "corfu": "corfu",
         "emacs-overlay": "emacs-overlay_2",
-        "embark": "embark",
         "evil-markdown": "evil-markdown",
         "flake-utils": "flake-utils",
         "ligature": "ligature",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "vertico": "vertico"
+        ]
       },
       "locked": {
-        "lastModified": 1630907565,
-        "narHash": "sha256-zC5t+HmpQXuwO/GWQSAaq3RWH0wsjnyomDnCbbRpb9Q=",
+        "lastModified": 1630922796,
+        "narHash": "sha256-zlTBwAMTnLq5axryH5UoI9aNU1uh23d28INessM+Wnk=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "a0579c35f51815badbf5b8b25a3f7f26e744c469",
+        "rev": "7de2e3988cea0a72f397fed55f5dd505238c22ff",
         "type": "github"
       },
       "original": {
         "owner": "vlaci",
         "repo": "emacs.d",
-        "type": "github"
-      }
-    },
-    "embark": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1630507863,
-        "narHash": "sha256-ChHUpKko0XMYpVJU4+VPhBE9LdS5Nl0m0p9erQeBoyc=",
-        "owner": "oantolin",
-        "repo": "embark",
-        "rev": "d4bd8b989373c1c08923421a5748f90621e60fa1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oantolin",
-        "repo": "embark",
         "type": "github"
       }
     },
@@ -467,8 +432,8 @@
     },
     "nixpkgs": {
       "locked": {
-        "narHash": "sha256-GwctrfRWSrqoJSTmOXhTVsWxiF+aV22/gI+pRP/LbXo=",
-        "path": "/nix/store/jrcf19x3n7qaijglm40sh85cx1z8im46-source",
+        "narHash": "sha256-6fBQozwjL0ad4IdP7OG0OqyYBbNxgJvY5wChdLjDWQU=",
+        "path": "/nix/store/5a0b39h6hrmylal1qw12l8km0xzvy9pi-source",
         "type": "path"
       },
       "original": {
@@ -478,7 +443,7 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "narHash": "sha256-6fBQozwjL0ad4IdP7OG0OqyYBbNxgJvY5wChdLjDWQU=",
+        "narHash": "sha256-x2rvt0jMXAUaD00hvJEdnLK/d1tObfph6L6iBjdJ/z4=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -504,7 +469,7 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "narHash": "sha256-6fBQozwjL0ad4IdP7OG0OqyYBbNxgJvY5wChdLjDWQU=",
+        "narHash": "sha256-x2rvt0jMXAUaD00hvJEdnLK/d1tObfph6L6iBjdJ/z4=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -657,7 +622,7 @@
         "zsh-git-prompt-useremail": "zsh-git-prompt-useremail"
       },
       "locked": {
-        "narHash": "sha256-YSUrrM3X9n3mQsjOs8V2skcb+VFnrKwq/nsYbqMSfLk=",
+        "narHash": "sha256-Z1vsz6IBY7DYWttdv8F0X0yc3DK50GmedfggyzfX9zQ=",
         "path": "./pkgs",
         "type": "path"
       },
@@ -726,22 +691,6 @@
       "original": {
         "owner": "raxod502",
         "repo": "straight.el",
-        "type": "github"
-      }
-    },
-    "vertico": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1629639612,
-        "narHash": "sha256-jkhbaxFoOHkiwnm6hh3rrRjHTbJykwzXA9to7ysnx6A=",
-        "owner": "minad",
-        "repo": "vertico",
-        "rev": "81a4b35f8d11dfad56de1727ee9bdd3b4461d07c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "minad",
-        "repo": "vertico",
         "type": "github"
       }
     },
