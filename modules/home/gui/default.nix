@@ -42,6 +42,12 @@ lib.mkProfile "gui" {
     ];
   };
 
+  services.redshift = {
+    enable = true;
+    provider = "geoclue2";
+    temperature.night = 3200;
+  };
+
   home.packages = with pkgs; [
     evince
     flameshot
