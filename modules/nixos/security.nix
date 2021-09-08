@@ -2,7 +2,7 @@
   security.doas = {
     enable = true;
     extraRules = [
-      { groups = [ "wheel" ]; persist = true; setEnv = [ "NIX_PATH" ]; }
+      { groups = [ "wheel" ]; persist = true; keepEnv = true; }
     ];
   };
   security.sudo.enable = false;
