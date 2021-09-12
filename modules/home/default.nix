@@ -7,6 +7,7 @@
     ./gui
     ./zsh
     ./emacs.nix
+    ./email.nix
     ./git.nix
     ./gpg.nix
     ./homedir.nix
