@@ -103,6 +103,7 @@ in
         ec = "emacsclient";
         ecw = "emacsclient -c";
         nix = "noglob nix";
+        rg = "noglob rg";
       };
     }
   ];
