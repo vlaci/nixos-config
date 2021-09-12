@@ -54,6 +54,7 @@
     vcs                       # git status
     git_useremail
     command_execution_time    # previous command duration
+    vterm_prompt_end
     # =========================[ Line #2 ]=========================
     newline                   # \n
     virtualenv                # python virtual environment
