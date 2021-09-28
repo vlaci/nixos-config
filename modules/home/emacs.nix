@@ -11,4 +11,9 @@ in lib.mkProfile "emacs" {
       ];
     };
   };
+  home.sessionVariables = {
+    ALTERNATE_EDITOR = "";
+    EDITOR = "emacsclient -t";
+    VISUAL = "emacsclient -c -a emacs";
+  };
 }
