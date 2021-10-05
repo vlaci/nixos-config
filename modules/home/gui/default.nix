@@ -36,11 +36,11 @@ lib.mkProfile "gui" {
   services.screen-locker = {
     enable = true;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-    xautolockExtraOptions = [
+    xautolock.extraOptions = [
       "-notify 15"
       "-notifier 'XSECURELOCK_DIM_TIME_MS=10000 XSECURELOCK_WAIT_TIME_MS=5000 ${pkgs.xsecurelock}/libexec/xsecurelock/until_nonidle ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer'"
     ];
-    xssLockExtraOptions = [
+    xss-lock.extraOptions = [
       "--notifier ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
       "--transfer-sleep-lock"
     ];
