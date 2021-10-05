@@ -1,7 +1,7 @@
 { config, options, lib, secrets, ... }:
 
 let
-  inherit (lib) attrNames genAttrs intersectLists mapAttrs mergedAttrs mkIf mkOption types;
+  inherit (lib) attrNames genAttrs intersectLists mapAttrs mergedAttrs mkDefault mkIf mkOption types;
 
   cfg = config._.home-manager;
 
@@ -19,7 +19,7 @@ let
                 (attrNames options._)
                 (attrNames nixosOptions._)
             )
-            (name: config._.${name});
+            (name: { enable = mkDefault config._.${name}.enable; });
         })
       ];
   };
