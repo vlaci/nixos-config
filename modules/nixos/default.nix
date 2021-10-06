@@ -9,6 +9,7 @@ in
     ./gui
     ./yubikey
     ./development.nix
+    ./email.nix
     ./home-manager.nix
     ./locale.nix
     ./networkmanager.nix
