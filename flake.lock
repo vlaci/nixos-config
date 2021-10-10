@@ -144,11 +144,11 @@
         "org": "org"
       },
       "locked": {
-        "lastModified": 1633896561,
-        "narHash": "sha256-PrVSk3Jb0k8eKHOh7jsrDF0Z1GGJn9D/p+t+5xQ61RQ=",
+        "lastModified": 1633897741,
+        "narHash": "sha256-THTmwthIQxoV1ycIzTUutua/b3Ev8vrGJlhgp96Vip8=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "4e05e57197e744ba2254a2b88ae5b417aa131a02",
+        "rev": "3551b75b885f08679f4a00b6d9886fb5db5d214d",
         "type": "github"
       },
       "original": {
