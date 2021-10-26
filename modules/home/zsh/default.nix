@@ -88,7 +88,13 @@ in
         }
         {
           name = "alias-tips"; # Depends: python
-          src = pkgs.pkgsrcs.zsh-alias-tips;
+          src = pkgs.runCommand "plugin"
+            {
+              plugin = pkgs.pkgsrcs.zsh-alias-tips;
+            } ''
+              cp -a $plugin $out
+              substituteInPlace $out/alias-tips.plugin.zsh --replace python3 ${pkgs.python3}/bin/python
+            '';
         }
         {
           name = "calc";
