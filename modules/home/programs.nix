@@ -45,6 +45,7 @@ in mkProfile "tools" {
 
   programs.mcfly.enable = true;
   programs.mcfly.enableZshIntegration = true;
+  home.sessionVariables."MCFLY_RESULTS" = "500";
 
   programs.pazi.enable = true;
 
