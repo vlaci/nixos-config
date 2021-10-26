@@ -24,6 +24,8 @@
   _.libvirt.enable = true;
   _.yubikey.enable = true;
   _.yubikey.pamU2f.enable = true;
+  _.email.enable = true;
+  _.email.work.enable = true;
 
   _.users.users.vlaci = {
     isAdmin = true;
