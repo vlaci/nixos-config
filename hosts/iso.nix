@@ -4,6 +4,7 @@
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
   ];
 
+  _.users.enable = false;
   isoImage.makeEfiBootable = true;
   isoImage.makeUsbBootable = true;
   isoImage.isoName = lib.mkForce "nixos.iso";
@@ -23,5 +24,5 @@
         nixos-install --flake path:/mnt/etc/nixos#vm
       '';
     in
-    [ pkgs.jq prep ];
+    [ prep ];
 }

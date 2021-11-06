@@ -10,6 +10,10 @@ in
     default = [ ];
   };
 
+  options._.users.enable = mkOption {
+    type = types.bool;
+    default = true;
+  };
   options._.users.users = mkOption {
     description = "Wrapper around `users.users` with sane defaults.";
     type = with types; attrsOf (submodule ({ options, config, ... }: {
@@ -40,8 +44,8 @@ in
   };
 
 
-  config = {
-    users.mutableUsers = mkDefault false;
+  config = mkIf cfg.enable {
+    users.mutableUsers = false;
     users.users = mapAttrs (n: v: v.forwarded) cfg.users;
     home-manager.users = mapAttrs (n: v: { imports = v.home-manager; }) cfg.users;
 
