@@ -25,8 +25,10 @@ lib.mkProfile "gui" {
     keybindings."ctrl+shift+p>n" = ''kitten hints --type=linenum --linenum-action=window bat --pager "less --RAW-CONTROL-CHARS +{line}" -H {line} {path}'';
     settings.select_by_word_characters = "@-./_~?&%+#";
   };
-  programs.ssh.extraConfig = ''
-    SetEnv TERM=xterm-256color
+  programs.zsh.initExtra = ''
+    ssh() {
+      TERM=''${TERM/-kitty/-256color} command ssh "$@"
+    }
   '';
 
   programs.rofi = {

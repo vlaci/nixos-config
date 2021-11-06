@@ -18,6 +18,10 @@ in
       # powerlevel stuff should come at the very end because the instant prompt stuff
       # may skip execution of the code after it.
       initExtra = lib.mkAfter ''
+        if [[ "$TERM" = dumb ]]; then
+            unsetopt zle prompt_cr prompt_subst
+            return
+        fi
         # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
         # Initialization code that may require console input (password prompts, [y/n]
         # confirmations, etc.) must go above this block; everything else may go below.
