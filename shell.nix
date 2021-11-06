@@ -5,7 +5,6 @@ with pkgs;
 mkShell {
   buildInputs = [
     git
-    gitAndTools.git-crypt
     gnumake
     just
     nixpkgs-fmt

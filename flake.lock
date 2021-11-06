@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "age-plugin-yubikey": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629473446,
+        "narHash": "sha256-VaDnaV3sVAIPaPiFToJHvgXDN54MN+f24tHARVZ2liQ=",
+        "owner": "str4d",
+        "repo": "age-plugin-yubikey",
+        "rev": "6042d5266f94b56d5b0702fe5fae4bbbd631613d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "str4d",
+        "repo": "age-plugin-yubikey",
+        "type": "github"
+      }
+    },
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1634404028,
+        "narHash": "sha256-JyP2Y6JCCYvUcVz7CXX5pXUfTGTU4GX51Yza82BgMfk=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "53aa91b4170da35a96fab1577c9a34bc0da44e27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
     "awesome-awpwkb": {
       "flake": false,
       "locked": {
@@ -387,6 +423,22 @@
         "type": "github"
       }
     },
+    "nix-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628108133,
+        "narHash": "sha256-Zbc0iq5ZAr73B+NJvpBHm9GIJhb9qrq0vFmV/ucNT5I=",
+        "owner": "shlevy",
+        "repo": "nix-plugins",
+        "rev": "d0df32b31f3054180741adf5865fd56d6731c572",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shlevy",
+        "repo": "nix-plugins",
+        "type": "github"
+      }
+    },
     "nix-straight": {
       "flake": false,
       "locked": {
@@ -628,10 +680,12 @@
     },
     "pkgsrcs": {
       "inputs": {
+        "age-plugin-yubikey": "age-plugin-yubikey",
         "awesome-awpwkb": "awesome-awpwkb",
         "awesome-lain": "awesome-lain",
         "awesome-sharedtags": "awesome-sharedtags",
         "hexdiff": "hexdiff",
+        "nix-plugins": "nix-plugins",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -642,7 +696,7 @@
         "zsh-git-prompt-useremail": "zsh-git-prompt-useremail"
       },
       "locked": {
-        "narHash": "sha256-yV5m07Y0iixbq7SXQiW/JImAaljV2wt/1o380ktAp0M=",
+        "narHash": "sha256-iM9RRl+lm7aq1p+DgV1POmtqQlaR4/tD1YZuXd+aNPg=",
         "path": "./pkgs",
         "type": "path"
       },
@@ -669,6 +723,7 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
         "emacsVlaci": "emacsVlaci",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",

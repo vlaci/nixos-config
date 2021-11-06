@@ -1,6 +1,9 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, nixosConfig, ... }:
 
-lib.mkProfile "git" {
+let
+  inherit (lib) listToAttrs mkDefault mkProfile nameValuePair;
+  inherit (nixosConfig._.secrets) vlaci;
+in lib.mkProfile "git" {
   programs.git = {
     enable = true;
     delta.enable = true;
@@ -11,10 +14,17 @@ lib.mkProfile "git" {
       absorb.maxStack = 50;
       merge.conflictStyle = "diff3";
     };
+    ignores = [ "\\#*\\#" ".\\#*" ];
+    userName = vlaci.fullName;
+    userEmail = mkDefault vlaci.email.git.address;
+    extraConfig.emailprompt =
+      listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.email.addresses.home)
+      // listToAttrs (map (e: nameValuePair e { prompt = "👔"; }) vlaci.email.addresses.work);
   };
 
   home.packages = with pkgs.gitAndTools; [
     git-absorb
     git-filter-repo
+    git-remote-gcrypt
   ];
 }

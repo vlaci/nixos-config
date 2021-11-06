@@ -11,6 +11,9 @@
     emacsVlaci.url = "github:vlaci/emacs.d";
     emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
 
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
     pkgsrcs.url = "path:./pkgs";
     pkgsrcs.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -20,11 +23,18 @@
       inherit (flake-utils.lib) eachDefaultSystem;
 
       lib = nixpkgs.lib.extend (self: super: (import ./lib) { lib = super; });
+      mkPkgs = system: import nixpkgs { inherit system; overlays = lib.attrValues self.overlays; };
+
       system = "x86_64-linux";
+      secretRules = import ./secrets/secrets.nix;
+
+      secrets = lib.secrets { rules = secretRules; pkgs = mkPkgs system; };
+
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
         hmModules = [ nix-doom-emacs.hmModule emacsVlaci.lib.hmModule ];
         nixosModules = [ home-manager.nixosModules.home-manager ];
+        specialArgs = { inherit (secrets) decrypt; };
       } // inputs);
     in
     {
@@ -70,7 +80,7 @@
     } // eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs { inherit system; overlays = lib.attrValues self.overlays; };
+        pkgs = mkPkgs system;
       in
       {
         packages = (import ./pkgs { inherit pkgs; });

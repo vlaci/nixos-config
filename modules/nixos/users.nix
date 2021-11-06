@@ -1,8 +1,8 @@
-{ options, config, lib, secrets, ... }: with lib;
+{ options, config, lib, decrypt, ... }: with lib;
 
 let
-  defaultUsers = { root = { isNormalUser = false; }; };
   cfg = config._.users;
+  vlaci = config._.secrets.vlaci;
 in
 {
   options._.users.defaultGroups = mkOption {
@@ -42,9 +42,21 @@ in
 
   config = {
     users.mutableUsers = mkDefault false;
-    _.users.users = defaultUsers;
     users.users = mapAttrs (n: v: v.forwarded) cfg.users;
-
     home-manager.users = mapAttrs (n: v: { imports = v.home-manager; }) cfg.users;
+
+    age.sshKeyPaths = [ "/home/vlaci/.ssh/id_ed25519" ];
+
+    _.users.users.root = { isNormalUser = false; };
+    _.users.users.vlaci = {
+      description = vlaci.fullName;
+      initialHashedPassword = vlaci.passwordHash;
+      openssh.authorizedKeys.keys = vlaci.authorizedKeys;
+      home-manager = {
+        home.file.".config/Yubico/u2f_keys".text = ''
+          vlaci:${concatStringsSep ":" vlaci.u2fKeys}
+        '';
+      };
+    };
   };
 }

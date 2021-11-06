@@ -39,4 +39,5 @@ rec {
     listToAttrs (map (f: nameValuePair (removeSuffix ".nix" f) (import (dir + "/${f}"))) modules);
 
   nixosConfigurations = import ./nixosConfigurations.nix;
+  secrets = import ./secrets.nix;
 }

@@ -1,4 +1,4 @@
-{ config, options, lib, secrets, ... }:
+{ config, options, lib, decrypt, ... }:
 
 let
   inherit (lib) attrNames genAttrs intersectLists mapAttrs mergedAttrs mkDefault mkIf mkOption types;
@@ -32,6 +32,6 @@ in
   config = {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.extraSpecialArgs = { inherit secrets; };
+    home-manager.extraSpecialArgs = { inherit decrypt; };
   };
 }

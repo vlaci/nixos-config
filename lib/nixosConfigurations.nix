@@ -3,6 +3,7 @@
 , nixpkgs
 , hmModules
 , nixosModules
+, specialArgs
 , system
 , ...
 }@args:
@@ -34,13 +35,10 @@ let
 
   nixosSystem = host: nixpkgs.lib.nixosSystem {
     inherit system;
-    specialArgs = (
-      {
-        inherit lib;
-        secrets = import ../secrets;
-      } // inputs
-    );
-    modules = defaultModules ++ [ host ];
+    specialArgs = { inherit lib; } // inputs // specialArgs;
+    modules = defaultModules ++ [
+      host
+    ];
   };
 
   hostsFromDir = dir:

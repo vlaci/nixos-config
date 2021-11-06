@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "age-plugin-yubikey": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629473446,
+        "narHash": "sha256-VaDnaV3sVAIPaPiFToJHvgXDN54MN+f24tHARVZ2liQ=",
+        "owner": "str4d",
+        "repo": "age-plugin-yubikey",
+        "rev": "6042d5266f94b56d5b0702fe5fae4bbbd631613d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "str4d",
+        "repo": "age-plugin-yubikey",
+        "type": "github"
+      }
+    },
     "awesome-awpwkb": {
       "flake": false,
       "locked": {
@@ -67,6 +83,22 @@
         "type": "github"
       }
     },
+    "nix-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628108133,
+        "narHash": "sha256-Zbc0iq5ZAr73B+NJvpBHm9GIJhb9qrq0vFmV/ucNT5I=",
+        "owner": "shlevy",
+        "repo": "nix-plugins",
+        "rev": "d0df32b31f3054180741adf5865fd56d6731c572",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shlevy",
+        "repo": "nix-plugins",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1621073999,
@@ -98,10 +130,12 @@
     },
     "root": {
       "inputs": {
+        "age-plugin-yubikey": "age-plugin-yubikey",
         "awesome-awpwkb": "awesome-awpwkb",
         "awesome-lain": "awesome-lain",
         "awesome-sharedtags": "awesome-sharedtags",
         "hexdiff": "hexdiff",
+        "nix-plugins": "nix-plugins",
         "nixpkgs": "nixpkgs",
         "picom": "picom",
         "zsh-alias-tips": "zsh-alias-tips",

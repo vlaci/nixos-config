@@ -13,5 +13,6 @@
     ./homedir.nix
     ./programs.nix
     ./services.nix
+    ./work.nix
   ];
 }

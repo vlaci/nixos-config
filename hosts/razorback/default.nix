@@ -1,4 +1,4 @@
-{ secrets, config, lib, pkgs, nixos-hardware, ... }:
+{ config, lib, pkgs, nixos-hardware, ... }:
 
 {
   networking.hostName = "razorback";
@@ -8,7 +8,6 @@
     (nixos-hardware + "/common/cpu/intel")
     (nixos-hardware + "/common/pc/ssd")
     (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
-    secrets.users.vlaci
   ];
 
   _.cachix.enable = true;

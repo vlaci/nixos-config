@@ -44,6 +44,16 @@
       url = "github:Drauthius/awesome-sharedtags/32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6";
       flake = false;
     };
+
+    nix-plugins = {
+      url = "github:shlevy/nix-plugins";
+      flake = false;
+    };
+
+    age-plugin-yubikey = {
+      url = "github:str4d/age-plugin-yubikey";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, ... }: {

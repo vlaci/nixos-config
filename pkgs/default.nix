@@ -3,6 +3,7 @@
 let
   callPackage = pkgs.newScope (pkgs // self);
   self = rec {
+    age-plugin-yubikey = callPackage ./age-plugin-yubikey { };
     awesome-extensions = callPackage ./awesome-extensions { };
     hexdiff = callPackage ./hexdiff { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
