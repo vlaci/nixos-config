@@ -1,7 +1,7 @@
 { config, options, lib, decrypt, ... }:
 
 let
-  inherit (lib) attrNames genAttrs intersectLists mapAttrs mergedAttrs mkDefault mkIf mkOption types;
+  inherit (lib) attrNames attrValues concatStringsSep genAttrs intersectLists mergedAttrs mkDefault mkIf mkOption types;
 
   cfg = config._.home-manager;
 
@@ -33,5 +33,14 @@ in
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.extraSpecialArgs = { inherit decrypt; };
+
+    _.home-manager.forAllUsers.home.stateVersion = mkDefault "20.09";
+
+    system.extraSystemBuilderCmds = ''
+      mkdir -p $out/home-manager
+    '' +
+    concatStringsSep "\n" (map (cfg:
+      "ln -sn ${cfg.home.activationPackage} $out/home-manager/${cfg.home.username}"
+    ) (attrValues config.home-manager.users));
   };
 }
