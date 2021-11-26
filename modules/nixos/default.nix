@@ -1,8 +1,5 @@
 { pkgs, lib, ... }:
 
-let
-  inherit (lib) mkDefault;
-in
 {
   imports = [
     ./cachix
@@ -21,8 +18,6 @@ in
     ./work.nix
     ./zsh.nix
   ];
-
-  _.home-manager.forAllUsers.home.stateVersion = mkDefault "20.09";
 
   environment.systemPackages = with pkgs; [
     bind
