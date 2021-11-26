@@ -86,11 +86,11 @@
     "nix-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1628108133,
-        "narHash": "sha256-Zbc0iq5ZAr73B+NJvpBHm9GIJhb9qrq0vFmV/ucNT5I=",
+        "lastModified": 1637925584,
+        "narHash": "sha256-Zz8cPHK4w0qimYu6III6XfiKVQIzEMMV9P6ER5fveZY=",
         "owner": "shlevy",
         "repo": "nix-plugins",
-        "rev": "d0df32b31f3054180741adf5865fd56d6731c572",
+        "rev": "61d17261fe852c81c311b9db3e1eea1ba419ef69",
         "type": "github"
       },
       "original": {
