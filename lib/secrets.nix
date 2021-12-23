@@ -12,8 +12,8 @@ let
       secret = head secretVals;
     in
       assert ((length secretVals) == 1);
-      info "==> Decrypting secret '${path}' using ${secret.identity}..."
-      decrypt' { identity = secret.identity; inherit path; };
+      info "==> Decrypting secret '${path}' using ${toString secret.identities}..."
+      decrypt' { inherit (secret) identities; inherit path; };
 in
 {
   inherit decrypt;
