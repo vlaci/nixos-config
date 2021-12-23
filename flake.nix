@@ -14,11 +14,9 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    pkgsrcs.url = "path:./pkgs";
-    pkgsrcs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, pkgsrcs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, emacsVlaci, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, emacsVlaci, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -42,16 +40,16 @@
       overlay = final: prev:
         let
           unstable = inputs.nixpkgs-unstable.legacyPackages."${final.system}";
+          pkgsrcs = import ./pkgs { pkgs = prev; };
         in
         {
           _ = { inherit unstable; };
-          inherit lib;
+          inherit lib pkgsrcs;
         };
 
       overlays = lib.importDir ./overlays // {
         openconnect-sso = import "${openconnect-sso}/overlay.nix";
         emacsVlaci = emacsVlaci.overlay;
-        pkgsrcs = pkgsrcs.overlay;
         inherit (self) overlay;
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")

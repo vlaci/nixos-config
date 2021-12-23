@@ -94,7 +94,7 @@ in
           name = "alias-tips"; # Depends: python
           src = pkgs.runCommand "plugin"
             {
-              plugin = pkgs.pkgsrcs.zsh-alias-tips;
+              plugin = pkgs.pkgsrcs.zsh-alias-tips.src;
             } ''
               cp -a $plugin $out
               substituteInPlace $out/alias-tips.plugin.zsh --replace python3 ${pkgs.python3}/bin/python
@@ -102,15 +102,15 @@ in
         }
         {
           name = "calc";
-          src = pkgs.pkgsrcs.zsh-calc;
+          inherit (pkgs.pkgsrcs.zsh-calc) src;
         }
         {
           name = "git-prompt-useremail";
-          src = pkgs.pkgsrcs.zsh-git-prompt-useremail;
+          inherit (pkgs.pkgsrcs.zsh-git-prompt-useremail) src;
         }
         {
           name = "fast-syntax-highlighting";
-          src = pkgs.pkgsrcs.zsh-fast-syntax-highlighting;
+          inherit (pkgs.pkgsrcs.zsh-fast-syntax-highlighting) src;
         }
       ];
       shellAliases = {

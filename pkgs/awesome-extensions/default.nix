@@ -1,8 +1,8 @@
-{ lib, mkDerivation, luaPackages, pkgsrcs }:
+{ lib, stdenv, luaPackages, pkgsrcs }:
 
 let
   mkAwesomeExtension = { name, ... }@args:
-    mkDerivation ({
+    stdenv.mkDerivation ({
       installPhase =
         let
           inherit (luaPackages.lua) luaversion;
@@ -16,17 +16,17 @@ in
 {
   awpwkb = mkAwesomeExtension {
     name = "awpwkb";
-    src = pkgsrcs.awesome-awpwkb;
+    inherit (pkgsrcs.awesome-awpwkb) src;
   };
 
   lain = mkAwesomeExtension {
     name = "lain";
-    src = pkgsrcs.awesome-lain;
+    inherit (pkgsrcs.awesome-lain) src;
     patches = [ ./lain.patch ];
   };
 
   sharedtags = mkAwesomeExtension {
     name = "sharedtags";
-    src = pkgsrcs.awesome-sharedtags;
+    inherit (pkgsrcs.awesome-sharedtags) src;
   };
 }

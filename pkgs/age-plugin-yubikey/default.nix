@@ -1,8 +1,7 @@
 { lib, stdenv, pkgsrcs, rustPlatform, fetchFromGitHub, installShellFiles, pkg-config, pcsclite }:
 
 rustPlatform.buildRustPackage rec {
-  inherit (pkgsrcs.age-plugin-yubikey) pname version;
-  src = pkgsrcs.age-plugin-yubikey;
+  inherit (pkgsrcs.age-plugin-yubikey) pname version src;
 
   cargoLock = {
     lockFile = "${src}/Cargo.lock";

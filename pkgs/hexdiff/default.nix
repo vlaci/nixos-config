@@ -1,7 +1,7 @@
-{ mkDerivation, pkgsrcs }:
+{ stdenv, pkgsrcs }:
 
-mkDerivation {
-  src = pkgsrcs.hexdiff;
+stdenv.mkDerivation {
+  inherit (pkgsrcs.hexdiff) pname version src;
   buildPhase = ''
     $CC hexdiff.c -o hexdiff
   '';

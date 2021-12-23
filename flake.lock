@@ -691,31 +691,6 @@
         "type": "github"
       }
     },
-    "pkgsrcs": {
-      "inputs": {
-        "age-plugin-yubikey": "age-plugin-yubikey",
-        "awesome-awpwkb": "awesome-awpwkb",
-        "awesome-lain": "awesome-lain",
-        "awesome-sharedtags": "awesome-sharedtags",
-        "hexdiff": "hexdiff",
-        "nix-plugins": "nix-plugins",
-        "nixpkgs": "nixpkgs_4",
-        "picom": "picom",
-        "zsh-alias-tips": "zsh-alias-tips",
-        "zsh-calc": "zsh-calc",
-        "zsh-fast-syntax-highlighting": "zsh-fast-syntax-highlighting",
-        "zsh-git-prompt-useremail": "zsh-git-prompt-useremail"
-      },
-      "locked": {
-        "narHash": "sha256-CFk/p4nu0ifo5Yho78QFsYm9THEBas3iO2JaOHDuGjw=",
-        "path": "/nix/store/ajwsharc2a6p84drbqjmzf1i6yj2an29-source",
-        "type": "path"
-      },
-      "original": {
-        "id": "pkgsrcs",
-        "type": "indirect"
-      }
-    },
     "revealjs": {
       "flake": false,
       "locked": {
@@ -742,8 +717,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "openconnect-sso": "openconnect-sso",
-        "pkgsrcs": "pkgsrcs"
+        "openconnect-sso": "openconnect-sso"
       }
     },
     "rotate-text": {

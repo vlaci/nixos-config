@@ -1,0 +1,43 @@
+[age-plugin-yubikey]
+src.git = "https://github.com/str4d/age-plugin-yubikey"
+fetch.github = "str4d/age-plugin-yubikey"
+
+[hexdiff]
+src.git = "https://github.com/ahroach/hexdiff"
+fetch.github = "ahroach/hexdiff"
+
+[zsh-alias-tips]
+src.git = "https://github.com/djui/alias-tips"
+fetch.github = "djui/alias-tips"
+
+[zsh-calc]
+src.git = "https://github.com/arzzen/calc.plugin.zsh"
+fetch.github = "arzzen/calc.plugin.zsh"
+
+[zsh-git-prompt-useremail]
+src.git = "https://github.com/mroth/git-prompt-useremail"
+fetch.github = "mroth/git-prompt-useremail"
+
+[zsh-fast-syntax-highlighting]
+src.github_tag = "zdharma-continuum/fast-syntax-highlighting"
+fetch.github = "zdharma-continuum/fast-syntax-highlighting"
+
+[picom]
+src.github = "yshui/picom"
+fetch.github = "yshui/picom"
+
+[awesome-awpwkb]
+src.git = "https://github.com/vladimir-g/awpwkb"
+fetch.github = "vladimir-g/awpwkb"
+
+[awesome-lain]
+src.manual = "e0bffc00566fbc0c05dc01700c569a589a6900eb"
+fetch.github = "lcpz/lain"
+
+[awesome-sharedtags] 
+src.manual = "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6"
+fetch.github = "Drauthius/awesome-sharedtags"
+
+[nix-plugins]
+src.github_tag = "shlevy/nix-plugins"
+fetch.github = "shlevy/nix-plugins"
