@@ -15,6 +15,7 @@ in lib.mkProfile "git" {
       merge.conflictStyle = "diff3";
     };
     ignores = [ "\\#*\\#" ".\\#*" ];
+    lfs.enable = true;
     userName = vlaci.fullName;
     userEmail = mkDefault vlaci.email.git.address;
     extraConfig.emailprompt =
