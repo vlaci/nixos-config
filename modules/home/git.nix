@@ -18,7 +18,8 @@ in lib.mkProfile "git" {
     userName = vlaci.fullName;
     userEmail = mkDefault vlaci.email.git.address;
     extraConfig.emailprompt =
-      listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.email.addresses.home)
+      listToAttrs (map (e: nameValuePair e { prompt = " "; }) vlaci.email.addresses.github)
+      // listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.email.addresses.home)
       // listToAttrs (map (e: nameValuePair e { prompt = "👔"; }) vlaci.email.addresses.work);
   };
 
