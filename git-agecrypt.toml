@@ -1,0 +1,9 @@
+[config]
+"secrets/vlaci.nix.age" = [
+    'age1yubikey1q2ljnfjleslpp9gjhch736m2xqm66ly4lgs9he5ap8ckmn62d3ttw4skjat',
+    'age1yubikey1qv9z53sdsjl83n9tpcrhgsx0rgh4n3pf9sxssk549m8dthw2fenuu892ekk',
+]
+"secrets/work.nix.age" = [
+    'age1yubikey1q2ljnfjleslpp9gjhch736m2xqm66ly4lgs9he5ap8ckmn62d3ttw4skjat',
+    'age1yubikey1qv9z53sdsjl83n9tpcrhgsx0rgh4n3pf9sxssk549m8dthw2fenuu892ekk',
+]

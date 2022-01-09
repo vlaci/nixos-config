@@ -13,10 +13,12 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-
+    git-agecrypt.url = "github:vlaci/git-agecrypt";
+    git-agecrypt.inputs.nixpkgs.follows = "nixpkgs";
+    git-agecrypt.inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, emacsVlaci, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, emacsVlaci, git-agecrypt, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -50,6 +52,7 @@
       overlays = lib.importDir ./overlays // {
         openconnect-sso = import "${openconnect-sso}/overlay.nix";
         emacsVlaci = emacsVlaci.overlay;
+        git-agecrypt = git-agecrypt.overlay;
         inherit (self) overlay;
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")

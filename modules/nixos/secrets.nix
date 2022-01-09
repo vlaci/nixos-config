@@ -1,4 +1,4 @@
-{ lib, decrypt, config, pkgs, agenix, ... }:
+{ lib, config, pkgs, agenix, ... }:
 
 let
   inherit (lib) mkOption;
@@ -18,8 +18,8 @@ in {
     ];
 
     _.secrets = {
-      vlaci = decrypt ../../secrets/vlaci.nix.age;
-      work = decrypt ../../secrets/work.nix.age;
+      vlaci = import ../../secrets/vlaci.nix.age;
+      work = import ../../secrets/work.nix.age;
     };
   };
 }

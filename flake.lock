@@ -319,19 +319,26 @@
         "type": "github"
       }
     },
-    "hexdiff": {
-      "flake": false,
+    "git-agecrypt": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1516792470,
-        "narHash": "sha256-G6Qi7e4o+0ahcslJ8UfJrdoc8NNkY+nl6kyDlkJCo9I=",
-        "owner": "ahroach",
-        "repo": "hexdiff",
-        "rev": "3e96f27e65167c619ede35ab04232163dc273e69",
+        "lastModified": 1641743325,
+        "narHash": "sha256-XiG6Gr33vU2n7ly31/llNdLHZ3r6c3Okgy7mS7ahiVU=",
+        "owner": "vlaci",
+        "repo": "git-agecrypt",
+        "rev": "922b85d96e249300bff30093cc21bd8f1d132684",
         "type": "github"
       },
       "original": {
-        "owner": "ahroach",
-        "repo": "hexdiff",
+        "owner": "vlaci",
+        "repo": "git-agecrypt",
         "type": "github"
       }
     },
@@ -712,6 +719,7 @@
         "agenix": "agenix",
         "emacsVlaci": "emacsVlaci",
         "flake-utils": "flake-utils_2",
+        "git-agecrypt": "git-agecrypt",
         "home-manager": "home-manager",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",

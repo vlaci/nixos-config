@@ -8,6 +8,8 @@ mkShell {
     gnumake
     just
     nixpkgs-fmt
+    git-agecrypt
+    age-plugin-yubikey
   ];
 
   shellHook = ''

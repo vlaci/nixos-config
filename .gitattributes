@@ -1,0 +1,2 @@
+secrets/vlaci.nix.age filter=git-agecrypt diff=git-agecrypt
+secrets/work.nix.age filter=git-agecrypt diff=git-agecrypt
