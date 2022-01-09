@@ -3,14 +3,14 @@
 {
   age-plugin-yubikey = {
     pname = "age-plugin-yubikey";
-    version = "51910edfab4006a068864602469ff7db3766bfbe";
+    version = "b3590f4ce1f570be34aa5d132840d4a7122c67b2";
     src = fetchgit {
       url = "https://github.com/str4d/age-plugin-yubikey";
-      rev = "51910edfab4006a068864602469ff7db3766bfbe";
+      rev = "b3590f4ce1f570be34aa5d132840d4a7122c67b2";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "03f5mb453mj15ldkckc5v4cc2vpzc1v6vd500nwhfxw5a43azjlq";
+      sha256 = "1fyshr2viz0flwk5sg6wig6il3sb3azn9j1w01mcq8p45f2n1p19";
     };
   };
   awesome-awpwkb = {
@@ -75,14 +75,14 @@
   };
   picom = {
     pname = "picom";
-    version = "v8.2";
+    version = "31e58712ec11b198340ae217d33a73d8ac73b7fe";
     src = fetchgit {
       url = "https://github.com/yshui/picom";
-      rev = "v8.2";
+      rev = "31e58712ec11b198340ae217d33a73d8ac73b7fe";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0gjksayz2xpmgglvw17ppsan2imrd1fijs579kbf27xwp503xgfl";
+      sha256 = "1hg5jfpknbcv9scaghpy2nbrg9cxwm8mkh6znpgbbzr05g7ch6al";
     };
   };
   zsh-alias-tips = {
