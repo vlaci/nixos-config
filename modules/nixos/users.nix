@@ -49,7 +49,7 @@ in
     users.users = mapAttrs (n: v: v.forwarded) cfg.users;
     home-manager.users = mapAttrs (n: v: { imports = v.home-manager; }) cfg.users;
 
-    age.sshKeyPaths = [ "/home/vlaci/.ssh/id_ed25519" ];
+    age.identityPaths = options.age.identityPaths.default ++ [ "/home/vlaci/.ssh/id_ed25519" ];
 
     _.users.users.root = { isNormalUser = false; };
     _.users.users.vlaci = {

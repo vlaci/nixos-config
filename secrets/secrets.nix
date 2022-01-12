@@ -13,16 +13,8 @@ let
   };
 in
 {
-  "vlaci.nix.age" = {
-    publicKeys = vlaci;
-    identities = [ yubikey.identity yubikey_nano.identity ];
-  };
-  "work.nix.age" = {
-    publicKeys = vlaci;
-    identities = [ yubikey.identity yubikey_nano.identity ];
-  };
   "work/email-lva.pem.age".publicKeys = vlaci;
   "work/email-lva.pfx.age".publicKeys = vlaci;
-  "work/vpn.cert.pem.age".publicKeys = [ tachi yubikey.recipient ];
-  "work/vpn.key.pem.age".publicKeys = [ tachi yubikey.recipient ];
+  "work/vpn.cert.pem.age".publicKeys = [ tachi ];
+  "work/vpn.key.pem.age".publicKeys = [ tachi ];
 }
