@@ -31,7 +31,7 @@ lib.mkProfile "email" {
           in rec {
             inherit (cfg) address realName imap smtp;
           userName = cfg.address;
-          passwordCommand = "${pkgs.gnome3.libsecret}/bin/secret-tool lookup service mbsync username ${userName}";
+          passwordCommand = "${pkgs.libsecret}/bin/secret-tool lookup service mbsync username ${userName}";
           primary = true;
           mbsync = {
             enable = true;
@@ -65,7 +65,7 @@ lib.mkProfile "email" {
           in rec {
             inherit (cfg) address realName;
           userName = cfg.address;
-          passwordCommand = "${pkgs.gnome3.libsecret}/bin/secret-tool lookup service mbsync username ${userName}";
+          passwordCommand = "${pkgs.libsecret}/bin/secret-tool lookup service mbsync username ${userName}";
           imap = {
             host = "localhost";
             port = nixosConfig.services.davmail.config.davmail.imapPort;
