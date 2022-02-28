@@ -99,7 +99,12 @@ lib.mkProfile "gui" {
         ${pkgs.stdenv.shell} $HOME/.xsession-hm &
         waitPID=$!
       '';
-    }];
+    }
+    {
+      name = "dummy";
+      start = "true";
+    }
+    ];
 
     displayManager.lightdm =
       {
