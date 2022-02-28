@@ -60,6 +60,7 @@ lib.mkProfile "gui" {
     evince
     flameshot
     gimp
+    signal-desktop
     vivaldi
   ];
 }
