@@ -4,6 +4,7 @@ lib.mkProfile "gui" {
   imports = [
     ./lightdm-cursor-fix.nix
     ./theme
+    ./wayland.nix
   ];
   hardware.pulseaudio = {
     enable = true;
@@ -25,7 +26,9 @@ lib.mkProfile "gui" {
       fira-code
       fira-code-symbols
       fira-mono
-      iosevka
+      iosevka-bin
+      (iosevka-bin.override { variant = "ss05"; })
+      (iosevka-bin.override { variant = "aile"; })
     ];
     fontconfig = {
       defaultFonts = {
@@ -108,7 +111,7 @@ lib.mkProfile "gui" {
 
     displayManager.lightdm =
       {
-        enable = true;
+        enable = !config._.gui.wayland.enable;
         greeters.enso = {
           enable = true;
           blur = !(lib.hasAttr "vm" config.system.build);
@@ -116,9 +119,13 @@ lib.mkProfile "gui" {
       };
   };
 
-  services.autorandr.enable = true;
+  services.accounts-daemon.enable = true;
+  services.autorandr.enable = !config._.gui.wayland.enable;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
+  services.gnome.glib-networking.enable = true;
+  services.gnome.at-spi2-core.enable = true;
+  services.gvfs.enable = true;
 
   i18n.inputMethod = {
     enabled = "ibus";

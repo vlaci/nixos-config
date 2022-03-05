@@ -5,6 +5,7 @@ lib.mkProfile "gui" {
     ./awesome
     ./herbstluftwm
     ./theme
+    ./sway.nix
   ];
 
   services.picom = {
