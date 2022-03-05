@@ -23,7 +23,7 @@
     bind
     cifs-utils
     exfat
-    exfat-utils
+    exfat
     git
     ntfs3g
     xdg-user-dirs
