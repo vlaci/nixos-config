@@ -55,11 +55,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1642156234,
-        "narHash": "sha256-9PsbsS6fHhye63FpOVOvcIdAgW2AcOxzDnhIEcMog/o=",
+        "lastModified": 1646499853,
+        "narHash": "sha256-SqIyQ27+5fmWHyeb+mMktRaL9kxWyApjBqelcwcDbOM=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "34e8dff7d9ee40cc67bc821c4947f2879b182396",
+        "rev": "8d5080490a0018b80e394f69a5cafd104b4bb765",
         "type": "github"
       },
       "original": {
@@ -114,11 +114,11 @@
         "org-roam-ui": "org-roam-ui"
       },
       "locked": {
-        "lastModified": 1642177037,
-        "narHash": "sha256-v72Ql5wRsvmJlsOcszTphv+fyg4j68mJjODVjUYoizE=",
+        "lastModified": 1646505576,
+        "narHash": "sha256-VPsOfHhh2C4jQb563S8qz/YokWimWMigb7raTmX0les=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "b2af06ff1c1ee13c0516d0edd9c15b23f8c435e3",
+        "rev": "1657384af3814f1666b8ff746a4de73ea4ee1bd8",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1638122382,
-        "narHash": "sha256-sQzZzAbvKEqN9s0bzWuYmRaA03v40gaJ4+iL1LXjaeI=",
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "74f7e4319258e287b0f9cb95426c9853b282730b",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
         "type": "github"
       },
       "original": {
@@ -298,11 +298,11 @@
     "ligature": {
       "flake": false,
       "locked": {
-        "lastModified": 1640769572,
-        "narHash": "sha256-6D6zrrE2uRk02t9vbTmpMnDFeMAsEqKonEyCDyRvZ4I=",
+        "lastModified": 1644765909,
+        "narHash": "sha256-Bgb5wFyx0hMilpihxA8cTrRVw71EBOw2DczlM4lSNMs=",
         "owner": "mickeynp",
         "repo": "ligature.el",
-        "rev": "c0e696a88824be6afa1f33fad548d36f96801d8e",
+        "rev": "9357156a917a021a87b33ee391567a5d8e44794a",
         "type": "github"
       },
       "original": {
@@ -516,11 +516,11 @@
     "org-roam-ui": {
       "flake": false,
       "locked": {
-        "lastModified": 1641317585,
-        "narHash": "sha256-sOiCzZA6fTj5LwXIjBeeWW4r9javAi2xlfIjfxRbSL4=",
+        "lastModified": 1645825896,
+        "narHash": "sha256-VxLse634MZ9quiEv+suLerr2+p+o+H8foFgE4Ep6fg4=",
         "owner": "org-roam",
         "repo": "org-roam-ui",
-        "rev": "5ecd418060bf606924ac86faa1aa4036d4c785fb",
+        "rev": "df1f9522c5a9cdb248208427fa9df4f2a7666e2a",
         "type": "github"
       },
       "original": {
