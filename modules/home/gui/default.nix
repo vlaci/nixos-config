@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, nixosConfig, lib, pkgs, ... }:
 
-lib.mkProfile "gui" {
+let
+  isWayland = nixosConfig._.gui.wayland.enable;
+in lib.mkProfile "gui" {
   imports = [
     ./awesome
     ./herbstluftwm
@@ -9,7 +11,7 @@ lib.mkProfile "gui" {
   ];
 
   services.picom = {
-    enable = true;
+    enable = !isWayland;
     experimentalBackends = true;
     extraOptions = ''
       blur-method = "dual_kawase";
@@ -37,7 +39,7 @@ lib.mkProfile "gui" {
   };
 
   services.screen-locker = {
-    enable = true;
+    enable = !isWayland;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
     xautolock.extraOptions = [
       "-notify 15"
@@ -50,12 +52,14 @@ lib.mkProfile "gui" {
   };
 
   services.redshift = {
-    enable = true;
+    enable = !isWayland;
     provider = "geoclue2";
     temperature.night = 3200;
   };
 
   services.syncthing.enable = true;
+
+  home.keyboard = null;
 
   home.packages = with pkgs; [
     evince
