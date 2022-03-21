@@ -55,11 +55,11 @@
     },
     "emacs-overlay": {
       "locked": {
-        "lastModified": 1647594736,
-        "narHash": "sha256-VjU64juHKvOYi5daH0YyF9nVZpWXNkogztACoyPZn8U=",
+        "lastModified": 1647827912,
+        "narHash": "sha256-q3sEAJe+nAlWp0kVSqPdGSvhwG9+i1Ppm+BMNnU76Ok=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c4bcf4b66394a4472cc251e2350c557dac13d621",
+        "rev": "ccb4f7c6af0b2dc5c02aec6f28d5cffb199087c4",
         "type": "github"
       },
       "original": {
@@ -114,11 +114,11 @@
         "org-roam-ui": "org-roam-ui"
       },
       "locked": {
-        "lastModified": 1647612091,
-        "narHash": "sha256-7reoI6Tum4tqwwLft18rc8wpo+s09i2W9RRuosNl2kU=",
+        "lastModified": 1647855053,
+        "narHash": "sha256-t04zt14+PUYeqpZxb95T977LCmXOiBbZS6b122PH99c=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "615b05a52b798a6e523f33b9b9781501d931d3a0",
+        "rev": "1b6eb56748a77c8f174ca23520ff59245f9134cd",
         "type": "github"
       },
       "original": {
@@ -282,11 +282,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1647644064,
-        "narHash": "sha256-RdZl1uIZslc8ViQwBJAJbkKpJN8J3y/U4xjZuLyFaMY=",
+        "lastModified": 1647821523,
+        "narHash": "sha256-NAIY357pAOcxK6bAt83kKEJ2LxZhLCiPIlmQ2iTQbk4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7cf15b19a931b99f9a918887fc488d577fd07516",
+        "rev": "835797f3a4a59459a316ae8d4ab91fa59faf61a4",
         "type": "github"
       },
       "original": {
@@ -413,7 +413,7 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "narHash": "sha256-8Y/2bkrxxpQrPYLNoiOlPOpOtWo40fQHN+w8pw11yAw=",
+        "narHash": "sha256-Ya9xSxn4GYRF0Sijxvi664MgGuuxlg29xeQPKRm8RSc=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -424,7 +424,7 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "narHash": "sha256-8Y/2bkrxxpQrPYLNoiOlPOpOtWo40fQHN+w8pw11yAw=",
+        "narHash": "sha256-Ya9xSxn4GYRF0Sijxvi664MgGuuxlg29xeQPKRm8RSc=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
