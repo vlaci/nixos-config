@@ -7,7 +7,6 @@
     ./hardware-configuration.nix
     ./hardware-customization.nix
     (nixos-hardware + "/common/cpu/intel")
-    (nixos-hardware + "/common/pc/ssd")
     (nixos-hardware + "/lenovo/thinkpad/t14")
   ];
 
