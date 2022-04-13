@@ -32,7 +32,7 @@ lib.mkProfile "gui" {
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Iosevka Extended" ];
+        monospace = [ "Iosevka" ];
         sansSerif = [ "Noto Sans" ];
         serif = [ "Noto Serif" ];
       };
