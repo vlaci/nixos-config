@@ -6,7 +6,7 @@ let
 in
 {
   config = {
-    gtk = { inherit (theme) iconTheme; theme = theme.gtkTheme; };
+    gtk = { enable = true; inherit (theme) iconTheme; theme = theme.gtkTheme; };
     xsession.pointerCursor = theme.cursorTheme;
     programs.kitty.settings = theme.colors;
     programs.rofi.theme = ./nord.rasi;
