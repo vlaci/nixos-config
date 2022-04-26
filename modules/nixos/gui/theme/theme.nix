@@ -20,7 +20,7 @@
 
       # yellow
       color3 = "#EBCB8B";
-      color11 = "#EBCB8B";
+      color11 = "#D08770";
 
       # blue
       color4 = "#81A1C1";
