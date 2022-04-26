@@ -44,7 +44,7 @@
     cursorTheme.name = "pixelfun3";
     cursorTheme.package = pkgs.xcursor-pixelfun;
 
-    gtkTheme.name = "Nordic";
+    gtkTheme.name = "Nordic-darker";
     gtkTheme.package = pkgs.nordic;
 
     iconTheme.name = "Zafiro-icons";
