@@ -26,7 +26,7 @@ lib.mkProfile "gui" {
       fira-code
       fira-code-symbols
       fira-mono
-      iosevka-bin
+      font-awesome
       (iosevka-bin.override { variant = "ss05"; })
       (iosevka-bin.override { variant = "aile"; })
     ];
