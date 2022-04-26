@@ -68,4 +68,6 @@ in lib.mkProfile "gui" {
     signal-desktop
     vivaldi
   ];
+
+  services.flameshot.enable = true;
 }

@@ -5,6 +5,7 @@ let
   cfg = config._.gui.wayland;
 
   sway-greeter-config = pkgs.writeText "sway-greeter.config" ''
+    exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
     # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
     exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
 
@@ -32,7 +33,16 @@ in {
 
     programs.sway = {
       enable = true;
-      extraPackages = [ pkgs.swaylock-fancy ];
+    };
+
+    services.pipewire = {
+      enable = true;
+    };
+
+    xdg.portal = {
+      enable = true;
+      gtkUsePortal = true;
+      wlr.enable = true;
     };
   };
 }
