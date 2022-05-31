@@ -7,7 +7,7 @@ in
 {
   config = {
     gtk = { enable = true; inherit (theme) iconTheme; theme = theme.gtkTheme; };
-    xsession.pointerCursor = theme.cursorTheme;
+    home.pointerCursor = (theme.cursorTheme // { x11 = { enable = true; }; });
     programs.kitty.settings = theme.colors;
     programs.rofi.theme = ./nord.rasi;
     programs.bat.config.theme = theme.name;

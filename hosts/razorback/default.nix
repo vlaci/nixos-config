@@ -28,4 +28,6 @@
       _.awesome.enable = true;
     };
   };
+
+  system.stateVersion = "22.05";
 }
