@@ -124,11 +124,11 @@
         "org-roam-ui": "org-roam-ui"
       },
       "locked": {
-        "lastModified": 1654294180,
-        "narHash": "sha256-E0sXBToUhcycbBSWOGttO2YikaG+9HhE1Cf8xQ1BXCQ=",
+        "lastModified": 1654295306,
+        "narHash": "sha256-4YhsPSKMBRDPXK/SR6hPJZaL56z4Wq9bL7UyRhjaiSo=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "46b2d23381531c8d68fbe92940c92e9ebae1b5be",
+        "rev": "62e72dadd1fd5faf5d2017d5927a4a2a8bfc0eea",
         "type": "github"
       },
       "original": {
@@ -292,11 +292,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1654113406,
-        "narHash": "sha256-70esZvhal+FsyU89mJRcAb+cDGHKt0sgZ6MlRr9Cplg=",
+        "lastModified": 1654422613,
+        "narHash": "sha256-ZxkMM13AnrMwYOV99ohzcqeTkAOqD9Q2SBdZ9WoFE9Y=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "684e85d01d333be91c4875baebb05b93c7d2ffaa",
+        "rev": "20703892473d01c70fb10248442231fe94f4ceb4",
         "type": "github"
       },
       "original": {
@@ -423,7 +423,7 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "narHash": "sha256-ghWLJ/2qDTSFxetoWk3GgrNJT+33VexMQjB7rZVvJaU=",
+        "narHash": "sha256-FQIFpjKFZxhN+haOfCQ0j1lWsBMvXtWcJCl9l8wYM+E=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -434,7 +434,7 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "narHash": "sha256-ghWLJ/2qDTSFxetoWk3GgrNJT+33VexMQjB7rZVvJaU=",
+        "narHash": "sha256-FQIFpjKFZxhN+haOfCQ0j1lWsBMvXtWcJCl9l8wYM+E=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
