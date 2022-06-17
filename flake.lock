@@ -312,11 +312,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1655143251,
-        "narHash": "sha256-hHcQRfLARkqGpV3lWTRZpYPTSW0oZhAUD3KOzcF8oZg=",
+        "lastModified": 1655381586,
+        "narHash": "sha256-2IrSYYjxoT+iOihSiH0Elo9wzjbHjDSH+qPvI5BklCs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cd3dd2188c19416bc70d9703f84e07a0646af5bf",
+        "rev": "1de492f6f8e9937c822333739c5d5b20d93bf49f",
         "type": "github"
       },
       "original": {
@@ -443,7 +443,7 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "narHash": "sha256-Lg75jMFkmxPHHV9vC3IvMgdoEBskb4ZgrRmxdggyqDo=",
+        "narHash": "sha256-zqg+Zcz2IZspX5cWAx2VnBYKDGYuET3sDqJN2XVKkUY=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -454,7 +454,7 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "narHash": "sha256-Lg75jMFkmxPHHV9vC3IvMgdoEBskb4ZgrRmxdggyqDo=",
+        "narHash": "sha256-zqg+Zcz2IZspX5cWAx2VnBYKDGYuET3sDqJN2XVKkUY=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
