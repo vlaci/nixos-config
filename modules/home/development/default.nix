@@ -6,6 +6,7 @@ lib.mkProfile "development" {
     julia-bin
     (vscode.fhsWithPackages (pkgs: with pkgs; [
       zsh
+      # for live share
       gcr liburcu openssl krb5 zlib icu gnome3.gnome-keyring libsecret desktop-file-utils xorg.xprop
       openssl.dev
       pkg-config
@@ -24,7 +25,16 @@ lib.mkProfile "development" {
     rustup
     rust-analyzer
     mitmproxy
+    sqlite-interactive
     tcpdump
+    unixtools.xxd  # hexdump
     wireshark-qt
   ];
+
+  home.file.".sqliterc".text = ''
+    .mode column
+    .timer on
+    .changes on
+    .nullvalue NULL
+  '';
 }
