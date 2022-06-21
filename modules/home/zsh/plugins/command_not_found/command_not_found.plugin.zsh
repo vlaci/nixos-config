@@ -7,7 +7,7 @@ __try () {
     local QUERY="select package from Programs where system = \"@system@\" and name = \"$EXE\" and package <> \"busybox\""
     local -a CANDIDATES
 
-    CANDIDATES=(${(f)"$(@sqlite@/bin/sqlite3 $DB "$QUERY")"})
+    CANDIDATES=(${(f)"$(@sqlite@/bin/sqlite3 -init /dev/null -batch $DB "$QUERY")"})
     local choice=${CANDIDATES[1]}
 
     if [[ ${#CANDIDATES[@]} -eq 0 ]]; then
