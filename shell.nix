@@ -11,6 +11,7 @@ mkShell {
     gnumake
     just
     nixpkgs-fmt
+    nvfetcher
     git-agecrypt
     age-plugin-yubikey
   ];
