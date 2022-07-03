@@ -11,10 +11,11 @@ local underline = wibox.container.margin()
 local batstatus = lain.widget.fs({
     timeout = 61,
     settings = function()
+        local home = fs_now["/home"] ~= nil and fs_now["/home"] or { percentage = 0, free = 0 }
         local root_avail_p = 100 - fs_now["/"].percentage
         local root_avail_gb = fs_now["/"].free
-        local home_avail_p = 100 - fs_now["/home"].percentage
-        local home_avail_gb = fs_now["/home"].free
+        local home_avail_p = 100 - home.percentage
+        local home_avail_gb = home.free
 
         local markup = lain.util.markup
 
