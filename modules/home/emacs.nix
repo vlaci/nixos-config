@@ -31,7 +31,7 @@ in {
               ,(make-mu4e-context
                 :name "${name}"
                 :enter-func (lambda () (mu4e-message "Entering context =${name}="))
-                :leave-func (lambda () (mu4e-clear-caches) (mu4e~redraw-main-buffer))
+                :leave-func (lambda () (mu4e-clear-caches))
                 :match-func (lambda (msg)
                               (when msg
                                 (string-match-p "^/${name}" (mu4e-message-field msg :maildir))))
