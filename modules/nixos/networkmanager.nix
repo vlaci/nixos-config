@@ -3,7 +3,6 @@
 lib.mkProfile "networkmanager" {
   networking.networkmanager = {
     enable = true;
-    dhcp = "dhcpcd";
     dns = "dnsmasq";
   };
 
