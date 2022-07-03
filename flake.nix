@@ -87,6 +87,7 @@
       {
         packages = (import ./pkgs { inherit pkgs; });
         devShell = import ./shell.nix { inherit pkgs; };
+        legacyPackages = pkgs;
 
         apps.repl = flake-utils.lib.mkApp {
           drv = pkgs.writeShellScriptBin "repl" ''

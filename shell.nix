@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> { } }:
+let
+  flakePkgs = builtins.getFlake (toString ./.);
+in
+{ pkgs ? flakePkgs.legacyPackages.${builtins.currentSystem} }:
 
 with pkgs;
 
