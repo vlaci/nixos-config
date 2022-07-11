@@ -1,8 +1,0 @@
---- /config	1970-01-01 01:00:01.000000000 +0100
---- /config	1970-01-01 01:00:01.000000000 +0100
-@@ -191,2 +191,4 @@
- 
--exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-+exec "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK"
-+exec "hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"
-+exec "systemctl --user start sway-session.target"

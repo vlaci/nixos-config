@@ -9,24 +9,6 @@ in
   options = {
     _.sway.enable = mkEnableOption "sway";
 
-    xdg.configFile = mkOption {
-      type = with types; attrsOf (submodule ({ name, config, ... }: {
-        options.source = mkOption {
-          apply = cfg:
-            if name == "sway/config" then
-              pkgs.stdenv.mkDerivation {
-                name = "sway-config";
-                src = cfg;
-                phases = [ "unpackPhase" "patchPhase" "installPhase" ];
-                unpackPhase = "cp --no-preserve=mode $src config";
-                patches = [ ./sway-config.patch ];
-                installPhase = "cp config $out";
-              }
-            else
-              cfg;
-        };
-      }));
-    };
   };
   config = mkIf cfg.enable {
     wayland.windowManager.sway = {
