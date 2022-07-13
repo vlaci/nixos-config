@@ -13,10 +13,8 @@ in lib.mkProfile "gui" {
   services.picom = {
     enable = !isWayland;
     experimentalBackends = true;
-    extraOptions = ''
-      blur-method = "dual_kawase";
-    '';
-    opacityRule = [
+    settings.blur-method = "dual_kawase";
+    opacityRules = [
       "90:class_g = 'kitty'"
     ];
     vSync = true;
