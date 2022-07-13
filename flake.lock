@@ -125,11 +125,11 @@
         "org-roam-ui": "org-roam-ui"
       },
       "locked": {
-        "lastModified": 1657728115,
-        "narHash": "sha256-dfGiek4m567cM0hTX0JUkncqVn1IuzVjQ9j7iUUC9bM=",
+        "lastModified": 1657733623,
+        "narHash": "sha256-AK7tCSFo88OBINk/zTsSbF1UYI7gWeQqPAHM1WHLQq4=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "7853f18665dfce7610ecfe354fdb5eecd8912d9e",
+        "rev": "0193eddd6bb3c0d2b886a1662faa68ac266ecb96",
         "type": "github"
       },
       "original": {
