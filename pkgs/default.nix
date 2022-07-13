@@ -8,7 +8,6 @@ let
     awesome-extensions = callPackage ./awesome-extensions { };
     hexdiff = callPackage ./hexdiff { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
-    uhk-agent = callPackage ./uhk-agent { };
   };
 in
 self
