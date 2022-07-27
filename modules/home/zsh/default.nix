@@ -29,13 +29,13 @@ in
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
 
-        function prompt_git_useremail() {
+        prompt_git_useremail() {
           p10k segment -t "$(git_prompt_useremail_symbol)"
         }
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
-        export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias: "
+        prompt_lorri_status() {
+          p10k segment -t "$(get_lorri_status)"
+        }
 
         vterm_printf(){
             if [ -n "$TMUX" ] && ([ "''${TERM%%-*}" = "tmux" ] || [ "''${TERM%%-*}" = "screen" ] ); then
@@ -51,6 +51,11 @@ in
         prompt_vterm_prompt_end() {
             p10k segment -t "$(vterm_printf "51;A$(whoami)@$(hostname):$(pwd)")"
         }
+
+        export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias: "
+
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
       '';
     }
     {
