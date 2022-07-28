@@ -294,16 +294,37 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1658822905,
-        "narHash": "sha256-mBngYxNAaFe3Z9qe3aOmSrmVR/NRF9CEKPmG9S7e5Gs=",
+        "lastModified": 1658924727,
+        "narHash": "sha256-Fhh9FK9CvuCLxG1WkWJPoendDeXKI4gHYTfezo1n2Zg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0b7fd187e2dc8364cf31ed69347e4793c2d83a57",
+        "rev": "0e2f7876d2f2ae98a67d89a8bef8c49332aae5af",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "hyprland": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "wlroots": "wlroots"
+      },
+      "locked": {
+        "lastModified": 1659039807,
+        "narHash": "sha256-aOjLCAob0gfLOgxW29b3On9jiPAJRyOgVV7VtYuvyRw=",
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "rev": "7a2f296c936df1906654eba22fb8f6c15310725c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "Hyprland",
         "type": "github"
       }
     },
@@ -425,7 +446,7 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "narHash": "sha256-iO0l0Iq818M8k7McVAnwi6ecEAjLpaZDr9i2JeQkEiQ=",
+        "narHash": "sha256-bYhx1DOWzjXQM/SDxWz4sIziqSi3lVEjVFA/Sjx2MU0=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -436,7 +457,7 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "narHash": "sha256-iO0l0Iq818M8k7McVAnwi6ecEAjLpaZDr9i2JeQkEiQ=",
+        "narHash": "sha256-bYhx1DOWzjXQM/SDxWz4sIziqSi3lVEjVFA/Sjx2MU0=",
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       },
@@ -628,6 +649,7 @@
         "flake-utils": "flake-utils_2",
         "git-agecrypt": "git-agecrypt",
         "home-manager": "home-manager",
+        "hyprland": "hyprland",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
@@ -680,6 +702,24 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "wlroots": {
+      "flake": false,
+      "locked": {
+        "host": "gitlab.freedesktop.org",
+        "lastModified": 1656865312,
+        "narHash": "sha256-xtQ0zwJZwN8sciruveM10CzKz6TWxBY8SyXa8E4jly4=",
+        "owner": "wlroots",
+        "repo": "wlroots",
+        "rev": "5dc1d4671dd2ca3c1f0f09587c463fdbb542f0a4",
+        "type": "gitlab"
+      },
+      "original": {
+        "host": "gitlab.freedesktop.org",
+        "owner": "wlroots",
+        "repo": "wlroots",
+        "type": "gitlab"
       }
     }
   },
