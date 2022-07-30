@@ -77,6 +77,9 @@ in
               xkb_options = "grp:lalt_lshift_toggle";
             };
           };
+          startup = [
+            { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
+          ];
           fonts = {
             names = [ "Sans" "Fontawesome" "Material Design Icons" ];
             size = 11.0;
