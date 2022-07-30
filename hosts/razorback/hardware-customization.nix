@@ -11,6 +11,7 @@
     }
   ];
   boot.tmpOnTmpfs = true;
+  boot.tmpOnTmpfsSize = "100%";
   boot.kernelParams = [
     "pcie_acs_override=downstream,multifunction"
     "intel_iommu=on"
