@@ -3,7 +3,6 @@
 {
   imports = [
     ./development
-    ./doom-emacs
     ./gui
     ./zsh
     ./emacs.nix

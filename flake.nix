@@ -4,11 +4,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs/develop";
-    openconnect-sso.url = "github:vlaci/openconnect-sso";
-    openconnect-sso.flake = false;
     emacsVlaci.url = "github:vlaci/emacs.d";
     emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -19,7 +15,7 @@
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nix-doom-emacs, openconnect-sso, emacsVlaci, git-agecrypt, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -33,7 +29,7 @@
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ nix-doom-emacs.hmModule emacsVlaci.lib.hmModule ];
+        hmModules = [ emacsVlaci.lib.hmModule ];
         nixosModules = [ home-manager.nixosModules.home-manager ];
         specialArgs = { inherit (secrets) decrypt; };
       } // inputs);
@@ -42,16 +38,13 @@
       nixosConfigurations = nixosConfigurations.hostsFromDir ./hosts;
       overlay = final: prev:
         let
-          unstable = inputs.nixpkgs-unstable.legacyPackages."${final.system}";
           pkgsrcs = import ./pkgs { pkgs = prev; };
         in
         {
-          _ = { inherit unstable; };
           inherit lib pkgsrcs;
         };
 
       overlays = lib.importDir ./overlays // {
-        openconnect-sso = import "${openconnect-sso}/overlay.nix";
         emacsVlaci = emacsVlaci.overlay;
         git-agecrypt = git-agecrypt.overlay;
         inherit (self) overlay;
