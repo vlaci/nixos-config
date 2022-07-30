@@ -27,13 +27,11 @@ lib.mkProfile "gui" {
       fira-code-symbols
       fira-mono
       font-awesome
-      (iosevka-bin.override { variant = "ss05"; })
-      (iosevka-bin.override { variant = "aile"; })
+      iosevka-comfy.comfy
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Iosevka" ];
-        sansSerif = [ "Noto Sans" ];
+        monospace = [ "Iosevka Comfy" ];
         serif = [ "Noto Serif" ];
       };
     };
