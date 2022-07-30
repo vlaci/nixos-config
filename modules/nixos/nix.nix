@@ -10,10 +10,6 @@ in
   '';
   nixpkgs.config = {
     allowUnfree = true;
-    packageOverrides = pkgs: {
-      nix = pkgs.nixUnstable;
-      nix-prefetch-git = pkgs.nix-prefetch-git.override { nix = pkgs.nixUnstable; };
-    };
   };
 
   environment.systemPackages = with pkgs; [
