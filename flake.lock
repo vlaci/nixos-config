@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1658808829,
-        "narHash": "sha256-A2kthh7a/MEbbrWGwkIS4dXMP1kNfdfAorxDjdtOxe4=",
+        "lastModified": 1659177353,
+        "narHash": "sha256-R8zCIYAJNndt/7gWOch9LN5/NuXDzFPhS7K911bGgcQ=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "79d28f8388bfe9e1933e4aa769676d2452cc6ad6",
+        "rev": "34074146972552177d529af38f5395ef4c6eab73",
         "type": "github"
       },
       "original": {
@@ -60,11 +60,11 @@
         "org-roam-ui": "org-roam-ui"
       },
       "locked": {
-        "lastModified": 1658905831,
-        "narHash": "sha256-Wvc2WN+P6I1LhDEO+51yVu03JLnSSImSVh1GhqyBhLU=",
+        "lastModified": 1659191213,
+        "narHash": "sha256-lSjG1TvvH//wTGQ9KizVrdF4S8O8NpoXh7++Y8FPZJs=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "51dfce2755af376bcb8a5d7b08dee3c85ae4ba3e",
+        "rev": "57ba4c56dcd2ec6489391c497742c7e5bc7883f8",
         "type": "github"
       },
       "original": {
@@ -150,11 +150,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1658924727,
-        "narHash": "sha256-Fhh9FK9CvuCLxG1WkWJPoendDeXKI4gHYTfezo1n2Zg=",
+        "lastModified": 1659232160,
+        "narHash": "sha256-RYKbKAYooiART2RUEpUnP7tAYM6+2i1m9+QI14wljZU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0e2f7876d2f2ae98a67d89a8bef8c49332aae5af",
+        "rev": "7146638e9ef74aba6736cbbf12dbe60e1ed24c1e",
         "type": "github"
       },
       "original": {
@@ -212,13 +212,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "narHash": "sha256-bYhx1DOWzjXQM/SDxWz4sIziqSi3lVEjVFA/Sjx2MU0=",
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+        "lastModified": 1659252345,
+        "narHash": "sha256-gzJVYAcLYmC05eDRs7ed+vMcPsrLY8cDNuqT1S6Ms4Q=",
+        "owner": "vlaci",
+        "repo": "nixpkgs",
+        "rev": "ddb5e21839ca4fbe44fb8147737122d748a26851",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+        "owner": "vlaci",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "org": {
@@ -256,11 +260,11 @@
     "org-roam-ui": {
       "flake": false,
       "locked": {
-        "lastModified": 1657712680,
-        "narHash": "sha256-TqZPhZqedSKZZIjtzJ+cM7grmaKAV+ENeBoXT6Z36YI=",
+        "lastModified": 1659026870,
+        "narHash": "sha256-hoa8AtrHNtlOwF3Ki15LccnbiRm/7JghXZ2l7IIqBpU=",
         "owner": "org-roam",
         "repo": "org-roam-ui",
-        "rev": "2cd93bfa517d51b4c97d42817713ca5ce61cb0df",
+        "rev": "a5b81198852cf82ef34d6e34f319d074c72fcf00",
         "type": "github"
       },
       "original": {
