@@ -4,12 +4,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
-  boot.kernelPatches = [
-    {
-      name = "add-acs-overrides";
-      patch = ./add-acs-overrides_5_x.patch;
-    }
-  ];
+  boot.kernelPackages = pkgs.linuxPackages_acs_override;
   boot.tmpOnTmpfs = true;
   boot.tmpOnTmpfsSize = "100%";
   boot.kernelParams = [

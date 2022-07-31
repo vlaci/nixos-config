@@ -8,6 +8,7 @@ let
     awesome-extensions = callPackage ./awesome-extensions { };
     hexdiff = callPackage ./hexdiff { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
+    linuxPackages_acs_override = callPackage ./linux_acs_override { };
   };
 in
 self
