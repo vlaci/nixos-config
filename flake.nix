@@ -3,7 +3,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "github:vlaci/nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     emacsVlaci.url = "github:vlaci/emacs.d";
     emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
