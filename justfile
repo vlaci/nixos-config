@@ -11,3 +11,7 @@ update-pkgs:
 
 repl:
     nix run ".#repl"
+
+build-pkgs:
+    nix build --dry-run --impure --expr "with builtins.getFlake (toString ./.); lib.recurseIntoAttrs packages.x86_64-linux"
+    nix build --impure --expr "with builtins.getFlake (toString ./.); lib.recurseIntoAttrs packages.x86_64-linux"

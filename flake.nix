@@ -35,6 +35,7 @@
       } // inputs);
     in
     {
+      inherit lib;
       nixosConfigurations = nixosConfigurations.hostsFromDir ./hosts;
       overlay = final: prev:
         let
