@@ -14,3 +14,4 @@ jobs:
         name: vlaci
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix run nixpkgs\#just -- build-pkgs
+    - run: nix run nixpkgs\#just -- build-hosts
