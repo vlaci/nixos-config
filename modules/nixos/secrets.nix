@@ -1,7 +1,23 @@
 { lib, config, pkgs, agenix, ... }:
 
 let
-  inherit (lib) mkOption;
+  inherit (builtins) pathExists;
+  inherit (lib) fileContents hasSuffix mkOption;
+
+  isEncrypted = src: hasSuffix " data" (fileContents (pkgs.runCommandNoCCLocal "is-encrypted"
+    {
+      inherit src;
+      buildInputs = [ pkgs.file ];
+    } ''
+      file $src > $out
+    ''
+  ));
+  tryImport = path:
+    if isEncrypted path then
+      { available = false; }
+    else
+      { available = true; value = import path; }
+    ;
 in {
   options = {
     _.secrets = mkOption {};
@@ -18,8 +34,8 @@ in {
     ];
 
     _.secrets = {
-      vlaci = import ../../secrets/vlaci.nix.age;
-      work = import ../../secrets/work.nix.age;
+      vlaci = tryImport ../../secrets/vlaci.nix.age;
+      work = tryImport ../../secrets/work.nix.age;
     };
   };
 }

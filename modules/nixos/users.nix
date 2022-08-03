@@ -46,19 +46,20 @@ in
 
   config = mkIf cfg.enable {
     users.mutableUsers = false;
+    users.allowNoPasswordLogin = !vlaci.available && (warn "Secrets are not available, users won't be able to log in!" true);
     users.users = mapAttrs (n: v: v.forwarded) cfg.users;
     home-manager.users = mapAttrs (n: v: { imports = v.home-manager; }) cfg.users;
 
     age.identityPaths = options.age.identityPaths.default ++ [ "/home/vlaci/.ssh/id_ed25519" ];
 
     _.users.users.root = { isNormalUser = false; };
-    _.users.users.vlaci = {
-      description = vlaci.fullName;
-      initialHashedPassword = vlaci.passwordHash;
-      openssh.authorizedKeys.keys = vlaci.authorizedKeys;
+    _.users.users.vlaci = mkIf vlaci.available {
+      description = vlaci.value.fullName;
+      initialHashedPassword = vlaci.value.passwordHash;
+      openssh.authorizedKeys.keys = vlaci.value.authorizedKeys;
       home-manager = {
         home.file.".config/Yubico/u2f_keys".text = ''
-          vlaci:${concatStringsSep ":" vlaci.u2fKeys}
+          vlaci:${concatStringsSep ":" vlaci.value.u2fKeys}
         '';
       };
     };

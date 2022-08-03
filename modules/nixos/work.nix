@@ -19,6 +19,10 @@ lib.mkProfile "work" {
     file = ../../secrets/work/vpn.key.pem.age;
   };
 
-  security.pki.certificates = config._.secrets.work.certificates;
+  security.pki = let
+    inherit (config._.secrets) work;
+  in lib.mkIf work.available {
+    certificates = work.value.certificates;
+  };
   _.email.work.enable = true;
 }

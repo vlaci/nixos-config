@@ -1,9 +1,9 @@
 { lib, pkgs, nixosConfig, ... }:
 
 let
-  inherit (lib) listToAttrs mkDefault mkProfile nameValuePair;
+  inherit (lib) listToAttrs mkDefault mkIf mkProfile nameValuePair;
   inherit (nixosConfig._.secrets) vlaci;
-in lib.mkProfile "git" {
+in lib.mkProfile "git" (mkIf vlaci.available {
   programs.git = {
     enable = true;
     delta.enable = true;
@@ -16,12 +16,12 @@ in lib.mkProfile "git" {
     };
     ignores = [ "\\#*\\#" ".\\#*" ];
     lfs.enable = true;
-    userName = vlaci.fullName;
-    userEmail = mkDefault vlaci.email.git.address;
+    userName = vlaci.value.fullName;
+    userEmail = mkDefault vlaci.value.email.git.address;
     extraConfig.emailprompt =
-      listToAttrs (map (e: nameValuePair e { prompt = " "; }) vlaci.email.addresses.github)
-      // listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.email.addresses.home)
-      // listToAttrs (map (e: nameValuePair e { prompt = "👔"; }) vlaci.email.addresses.work);
+      listToAttrs (map (e: nameValuePair e { prompt = " "; }) vlaci.value.email.addresses.github)
+      // listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.value.email.addresses.home)
+      // listToAttrs (map (e: nameValuePair e { prompt = "👔"; }) vlaci.value.email.addresses.work);
   };
 
   home.packages = with pkgs.gitAndTools; [
@@ -29,4 +29,4 @@ in lib.mkProfile "git" {
     git-filter-repo
     git-remote-gcrypt
   ];
-}
+})

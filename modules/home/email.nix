@@ -5,7 +5,7 @@ let
   vlaci = nixosConfig._.secrets.vlaci;
   inherit (lib) mkIf optionalAttrs optionals;
 in
-lib.mkProfile "email" {
+lib.mkProfile "email" (mkIf vlaci.available {
   programs.mbsync = {
     enable = true;
   };
@@ -25,9 +25,9 @@ lib.mkProfile "email" {
   accounts.email = {
     accounts = (
       {
-        ${vlaci.email.default.name} =
+        ${vlaci.value.email.default.name} =
           let
-            cfg = vlaci.email.default;
+            cfg = vlaci.value.email.default;
           in rec {
             inherit (cfg) address realName imap smtp;
           userName = cfg.address;
@@ -59,9 +59,9 @@ lib.mkProfile "email" {
         };
       }
       // optionalAttrs work {
-        ${vlaci.email.work.name} =
+        ${vlaci.value.email.work.name} =
           let
-            cfg = vlaci.email.work;
+            cfg = vlaci.value.email.work;
           in rec {
             inherit (cfg) address realName;
           userName = cfg.address;
@@ -105,4 +105,4 @@ lib.mkProfile "email" {
       }
     );
   };
-}
+})
