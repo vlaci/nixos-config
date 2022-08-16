@@ -73,11 +73,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1660599878,
-        "narHash": "sha256-fCGtTFi7ITpp9ddDy+OR0lqJSN3/AIbOJQiOP6roEI0=",
+        "lastModified": 1660689264,
+        "narHash": "sha256-QWDTH2437ctr89YrQklK45XgH069uCZ+AsQJHeEpKgE=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "64cdb13e5b2137ce35bb099c0c5512d10912c5f3",
+        "rev": "8f789811ecd784cd8f88a2e3cce3942a1b3b2ed9",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1660519751,
-        "narHash": "sha256-qNOgeoHGRv+0cunMAxM9Pi4cR5ZwlwluhO00YQtOP+4=",
+        "lastModified": 1660606296,
+        "narHash": "sha256-tY3ggovvDY12KOXqTz99+OS2V5zzFNWvXi8qvuP7EHM=",
         "owner": "vlaci",
         "repo": "nixpkgs",
-        "rev": "0f8e0f342ffb943010089dee86b534a8c37a5d4e",
+        "rev": "33565f0c47403b3f0f34ae334c81edc4b7d4ff7c",
         "type": "github"
       },
       "original": {
