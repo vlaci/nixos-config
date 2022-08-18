@@ -33,28 +33,6 @@ in
           p10k segment -t "$(git_prompt_useremail_symbol)"
         }
 
-        get_lorri_status() {
-          lorri internal stream-events --kind snapshot \
-              | jq -r \
-          '
-              keys[0] as $status
-              | .[]
-              | select(
-                  .nix_file
-                  | split("/")
-                  | .[:-1]
-                  | join("/") as $dir
-                  | env.PWD
-                  | startswith($dir)
-              )
-              | {Completed: "🚛", Started: "⌛", Failure: "❌"}[$status]
-          '
-        }
-
-        prompt_lorri_status() {
-          p10k segment -t "$(get_lorri_status)"
-        }
-
         vterm_printf(){
             if [ -n "$TMUX" ] && ([ "''${TERM%%-*}" = "tmux" ] || [ "''${TERM%%-*}" = "screen" ] ); then
                 # Tell tmux to pass the escape sequences through
@@ -119,9 +97,9 @@ in
             {
               plugin = pkgs.pkgsrcs.zsh-alias-tips.src;
             } ''
-              cp -a $plugin $out
-              substituteInPlace $out/alias-tips.plugin.zsh --replace python3 ${pkgs.python3}/bin/python
-            '';
+            cp -a $plugin $out
+            substituteInPlace $out/alias-tips.plugin.zsh --replace python3 ${pkgs.python3}/bin/python
+          '';
         }
         {
           name = "calc";

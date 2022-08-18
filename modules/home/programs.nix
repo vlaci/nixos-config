@@ -2,7 +2,8 @@
 
 let
   inherit (lib) mkProfile optionals;
-in mkProfile "tools" {
+in
+mkProfile "tools" {
   home.packages = with pkgs; ([
     atool
     bottom # top
@@ -38,6 +39,7 @@ in mkProfile "tools" {
   programs.bat.enable = true;
   programs.broot.enable = true;
   programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
   programs.htop.enable = true;
   programs.home-manager.enable = true;
   programs.jq.enable = true;
@@ -54,6 +56,4 @@ in mkProfile "tools" {
     controlMaster = "auto";
     controlPersist = "600";
   };
-
-  services.lorri.enable = true;
 }

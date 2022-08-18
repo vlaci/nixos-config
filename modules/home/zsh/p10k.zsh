@@ -53,7 +53,6 @@
     dir                       # current directory
     vcs                       # git status
     git_useremail
-    lorri_status
     command_execution_time    # previous command duration
     vterm_prompt_end
     # =========================[ Line #2 ]=========================
