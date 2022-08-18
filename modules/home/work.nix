@@ -7,6 +7,7 @@ in
 lib.mkProfile "work" {
   home.packages = with pkgs; [
     teams
+    slack
     openfortivpn
   ];
   programs.git = mkIf vlaci.available {
