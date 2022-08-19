@@ -113,25 +113,6 @@
         },
         "version": "9.0.0"
     },
-    "picom": {
-        "cargoLocks": null,
-        "extract": null,
-        "name": "picom",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "yshui",
-            "repo": "picom",
-            "rev": "cd50596f0ed81c0aa28cefed62176bd6f050a1c6",
-            "sha256": "sha256-e0Zd/kVqRiYUL6afsp4+JHKSe0qtNLyBE2s6Nem4A1I=",
-            "type": "github"
-        },
-        "version": "cd50596f0ed81c0aa28cefed62176bd6f050a1c6"
-    },
     "zsh-alias-tips": {
         "cargoLocks": null,
         "extract": null,

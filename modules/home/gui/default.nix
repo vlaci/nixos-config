@@ -2,7 +2,8 @@
 
 let
   isWayland = nixosConfig._.gui.wayland.enable;
-in lib.mkProfile "gui" {
+in
+lib.mkProfile "gui" {
   imports = [
     ./awesome
     ./herbstluftwm
@@ -18,6 +19,7 @@ in lib.mkProfile "gui" {
       "90:class_g = 'kitty'"
     ];
     vSync = true;
+    backend = "glx";
   };
 
   programs.firefox.enable = true;

@@ -22,10 +22,6 @@ fetch.github = "mroth/git-prompt-useremail"
 src.github_tag = "zdharma-continuum/fast-syntax-highlighting"
 fetch.github = "zdharma-continuum/fast-syntax-highlighting"
 
-[picom]
-src.git = "https://github.com/yshui/picom"
-fetch.github = "yshui/picom"
-
 [awesome-awpwkb]
 src.git = "https://github.com/vladimir-g/awpwkb"
 fetch.github = "vladimir-g/awpwkb"

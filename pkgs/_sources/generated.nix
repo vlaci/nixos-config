@@ -67,17 +67,6 @@
       sha256 = "sha256-AkHsZpYM4EY8SNuF6LhxF2peOjp69ICGc3kOLkDms64=";
     });
   };
-  picom = {
-    pname = "picom";
-    version = "cd50596f0ed81c0aa28cefed62176bd6f050a1c6";
-    src = fetchFromGitHub ({
-      owner = "yshui";
-      repo = "picom";
-      rev = "cd50596f0ed81c0aa28cefed62176bd6f050a1c6";
-      fetchSubmodules = false;
-      sha256 = "sha256-e0Zd/kVqRiYUL6afsp4+JHKSe0qtNLyBE2s6Nem4A1I=";
-    });
-  };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
     version = "8fc0d2f9b480991f78ce67c49621731d0336b22f";
