@@ -33,7 +33,3 @@ fetch.github = "lcpz/lain"
 [awesome-sharedtags] 
 src.manual = "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6"
 fetch.github = "Drauthius/awesome-sharedtags"
-
-[nix-plugins]
-src.github_tag = "shlevy/nix-plugins"
-fetch.github = "shlevy/nix-plugins"
