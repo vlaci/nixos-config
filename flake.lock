@@ -65,6 +65,7 @@
       "inputs": {
         "eglot-x": "eglot-x",
         "emacs-overlay": "emacs-overlay",
+        "explain-pause-mode": "explain-pause-mode",
         "flake-utils": "flake-utils",
         "fromElisp": "fromElisp",
         "ligature": "ligature",
@@ -73,16 +74,32 @@
         ]
       },
       "locked": {
-        "lastModified": 1661016346,
-        "narHash": "sha256-YnMO1kO/XTcwsMPcGTvC2KkX0aYNmeVWtLQllp3zhrI=",
+        "lastModified": 1661114253,
+        "narHash": "sha256-Oblb4RaEeDc5+SOddIQx/owjYqqgXX3yv61vwtUHmE0=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "efb785711405b2fc2a3337acff1018f63ba3ddfb",
+        "rev": "2c80c84b99d998c10a241860cd7b82bbaa8bd93d",
         "type": "github"
       },
       "original": {
         "owner": "vlaci",
         "repo": "emacs.d",
+        "type": "github"
+      }
+    },
+    "explain-pause-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1595842060,
+        "narHash": "sha256-++znrjiDSx+cy4okFBBXUBkRFdtnE2x+trkmqjB3Njs=",
+        "owner": "lastquestion",
+        "repo": "explain-pause-mode",
+        "rev": "2356c8c3639cbeeb9751744dbe737267849b4b51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lastquestion",
+        "repo": "explain-pause-mode",
         "type": "github"
       }
     },
