@@ -21,8 +21,12 @@ in
   config = {
     emacsVlaci = {
       enable = true;
-      settings = {
+      settings = rec {
         org-directory = "~/devel/git/github.com/vlaci/notes/org";
+        org-default-notes-file = "${org-directory}/notes.org";
+        org-agenda-files = [ "quote" "${org-directory}/personal" "${org-directory}/work" ];
+        org-roam-directory = org-directory + "/roam";
+        magit-repository-directories = [ "quote" [ "cons" "~/devel/git" 3 ] ];
       };
       extraConfig =
         let
