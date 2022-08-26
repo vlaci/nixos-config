@@ -3,7 +3,8 @@
 let
   inherit (lib) listToAttrs mkDefault mkIf mkProfile nameValuePair;
   inherit (nixosConfig._.secrets) vlaci;
-in lib.mkProfile "git" (mkIf vlaci.available {
+in
+lib.mkProfile "git" (mkIf vlaci.available {
   programs.git = {
     enable = true;
     delta.enable = true;
@@ -14,7 +15,7 @@ in lib.mkProfile "git" (mkIf vlaci.available {
       absorb.maxStack = 50;
       merge.conflictStyle = "diff3";
     };
-    ignores = [ "\\#*\\#" ".\\#*" ];
+    ignores = [ "\\#*\\#" ".\\#*" ".direnv" ];
     lfs.enable = true;
     userName = vlaci.value.fullName;
     userEmail = mkDefault vlaci.value.email.git.address;
