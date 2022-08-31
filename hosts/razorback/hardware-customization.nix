@@ -24,10 +24,7 @@
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   hardware.opengl.driSupport32Bit = true;
 
-  services.xserver = {
-    videoDrivers = [ "modesetting" ];
-    useGlamor = true;
-  };
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   boot.initrd.luks.devices.root = {
     name = "root";

@@ -26,10 +26,7 @@
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
 
   #services.uvcvideo.dynctrl.enable = true;
-  services.xserver = {
-    videoDrivers = [ "modesetting" ];
-    useGlamor = true;
-  };
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   services.fstrim.enable = true;
 
