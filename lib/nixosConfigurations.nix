@@ -3,7 +3,7 @@
 , nixpkgs
 , hmModules
 , nixosModules
-, specialArgs
+, specialArgs ? { }
 , system
 , ...
 }@args:

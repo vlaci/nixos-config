@@ -25,13 +25,10 @@
       system = "x86_64-linux";
       secretRules = import ./secrets/secrets.nix;
 
-      secrets = lib.secrets { rules = secretRules; pkgs = mkPkgs system; };
-
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
         hmModules = [ emacsVlaci.lib.hmModule ];
         nixosModules = [ home-manager.nixosModules.home-manager ];
-        specialArgs = { inherit (secrets) decrypt; };
       } // inputs);
     in
     {
