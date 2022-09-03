@@ -90,7 +90,7 @@ in
             #
             "${mod}+Return" = "exec kitty";
             "${mod}+Shift+q" = "kill";
-            "${mod}+d" = "exec rofi -show drun";
+            "${mod}+d" = "exec wofi --show drun";
             "${mod}+Shift+c" = "reload";
             "${mod}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
