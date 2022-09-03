@@ -38,6 +38,7 @@ lib.mkProfile "gui" {
   ];
 
   home.sessionVariables = mkIf isWayland {
+    GTK_USE_PORTAL = 1;
     MOZ_ENABLE_WAYLAND = 1;
   };
 
