@@ -13,9 +13,12 @@
     git-agecrypt.url = "github:vlaci/git-agecrypt";
     git-agecrypt.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -27,8 +30,8 @@
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ emacsVlaci.lib.hmModule ];
-        nixosModules = [ home-manager.nixosModules.home-manager ];
+        hmModules = [ emacsVlaci.lib.hmModule hyprland.homeManagerModules.default ];
+        nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default ];
       } // inputs);
     in
     {
@@ -44,6 +47,7 @@
 
       overlays = lib.importDir ./overlays // {
         emacsVlaci = emacsVlaci.overlay;
+        hyprland = hyprland.overlays.default;
         git-agecrypt = git-agecrypt.overlay;
         inherit (self) overlay;
       };

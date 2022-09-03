@@ -9,6 +9,7 @@ lib.mkProfile "gui" {
     ./awesome
     ./herbstluftwm
     ./theme
+    ./hyprland.nix
     ./sway.nix
   ];
 
@@ -87,7 +88,9 @@ lib.mkProfile "gui" {
     signal-desktop
     vivaldi
   ] ++ (optionals isWayland [
+    slurp
     wl-clipboard
+    wofi
   ]);
 
   services.flameshot.enable = true;
@@ -102,7 +105,7 @@ lib.mkProfile "gui" {
         layer = "top";
         position = "top";
 
-        modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
+        modules-left = [ "wlr/workspaces" "sway/workspaces" "sway/mode" "wlr/taskbar" ];
         modules-center = [ "sway/window" ];
         modules-right = [ "sway/language" "pulseaudio" "idle_inhibitor" "disk" "disk#home" "clock" "tray" ];
 
