@@ -40,6 +40,11 @@
     powertop
   ];
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
+  services.blueman.enable = true;
   services.upower.enable = true;
 
   services.logind = {
