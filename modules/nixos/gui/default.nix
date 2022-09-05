@@ -6,9 +6,11 @@ lib.mkProfile "gui" {
     ./theme
     ./wayland.nix
   ];
-  hardware.pulseaudio = {
+
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
+    audio.enable = true;
+    pulse.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
