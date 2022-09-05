@@ -44,5 +44,15 @@ in
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
     };
+
+    nixpkgs.overlays = [
+      (self: super: {
+        xdg-desktop-portal-wlr = super.xdg-desktop-portal-wlr.overrideAttrs (super: {
+          postPatch = ''
+            substituteInPlace wlr.portal --replace "sway" "sway;hyprland"
+          '';
+        });
+      })
+    ];
   };
 }
