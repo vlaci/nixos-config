@@ -3,7 +3,8 @@
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config._.email;
-in {
+in
+{
   options = {
     _.email.enable = mkEnableOption "email";
     _.email.work.enable = mkEnableOption "work";

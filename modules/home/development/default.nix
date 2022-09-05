@@ -7,7 +7,16 @@ lib.mkProfile "development" {
     (vscode.fhsWithPackages (pkgs: with pkgs; [
       zsh
       # for live share
-      gcr liburcu openssl krb5 zlib icu69 gnome3.gnome-keyring libsecret desktop-file-utils xorg.xprop
+      gcr
+      liburcu
+      openssl
+      krb5
+      zlib
+      icu69
+      gnome3.gnome-keyring
+      libsecret
+      desktop-file-utils
+      xorg.xprop
       openssl.dev
       pkg-config
       binutils
@@ -27,7 +36,7 @@ lib.mkProfile "development" {
     mitmproxy
     sqlite-interactive
     tcpdump
-    unixtools.xxd  # hexdump
+    unixtools.xxd # hexdump
     wireshark-qt
   ];
 

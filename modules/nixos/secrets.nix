@@ -9,18 +9,19 @@ let
       inherit src;
       buildInputs = [ pkgs.file ];
     } ''
-      file $src > $out
-    ''
+    file $src > $out
+  ''
   ));
   tryImport = path:
     if isEncrypted path then
       { available = false; }
     else
       { available = true; value = import path; }
-    ;
-in {
+  ;
+in
+{
   options = {
-    _.secrets = mkOption {};
+    _.secrets = mkOption { };
   };
 
   imports = [ agenix.nixosModules.age ];

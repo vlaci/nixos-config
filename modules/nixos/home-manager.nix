@@ -39,8 +39,10 @@ in
     system.extraSystemBuilderCmds = ''
       mkdir -p $out/home-manager
     '' +
-    concatStringsSep "\n" (map (cfg:
-      "ln -sn ${cfg.home.activationPackage} $out/home-manager/${cfg.home.username}"
-    ) (attrValues config.home-manager.users));
+    concatStringsSep "\n" (map
+      (cfg:
+        "ln -sn ${cfg.home.activationPackage} $out/home-manager/${cfg.home.username}"
+      )
+      (attrValues config.home-manager.users));
   };
 }

@@ -103,11 +103,10 @@ lib.mkProfile "gui" {
         waitPID=$!
       '';
     }
-    {
-      name = "dummy";
-      start = "true";
-    }
-    ];
+      {
+        name = "dummy";
+        start = "true";
+      }];
 
     displayManager.lightdm =
       {
