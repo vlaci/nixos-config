@@ -37,19 +37,17 @@
     {
       inherit lib;
       nixosConfigurations = nixosConfigurations.hostsFromDir ./hosts;
-      overlay = final: prev:
-        let
-          pkgsrcs = import ./pkgs { pkgs = prev; };
-        in
-        {
-          inherit lib pkgsrcs;
-        };
-
       overlays = lib.importDir ./overlays // {
         emacsVlaci = emacsVlaci.overlay;
         hyprland = hyprland.overlays.default;
         git-agecrypt = git-agecrypt.overlay;
-        inherit (self) overlay;
+        default = final: prev:
+          let
+            pkgsrcs = import ./pkgs { pkgs = prev; };
+          in
+          {
+            inherit lib pkgsrcs;
+          };
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")
         {
@@ -61,7 +59,7 @@
       in
       {
         default = makeTest {
-          machine = {
+          nodes.machine = {
             _.users.users.${user} = {
               hashedPassword = "$6$batdZbDtVk4FIJ$OBueySbHgfx3PGyi/yT3Ur7ydEP/LcX5pRHd7a43wTihY9naCnk6ByCVYY9wXmfj41eAc/Yt/QNEVJcApfInr1";
               home-manager = { programs.git.enable = true; };
