@@ -15,7 +15,7 @@ mkProfile "tools" {
     hyperfine # benchmark
     mc
     procs # ps on steroids
-    python39
+    python3
     ranger
     # for emacs too
     ripgrep
