@@ -348,6 +348,7 @@ lib.mkProfile "gui" {
         { timeout = 300; command = "${lockCommand}"; }
         { timeout = 310; command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'"; resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'"; }
       ];
+      systemdTarget = "graphical-session.target";
     };
 
   systemd.user.services.swayidle.Service.Environment = [ "PATH=/bin" ];
