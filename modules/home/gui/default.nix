@@ -56,6 +56,7 @@ lib.mkProfile "gui" {
 
   programs.rofi = {
     enable = true;
+    package = if isWayland then pkgs.rofi-wayland else pkgs.rofi;
   };
 
   services.screen-locker = {
@@ -90,7 +91,6 @@ lib.mkProfile "gui" {
   ] ++ (optionals isWayland [
     slurp
     wl-clipboard
-    wofi
   ]);
 
   services.flameshot.enable = true;

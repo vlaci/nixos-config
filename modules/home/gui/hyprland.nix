@@ -81,7 +81,7 @@ lib.mkProfile "hyprland" {
       bind=SUPER,Return,exec,kitty
       bind=SUPERSHIFT,E,exit,
       bind=SUPER,V,togglefloating,
-      bind=SUPER,D,exec,wofi --show drun
+      bind=SUPER,D,exec,rofi -show drun
       bind=SUPER,P,pseudo,
 
       bind=SUPER,left,movefocus,l
