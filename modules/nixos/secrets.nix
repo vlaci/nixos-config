@@ -4,7 +4,7 @@ let
   inherit (builtins) pathExists;
   inherit (lib) fileContents hasSuffix mkOption;
 
-  isEncrypted = src: hasSuffix " data" (fileContents (pkgs.runCommandNoCCLocal "is-encrypted"
+  isEncrypted = src: hasSuffix " data" (fileContents (pkgs.runCommandLocal "is-encrypted"
     {
       inherit src;
       buildInputs = [ pkgs.file ];
