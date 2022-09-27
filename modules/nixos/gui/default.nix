@@ -56,7 +56,7 @@ lib.mkProfile "gui" {
   #       ${pkgs.dconf}/bin/dconf compile $out ${customDconf}/dconf
   #     '';
   #   };
-  #   inherit (pkgs.gnome3) gdm;
+  #   inherit (pkgs.gnome) gdm;
   # in pkgs.stdenv.mkDerivation {
   #   name = "dconf-gdm-cursor-profile";
   #   buildCommand = ''

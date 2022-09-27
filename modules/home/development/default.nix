@@ -13,7 +13,7 @@ lib.mkProfile "development" {
       krb5
       zlib
       icu69
-      gnome3.gnome-keyring
+      gnome.gnome-keyring
       libsecret
       desktop-file-utils
       xorg.xprop
