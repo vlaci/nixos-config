@@ -9,8 +9,8 @@ lib.mkProfile "development" {
       # for live share
       gcr
       liburcu
-      openssl
       krb5
+      openssl_1_1
       zlib
       icu69
       gnome.gnome-keyring
