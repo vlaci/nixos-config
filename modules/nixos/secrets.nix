@@ -38,5 +38,8 @@ in
       vlaci = tryImport ../../secrets/vlaci.nix.age;
       work = tryImport ../../secrets/work.nix.age;
     };
+
+    # agenix may use personal SSH private keys
+    fileSystems."/home".neededForBoot = true;
   };
 }
