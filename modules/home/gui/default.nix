@@ -46,7 +46,11 @@ lib.mkProfile "gui" {
   programs.kitty = {
     enable = true;
     keybindings."ctrl+shift+p>n" = ''kitten hints --type=linenum --linenum-action=window bat --pager "less --RAW-CONTROL-CHARS +{line}" -H {line} {path}'';
-    settings.select_by_word_characters = "@-./_~?&%+#";
+    settings = {
+      select_by_word_characters = "@-./_~?&%+#";
+      scrollback_lines = 20000;
+      scrollback_pager_history_size = 20; # 10k line / MiB
+    };
   };
   programs.zsh.initExtra = ''
     ssh() {
