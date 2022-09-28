@@ -37,6 +37,7 @@ lib.mkProfile "development" {
     sqlite-interactive
     tcpdump
     unixtools.xxd # hexdump
+    litecli
     visidata
     wireshark-qt
   ];
