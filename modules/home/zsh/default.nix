@@ -92,6 +92,17 @@ in
           src = ./plugins/navigate;
         }
         {
+          name = "up";
+          src = pkgs.runCommand "plugin"
+            {
+              inherit (pkgs) up;
+              plugin = ./plugins/up/up.plugin.zsh;
+            } ''
+            mkdir $out
+            substituteAll $plugin $out/up.plugin.zsh
+          '';
+        }
+        {
           name = "alias-tips"; # Depends: python
           src = pkgs.runCommand "plugin"
             {
