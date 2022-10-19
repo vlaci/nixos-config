@@ -31,6 +31,9 @@ lib.mkProfile "development" {
     clang
     lldb
     nodejs
+    dune_3
+    ocaml
+    ocamlPackages.utop
     rustup
     rust-analyzer
     mitmproxy
