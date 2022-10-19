@@ -33,12 +33,16 @@ lib.mkProfile "hyprland" {
           gaps_in=5
           gaps_out=20
           border_size=2
-          col.active_border=0xFF${builtins.substring 1 8 colors.color7}
-          col.inactive_border=0xFF${builtins.substring 1 8 colors.color0}
+          col.active_border=0x90${builtins.substring 1 8 colors.color4}
+          col.inactive_border=0x90${builtins.substring 1 8 colors.color0}
 
           apply_sens_to_raw=0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
 
           damage_tracking=full # leave it on full unless you hate your GPU and want to make it suffer
+      }
+
+      misc {
+          mouse_move_enables_dpms=1
       }
 
       exec-once = waybar

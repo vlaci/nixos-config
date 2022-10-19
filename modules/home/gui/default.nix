@@ -1,7 +1,7 @@
 { config, nixosConfig, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkMerge mkIf mkProfile optionals;
+  inherit (lib) mkMerge mkIf mkProfile optionals optionalString;
   isWayland = nixosConfig._.gui.wayland.enable;
 in
 lib.mkProfile "gui" {
@@ -339,18 +339,19 @@ lib.mkProfile "gui" {
       lockCommand = pkgs.writeShellScript "swaylock" ''
         ${pkgs.swaylock}/bin/swaylock --daemonize --color 000000
       '';
+      dpms = cmd: "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
     in
     {
       enable = isWayland;
       events = [
         { event = "lock"; command = "${lockCommand}"; }
         { event = "before-sleep"; command = "${lockCommand}"; }
-        { event = "after-resume"; command = "${pkgs.sway}/bin/swaymsg 'output * dpms on'"; }
+        { event = "after-resume"; command = dpms "on"; }
       ];
       timeouts = [
         { timeout = 295; command = "${pkgs.libnotify}/bin/notify-send -u critical -t 5000 -i system-lock-screen 'Screen will be locked in 5 seconds...'"; }
         { timeout = 300; command = "${lockCommand}"; }
-        { timeout = 310; command = "${pkgs.sway}/bin/swaymsg 'output * dpms off'"; resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'"; }
+        { timeout = 310; command = dpms "off"; resumeCommand = dpms "on"; }
       ];
       systemdTarget = "graphical-session.target";
     };
