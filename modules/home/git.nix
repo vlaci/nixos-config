@@ -1,4 +1,4 @@
-{ lib, pkgs, nixosConfig, ... }:
+{ lib, pkgs, config, nixosConfig, ... }:
 
 let
   inherit (lib) listToAttrs mkDefault mkIf mkProfile nameValuePair;
@@ -18,11 +18,19 @@ lib.mkProfile "git" (mkIf vlaci.available {
     ignores = [ "\\#*\\#" ".\\#*" ".direnv" ];
     lfs.enable = true;
     userName = vlaci.value.fullName;
-    userEmail = mkDefault vlaci.value.email.git.address;
+    userEmail = mkDefault vlaci.value.git.home.address;
     extraConfig.emailprompt =
       listToAttrs (map (e: nameValuePair e { prompt = " "; }) vlaci.value.email.addresses.github)
       // listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.value.email.addresses.home)
       // listToAttrs (map (e: nameValuePair e { prompt = "👔"; }) vlaci.value.email.addresses.work);
+    includes = [
+      {
+        condition = "hasconfig:remote.*.url:${vlaci.value.git.work.remote}/**";
+        contents = {
+          user.email = vlaci.value.git.work.address;
+        };
+      }
+    ];
   };
 
   home.packages = with pkgs.gitAndTools; [
