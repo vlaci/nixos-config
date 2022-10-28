@@ -37,22 +37,6 @@
     };
   };
   networking.firewall.interfaces."virbr0".allowedTCPPorts = [ 139 445 ];
-  services.samba = {
-    enable = true;
-    extraConfig = ''
-      bind interfaces only = yes
-      interfaces = lo virbr0
-    '';
-    shares = {
-      public = {
-        path = "/srv/public";
-        "read only" = "no";
-        browseable = "yes";
-        "guest ok" = "yes";
-        comment = "Public samba share.";
-      };
-    };
-  };
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";
 
