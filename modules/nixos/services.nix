@@ -21,7 +21,10 @@
       services.dbus.packages = with pkgs; [ dconf ];
     })
     (lib.mkProfile "docker" {
-      virtualisation.docker.enable = true;
+      virtualisation.docker = {
+        enable = true;
+        autoPrune.enable = true;
+      };
       _.users.defaultGroups = [ "docker" ];
       environment.systemPackages = with pkgs; [
         docker-compose
