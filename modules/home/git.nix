@@ -14,6 +14,7 @@ lib.mkProfile "git" (mkIf vlaci.available {
     extraConfig = {
       absorb.maxStack = 50;
       merge.conflictStyle = "diff3";
+      init.defaultBranch = "main";
     };
     ignores = [ "\\#*\\#" ".\\#*" ".direnv" ];
     lfs.enable = true;
