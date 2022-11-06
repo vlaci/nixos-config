@@ -37,8 +37,6 @@ lib.mkProfile "hyprland" {
           col.inactive_border=0x90${builtins.substring 1 8 colors.color0}
 
           apply_sens_to_raw=0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
-
-          damage_tracking=full # leave it on full unless you hate your GPU and want to make it suffer
       }
 
       misc {
