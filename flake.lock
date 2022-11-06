@@ -176,11 +176,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1666038827,
-        "narHash": "sha256-JB7N/VnawwfEk2k4zumV2sr1Cisi3mQMkL+B5YRtDfM=",
+        "lastModified": 1667759877,
+        "narHash": "sha256-6uSEPL8i/kF750zU2LkhqUtGvrDuwItxqDDKcg8aWgk=",
         "owner": "vlaci",
         "repo": "git-agecrypt",
-        "rev": "9b2dd8ef60506e85792699f25b3214538e8c2e9e",
+        "rev": "2124db0937e8c49f23acb264da6f00fca912f764",
         "type": "github"
       },
       "original": {
@@ -218,11 +218,11 @@
         "wlroots": "wlroots"
       },
       "locked": {
-        "lastModified": 1667744895,
-        "narHash": "sha256-sHEX+/pmhYljNg8DxqiAIux1xvaTKpB2eXDkluCtMkQ=",
+        "lastModified": 1667758253,
+        "narHash": "sha256-MO9Qgsps6wtrn4K2Dv15mLgbYlmpzyFda4xnmzNP5OA=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "b4c45aa2e3af0e595a6276986290c78d11465746",
+        "rev": "efbc3f819459da9f50ed4e22d648c222ea5c7ec1",
         "type": "github"
       },
       "original": {
