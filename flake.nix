@@ -10,15 +10,16 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    devenv.url = "github:cachix/devenv";
+    devenv.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.url = "github:vlaci/git-agecrypt";
     git-agecrypt.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
-
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, devenv, emacsVlaci, git-agecrypt, hyprland, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -46,7 +47,7 @@
             pkgsrcs = import ./pkgs { pkgs = prev; };
           in
           {
-            inherit lib pkgsrcs;
+            inherit lib devenv pkgsrcs;
           };
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")
