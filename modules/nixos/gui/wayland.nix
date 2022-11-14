@@ -29,6 +29,7 @@ in
       settings.default_session.command = "${pkgs.sway}/bin/sway --config ${sway-greeter-config}";
     };
     environment.etc."greetd/environments".text = ''
+      Hyprland
       sway
     '';
 
