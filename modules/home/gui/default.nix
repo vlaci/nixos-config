@@ -29,19 +29,7 @@ lib.mkProfile "gui" {
     backend = "glx";
   };
 
-  programs.firefox = mkMerge [
-    {
-      enable = true;
-    }
-    (mkIf isWayland {
-      package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-        forceWayland = true;
-        extraPolicies = {
-          ExtensionSettings = { };
-        };
-      };
-    })
-  ];
+  programs.firefox.enable = true;
 
   home.sessionVariables = mkIf isWayland {
     GTK_USE_PORTAL = 1;
