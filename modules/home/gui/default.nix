@@ -15,7 +15,6 @@ lib.mkProfile "gui" {
 
   services.picom = {
     enable = !isWayland;
-    experimentalBackends = true;
     settings = {
       blur-method = "dual_kawase";
       blur-strength = 3;
