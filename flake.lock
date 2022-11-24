@@ -46,11 +46,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1669203505,
-        "narHash": "sha256-SwnnFIV4QHr3ZbV3mAd8O7GxAV+2SZ3fgA+eRL7OQFo=",
+        "lastModified": 1669318584,
+        "narHash": "sha256-XSVtY9uujb7eX0gvtFnIBsEkW0LDlBTcMDl14/Ojuuo=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "d0561594c8a957614639bd1582c6e2ccea888fd9",
+        "rev": "51b34e6cdee510dde784ba6da418a16b2bfbc125",
         "type": "github"
       },
       "original": {
@@ -114,11 +114,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1669233315,
-        "narHash": "sha256-C1E/Q9ZRLlnpcLOkvlbY0ic4dABwjcPQ3QZIcdJUOpQ=",
+        "lastModified": 1669246203,
+        "narHash": "sha256-Aipdkt62dwuQ2s/pOiuu2YZcqYo3BmaWJU47xcWj5fU=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "2f03561c78ac42997afe1af222ec665c8bf7511c",
+        "rev": "1f6aa420cac8f3e3bf9ffa50b8274c6a4f4b2ee3",
         "type": "github"
       },
       "original": {
@@ -401,11 +401,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1669159784,
-        "narHash": "sha256-5zK485v/dWysK6960pU51bF3cTAvIl6wr5wCFHTlahM=",
+        "lastModified": 1669246204,
+        "narHash": "sha256-kbVNXOU/sCn4hx2imOJyl8d6dvggYFFF06bwc8QNTrM=",
         "owner": "vlaci",
         "repo": "nixpkgs",
-        "rev": "f181e7f3974931c142d325803683aedcbb19fde4",
+        "rev": "9366d4d0c47f50739263aec0636513e0d33d6231",
         "type": "github"
       },
       "original": {
