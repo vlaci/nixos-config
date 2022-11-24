@@ -52,4 +52,41 @@ lib.mkProfile "development" {
     .changes on
     .nullvalue NULL
   '';
+
+  programs.helix = {
+    enable = true;
+    languages = [
+      {
+        name = "python";
+        language-server = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = [ "--stdio" ];
+        };
+        config.python.analysis = {
+          autoSearchPaths = true;
+          diagnosticMode = "workspace";
+        };
+      }
+      {
+        name = "rust";
+        config.checkOnSave = {
+          command = "clippy";
+        };
+      }
+    ];
+    settings = {
+      theme = "catppuccin_mocha";
+      editor = {
+        line-number = "relative";
+        cursorline = true;
+        color-modes = true;
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        indent-guides.render = true;
+      };
+    };
+  };
 }
