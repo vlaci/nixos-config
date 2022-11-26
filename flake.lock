@@ -46,11 +46,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1669386524,
-        "narHash": "sha256-9pXZxCag1m0salLGaB897M3jaT2zTd16R3wWH3Zv9HU=",
+        "lastModified": 1669489613,
+        "narHash": "sha256-rhgcQ8ghKds0BNv9kTNI0Bcq5y96S6LqWKtKnQ7TIlY=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "fabd0f926d17ae7eec66f532b55f30e8bb637045",
+        "rev": "8f6e3ec1ad543666c90c3daaf6bde68a995100d9",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         "wlroots": "wlroots"
       },
       "locked": {
-        "lastModified": 1669400704,
-        "narHash": "sha256-WG22dHBjZF0YXLy0OvzSvbkt6NSGiDq62+FfSP+gsrI=",
+        "lastModified": 1669488496,
+        "narHash": "sha256-GN/jxA7Dzhp4xFSrLbgIaMahYNUGVxr/cIgABmV5+Sc=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "381d7a430072c7b29bc5f5eb808ffbb86abefbd1",
+        "rev": "493fc009533b5d5b94c5d11d32bcd730094e5669",
         "type": "github"
       },
       "original": {
@@ -457,11 +457,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1669332629,
-        "narHash": "sha256-o2rUrqFh1xWHoofqdQqF6E2ppdWGdgANbtcod2byjQI=",
+        "lastModified": 1669418882,
+        "narHash": "sha256-Yi+ZakFEaFiKGn7+dV8U2GIYP6QA6uWSGCRknCcRbjw=",
         "owner": "vlaci",
         "repo": "nixpkgs",
-        "rev": "bb88cd5a7669f46a82e2d715440afea9466f0b17",
+        "rev": "538a6900259daca18531e97831d8fcdffaac0399",
         "type": "github"
       },
       "original": {
