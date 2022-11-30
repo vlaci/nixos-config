@@ -15,6 +15,10 @@ lib.mkProfile "git" (mkIf vlaci.available {
       absorb.maxStack = 50;
       merge.conflictStyle = "diff3";
       init.defaultBranch = "main";
+      "http.${vlaci.value.git.work.httpsRemote}" = {
+        sslCert = nixosConfig.age.secrets."work.certkey".path;
+        sslKey = nixosConfig.age.secrets."work.certkey".path;
+      };
     };
     ignores = [ "\\#*\\#" ".\\#*" ".direnv" ];
     lfs.enable = true;

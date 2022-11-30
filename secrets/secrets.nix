@@ -13,6 +13,8 @@ let
   };
 in
 {
+  "work/client.pfx.age".publicKeys = [ tachi ];
+  "work/client.pem.age".publicKeys = [ tachi ];
   "work/email-lva.pem.age".publicKeys = vlaci;
   "work/email-lva.pfx.age".publicKeys = vlaci;
   "work/vpn.cert.pem.age".publicKeys = [ tachi ];

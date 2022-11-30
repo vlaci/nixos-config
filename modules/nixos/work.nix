@@ -1,6 +1,21 @@
 { lib, config, ... }:
 
 lib.mkProfile "work" {
+  age.secrets."docker-client.key" = {
+    file = ../../secrets/work/client.pem.age;
+    path = "/etc/docker/certs.d/${config._.secrets.vlaci.value.docker.work.registry}/client.key";
+  };
+
+  age.secrets."docker-client.cert" = {
+    file = ../../secrets/work/client.pem.age;
+    path = "/etc/docker/certs.d/${config._.secrets.vlaci.value.docker.work.registry}/client.cert";
+  };
+
+  age.secrets."work.certkey" = {
+    file = ../../secrets/work/client.pem.age;
+    owner = "vlaci";
+  };
+
   age.secrets."email-lva.pem" = {
     file = ../../secrets/work/email-lva.pem.age;
     owner = "vlaci";
