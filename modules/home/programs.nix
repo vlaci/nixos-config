@@ -54,6 +54,7 @@ mkProfile "tools" {
   programs.ssh = {
     enable = true;
     controlMaster = "auto";
-    controlPersist = "600";
+    controlPersist = "10m";
+    serverAliveInterval = 300;
   };
 }
