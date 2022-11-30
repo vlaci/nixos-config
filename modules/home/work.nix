@@ -10,7 +10,4 @@ lib.mkProfile "work" {
     slack
     openfortivpn
   ];
-  programs.git = mkIf vlaci.available {
-    userEmail = vlaci.value.email.work.address;
-  };
 }
