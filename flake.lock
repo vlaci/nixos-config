@@ -46,11 +46,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1669489613,
-        "narHash": "sha256-rhgcQ8ghKds0BNv9kTNI0Bcq5y96S6LqWKtKnQ7TIlY=",
+        "lastModified": 1669813939,
+        "narHash": "sha256-mtduxqCAkj8JbeYjYlT1q2UPztDHc5PRQAMtpKKb1bM=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "8f6e3ec1ad543666c90c3daaf6bde68a995100d9",
+        "rev": "a4f2babd1cebc10d3f33f9f1533e1ed092d7efde",
         "type": "github"
       },
       "original": {
@@ -289,11 +289,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1669328018,
-        "narHash": "sha256-aJRMobnNDEXKwoSZFS4hGjGU1WDNxkQ82BVKAEohOfY=",
+        "lastModified": 1669805139,
+        "narHash": "sha256-ry0PkAAJg09tg5Y81sNJteiU7LsiIIgGk947Xa3hzkA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "62cb5bcf93896e4dd6b4507dac7ba2e2e3abc9d7",
+        "rev": "e38ce0ae16b68515c913ab50177bc7624f65f569",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         "wlroots": "wlroots"
       },
       "locked": {
-        "lastModified": 1669488496,
-        "narHash": "sha256-GN/jxA7Dzhp4xFSrLbgIaMahYNUGVxr/cIgABmV5+Sc=",
+        "lastModified": 1669815201,
+        "narHash": "sha256-7T5/OyMSbABvkQmkMOxdVGE5EEcfGFk6wIL6tCf7Oeg=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "493fc009533b5d5b94c5d11d32bcd730094e5669",
+        "rev": "869f0a023888b6c9a214814c56192e922542c970",
         "type": "github"
       },
       "original": {
@@ -378,11 +378,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1669146234,
-        "narHash": "sha256-HEby7EG1yaq1oT2Ze6Cvok9CFju1XHkSvVHmkptLW9U=",
+        "lastModified": 1669650994,
+        "narHash": "sha256-uwASLUfedIQ5q01TtMwZDEV2HCZr5nVPZjzVgCG+D5I=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "0099253ad0b5283f06ffe31cf010af3f9ad7837d",
+        "rev": "7883883d135ce5b7eae5dce4bfa12262b85c1c46",
         "type": "github"
       },
       "original": {
@@ -457,11 +457,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1669418882,
-        "narHash": "sha256-Yi+ZakFEaFiKGn7+dV8U2GIYP6QA6uWSGCRknCcRbjw=",
+        "lastModified": 1669823591,
+        "narHash": "sha256-T1ySMD/LjYkq270KeC3r8NYxuAoTurr2NEybyQK7JBM=",
         "owner": "vlaci",
         "repo": "nixpkgs",
-        "rev": "538a6900259daca18531e97831d8fcdffaac0399",
+        "rev": "fd05c614d4fc912d7d8591e3c776bb32b8251805",
         "type": "github"
       },
       "original": {
