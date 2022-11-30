@@ -20,6 +20,7 @@
   '';
   boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" "dm_thin_pool" "dm_mirror" ];
   boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   hardware.opengl.driSupport32Bit = true;

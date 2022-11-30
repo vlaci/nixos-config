@@ -22,10 +22,10 @@
   boot.plymouth.enable = true;
   boot.tmpOnTmpfs = true;
   boot.kernelParams = [ "mitigations=off" "intel_iommu=on" "msr.allow_writes=on" "psmouse.synaptics_intertouch=0" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
 
-  #services.uvcvideo.dynctrl.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
 
   services.fstrim.enable = true;
