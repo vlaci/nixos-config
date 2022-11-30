@@ -24,6 +24,7 @@ lib.mkProfile "development" {
       zlib.dev
       neovim
       gcc
+      util-linux
     ]))
     openssl
     pandoc
