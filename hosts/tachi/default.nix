@@ -40,6 +40,7 @@
   networking.firewall.interfaces."virbr0".allowedTCPPorts = [ 139 445 ];
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";
+  services.printing.enable = true;
 
   system.stateVersion = "22.05";
 }
