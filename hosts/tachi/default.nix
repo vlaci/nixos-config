@@ -22,6 +22,7 @@
   _.yubikey.pamU2f.enable = true;
   _.email.enable = true;
   _.email.work.enable = true;
+  _.keyboardio.enable = true;
   _.work.enable = true;
 
   _.users.users.vlaci = {

@@ -19,6 +19,7 @@
   _.development.enable = true;
   _.email.enable = true;
   _.podman.enable = true;
+  _.keyboardio.enable = true;
 
   _.users.users.vlaci = {
     isAdmin = true;

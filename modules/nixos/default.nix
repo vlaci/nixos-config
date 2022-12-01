@@ -8,6 +8,7 @@
     ./development.nix
     ./email.nix
     ./home-manager.nix
+    ./keyboardio.nix
     ./locale.nix
     ./networkmanager.nix
     ./nix.nix
