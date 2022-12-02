@@ -1,6 +1,10 @@
 { lib, config, ... }:
 
-lib.mkProfile "work" {
+let
+  inherit (config._.secrets) work;
+in
+lib.mkProfile "work" (lib.mkIf work.available {
+
   age.secrets."docker-client.key" = {
     file = ../../secrets/work/client.pem.age;
     path = "/etc/docker/certs.d/${config._.secrets.vlaci.value.docker.work.registry}/client.key";
@@ -34,12 +38,8 @@ lib.mkProfile "work" {
     file = ../../secrets/work/vpn.key.pem.age;
   };
 
-  security.pki =
-    let
-      inherit (config._.secrets) work;
-    in
-    lib.mkIf work.available {
-      certificates = work.value.certificates;
-    };
+  security.pki = {
+    certificates = work.value.certificates;
+  };
   _.email.work.enable = true;
-}
+})
