@@ -30,7 +30,6 @@
       _.tools.enable = true;
       _.emacs.enable = true;
       _.awesome.enable = true;
-      _.hyprland.enable = true;
       _.sway.enable = true;
     };
   };
