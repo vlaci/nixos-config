@@ -3,7 +3,7 @@
 
 # Setup repository for development
 dev:
-	git config --local include.path .gitconfig
+    git config --local include.path .gitconfig
 
 update-pkgs:
     cd pkgs && nix flake update
@@ -11,6 +11,9 @@ update-pkgs:
 
 repl:
     nix run ".#repl"
+
+build-host host:
+    nix build --impure --expr 'with builtins.getFlake (toString ./.); nixosConfigurations."{{ host }}".config.system.build.toplevel'
 
 build-hosts:
     nix build --dry-run --impure --expr "with builtins.getFlake (toString ./.); lib.mapAttrsToList (n: v: v.config.system.build.toplevel) nixosConfigurations"
