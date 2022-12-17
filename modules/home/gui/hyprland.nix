@@ -31,10 +31,10 @@ lib.mkProfile "hyprland" {
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
-          kb_layout = us,hu
-          kb_variant =intl,
+          kb_layout = ${nixosConfig.services.xserver.layout}
+          kb_variant =
           kb_model =
-          kb_options = compose:ralt
+          kb_options = ${nixosConfig.services.xserver.xkbOptions}
           kb_rules =
 
           follow_mouse = 1

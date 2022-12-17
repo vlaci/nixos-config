@@ -73,8 +73,8 @@ in
           modifier = mod;
           input = {
             "type:keyboard" = {
-              xkb_layout = "us,hu";
-              xkb_options = "grp:lalt_lshift_toggle";
+              xkb_layout = nixosConfig.services.xserver.layout;
+              xkb_options = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbOptions;
             };
           };
           startup = [
