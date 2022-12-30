@@ -8,7 +8,7 @@ in
   options = {
     _.emacs.enable = mkEnableOption "emacs";
     accounts.email.accounts = mkOption {
-      type = with types; loaOf (submodule ({ config, ... }:
+      type = with types; attrsOf (submodule ({ config, ... }:
         {
           options = {
             mu4e.extraConfig = mkOption { type = types.separatedString "\n"; default = ""; };

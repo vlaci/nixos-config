@@ -52,7 +52,7 @@ in
       };
     };
     security.pam.services = mkOption {
-      type = with types; loaOf (submodule overrideServices);
+      type = with types; attrsOf (submodule overrideServices);
     };
     security.pam.u2fModuleArgs = mkOption {
       description = ''
