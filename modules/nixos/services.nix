@@ -47,7 +47,6 @@
       # since NixOS 21.05.
       virtualisation.podman.enable = true;
       virtualisation.podman.dockerSocket.enable = !config._.docker.enable;
-      virtualisation.podman.defaultNetwork.dnsname.enable = true;
     })
   ];
 }
