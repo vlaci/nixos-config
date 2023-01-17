@@ -135,16 +135,16 @@ in
             # Workspaces:
             #
             # Switch to workspace
-            "${mod}+1" = "workspace 1";
-            "${mod}+2" = "workspace 2";
-            "${mod}+3" = "workspace 3";
-            "${mod}+4" = "workspace 4";
-            "${mod}+5" = "workspace 5";
-            "${mod}+6" = "workspace 6";
-            "${mod}+7" = "workspace 7";
-            "${mod}+8" = "workspace 8";
-            "${mod}+9" = "workspace 9";
-            "${mod}+0" = "workspace 10";
+            "${mod}+1" = ''[workspace="1"] move workspace to output current; workspace number 1'';
+            "${mod}+2" = ''[workspace="2"] move workspace to output current; workspace number 2'';
+            "${mod}+3" = ''[workspace="3"] move workspace to output current; workspace number 3'';
+            "${mod}+4" = ''[workspace="4"] move workspace to output current; workspace number 4'';
+            "${mod}+5" = ''[workspace="5"] move workspace to output current; workspace number 5'';
+            "${mod}+6" = ''[workspace="6"] move workspace to output current; workspace number 6'';
+            "${mod}+7" = ''[workspace="7"] move workspace to output current; workspace number 7'';
+            "${mod}+8" = ''[workspace="8"] move workspace to output current; workspace number 8'';
+            "${mod}+9" = ''[workspace="9"] move workspace to output current; workspace number 9'';
+            "${mod}+0" = ''[workspace="0"] move workspace to output current; workspace number 0'';
             # Move focused container to workspace
             "${mod}+Shift+1" = "move container to workspace 1";
             "${mod}+Shift+2" = "move container to workspace 2";
