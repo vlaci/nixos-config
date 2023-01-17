@@ -2,9 +2,7 @@
 
 lib.mkProfile "gui" {
   imports = [
-    ./lightdm-cursor-fix.nix
     ./theme
-    ./wayland.nix
   ];
 
   services.pipewire = {
@@ -39,87 +37,57 @@ lib.mkProfile "gui" {
     };
   };
 
-  # programs.dconf.profiles.gdm = lib.mkForce (
-  # let
-  #   customDconf = pkgs.writeTextFile {
-  #     name = "gdm-dconf";
-  #     destination = "/dconf/gdm-custom";
-  #     text = ''
-  #       [org/gnome/desktop/interface]
-  #       cursor-theme='pixelfun3'
-  #     '';
-  #   };
-
-  #   customDconfDb = pkgs.stdenv.mkDerivation {
-  #     name = "gdm-dconf-db";
-  #     buildCommand = ''
-  #       ${pkgs.dconf}/bin/dconf compile $out ${customDconf}/dconf
-  #     '';
-  #   };
-  #   inherit (pkgs.gnome) gdm;
-  # in pkgs.stdenv.mkDerivation {
-  #   name = "dconf-gdm-cursor-profile";
-  #   buildCommand = ''
-  #     # Check that the GDM profile starts with what we expect.
-  #     if [ $(head -n 1 ${gdm}/share/dconf/profile/gdm) != "user-db:user" ]; then
-  #       echo "GDM dconf profile changed, please update gdm.nix"
-  #       exit 1
-  #     fi
-  #     # Insert our custom DB behind it.
-  #     sed '2ifile-db:${customDconfDb}' ${gdm}/share/dconf/profile/gdm > $out
-  #   '';
-  # });
-
-  location.provider = "geoclue2";
-  services.xserver = {
+  services.greetd = {
     enable = true;
-    libinput = {
-      enable = true;
-    };
+    settings.default_session.command =
+      let
+        theme = config._.theme.gtkTheme;
+        sway-greeter-config = pkgs.writeText "sway-greeter.config" ''
+          exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+          # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
+          exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
 
-    # https://github.com/NixOS/nixpkgs/issues/75007
-    # https://github.com/NixOS/nixpkgs/pull/73785
-    # https://github.com/thiagokokada/dotfiles/commit/17057a544dcb8a51e3b9b1ea92c476edd6e2cc46
-    inputClassSections = [
-      ''
-        Identifier "mouse"
-        Driver "libinput"
-        MatchIsPointer "on"
-        Option "AccelProfile" "flat"
-      ''
-      ''
-        Identifier "touchpad"
-        Driver "libinput"
-        MatchIsTouchpad "on"
-        Option "NaturalScrolling" "true"
-      ''
-    ];
+          bindsym Mod4+shift+e exec swaynag \
+            -t warning \
+            -m 'What do you want to do?' \
+            -b 'Poweroff' 'systemctl poweroff' \
+            -b 'Reboot' 'systemctl reboot'
 
-    desktopManager.xterm.enable = false;
-    desktopManager.session = [{
-      name = "home-manager";
-      start = ''
-        ${pkgs.stdenv.shell} $HOME/.xsession-hm &
-        waitPID=$!
-      '';
-    }
-      {
-        name = "dummy";
-        start = "true";
-      }];
+          #include /etc/sway/config.d/*
+        '';
+      in
+      "${pkgs.sway}/bin/sway --config ${sway-greeter-config}";
+  };
+  environment.etc."greetd/environments".text = ''
+    Hyprland
+    sway
+  '';
 
-    displayManager.lightdm =
-      {
-        enable = !config._.gui.wayland.enable;
-        greeters.enso = {
-          enable = true;
-          blur = !(lib.hasAttr "vm" config.system.build);
-        };
-      };
+  programs.sway = {
+    enable = true;
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
+  };
+
+  nixpkgs.overlays = [
+    (self: super: {
+      slack = super.slack.overrideAttrs (old: {
+        installPhase = old.installPhase + ''
+          rm $out/bin/slack
+
+          makeWrapper $out/lib/slack/slack $out/bin/slack \
+          --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+          --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
+          --add-flags "--enable-features=WebRTCPipeWireCapturer %U"
+        '';
+      });
+    })
+  ];
+
   services.accounts-daemon.enable = true;
-  services.autorandr.enable = !config._.gui.wayland.enable;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
   services.gnome.glib-networking.enable = true;

@@ -14,7 +14,6 @@
   _.networkmanager.enable = true;
   _.sshd.enable = true;
   _.gui.enable = true;
-  _.gui.wayland.enable = true;
   _.libvirt.enable = true;
   _.development.enable = true;
   _.email.enable = true;
@@ -29,7 +28,6 @@
       _.gpg.enable = true;
       _.tools.enable = true;
       _.emacs.enable = true;
-      _.awesome.enable = true;
       _.sway.enable = true;
     };
   };

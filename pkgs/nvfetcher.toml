@@ -21,15 +21,3 @@ fetch.github = "mroth/git-prompt-useremail"
 [zsh-fast-syntax-highlighting]
 src.github_tag = "zdharma-continuum/fast-syntax-highlighting"
 fetch.github = "zdharma-continuum/fast-syntax-highlighting"
-
-[awesome-awpwkb]
-src.git = "https://github.com/vladimir-g/awpwkb"
-fetch.github = "vladimir-g/awpwkb"
-
-[awesome-lain]
-src.manual = "e0bffc00566fbc0c05dc01700c569a589a6900eb"
-fetch.github = "lcpz/lain"
-
-[awesome-sharedtags] 
-src.manual = "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6"
-fetch.github = "Drauthius/awesome-sharedtags"

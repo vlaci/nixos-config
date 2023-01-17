@@ -1,37 +1,18 @@
 { config, nixosConfig, lib, pkgs, ... }:
 
 let
-  inherit (lib) mkMerge mkIf mkProfile optionals optionalString;
-  isWayland = nixosConfig._.gui.wayland.enable;
+  inherit (lib) mkProfile optionalString;
 in
-lib.mkProfile "gui" {
+mkProfile "gui" {
   imports = [
-    ./awesome
-    ./herbstluftwm
     ./theme
     ./hyprland.nix
     ./sway.nix
   ];
 
-  services.picom = {
-    enable = !isWayland;
-    settings = {
-      blur-method = "dual_kawase";
-      blur-strength = 3;
-      blur-background = true;
-      blur-kern = "";
-      backend = "glx";
-    };
-    opacityRules = [
-      "90:class_g = 'kitty'"
-    ];
-    vSync = true;
-    backend = "glx";
-  };
-
   programs.firefox.enable = true;
 
-  home.sessionVariables = mkIf isWayland {
+  home.sessionVariables = {
     GTK_USE_PORTAL = 1;
     MOZ_ENABLE_WAYLAND = 1;
   };
@@ -45,6 +26,7 @@ lib.mkProfile "gui" {
       scrollback_pager_history_size = 20; # 10k line / MiB
     };
   };
+
   programs.zsh.initExtra = ''
     ssh() {
       TERM=''${TERM/-kitty/-256color} command ssh "$@"
@@ -53,26 +35,7 @@ lib.mkProfile "gui" {
 
   programs.rofi = {
     enable = true;
-    package = if isWayland then pkgs.rofi-wayland else pkgs.rofi;
-  };
-
-  services.screen-locker = {
-    enable = !isWayland;
-    lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-    xautolock.extraOptions = [
-      "-notify 15"
-      "-notifier 'XSECURELOCK_DIM_TIME_MS=10000 XSECURELOCK_WAIT_TIME_MS=5000 ${pkgs.xsecurelock}/libexec/xsecurelock/until_nonidle ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer'"
-    ];
-    xss-lock.extraOptions = [
-      "--notifier ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
-      "--transfer-sleep-lock"
-    ];
-  };
-
-  services.redshift = {
-    enable = !isWayland;
-    provider = "geoclue2";
-    temperature.night = 3200;
+    package = pkgs.rofi-wayland;
   };
 
   services.syncthing.enable = true;
@@ -85,18 +48,17 @@ lib.mkProfile "gui" {
     gimp
     signal-desktop
     vivaldi
-  ] ++ (optionals isWayland [
     slurp
     wl-clipboard
-  ]);
+  ];
 
   services.flameshot.enable = true;
-  systemd.user.services.flameshot.Unit = mkIf isWayland {
+  systemd.user.services.flameshot.Unit = {
     PartOf = [ "sway-session.target" ];
   };
 
   programs.waybar = {
-    enable = isWayland;
+    enable = true;
     settings = [
       {
         layer = "top";
@@ -332,7 +294,7 @@ lib.mkProfile "gui" {
       dpms = cmd: "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
     in
     {
-      enable = isWayland;
+      enable = true;
       events = [
         { event = "lock"; command = "${lockCommand}"; }
         { event = "before-sleep"; command = "${lockCommand}"; }
@@ -349,7 +311,7 @@ lib.mkProfile "gui" {
   systemd.user.services.swayidle.Service.Environment = [ "PATH=/bin" ];
 
   programs.mako = {
-    enable = isWayland;
+    enable = true;
     anchor = "top-center";
     font = "sans 11";
     borderSize = 2;
@@ -369,7 +331,8 @@ lib.mkProfile "gui" {
       default-timeout=0
     '';
   };
-  services.kanshi = mkIf isWayland {
+
+  services.kanshi = {
     enable = true;
   };
 

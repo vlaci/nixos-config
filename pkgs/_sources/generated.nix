@@ -12,39 +12,6 @@
       sha256 = "sha256-KXqicTZ9GZlNj1AH3tMmOrC8zjXoEnqo4JJJTBdiI4E=";
     });
   };
-  awesome-awpwkb = {
-    pname = "awesome-awpwkb";
-    version = "42ce6e5fc89b5333cd45e7c06cf32f8ef35c03a5";
-    src = fetchFromGitHub ({
-      owner = "vladimir-g";
-      repo = "awpwkb";
-      rev = "42ce6e5fc89b5333cd45e7c06cf32f8ef35c03a5";
-      fetchSubmodules = false;
-      sha256 = "sha256-skzzN3JCox8U+eG4NEvcavWvZhX+XFzW811O3+jpcIU=";
-    });
-  };
-  awesome-lain = {
-    pname = "awesome-lain";
-    version = "e0bffc00566fbc0c05dc01700c569a589a6900eb";
-    src = fetchFromGitHub ({
-      owner = "lcpz";
-      repo = "lain";
-      rev = "e0bffc00566fbc0c05dc01700c569a589a6900eb";
-      fetchSubmodules = false;
-      sha256 = "sha256-Bnxt3O/qcuSfa+eAfIdcYRClv5yXbb/Tw5Cj13eoLJc=";
-    });
-  };
-  awesome-sharedtags = {
-    pname = "awesome-sharedtags";
-    version = "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6";
-    src = fetchFromGitHub ({
-      owner = "Drauthius";
-      repo = "awesome-sharedtags";
-      rev = "32d878d0d12bcfd900f2c6a7516a1370e6ebb7d6";
-      fetchSubmodules = false;
-      sha256 = "sha256-M9MqKxWC4xxYUfNEaKVJ3/GCNUxz7SPRG/GzWaXYRks=";
-    });
-  };
   hexdiff = {
     pname = "hexdiff";
     version = "3e96f27e65167c619ede35ab04232163dc273e69";

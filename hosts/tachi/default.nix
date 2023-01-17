@@ -33,7 +33,7 @@
       _.gpg.enable = true;
       _.tools.enable = true;
       _.emacs.enable = true;
-      _.awesome.enable = true;
+      _.sway.enable = true;
       home.packages = with pkgs; [ thunderbird-bin ];
     };
   };
