@@ -5,9 +5,15 @@
   console.keyMap = "us";
   i18n.defaultLocale = "hu_HU.UTF-8";
 
-  services.xserver.layout = "altgr-weur,hu";
-  #services.xserver.xkbVariant = "altgr-intl,";
-  services.xserver.xkbOptions = "grp:ctrls_toggle, compose:rctrl, caps:escape";
+  environment.systemPackages = [ pkgs.colemak-dh ];
+
+  services.xserver.layout = "col-lv,altgr-weur,us,hu";
+  services.xserver.xkbOptions = "grp:alt_space_toggle, compose:rctrl, caps:escape";
+  services.xserver.extraLayouts."col-lv" = {
+    description = "English (Colemak)";
+    languages = [ "eng" ];
+    symbolsFile = ./keymaps/symbols/col-lv;
+  };
   services.xserver.extraLayouts."altgr-weur" = {
     description = "English (Western European AltGr dead keys)";
     languages = [ "eng" ];

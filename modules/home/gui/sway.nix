@@ -1,7 +1,7 @@
 { lib, config, pkgs, nixosConfig, ... }:
 
 let
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkEnableOption mkIf mkMerge mkOption types;
   colors = nixosConfig._.theme.colors;
   cfg = config._.sway;
 in
@@ -72,10 +72,23 @@ in
           right = right;
           modifier = mod;
           input = {
-            "type:keyboard" = {
-              xkb_layout = nixosConfig.services.xserver.layout;
-              xkb_options = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbOptions;
-            };
+            "type:keyboard" = mkMerge [
+              {
+                xkb_layout = nixosConfig.services.xserver.layout;
+              }
+              (
+                let xkb_variant = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbVariant;
+                in mkIf (xkb_variant != "") {
+                  inherit xkb_variant;
+                }
+              )
+              (
+                let xkb_options = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbOptions;
+                in mkIf (xkb_options != "") {
+                  inherit xkb_options;
+                }
+              )
+            ];
           };
           startup = [
             { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }

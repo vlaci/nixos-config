@@ -32,9 +32,9 @@ lib.mkProfile "hyprland" {
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
           kb_layout = ${nixosConfig.services.xserver.layout}
-          kb_variant =
+          kb_variant = ${builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbVariant}
           kb_model =
-          kb_options = ${nixosConfig.services.xserver.xkbOptions}
+          kb_options = ${builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbOptions}
           kb_rules =
 
           follow_mouse = 1
