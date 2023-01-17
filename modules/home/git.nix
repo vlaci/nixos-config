@@ -21,6 +21,8 @@ lib.mkProfile "git" (mkIf vlaci.available {
           sslCert = nixosConfig.age.secrets."work.certkey".path;
           sslKey = nixosConfig.age.secrets."work.certkey".path;
         };
+      diff.submodule = "diff";
+      status.submoduleSummary = true;
     };
     ignores = [ "\\#*\\#" ".\\#*" ".direnv" ];
     lfs.enable = true;
