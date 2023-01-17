@@ -10,8 +10,6 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    devenv.url = "github:cachix/devenv";
-    devenv.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.url = "github:vlaci/git-agecrypt";
     git-agecrypt.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
