@@ -2,7 +2,7 @@
 
 {
   console.font = "Lat2-Terminus16";
-  console.keyMap = "us";
+  console.useXkbConfig = true;
   i18n.defaultLocale = "hu_HU.UTF-8";
 
   environment.systemPackages = [ pkgs.colemak-dh ];
