@@ -111,11 +111,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1673994668,
-        "narHash": "sha256-/9fhl/v/w8Xx/ahJvvPNQlsJAth0nXbYDT/MNh6mpYU=",
+        "lastModified": 1673997435,
+        "narHash": "sha256-6ANH1Ef4bemqTTW/tirsSdL9pTqrCMie0LwBy7XdzQI=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "84d7d857512dcacba56a1103a1b0cfd35b8ad625",
+        "rev": "fc26a965ffc2bf9ebb96d839ba2c39a577b45855",
         "type": "github"
       },
       "original": {
