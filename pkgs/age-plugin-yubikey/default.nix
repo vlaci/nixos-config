@@ -5,6 +5,10 @@ rustPlatform.buildRustPackage rec {
 
   cargoLock = {
     lockFile = "${src}/Cargo.lock";
+
+    outputHashes = {
+      "yubikey-0.7.0" = "sha256-H8qFvbsArqnJbFUww3X3aUg7cvH0dEJrPs3a+s6y8QE=";
+    };
   };
 
   nativeBuildInputs = [ pkg-config installShellFiles ];

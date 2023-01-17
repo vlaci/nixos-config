@@ -1,6 +1,7 @@
 {
     "age-plugin-yubikey": {
         "cargoLocks": null,
+        "date": "2023-01-03",
         "extract": null,
         "name": "age-plugin-yubikey",
         "passthru": null,
@@ -12,14 +13,15 @@
             "name": null,
             "owner": "str4d",
             "repo": "age-plugin-yubikey",
-            "rev": "08ba0aa1ec3ced531dcb16a9db1795d6ee9b52cb",
-            "sha256": "sha256-KXqicTZ9GZlNj1AH3tMmOrC8zjXoEnqo4JJJTBdiI4E=",
+            "rev": "f34c534e8479e4c50095a98f48941d079bd179a3",
+            "sha256": "sha256-lV8Cw3W3MSThZIhtaUMId50hZswEIIxMUmUiVIUfYFE=",
             "type": "github"
         },
-        "version": "08ba0aa1ec3ced531dcb16a9db1795d6ee9b52cb"
+        "version": "f34c534e8479e4c50095a98f48941d079bd179a3"
     },
     "hexdiff": {
         "cargoLocks": null,
+        "date": "2018-01-24",
         "extract": null,
         "name": "hexdiff",
         "passthru": null,
@@ -39,6 +41,7 @@
     },
     "zsh-alias-tips": {
         "cargoLocks": null,
+        "date": "2022-11-03",
         "extract": null,
         "name": "zsh-alias-tips",
         "passthru": null,
@@ -50,14 +53,15 @@
             "name": null,
             "owner": "djui",
             "repo": "alias-tips",
-            "rev": "8fc0d2f9b480991f78ce67c49621731d0336b22f",
-            "sha256": "sha256-b6b5/m0oinrB2jIPLFohWjZBhDbNJmi537u5pgzaefc=",
+            "rev": "4d2cf6f10e5080f3273be06b9801e1fd1f25d28d",
+            "sha256": "sha256-0N2DCpMraIXtEc7hMp0OBANNuYhHPLqzJ/hrAFcLma8=",
             "type": "github"
         },
-        "version": "8fc0d2f9b480991f78ce67c49621731d0336b22f"
+        "version": "4d2cf6f10e5080f3273be06b9801e1fd1f25d28d"
     },
     "zsh-calc": {
         "cargoLocks": null,
+        "date": "2021-03-24",
         "extract": null,
         "name": "zsh-calc",
         "passthru": null,
@@ -77,6 +81,7 @@
     },
     "zsh-fast-syntax-highlighting": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "zsh-fast-syntax-highlighting",
         "passthru": null,
@@ -96,6 +101,7 @@
     },
     "zsh-git-prompt-useremail": {
         "cargoLocks": null,
+        "date": "2017-04-12",
         "extract": null,
         "name": "zsh-git-prompt-useremail",
         "passthru": null,
