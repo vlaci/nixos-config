@@ -190,11 +190,8 @@ lib.mkProfile "gui" {
       in
       ''
          * {
-             border: none;
-             border-radius: 0;
              font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
              font-size: 13px;
-             min-height: 0;
          }
 
          @import "${theme_css}";
