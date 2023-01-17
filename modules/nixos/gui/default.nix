@@ -42,19 +42,30 @@ lib.mkProfile "gui" {
     settings.default_session.command =
       let
         theme = config._.theme.gtkTheme;
-        sway-greeter-config = pkgs.writeText "sway-greeter.config" ''
-          exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-          # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
-          exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
+        sway-greeter-config =
+          let
+            xkb_variant = builtins.replaceStrings [ " " ] [ "" ] config.services.xserver.xkbVariant;
+            xkb_options = builtins.replaceStrings [ " " ] [ "" ] config.services.xserver.xkbOptions;
+          in
+          pkgs.writeText "sway-greeter.config" ''
+            input "type:keyboard" {
+              xkb_layout ${config.services.xserver.layout}
+              ${lib.optionalString (xkb_variant != "") "xkb_layout ${xkb_variant}"}
+              ${lib.optionalString (xkb_options != "") "xkb_options ${xkb_options}"}
+            }
 
-          bindsym Mod4+shift+e exec swaynag \
-            -t warning \
-            -m 'What do you want to do?' \
-            -b 'Poweroff' 'systemctl poweroff' \
-            -b 'Reboot' 'systemctl reboot'
+            exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+            # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
+            exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
 
-          #include /etc/sway/config.d/*
-        '';
+            bindsym Mod4+shift+e exec swaynag \
+              -t warning \
+              -m 'What do you want to do?' \
+              -b 'Poweroff' 'systemctl poweroff' \
+              -b 'Reboot' 'systemctl reboot'
+
+            #include /etc/sway/config.d/*
+          '';
       in
       "${pkgs.sway}/bin/sway --config ${sway-greeter-config}";
   };
