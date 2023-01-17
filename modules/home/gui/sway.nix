@@ -200,6 +200,8 @@ in
             #
             "${mod}+r" = ''mode "resize"'';
             "${mod}+g" = ''mode "${mode_gaps}"'';
+            "${mod}+x" = "move workspace to output left";
+            "${mod}+c" = "move workspace to output right";
           };
           modes =
             let
