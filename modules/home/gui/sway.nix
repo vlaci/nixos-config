@@ -202,6 +202,8 @@ in
             "${mod}+g" = ''mode "${mode_gaps}"'';
             "${mod}+x" = "move workspace to output left";
             "${mod}+c" = "move workspace to output right";
+            "--locked XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+            "--locked XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
           };
           modes =
             let
