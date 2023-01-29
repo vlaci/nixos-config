@@ -17,7 +17,7 @@
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, devenv, emacsVlaci, git-agecrypt, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -45,7 +45,7 @@
             pkgsrcs = import ./pkgs { pkgs = prev; };
           in
           {
-            inherit lib devenv pkgsrcs;
+            inherit lib pkgsrcs;
           };
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")

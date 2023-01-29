@@ -3,7 +3,6 @@
 lib.mkProfile "development" {
   home.enableDebugInfo = true;
   home.packages = with pkgs; [
-    devenv
     julia-bin
     (vscode.fhsWithPackages (pkgs: with pkgs; [
       zsh
