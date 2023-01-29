@@ -9,9 +9,11 @@
       services.openssh = {
         enable = true;
         forwardX11 = true;
-        passwordAuthentication = true;
-        permitRootLogin = "no";
         startWhenNeeded = true;
+        settings = {
+          PasswordAuthentication = true;
+          PermitRootLogin = "no";
+        };
       };
     })
     (lib.mkProfile "libvirt" {
