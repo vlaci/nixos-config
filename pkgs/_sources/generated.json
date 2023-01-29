@@ -1,7 +1,7 @@
 {
     "age-plugin-yubikey": {
         "cargoLocks": null,
-        "date": "2023-01-03",
+        "date": "2023-01-29",
         "extract": null,
         "name": "age-plugin-yubikey",
         "passthru": null,
@@ -13,11 +13,11 @@
             "name": null,
             "owner": "str4d",
             "repo": "age-plugin-yubikey",
-            "rev": "f34c534e8479e4c50095a98f48941d079bd179a3",
-            "sha256": "sha256-lV8Cw3W3MSThZIhtaUMId50hZswEIIxMUmUiVIUfYFE=",
+            "rev": "84830103936b3a59085381e7155480a86575ceca",
+            "sha256": "sha256-2g8WkId7Sy98QjMD4n9h2xTCUQTjk/rnoTba8nU/3bE=",
             "type": "github"
         },
-        "version": "f34c534e8479e4c50095a98f48941d079bd179a3"
+        "version": "84830103936b3a59085381e7155480a86575ceca"
     },
     "hexdiff": {
         "cargoLocks": null,
@@ -41,7 +41,7 @@
     },
     "zsh-alias-tips": {
         "cargoLocks": null,
-        "date": "2022-11-03",
+        "date": "2023-01-19",
         "extract": null,
         "name": "zsh-alias-tips",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "djui",
             "repo": "alias-tips",
-            "rev": "4d2cf6f10e5080f3273be06b9801e1fd1f25d28d",
-            "sha256": "sha256-0N2DCpMraIXtEc7hMp0OBANNuYhHPLqzJ/hrAFcLma8=",
+            "rev": "41cb143ccc3b8cc444bf20257276cb43275f65c4",
+            "sha256": "sha256-ZFWrwcwwwSYP5d8k7Lr/hL3WKAZmgn51Q9hYL3bq9vE=",
             "type": "github"
         },
-        "version": "4d2cf6f10e5080f3273be06b9801e1fd1f25d28d"
+        "version": "41cb143ccc3b8cc444bf20257276cb43275f65c4"
     },
     "zsh-calc": {
         "cargoLocks": null,

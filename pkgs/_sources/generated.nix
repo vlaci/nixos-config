@@ -3,15 +3,15 @@
 {
   age-plugin-yubikey = {
     pname = "age-plugin-yubikey";
-    version = "f34c534e8479e4c50095a98f48941d079bd179a3";
+    version = "84830103936b3a59085381e7155480a86575ceca";
     src = fetchFromGitHub ({
       owner = "str4d";
       repo = "age-plugin-yubikey";
-      rev = "f34c534e8479e4c50095a98f48941d079bd179a3";
+      rev = "84830103936b3a59085381e7155480a86575ceca";
       fetchSubmodules = false;
-      sha256 = "sha256-lV8Cw3W3MSThZIhtaUMId50hZswEIIxMUmUiVIUfYFE=";
+      sha256 = "sha256-2g8WkId7Sy98QjMD4n9h2xTCUQTjk/rnoTba8nU/3bE=";
     });
-    date = "2023-01-03";
+    date = "2023-01-29";
   };
   hexdiff = {
     pname = "hexdiff";
@@ -27,15 +27,15 @@
   };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
-    version = "4d2cf6f10e5080f3273be06b9801e1fd1f25d28d";
+    version = "41cb143ccc3b8cc444bf20257276cb43275f65c4";
     src = fetchFromGitHub ({
       owner = "djui";
       repo = "alias-tips";
-      rev = "4d2cf6f10e5080f3273be06b9801e1fd1f25d28d";
+      rev = "41cb143ccc3b8cc444bf20257276cb43275f65c4";
       fetchSubmodules = false;
-      sha256 = "sha256-0N2DCpMraIXtEc7hMp0OBANNuYhHPLqzJ/hrAFcLma8=";
+      sha256 = "sha256-ZFWrwcwwwSYP5d8k7Lr/hL3WKAZmgn51Q9hYL3bq9vE=";
     });
-    date = "2022-11-03";
+    date = "2023-01-19";
   };
   zsh-calc = {
     pname = "zsh-calc";
