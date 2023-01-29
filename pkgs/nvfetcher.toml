@@ -6,6 +6,10 @@ fetch.github = "str4d/age-plugin-yubikey"
 src.git = "https://github.com/ahroach/hexdiff"
 fetch.github = "ahroach/hexdiff"
 
+[catpuccin-bat]
+src.git = "https://github.com/catppuccin/bat"
+fetch.github = "catppuccin/bat"
+
 [zsh-alias-tips]
 src.git = "https://github.com/djui/alias-tips"
 fetch.github = "djui/alias-tips"

@@ -19,6 +19,26 @@
         },
         "version": "84830103936b3a59085381e7155480a86575ceca"
     },
+    "catpuccin-bat": {
+        "cargoLocks": null,
+        "date": "2022-11-10",
+        "extract": null,
+        "name": "catpuccin-bat",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "bat",
+            "rev": "ba4d16880d63e656acced2b7d4e034e4a93f74b1",
+            "sha256": "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=",
+            "type": "github"
+        },
+        "version": "ba4d16880d63e656acced2b7d4e034e4a93f74b1"
+    },
     "hexdiff": {
         "cargoLocks": null,
         "date": "2018-01-24",

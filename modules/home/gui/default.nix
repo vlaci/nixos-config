@@ -46,6 +46,7 @@ mkProfile "gui" {
     evince
     flameshot
     gimp
+    material-design-icons
     signal-desktop
     vivaldi
     slurp
@@ -64,9 +65,45 @@ mkProfile "gui" {
         layer = "top";
         position = "top";
 
-        modules-left = [ "wlr/workspaces" "sway/workspaces" "sway/mode" "wlr/taskbar" ];
-        modules-center = [ "sway/window" ];
-        modules-right = [ "sway/language" "pulseaudio" "idle_inhibitor" "disk" "disk#home" "clock" "tray" ];
+        modules-left = [ "clock" "sway/mode" ];
+        modules-center = [ "wlr/workspaces" "sway/workspaces" ];
+        modules-right = [ "sway/language" "pulseaudio" "idle_inhibitor" "disk" "disk#home" "battery" "tray" ];
+
+        "wlr/workspaces" = {
+          "format" = "{icon}";
+          "on-click" = "activate";
+          "format-icons" = {
+            "1" = "𐘹";
+            "2" = "𐝐";
+            "3" = "𐙁";
+            "4" = "𐚒";
+            "5" = "𐙢";
+            "6" = "𐘠";
+            "7" = "𐘴";
+            "8" = "𐘢";
+            "9" = "𐚐";
+            "10" = "𐝀";
+          };
+          "sort-by-number" = true;
+        };
+
+        "sway/workspaces" = {
+          "disable-scroll" = true;
+          "all-outputs" = true;
+          "format" = "{icon}";
+          "format-icons" = {
+            "1" = "𐘹";
+            "2" = "𐝐";
+            "3" = "𐙁";
+            "4" = "𐚒";
+            "5" = "𐙢";
+            "6" = "𐘠";
+            "7" = "𐘴";
+            "8" = "𐘢";
+            "9" = "𐚐";
+            "10" = "𐝀";
+          };
+        };
 
         "sway/mode" = {
           format = " {}";
@@ -109,14 +146,64 @@ mkProfile "gui" {
 
         disk = {
           path = "/";
-          format = "/: {percentage_used}%";
+          format = "󰉋 {percentage_used}%";
         };
         "disk#home" = {
           path = "/home";
-          format = "/home: {percentage_used}%";
+          format = "󱂵 {percentage_used}%";
         };
-        clock = {
-          format = "{:%B. %d, %H:%M}";
+
+        clock =
+          {
+            format = "{:%H:%M}  ";
+            format-alt = "{:%A; %B %d; %Y (%R)}  ";
+            tooltip-format = "<tt><small>{calendar}</small></tt>";
+            calendar = {
+              mode = "year";
+              mode-mon-col = 3;
+              weeks-pos = "right";
+              on-scroll = 1;
+              on-click-right = "mode";
+              format =
+                {
+                  months = "<span color='#ffead3'><b>{}</b></span>";
+                  days = "<span color='#ecc6d9'><b>{}</b></span>";
+                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                  today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                };
+            };
+          };
+
+        battery = {
+          format = "{icon}";
+
+          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          states = {
+            battery-10 = 10;
+            battery-20 = 20;
+            battery-30 = 30;
+            battery-40 = 40;
+            battery-50 = 50;
+            battery-60 = 60;
+            battery-70 = 70;
+            battery-80 = 80;
+            battery-90 = 90;
+            battery-100 = 100;
+          };
+
+          format-plugged = "󰚥";
+          format-charging-battery-10 = "󰢜";
+          format-charging-battery-20 = "󰂆";
+          format-charging-battery-30 = "󰂇";
+          format-charging-battery-40 = "󰂈";
+          format-charging-battery-50 = "󰢝";
+          format-charging-battery-60 = "󰂉";
+          format-charging-battery-70 = "󰢞";
+          format-charging-battery-80 = "󰂊";
+          format-charging-battery-90 = "󰂋";
+          format-charging-battery-100 = "󰂅";
+          tooltip-format = "{capacity}% {timeTo}";
         };
 
         tray = {
@@ -151,146 +238,148 @@ mkProfile "gui" {
         '';
       in
       ''
-         * {
-             font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-             font-size: 13px;
-         }
+        * {
+            font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif, Material Icons;
+            font-size: 13px;
+            font-weight: bold;
+        }
 
-         @import "${theme_css}";
+        @import "${theme_css}";
 
-         window#waybar {
-             background: @background;
-             /*border-bottom: 3px solid rgba(69, 133, 136, 1);*/
-             color: @foreground;
-         }
+        window#waybar {
+            background-color: @background;
+        }
 
-         #workspaces button {
-             padding: 0 5px;
-             background: transparent;
-             color: @foreground;
-             /* Use box-shadow instead of border so the text isn't offset */
-             box-shadow: inset 0 -3px transparent;
-             /* Avoid rounded borders under each workspace name */
-             border: none;
-             border-radius: 0;
-         }
+        #workspaces button {
+            padding: 0 5px;
+            background: transparent;
+            color: @foreground;
+            /* Avoid rounded borders under each workspace name */
+            border: none;
+            border-radius: 0;
+        }
 
-         /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-         #workspaces button:hover {
-             background: shade(@background, 1.25);
-             box-shadow: inset 0 -3px #ffffff;
-         }
+        /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+        #workspaces button:hover {
+            background: shade(@background, 1.5);
+        }
 
-         #workspaces button.focused {
-             background-color: shade(@background, 1.25);
-             box-shadow: inset 0 -3px @yellow_b;
-         }
+        #workspaces button.active {
+            background-color: @cyan;
+            color: @background;
+        }
 
-         #workspaces button.urgent {
-             background-color: @red;
-         }
+        #workspaces button.focused {
+            background-color: @cyan;
+            color: @background;
+        }
 
-         #mode, #clock, #battery {
-             padding: 0 10px;
-             margin: 0 5px;
-         }
+        #workspaces button.urgent {
+            background-color: @red;
+        }
 
-         #mode {
-             background: @red;
-             box-shadow: inset 0 -3px @white;
-         }
+        #mode, #clock, #battery {
+            padding: 0 10px;
+            margin: 0 5px;
+        }
 
-         #clock {
-             box-shadow: inset 0 -3px @green;
-         }
+        #mode {
+            background: @red;
+            color: @background;
+        }
 
-         #language {
-             box-shadow: inset 0 -3px @green;
-             padding: 0 0px;
-             margin: 0 5px;
-             min-width: 24px;
-         }
+        #clock {
+        }
 
-         #disk {
-             box-shadow: inset 0 -3px @blue;
-         }
+        #language {
+            padding: 0 0px;
+            margin: 0 5px;
+            min-width: 24px;
+            color: @green_b;
+        }
 
-         #idle_inhibitor {
-             box-shadow: inset 0 -3px @yellow;
-         }
+        #disk {
+            color: @blue;
+        }
 
-         #idle_inhibitor.activated {
-             background-color: @yellow_b;
-         }
+        #idle_inhibitor {
+            color: @yellow;
+        }
 
-         #pulseaudio {
-             box-shadow: inset 0 -3px @magenta;
-         }
+        #idle_inhibitor.activated {
+            background-color: @yellow_b;
+            color: @background;
+        }
 
-         #pulseaudio.muted {
-             background-color: @black_b;
-         }
+        #pulseaudio {
+            color: @magenta;
+        }
 
-         #battery {
-             box-shadow: inset 0 -3px @white_b;
-         }
+        #pulseaudio.muted {
+            background-color: @black_b;
+        }
 
-         #battery.charging {
-             color: @background;
-             background-color: @green;
-         }
+        #battery.charging {
+            color: @background;
+            background-color: @yellow;
+        }
 
-         @keyframes blink {
-             to {
-                 background-color: @white_b;
-                 color: @background;
-             }
-         }
+        #battery.charging {
+            color: @background;
+            background-color: @green;
+        }
 
-         #clock,
-         #battery,
-         #cpu,
-         #memory,
-         #disk,
-         #temperature,
-         #backlight,
-         #network,
-         #pulseaudio,
-         #custom-media,
-         #tray,
-         #mode,
-         #idle_inhibitor,
-         #mpd {
-              padding: 0 18px;
-              margin: 0 3px;
-         }
+        @keyframes blink {
+            to {
+                background-color: @white_b;
+                color: @background;
+            }
+        }
 
-         #window,
-         #workspaces {
-             margin: 0 4px;
-         }
+        #clock,
+        #battery,
+        #cpu,
+        #memory,
+        #disk,
+        #temperature,
+        #backlight,
+        #network,
+        #pulseaudio,
+        #custom-media,
+        #tray,
+        #mode,
+        #idle_inhibitor,
+        #mpd {
+             padding: 0 18px;
+             margin: 0 3px;
+        }
 
-         #battery.warning:not(.charging) {
-             background: @red;
-             color: @white_b;
-             animation-name: blink;
-             animation-duration: 0.5s;
-             animation-timing-function: linear;
-             animation-iteration-count: infinite;
-             animation-direction: alternate;
-         }
+        #window,
+        #workspaces {
+            margin: 0 4px;
+        }
 
-        #taskbar button.active {
-             background-color: shade(@background, 1.25);
-             box-shadow: inset 0 -3px @yellow_b;
+        #battery.warning:not(.charging) {
+            background: @red;
+            color: @white_b;
+            animation-name: blink;
+            animation-duration: 0.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
         }
       '';
   };
   services.swayidle =
     let
-      lockCommand = pkgs.writeShellScript "swaylock" ''
-        ${pkgs.swaylock}/bin/swaylock --daemonize --color 000000
-      '';
+      lockCommand = "${pkgs.writeShellApplication
+        {
+          name = "swaylock";
+          runtimeInputs = [ pkgs.swaylock ];
+          text = ''
+            swaylock --daemonize --color 000000
+          '';
+        }}/bin/swaylock";
       dpms = cmd: "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
     in
     {

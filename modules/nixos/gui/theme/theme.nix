@@ -3,40 +3,40 @@
 {
   _.theme = {
     colors = {
-      foreground = "#D8DEE9";
-      background = "#2E3440";
+      foreground = "#CDD6F4";
+      background = "#1E1E2E";
 
       # black
-      color0 = "#3B4252";
-      color8 = "#4C566A";
+      color0 = "#45475A";
+      color8 = "#585B70";
 
       # red
-      color1 = "#BF616A";
-      color9 = "#BF616A";
+      color1 = "#F38BA8";
+      color9 = "#F38BA8";
 
       # green
-      color2 = "#A3BE8C";
-      color10 = "#A3BE8C";
+      color2 = "#A6E3A1";
+      color10 = "#A6E3A1";
 
       # yellow
-      color3 = "#EBCB8B";
-      color11 = "#D08770";
+      color3 = "#F9E2AF";
+      color11 = "#F9E2AF";
 
       # blue
-      color4 = "#81A1C1";
-      color12 = "#81A1C1";
+      color4 = "#89B4FA";
+      color12 = "#89B4FA";
 
       # magenta
-      color5 = "#B48EAD";
-      color13 = "#B48EAD";
+      color5 = "#F5C2E7";
+      color13 = "#F5C2E7";
 
       # cyan
-      color6 = "#88C0D0";
-      color14 = "#8FBCBB";
+      color6 = "#94E2D5";
+      color14 = "#94E2D5";
 
       # white
-      color7 = "#E5E9F0";
-      color15 = "#ECEFF4";
+      color7 = "#BAC2DE";
+      color15 = "#A6ADC8";
     };
 
     wallpaper = ./wallpaper.jpeg;
@@ -47,8 +47,8 @@
     gtkTheme.name = "Nordic-darker";
     gtkTheme.package = pkgs.nordic;
 
-    iconTheme.name = "Zafiro-icons";
-    iconTheme.package = pkgs.zafiro-icons;
+    iconTheme.name = "Papirus";
+    iconTheme.package = pkgs.papirus-icon-theme;
 
     name = "Nord";
   };

@@ -13,6 +13,18 @@
     });
     date = "2023-01-29";
   };
+  catpuccin-bat = {
+    pname = "catpuccin-bat";
+    version = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+    src = fetchFromGitHub ({
+      owner = "catppuccin";
+      repo = "bat";
+      rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+      fetchSubmodules = false;
+      sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+    });
+    date = "2022-11-10";
+  };
   hexdiff = {
     pname = "hexdiff";
     version = "3e96f27e65167c619ede35ab04232163dc273e69";
