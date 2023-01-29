@@ -227,11 +227,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1667759877,
-        "narHash": "sha256-6uSEPL8i/kF750zU2LkhqUtGvrDuwItxqDDKcg8aWgk=",
+        "lastModified": 1674992808,
+        "narHash": "sha256-n3UkDvtW1/NJ0i/B03w+aNVv8oneTy0FI4I/8ld1FNs=",
         "owner": "vlaci",
         "repo": "git-agecrypt",
-        "rev": "2124db0937e8c49f23acb264da6f00fca912f764",
+        "rev": "46b10e268cfbd0881c5c6c5d81bf81a5e7ee4784",
         "type": "github"
       },
       "original": {
