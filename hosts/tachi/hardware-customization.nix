@@ -9,7 +9,7 @@
       replaceStrings
         [ "HWP_Mode: False" ]
         [ "HWP_Mode: True" ]
-        (readFile "${pkgs.throttled}/etc/lenovo_fix.conf")
+        (readFile "${pkgs.throttled}/etc/throttled.conf")
     );
   };
 
