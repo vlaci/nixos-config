@@ -167,6 +167,4 @@ lib.mkProfile "hyprland" {
       bindm = $mainMod, mouse:273, resizewindow
     '';
   };
-
-  programs.waybar.package = pkgs.waybar-hyprland;
 }
