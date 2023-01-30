@@ -15,6 +15,7 @@
   _.networkmanager.enable = true;
   _.sshd.enable = true;
   _.gui.enable = true;
+  _.gui.hyprland.enable = true;
   _.docker.enable = true;
   _.podman.enable = true;
   _.libvirt.enable = true;
@@ -35,6 +36,7 @@
       _.emacs.enable = true;
       _.sway.enable = true;
       home.packages = with pkgs; [ thunderbird-bin ];
+      _.hyprland.enable = true;
     };
   };
   networking.firewall.interfaces."virbr0".allowedTCPPorts = [ 139 445 ];
