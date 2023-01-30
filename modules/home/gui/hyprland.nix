@@ -52,8 +52,8 @@ lib.mkProfile "hyprland" {
           gaps_in = 5
           gaps_out = 20
           border_size = 2
-          col.active_border = rgba(${builtins.substring 1 8 colors.color4}90)
-          col.inactive_border = rgba(${builtins.substring 1 8 colors.color0}90)
+          col.active_border = rgb(${builtins.substring 1 8 colors.color4})
+          col.inactive_border = rgb(${builtins.substring 1 8 colors.color0})
 
           layout = dwindle
       }
