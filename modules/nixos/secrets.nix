@@ -31,7 +31,7 @@ in
     environment.systemPackages = [
       pkgs.rage
       pkgs.age-plugin-yubikey
-      (agenix.defaultPackage.${config.nixpkgs.system}.override { inherit (pkgs) nix; })
+      (agenix.packages.${config.nixpkgs.system}.default.override { inherit (pkgs) nix; })
     ];
 
     _.secrets = {
