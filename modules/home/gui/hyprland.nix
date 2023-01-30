@@ -135,15 +135,25 @@ lib.mkProfile "hyprland" {
       bind = $mainMod, down, movefocus, d
 
       # Switch workspaces with mainMod + [0-9]
+      bind = $mainMod, 1, moveworkspacetomonitor, 1 current
       bind = $mainMod, 1, workspace, 1
+      bind = $mainMod, 2, moveworkspacetomonitor, 2 current
       bind = $mainMod, 2, workspace, 2
+      bind = $mainMod, 3, moveworkspacetomonitor, 3 current
       bind = $mainMod, 3, workspace, 3
+      bind = $mainMod, 4, moveworkspacetomonitor, 4 current
       bind = $mainMod, 4, workspace, 4
+      bind = $mainMod, 5, moveworkspacetomonitor, 5 current
       bind = $mainMod, 5, workspace, 5
+      bind = $mainMod, 6, moveworkspacetomonitor, 6 current
       bind = $mainMod, 6, workspace, 6
+      bind = $mainMod, 7, moveworkspacetomonitor, 7 current
       bind = $mainMod, 7, workspace, 7
+      bind = $mainMod, 8, moveworkspacetomonitor, 8 current
       bind = $mainMod, 8, workspace, 8
+      bind = $mainMod, 9, moveworkspacetomonitor, 9 current
       bind = $mainMod, 9, workspace, 9
+      bind = $mainMod, 0, moveworkspacetomonitor, 10 current
       bind = $mainMod, 0, workspace, 10
 
       # Move active window to a workspace with mainMod + SHIFT + [0-9]
