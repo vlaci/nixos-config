@@ -17,7 +17,7 @@ lib.mkProfile "hyprland" {
       #
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor=,preferred,auto,1
+      monitor=,preferred,auto,auto
 
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -52,7 +52,7 @@ lib.mkProfile "hyprland" {
           gaps_in = 5
           gaps_out = 20
           border_size = 2
-          col.active_border = rgb(${builtins.substring 1 8 colors.color4})
+          col.active_border = rgba(${builtins.substring 1 8 colors.color4}ff) rgba(${builtins.substring 1 8 colors.color4}60) 45deg
           col.inactive_border = rgb(${builtins.substring 1 8 colors.color0})
 
           layout = dwindle
@@ -83,6 +83,7 @@ lib.mkProfile "hyprland" {
           animation = windows, 1, 7, myBezier
           animation = windowsOut, 1, 7, default, popin 80%
           animation = border, 1, 10, default
+          animation = borderangle, 1, 8, default
           animation = fade, 1, 7, default
           animation = workspaces, 1, 6, default
       }
@@ -122,11 +123,14 @@ lib.mkProfile "hyprland" {
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = $mainMod, Return, exec, kitty
       bind = $mainMod SHIFT, Q, killactive,
-      bind = $mainMod, E, exit,
+      bind = $mainMod SHIFT, E, exec, swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Hyprland? This will end your Wayland session.' -b 'Yes, exit' 'hyprctl dispatch exit'
       bind = $mainMod, V, togglefloating,
       bind = $mainMod, D, exec, rofi -show drun
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
+      bind = $mainMod, G, togglegroup, # dwindle
+      bind = $mainMod, COMMA, changegroupactive, b # dwindle
+      bind = $mainMod, PERIOD, changegroupactive, f # dwindle
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
