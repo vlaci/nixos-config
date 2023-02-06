@@ -372,14 +372,7 @@ mkProfile "gui" {
   };
   services.swayidle =
     let
-      lockCommand = "${pkgs.writeShellApplication
-        {
-          name = "swaylock";
-          runtimeInputs = [ pkgs.swaylock ];
-          text = ''
-            swaylock --daemonize --color 000000
-          '';
-        }}/bin/swaylock";
+      lockCommand = "${pkgs.swaylock}/bin/swaylock --daemonize";
       dpms = cmd: "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
     in
     {
@@ -390,14 +383,16 @@ mkProfile "gui" {
         { event = "after-resume"; command = dpms "on"; }
       ];
       timeouts = [
-        { timeout = 295; command = "${pkgs.libnotify}/bin/notify-send -u critical -t 5000 -i system-lock-screen 'Screen will be locked in 5 seconds...'"; }
+        { timeout = 290; command = "${pkgs.libnotify}/bin/notify-send -u critical -t 10000 -i system-lock-screen 'Screen will be locked in 10 seconds...'"; }
         { timeout = 300; command = "${lockCommand}"; }
         { timeout = 310; command = dpms "off"; resumeCommand = dpms "on"; }
       ];
       systemdTarget = "graphical-session.target";
     };
 
-  systemd.user.services.swayidle.Service.Environment = [ "PATH=/bin" ];
+  programs.swaylock.settings = {
+    color = "000000";
+  };
 
   programs.mako = {
     enable = true;
