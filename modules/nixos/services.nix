@@ -8,11 +8,11 @@
     (lib.mkProfile "sshd" {
       services.openssh = {
         enable = true;
-        forwardX11 = true;
         startWhenNeeded = true;
         settings = {
           PasswordAuthentication = true;
           PermitRootLogin = "no";
+          X11Forwarding = true;
         };
       };
     })
