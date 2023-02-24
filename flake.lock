@@ -24,11 +24,11 @@
     "bitwarden": {
       "flake": false,
       "locked": {
-        "lastModified": 1657905291,
-        "narHash": "sha256-svBwmKslNsvAeV0mB7iGAhXZ3hqy6vY27JTIMCC4tN0=",
+        "lastModified": 1677010053,
+        "narHash": "sha256-5HV/e91y8/BHXFSMV34gug7lAxX4WOPZqdQTui+LKBI=",
         "owner": "seanfarley",
         "repo": "emacs-bitwarden",
-        "rev": "02d6410003a42e7fbeb4aa109aba949eea553706",
+        "rev": "f7ff63928fe16c8854b520ef1afbc54dcee94aee",
         "type": "github"
       },
       "original": {
@@ -103,11 +103,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1676917133,
-        "narHash": "sha256-F5udwXbmIgRo2m3Fm7kZ/Rz+c+JVj9WTNlNBCMVqr6I=",
+        "lastModified": 1677208263,
+        "narHash": "sha256-3v0w7hPNMnqGkNJM0ghYJh1dR7yeeKg6F4ShwR/cJyY=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "d7eeebd439b52b77958eb3d8043f3262701ddee2",
+        "rev": "1cc50999c7e419f3e001c987d1bcc4060dbe2a7a",
         "type": "github"
       },
       "original": {
@@ -131,11 +131,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1676920085,
-        "narHash": "sha256-m2jiqxH2V7RCo5mhhiK+CiHxxe71JOdaPDedISB5UqQ=",
+        "lastModified": 1677228110,
+        "narHash": "sha256-IeEn/ZrnTHUKvvKwA2wYzbI8qZ/hGLqM+L6fZlyORLk=",
         "owner": "vlaci",
         "repo": "emacs.d",
-        "rev": "9ff826f6f42c5ed272ffd709c0fe2113ea0c8946",
+        "rev": "a9cae843c43a1343bee4b62bd2e228fd3674af77",
         "type": "github"
       },
       "original": {
