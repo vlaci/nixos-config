@@ -44,10 +44,13 @@
     cursorTheme.name = "pixelfun3";
     cursorTheme.package = pkgs.xcursor-pixelfun;
 
-    gtkTheme.name = "Nordic-darker";
-    gtkTheme.package = pkgs.nordic;
+    gtkTheme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
+    gtkTheme.package = pkgs.catppuccin-gtk.override {
+      accents = [ "lavender" ];
+      variant = "mocha";
+    };
 
-    iconTheme.name = "Papirus";
+    iconTheme.name = "Papirus-Light";
     iconTheme.package = pkgs.papirus-icon-theme;
 
     name = "Nord";
