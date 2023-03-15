@@ -5,7 +5,11 @@ linuxPackages.extend (self: super: {
     kernelPatches = (super.kernelPatches or [ ]) ++ [
       {
         name = "add-acs-overrides";
-        patch = ./add-acs-overrides_5_x.patch;
+        patch = ./0001-add-acs-overrides.patch;
+      }
+      {
+        name = "i915-vga-arbiter";
+        patch = ./0002-i915-vga-arbiter.patch;
       }
     ];
   });
