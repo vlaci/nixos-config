@@ -19,6 +19,7 @@ lib.mkProfile "gui" {
 
   fonts = {
     fonts = with pkgs; [
+      berkeley-mono-typeface
       noto-fonts
       noto-fonts-emoji
       ia-writer-duospace
@@ -32,7 +33,7 @@ lib.mkProfile "gui" {
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [ "Iosevka Comfy" ];
+        monospace = [ "Berkeley Mono" ];
         serif = [ "Noto Serif" ];
       };
     };
