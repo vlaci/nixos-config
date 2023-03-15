@@ -394,7 +394,7 @@ mkProfile "gui" {
     color = "000000";
   };
 
-  programs.mako = {
+  services.mako = {
     enable = true;
     anchor = "top-center";
     font = "sans 11";
