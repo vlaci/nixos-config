@@ -34,6 +34,7 @@ lib.mkProfile "gui" {
     fontconfig = {
       defaultFonts = {
         monospace = [ "Berkeley Mono" ];
+        sansSerif = [ "Noto Sans" ];
         serif = [ "Noto Serif" ];
       };
     };
