@@ -104,9 +104,6 @@ lib.mkProfile "gui" {
   services.accounts-daemon.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-  services.gnome.glib-networking.enable = true;
-  services.gnome.at-spi2-core.enable = true;
-  services.gvfs.enable = true;
 
   i18n.inputMethod = {
     enabled = "ibus";
