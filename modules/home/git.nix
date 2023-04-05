@@ -44,6 +44,7 @@ lib.mkProfile "git" (mkIf vlaci.available {
 
   home.packages = with pkgs.gitAndTools; [
     git-absorb
+    git-branchless
     git-filter-repo
     git-remote-gcrypt
   ];
