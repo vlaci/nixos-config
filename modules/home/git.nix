@@ -29,9 +29,9 @@ lib.mkProfile "git" (mkIf vlaci.available {
     userName = vlaci.value.fullName;
     userEmail = mkDefault vlaci.value.git.home.address;
     extraConfig.emailprompt =
-      listToAttrs (map (e: nameValuePair e { prompt = " "; }) vlaci.value.email.addresses.github)
-      // listToAttrs (map (e: nameValuePair e { prompt = "🏠"; }) vlaci.value.email.addresses.home)
-      // listToAttrs (map (e: nameValuePair e { prompt = "👔"; }) vlaci.value.email.addresses.work);
+      listToAttrs (map (e: nameValuePair e { prompt = ""; }) vlaci.value.email.addresses.github)
+      // listToAttrs (map (e: nameValuePair e { prompt = "𓄎"; }) vlaci.value.email.addresses.home)
+      // listToAttrs (map (e: nameValuePair e { prompt = ""; }) vlaci.value.email.addresses.work);
     includes = [
       {
         condition = "hasconfig:remote.*.url:${vlaci.value.git.work.remote}/**";

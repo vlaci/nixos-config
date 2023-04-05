@@ -33,7 +33,7 @@ in
           p10k segment -t "$(git_prompt_useremail_symbol)"
         }
 
-        export ZSH_PLUGINS_ALIAS_TIPS_TEXT="💡 Alias: "
+        export ZSH_PLUGINS_ALIAS_TIPS_TEXT="󱍄 Alias: "
 
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
@@ -131,4 +131,7 @@ in
   ];
 
   home.file."${dotDir}/.p10k.zsh".source = ./p10k.zsh;
+  home.packages = with pkgs; [
+    meslo-lgs-nf
+  ];
 }
