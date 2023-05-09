@@ -1,24 +1,4 @@
 {
-    "age-plugin-yubikey": {
-        "cargoLocks": null,
-        "date": "2023-01-29",
-        "extract": null,
-        "name": "age-plugin-yubikey",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "str4d",
-            "repo": "age-plugin-yubikey",
-            "rev": "84830103936b3a59085381e7155480a86575ceca",
-            "sha256": "sha256-2g8WkId7Sy98QjMD4n9h2xTCUQTjk/rnoTba8nU/3bE=",
-            "type": "github"
-        },
-        "version": "84830103936b3a59085381e7155480a86575ceca"
-    },
     "catpuccin-bat": {
         "cargoLocks": null,
         "date": "2022-11-10",

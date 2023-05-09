@@ -1,7 +1,3 @@
-[age-plugin-yubikey]
-src.git = "https://github.com/str4d/age-plugin-yubikey"
-fetch.github = "str4d/age-plugin-yubikey"
-
 [hexdiff]
 src.git = "https://github.com/ahroach/hexdiff"
 fetch.github = "ahroach/hexdiff"

@@ -4,7 +4,6 @@ let
   callPackage = pkgs.newScope (pkgs // self);
   self = rec {
     pkgsrcs = pkgs.callPackage ./_sources/generated.nix { };
-    age-plugin-yubikey = callPackage ./age-plugin-yubikey { };
     berkeley-mono-typeface = callPackage ./berkeley-mono-typeface { };
     hexdiff = callPackage ./hexdiff { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
