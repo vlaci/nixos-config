@@ -105,8 +105,4 @@ lib.mkProfile "gui" {
   services.accounts-daemon.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-
-  i18n.inputMethod = {
-    enabled = "ibus";
-  };
 }
