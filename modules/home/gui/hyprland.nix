@@ -46,6 +46,10 @@ lib.mkProfile "hyprland" {
           sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
       }
 
+      device:yubico-yubikey-otp+fido+ccid {
+          kb_layout = us
+      }
+
       general {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
