@@ -22,6 +22,22 @@ lib.mkProfile "email" (mkIf vlaci.available {
     enable = true;
   };
 
+  programs.mujmap = {
+    enable = true;
+  };
+
+  programs.notmuch = {
+    enable = true;
+  };
+
+  programs.rbw = lib.mkIf nixosConfig._.secrets.vlaci.available {
+    enable = true;
+    settings = {
+      email = nixosConfig._.secrets.vlaci.value.bitwarden.email;
+    };
+  };
+
+
   accounts.email = {
     accounts = (
       {
@@ -32,10 +48,20 @@ lib.mkProfile "email" (mkIf vlaci.available {
           rec {
             inherit (cfg) address realName imap smtp;
             userName = cfg.address;
-            passwordCommand = "${pkgs.libsecret}/bin/secret-tool lookup service mbsync username ${userName}";
+            passwordCommand = "${pkgs.rbw}/bin/rbw get ${cfg.fqdn} ${userName}";
             primary = true;
-            mbsync = {
+            mujmap = {
               enable = true;
+              settings = {
+                inherit (cfg) fqdn;
+                password_command = "${passwordCommand} -f mujmap | cut -d' ' -f 2";
+              };
+            };
+            notmuch = {
+              enable = true;
+            };
+            mbsync = {
+              enable = false;
               create = "maildir";
               remove = "maildir";
               expunge = "none";
