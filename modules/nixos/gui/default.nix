@@ -15,6 +15,7 @@ lib.mkProfile "gui" {
   environment.systemPackages = with pkgs; [
     pavucontrol
     xcursor-pixelfun
+    xdg-utils
   ];
 
   fonts = {
