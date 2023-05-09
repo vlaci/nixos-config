@@ -20,7 +20,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
   boot.kernelParams = [ "mitigations=off" "intel_iommu=on" "msr.allow_writes=on" "psmouse.synaptics_intertouch=0" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
