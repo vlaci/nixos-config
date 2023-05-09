@@ -25,6 +25,18 @@
     });
     date = "2018-01-24";
   };
+  mujmap = {
+    pname = "mujmap";
+    version = "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8";
+    src = fetchFromGitHub ({
+      owner = "elizagamedev";
+      repo = "mujmap";
+      rev = "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8";
+      fetchSubmodules = false;
+      sha256 = "sha256-gxx3U5/BTRr7rRpaa1LcWGfy6tqHIh7l1MiFP8MWkKs=";
+    });
+    date = "2022-12-30";
+  };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
     version = "41cb143ccc3b8cc444bf20257276cb43275f65c4";

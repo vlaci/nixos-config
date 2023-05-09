@@ -6,6 +6,10 @@ fetch.github = "ahroach/hexdiff"
 src.git = "https://github.com/catppuccin/bat"
 fetch.github = "catppuccin/bat"
 
+[mujmap]
+src.git = "https://github.com/elizagamedev/mujmap"
+fetch.github = "elizagamedev/mujmap"
+
 [zsh-alias-tips]
 src.git = "https://github.com/djui/alias-tips"
 fetch.github = "djui/alias-tips"
