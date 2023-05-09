@@ -120,6 +120,9 @@ lib.mkProfile "hyprland" {
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
+      windowrule = float,title:^(Firefox — Sharing Indicator)$
+      windowrule = move 50%-38 100%-32,title:^(Firefox — Sharing Indicator)$
+      windowrule = pin,title:^(Firefox — Sharing Indicator)$
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       $mainMod = SUPER
