@@ -47,9 +47,16 @@ mkProfile "tools" {
   programs.jq.enable = true;
   programs.lesspipe.enable = true;
 
-  programs.mcfly.enable = true;
-  programs.mcfly.enableZshIntegration = true;
-  home.sessionVariables."MCFLY_RESULTS" = "500";
+  programs.atuin = {
+    enable = true;
+    flags = [ "--disable-up-arrow" ];
+    settings = {
+      filter_mode = "directory";
+      style = "compact";
+      inline_height = 30;
+      show_preview = true;
+    };
+  };
 
   programs.pazi.enable = true;
 
