@@ -19,11 +19,13 @@ mkProfile "tools" {
     ranger
     # for emacs too
     ripgrep
+    rm-improved
     sd # sed
     tokei # loc
     unzip
     zenith # top
     zip
+    watchexec
   ] ++ optionals config._.gui.enable [
     libreoffice-fresh
   ]);
