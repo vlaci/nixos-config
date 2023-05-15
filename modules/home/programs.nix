@@ -58,8 +58,8 @@ mkProfile "tools" {
     };
   };
 
-  programs.pazi.enable = true;
   programs.readline.enable = true;
+  programs.zoxide.enable = true;
 
   programs.ssh = {
     enable = true;
