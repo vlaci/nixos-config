@@ -60,6 +60,7 @@ mkProfile "tools" {
 
   programs.readline.enable = true;
   programs.zoxide.enable = true;
+  programs.skim.enable = true;
 
   programs.ssh = {
     enable = true;
