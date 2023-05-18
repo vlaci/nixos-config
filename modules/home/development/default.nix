@@ -36,7 +36,6 @@ lib.mkProfile "development" {
     ocaml
     ocamlPackages.utop
     rustup
-    rust-analyzer
     mitmproxy
     sqlite-interactive
     tcpdump
