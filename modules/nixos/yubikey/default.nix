@@ -74,7 +74,6 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       yubikey-personalization
-      yubioath-flutter
     ] ++ optionals config._.gui.enable [
       yubikey-personalization-gui
     ];
