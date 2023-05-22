@@ -10,14 +10,13 @@ lib.mkProfile "development" {
       gcr
       liburcu
       krb5
-      openssl_1_1
       zlib
       icu69
       gnome.gnome-keyring
       libsecret
       desktop-file-utils
       xorg.xprop
-      openssl.dev
+      openssl
       pkg-config
       binutils
       zlib.dev
