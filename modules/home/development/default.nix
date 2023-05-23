@@ -53,25 +53,27 @@ lib.mkProfile "development" {
 
   programs.helix = {
     enable = true;
-    languages = [
-      {
-        name = "python";
-        language-server = {
-          command = "${pkgs.pyright}/bin/pyright-langserver";
-          args = [ "--stdio" ];
-        };
-        config.python.analysis = {
-          autoSearchPaths = true;
-          diagnosticMode = "workspace";
-        };
-      }
-      {
-        name = "rust";
-        config.checkOnSave = {
-          command = "clippy";
-        };
-      }
-    ];
+    languages = {
+      language = [
+        {
+          name = "python";
+          language-server = {
+            command = "${pkgs.pyright}/bin/pyright-langserver";
+            args = [ "--stdio" ];
+          };
+          config.python.analysis = {
+            autoSearchPaths = true;
+            diagnosticMode = "workspace";
+          };
+        }
+        {
+          name = "rust";
+          config.checkOnSave = {
+            command = "clippy";
+          };
+        }
+      ];
+    };
     settings = {
       theme = "catppuccin_mocha";
       editor = {
