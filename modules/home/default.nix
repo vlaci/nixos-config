@@ -4,6 +4,7 @@
   imports = [
     ./development
     ./gui
+    ./nushell
     ./zsh
     ./emacs.nix
     ./email.nix

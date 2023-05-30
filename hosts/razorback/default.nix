@@ -27,6 +27,7 @@
     home-manager = {
       _.git.enable = true;
       _.gpg.enable = true;
+      _.nushell.enable = true;
       _.tools.enable = true;
       _.emacs.enable = true;
       _.sway.enable = true;
