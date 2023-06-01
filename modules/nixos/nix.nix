@@ -7,6 +7,8 @@ in
   nix.package = mkDefault pkgs.nixUnstable;
   nix.extraOptions = mkDefault ''
     experimental-features = nix-command flakes
+    keep-outputs = true
+    keep-derivations = true
   '';
   nixpkgs.config = {
     allowUnfree = true;
