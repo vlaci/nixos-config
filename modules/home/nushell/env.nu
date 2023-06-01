@@ -40,7 +40,7 @@ def create_right_prompt [] {
     ] | str join)
     } else { "" }
 
-    ([$last_exit_code, (char space), $time_segment] | str join)
+    ([$last_exit_code, (char space), ] | str join)
 }
 
 # Use nushell functions to define your right and left prompt
@@ -49,9 +49,12 @@ let-env PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-let-env PROMPT_INDICATOR = {|| "> " }
+let-env PROMPT_INDICATOR = {||
+    let color = if ($env.LAST_EXIT_CODE != 0) { '#ff0000' } else { '#d787d7' }
+    $"(ansi $color)❯ "
+}
 let-env PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-let-env PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
+let-env PROMPT_INDICATOR_VI_NORMAL = {|| "❮ " }
 let-env PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
 # Specifies how environment variables are:
