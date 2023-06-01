@@ -6,6 +6,7 @@ in
 mkProfile "gui" {
   imports = [
     ./theme
+    ./wezterm
     ./hyprland.nix
     ./sway.nix
   ];
