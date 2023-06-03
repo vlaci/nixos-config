@@ -9,7 +9,7 @@ local scheme = wezterm.get_builtin_color_schemes()[color_scheme]
 local act = wezterm.action
 wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
 
-scheme.tab_bar.active_tab.bg_color = '#7f849c'
+scheme.tab_bar.active_tab.bg_color = '#9399b2'
 
 tab.setup()
 
