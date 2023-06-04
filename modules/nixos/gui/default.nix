@@ -12,6 +12,8 @@ lib.mkProfile "gui" {
     pulse.enable = true;
   };
 
+  environment.enableAllTerminfo = true;
+
   environment.systemPackages = with pkgs; [
     pavucontrol
     xcursor-pixelfun

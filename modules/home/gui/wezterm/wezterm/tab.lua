@@ -1,21 +1,38 @@
 local wezterm = require("wezterm")
+-- wezterm.gui is not available to the mux server, so take care to
+-- do something reasonable when this config is evaluated by the mux
+function get_appearance()
+  if wezterm.gui then
+    return wezterm.gui.get_appearance()
+  end
+  return 'Dark'
+end
+
+function scheme_for_appearance(appearance)
+  if appearance:find 'Dark' then
+    return 'Catppuccin Mocha'
+  else
+    return 'Catppuccin Latte'
+  end
+end
+local colors = wezterm.color.get_builtin_schemes()[scheme_for_appearance(get_appearance())]
 
 local palette = {
-    rosewater = "#f5e0dc",
-    flamingo = "#f2cdcd",
-    pink = "#f5c2e7",
-    mauve = "#cba6f7",
-    red = "#f38ba8",
+    rosewater = colors.indexed[17],
+    flamingo = colors.compose_cursor,
+    pink = colors.brights[6],
+    mauve = colors.tab_bar.active_tab.bg_color,
+    red = colors.ansi[2],
     maroon = "#eba0ac",
-    peach = "#fab387",
-    yellow = "#f9e2af",
-    green = "#a6e3a1",
-    teal = "#94e2d5",
+    peach = colors.indexed[16],
+    yellow = colors.ansi[4],
+    green = colors.ansi[3],
+    teal = colors.brights[7],
     sky = "#89dceb",
     sapphire = "#74c7ec",
-    blue = "#89b4fa",
+    blue = colors.ansi[5],
     lavender = "#b4befe",
-    text = "#cdd6f4",
+    text = colors.foreground,
     subtext1 = "#bac2de",
     subtext0 = "#a6adc8",
     overlay2 = "#9399b2",
@@ -24,9 +41,9 @@ local palette = {
     surface2 = "#585b70",
     surface1 = "#45475a",
     surface0 = "#313244",
-    base = "#1e1e2e",
-    mantle = "#181825",
-    crust = "#11111b",
+    base = colors.background,
+    mantle = colors.tab_bar.inactive_tab.bg_color,
+    crust = colors.tab_bar.background,
 }
 local tab = {}
 
@@ -87,24 +104,25 @@ local function get_process(tab)
 end
 
 local function get_current_working_folder_name(tab)
-    local cwd_uri = tab.active_pane.current_working_dir
-
-    cwd_uri = cwd_uri:sub(8)
+    local cwd_uri = (tab.active_pane.current_working_dir or ""):sub(8)
 
     local slash = cwd_uri:find("/")
-    local cwd = cwd_uri:sub(slash)
-
-    local HOME_DIR = os.getenv("HOME")
-    if cwd == HOME_DIR then
+    local cwd = cwd_uri
+    if slash then
+        cwd = cwd_uri:sub(slash)
+    end
+    if cwd == wezterm.home_dir then
         return "  ~"
     end
 
-    return string.format("  %s", string.match(cwd, "[^/]+$"))
+    return string.format("  %s", string.match(cwd, "([^/]+)/?$"))
 end
 
 function tab.setup()
     wezterm.on("format-tab-title", function(tab)
         return wezterm.format({
+            { Foreground = { Color = palette.crust } },
+            { Text = tab.tab_index > 0 and "" or ' ' },
             { Attribute = { Intensity = "Half" } },
             { Foreground = { Color = palette.overlay0 } },
             { Text = string.format(" %s  ", tab.tab_index + 1) },
@@ -112,8 +130,8 @@ function tab.setup()
             { Text = get_process(tab) },
             { Text = " " },
             { Text = get_current_working_folder_name(tab) },
-            { Foreground = { Color = palette.base } },
-            { Text = "  ▕" },
+            { Foreground = { Color = palette.crust } },
+            { Text = " " },
         })
     end)
 end

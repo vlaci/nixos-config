@@ -7,6 +7,7 @@ mkProfile "gui" {
   imports = [
     ./theme
     ./wezterm
+    ./darkman.nix
     ./hyprland.nix
     ./sway.nix
   ];
@@ -421,4 +422,17 @@ mkProfile "gui" {
     enable = true;
   };
 
+  services.darkman = {
+    enable = true;
+
+    settings.usegeoclue = true;
+
+    darkModeScripts.color-scheme-dark = ''
+      dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+    '';
+
+    lightModeScripts.color-scheme-light = ''
+      dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+    '';
+  };
 }
