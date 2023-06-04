@@ -41,6 +41,8 @@ lib.mkProfile "gui" {
     };
   };
 
+  location.provider = "geoclue2";
+
   services.greetd = {
     enable = true;
     settings.default_session.command =
