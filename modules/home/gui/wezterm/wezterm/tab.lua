@@ -1,38 +1,12 @@
 local wezterm = require("wezterm")
+local colors = require("colors")
 
-local palette = {
-    rosewater = "#f5e0dc",
-    flamingo = "#f2cdcd",
-    pink = "#f5c2e7",
-    mauve = "#cba6f7",
-    red = "#f38ba8",
-    maroon = "#eba0ac",
-    peach = "#fab387",
-    yellow = "#f9e2af",
-    green = "#a6e3a1",
-    teal = "#94e2d5",
-    sky = "#89dceb",
-    sapphire = "#74c7ec",
-    blue = "#89b4fa",
-    lavender = "#b4befe",
-    text = "#cdd6f4",
-    subtext1 = "#bac2de",
-    subtext0 = "#a6adc8",
-    overlay2 = "#9399b2",
-    overlay1 = "#7f849c",
-    overlay0 = "#6c7086",
-    surface2 = "#585b70",
-    surface1 = "#45475a",
-    surface0 = "#313244",
-    base = "#1e1e2e",
-    mantle = "#181825",
-    crust = "#11111b",
-}
 local tab = {}
 
 local function get_process(tab)
+    local palette = tab.is_active and colors.opposite or colors.palette
     local process_icons = {
-        [".bat-wrapped"] = {
+        ["bat"] = {
             { Foreground = { Color = palette.flamingo } },
             { Text = '󰭟' },
         },
@@ -74,7 +48,9 @@ local function get_process(tab)
         },
     }
 
-    local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.[^.]+).*", "%2")
+    local process_name = string.gsub(tab.active_pane.foreground_process_name, "/?([^/]*/)", "")
+    process_name = string.gsub(process_name, "^.(.*)-wrapped", "%1")
+    process_name = string.gsub(process_name, "^([^.]*).*", "%1")
 
     if not process_name then
         process_name = "zsh"
@@ -82,38 +58,39 @@ local function get_process(tab)
 
     return wezterm.format(
         process_icons[process_name]
-        or { { Foreground = { Color = palette.sky } }, { Text = string.format("[%s]", process_name) } }
+        or { { Foreground = { Color = colors.palette.sky } }, { Text = string.format("[%s]", process_name) } }
     )
 end
 
 local function get_current_working_folder_name(tab)
-    local cwd_uri = tab.active_pane.current_working_dir
-
-    cwd_uri = cwd_uri:sub(8)
+    local cwd_uri = (tab.active_pane.current_working_dir or ""):sub(8)
 
     local slash = cwd_uri:find("/")
-    local cwd = cwd_uri:sub(slash)
-
-    local HOME_DIR = os.getenv("HOME")
-    if cwd == HOME_DIR then
+    local cwd = cwd_uri
+    if slash then
+        cwd = cwd_uri:sub(slash)
+    end
+    if cwd == wezterm.home_dir then
         return "  ~"
     end
 
-    return string.format("  %s", string.match(cwd, "[^/]+$"))
+    return string.format("  %s", string.match(cwd, "([^/]+)/?$"))
 end
 
 function tab.setup()
     wezterm.on("format-tab-title", function(tab)
         return wezterm.format({
+            { Foreground = { Color = colors.palette.crust } },
+            { Text = tab.tab_index > 0 and "" or ' ' },
             { Attribute = { Intensity = "Half" } },
-            { Foreground = { Color = palette.overlay0 } },
+            { Foreground = { Color = colors.palette.overlay0 } },
             { Text = string.format(" %s  ", tab.tab_index + 1) },
             "ResetAttributes",
             { Text = get_process(tab) },
             { Text = " " },
             { Text = get_current_working_folder_name(tab) },
-            { Foreground = { Color = palette.base } },
-            { Text = "  ▕" },
+            { Foreground = { Color = colors.palette.crust } },
+            { Text = "" },
         })
     end)
 end
