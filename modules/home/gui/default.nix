@@ -435,4 +435,11 @@ mkProfile "gui" {
       ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
     '';
   };
+
+  services.gammastep = {
+    enable = true;
+    provider = "geoclue2";
+    tray = true;
+    temperature.night = 3000;
+  };
 }
