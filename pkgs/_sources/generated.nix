@@ -27,26 +27,32 @@
   };
   mujmap = {
     pname = "mujmap";
-    version = "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8";
+    version = "5f700af890769185ad99d4aae9f53496bb2aa6f2";
     src = fetchFromGitHub ({
       owner = "elizagamedev";
       repo = "mujmap";
-      rev = "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8";
+      rev = "5f700af890769185ad99d4aae9f53496bb2aa6f2";
       fetchSubmodules = false;
-      sha256 = "sha256-gxx3U5/BTRr7rRpaa1LcWGfy6tqHIh7l1MiFP8MWkKs=";
+      sha256 = "sha256-mSJ6uyZSaWWdhqiYNcIm7lC6PZZrZ8PSdxfu+s9MZD0=";
     });
-    date = "2022-12-30";
+    cargoLock."Cargo.lock" = {
+      lockFile = ./mujmap-5f700af890769185ad99d4aae9f53496bb2aa6f2/Cargo.lock;
+      outputHashes = {
+        
+      };
+    };
+    date = "2023-05-15";
   };
   wezterm-nightly = {
     pname = "wezterm-nightly";
     version = "95e44f2199d9779e353bccf387a1eb2dbaf41f44";
-    src = fetchFromGitHub {
+    src = fetchFromGitHub ({
       owner = "wez";
       repo = "wezterm";
       rev = "95e44f2199d9779e353bccf387a1eb2dbaf41f44";
       fetchSubmodules = true;
       sha256 = "sha256-w/iQoWng7nrE+HAg0umpq8RCU0bjw5JogR2HHufspI8=";
-    };
+    });
     cargoLock."Cargo.lock" = {
       lockFile = ./wezterm-nightly-95e44f2199d9779e353bccf387a1eb2dbaf41f44/Cargo.lock;
       outputHashes = {

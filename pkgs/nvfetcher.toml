@@ -9,6 +9,7 @@ fetch.github = "catppuccin/bat"
 [mujmap]
 src.git = "https://github.com/elizagamedev/mujmap"
 fetch.github = "elizagamedev/mujmap"
+cargo_locks = [ "Cargo.lock" ]
 
 [wezterm-nightly]
 src.git = "https://github.com/wez/wezterm"

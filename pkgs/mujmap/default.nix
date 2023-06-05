@@ -2,7 +2,7 @@
 
 rustPlatform.buildRustPackage {
   inherit (pkgsrcs.mujmap) pname version src;
-  cargoHash = "sha256-xO73kP0ACPfMZnDEj9Np+wwtxFyfOYDX4To2wBReKZo=";
+  cargoLock = pkgsrcs.mujmap.cargoLock."Cargo.lock";
 
   buildInputs = [
     notmuch

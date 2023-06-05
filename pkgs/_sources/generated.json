@@ -40,8 +40,13 @@
         "version": "3e96f27e65167c619ede35ab04232163dc273e69"
     },
     "mujmap": {
-        "cargoLocks": null,
-        "date": "2022-12-30",
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./mujmap-5f700af890769185ad99d4aae9f53496bb2aa6f2/Cargo.lock",
+                {}
+            ]
+        },
+        "date": "2023-05-15",
         "extract": null,
         "name": "mujmap",
         "passthru": null,
@@ -53,11 +58,11 @@
             "name": null,
             "owner": "elizagamedev",
             "repo": "mujmap",
-            "rev": "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8",
-            "sha256": "sha256-gxx3U5/BTRr7rRpaa1LcWGfy6tqHIh7l1MiFP8MWkKs=",
+            "rev": "5f700af890769185ad99d4aae9f53496bb2aa6f2",
+            "sha256": "sha256-mSJ6uyZSaWWdhqiYNcIm7lC6PZZrZ8PSdxfu+s9MZD0=",
             "type": "github"
         },
-        "version": "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8"
+        "version": "5f700af890769185ad99d4aae9f53496bb2aa6f2"
     },
     "wezterm-nightly": {
         "cargoLocks": {
