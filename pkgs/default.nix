@@ -7,6 +7,7 @@ let
     berkeley-mono-typeface = callPackage ./berkeley-mono-typeface { };
     hexdiff = callPackage ./hexdiff { };
     mujmap = callPackage ./mujmap { };
+    wezterm-nightly = callPackage ./wezterm-nightly { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
     linuxPackages_acs_override = callPackage ./linux_acs_override { };
     # shortcut to allow build-pkgs task to find this derivation

@@ -37,6 +37,25 @@
     });
     date = "2022-12-30";
   };
+  wezterm-nightly = {
+    pname = "wezterm-nightly";
+    version = "95e44f2199d9779e353bccf387a1eb2dbaf41f44";
+    src = fetchFromGitHub {
+      owner = "wez";
+      repo = "wezterm";
+      rev = "95e44f2199d9779e353bccf387a1eb2dbaf41f44";
+      fetchSubmodules = true;
+      sha256 = "sha256-w/iQoWng7nrE+HAg0umpq8RCU0bjw5JogR2HHufspI8=";
+    };
+    cargoLock."Cargo.lock" = {
+      lockFile = ./wezterm-nightly-95e44f2199d9779e353bccf387a1eb2dbaf41f44/Cargo.lock;
+      outputHashes = {
+        "xcb-imdkit-0.2.0" = "sha256-QOT9HLlA26DVPUF4ViKH2ckexUsu45KZMdJwoUhW+hA=";
+        "image-0.24.5" = "sha256-fTajVwm88OInqCPZerWcSAm1ga46ansQ3EzAmbT58Js=";
+      };
+    };
+    date = "2023-05-30";
+  };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
     version = "41cb143ccc3b8cc444bf20257276cb43275f65c4";

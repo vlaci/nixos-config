@@ -59,6 +59,34 @@
         },
         "version": "696cc8673f2f6a80e3bdf878cb2a8efc44d455c8"
     },
+    "wezterm-nightly": {
+        "cargoLocks": {
+            "Cargo.lock": [
+                "./wezterm-nightly-95e44f2199d9779e353bccf387a1eb2dbaf41f44/Cargo.lock",
+                {
+                    "image-0.24.5": "sha256-fTajVwm88OInqCPZerWcSAm1ga46ansQ3EzAmbT58Js=",
+                    "xcb-imdkit-0.2.0": "sha256-QOT9HLlA26DVPUF4ViKH2ckexUsu45KZMdJwoUhW+hA="
+                }
+            ]
+        },
+        "date": "2023-05-30",
+        "extract": null,
+        "name": "wezterm-nightly",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": true,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "wez",
+            "repo": "wezterm",
+            "rev": "95e44f2199d9779e353bccf387a1eb2dbaf41f44",
+            "sha256": "sha256-w/iQoWng7nrE+HAg0umpq8RCU0bjw5JogR2HHufspI8=",
+            "type": "github"
+        },
+        "version": "95e44f2199d9779e353bccf387a1eb2dbaf41f44"
+    },
     "zsh-alias-tips": {
         "cargoLocks": null,
         "date": "2023-01-19",

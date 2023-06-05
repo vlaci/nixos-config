@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ gitstatus wezterm ];
+  home.packages = with pkgs; [ gitstatus wezterm-nightly ];
 
   xdg.configFile."wezterm".source = ./wezterm;
 
