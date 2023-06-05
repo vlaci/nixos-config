@@ -101,7 +101,7 @@ in
             #
             # Basics:
             #
-            "${mod}+Return" = "exec kitty";
+            "${mod}+Return" = "exec wezterm";
             "${mod}+Shift+q" = "kill";
             "${mod}+d" = "exec rofi -show drun";
             "${mod}+Shift+c" = "reload";

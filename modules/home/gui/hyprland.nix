@@ -128,7 +128,7 @@ lib.mkProfile "hyprland" {
       $mainMod = SUPER
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = $mainMod, Return, exec, kitty
+      bind = $mainMod, Return, exec, wezterm
       bind = $mainMod SHIFT, Q, killactive,
       bind = $mainMod SHIFT, E, exec, swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Hyprland? This will end your Wayland session.' -b 'Yes, exit' 'hyprctl dispatch exit'
       bind = $mainMod, V, togglefloating,
