@@ -236,5 +236,6 @@ return {
     tab_max_width = 50,
     quick_select_patterns = {
         '[^ .]+[.][^ .]+'
-    }
+    },
+    quick_select_alphabet = 'arstqwfpzxcdneioluyhgmvjbh',
 }
