@@ -1,14 +1,14 @@
-local wezterm = require("wezterm")
-local colors = require("colors")
+local wezterm = require "wezterm"
+local colors = require "colors"
 
-local tab = {}
+local M = {}
 
 local function get_process(tab)
     local palette = tab.is_active and colors.opposite or colors.palette
     local process_icons = {
         ["bat"] = {
             { Foreground = { Color = palette.flamingo } },
-            { Text = '󰭟' },
+            { Text = "󰭟" },
         },
         ["docker"] = {
             { Foreground = { Color = palette.blue } },
@@ -44,7 +44,7 @@ local function get_process(tab)
         },
         ["ssh"] = {
             { Foreground = { Color = palette.red } },
-            { Text = '󰣀' },
+            { Text = "󰣀" },
         },
     }
 
@@ -62,6 +62,7 @@ local function get_process(tab)
     )
 end
 
+
 local function get_current_working_folder_name(tab)
     local cwd_uri = (tab.active_pane.current_working_dir or ""):sub(8)
 
@@ -77,11 +78,12 @@ local function get_current_working_folder_name(tab)
     return string.format("  %s", string.match(cwd, "([^/]+)/?$"))
 end
 
-function tab.setup()
+
+function M.setup()
     wezterm.on("format-tab-title", function(tab)
         return wezterm.format({
             { Foreground = { Color = colors.palette.crust } },
-            { Text = tab.tab_index > 0 and "" or ' ' },
+            { Text = tab.tab_index > 0 and "" or " " },
             { Attribute = { Intensity = "Half" } },
             { Foreground = { Color = colors.palette.overlay0 } },
             { Text = string.format(" %s  ", tab.tab_index + 1) },
@@ -95,4 +97,5 @@ function tab.setup()
     end)
 end
 
-return tab
+
+return M

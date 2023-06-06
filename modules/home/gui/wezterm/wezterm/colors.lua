@@ -1,4 +1,8 @@
-local wezterm = require("wezterm")
+local wezterm = require "wezterm"
+
+
+local M = {}
+
 
 local colors = {
     latte = {
@@ -115,6 +119,7 @@ local colors = {
     },
 }
 
+
 local mappings = {
     mocha = "Catppuccin Mocha",
     macchiato = "Catppuccin Macchiato",
@@ -123,28 +128,23 @@ local mappings = {
 }
 
 
--- wezterm.gui is not available to the mux server, so take care to
--- do something reasonable when this config is evaluated by the mux
-local function get_appearance()
-    if wezterm.gui then
-        return wezterm.gui.get_appearance()
-    end
-    return 'Dark'
-end
-
-local function scheme_for_appearance(appearance)
+local function scheme_for_appearance()
+    local appearance = wezterm.gui and wezterm.gui.get_appearance() or 'Dark'
     if appearance:find 'Dark' then
-        return 'mocha'
+        return 'mocha', 'latte'
     else
-        return 'latte'
+        return 'latte', 'mocha'
     end
 end
 
-local selected = scheme_for_appearance(get_appearance())
 
-return {
-    selected = mappings[selected],
-    palette = colors[selected],
-    opposite = colors[selected == 'latte' and 'mocha' or 'latte'],
-    scheme = wezterm.color.get_builtin_schemes()[mappings[selected]],
-}
+local selected, opposite = scheme_for_appearance()
+
+
+M.selected = mappings[selected]
+M.palette = colors[selected]
+M.opposite = colors[opposite]
+M.scheme = wezterm.color.get_builtin_schemes()[M.selected]
+
+
+return M

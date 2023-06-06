@@ -1,15 +1,16 @@
-local wezterm = require 'wezterm'
-local Gitstatus = {}
+local wezterm = require "wezterm"
+
+local M = {}
 
 local cache = wezterm.GLOBAL.gitstatus_cache or {}
 wezterm.GLOBAL.gitstatus_cache = cache
 
-wezterm.on('user-var-changed', function()
+wezterm.on("user-var-changed", function()
     cache = {}
     wezterm.GLOBAL.gitstatus_cache = cache
 end)
 
-function Gitstatus:new()
+function M:new()
     local status = {
         started = false,
         proc = nil,
@@ -20,21 +21,21 @@ function Gitstatus:new()
     return status
 end
 
-function Gitstatus:ensure_started()
+function M:ensure_started()
     if self.started then
         return
     end
 
     local outfile = os.tmpname()
     os.remove(outfile)
-    local success, stdout, stderr = wezterm.run_child_process { 'mkfifo', outfile }
+    local success, stdout, stderr = wezterm.run_child_process { "mkfifo", outfile }
     if not success then
         wezterm.log_error("Could not create child", stdout, stderr)
         return
     end
 
     self.proc = io.popen("gitstatusd -s -1 -u -1 -d -1 -c -1 -m -1 > " .. outfile, "w")
-    self.proc_out = io.open(outfile, 'rb')
+    self.proc_out = io.open(outfile, "rb")
     os.remove(outfile)
     self.started = true
 end
@@ -80,47 +81,47 @@ end
 
 local function id(s) return s end
 local function toboolean(s)
-    if s == '0' then
+    if s == "0" then
         return false
-    elseif s == '1' then
+    elseif s == "1" then
         return true
     end
 end
 
 local status_mapping = {
-    { 'id',                        id },
-    { 'is_git',                    toboolean },
-    { 'dir',                       id },
-    { 'hash',                      id },
-    { 'branch',                    id },
-    { 'upstream',                  id },
-    { 'remote',                    id },
-    { 'remote_url',                id },
-    { 'state',                     id },
-    { 'files_in_index',            tonumber },
-    { 'staged_changes',            tonumber },
-    { 'unstaged_changes',          tonumber },
-    { 'conflicted_changes',        tonumber },
-    { 'files_untracked',           tonumber },
-    { 'commits_ahead_upstream',    tonumber },
-    { 'commits_behind_upstream',   tonumber },
-    { 'stashes',                   tonumber },
-    { 'last_tag',                  id },
-    { 'unstaged_deleted_files',    tonumber },
-    { 'staged_new_files',          tonumber },
-    { 'staged_deleted_files',      tonumber },
-    { 'push_remote',               id },
-    { 'push_remote_url',           id },
-    { 'commits_ahead_pushremote',  tonumber },
-    { 'commits_behind_pushremote', tonumber },
-    { 'files_skip_worktree',       tonumber },
-    { 'files_assume_unchanged',    tonumber },
-    { 'message_encoding',          id },
-    { 'message',                   id },
+    { "id",                        id },
+    { "is_git",                    toboolean },
+    { "dir",                       id },
+    { "hash",                      id },
+    { "branch",                    id },
+    { "upstream",                  id },
+    { "remote",                    id },
+    { "remote_url",                id },
+    { "state",                     id },
+    { "files_in_index",            tonumber },
+    { "staged_changes",            tonumber },
+    { "unstaged_changes",          tonumber },
+    { "conflicted_changes",        tonumber },
+    { "files_untracked",           tonumber },
+    { "commits_ahead_upstream",    tonumber },
+    { "commits_behind_upstream",   tonumber },
+    { "stashes",                   tonumber },
+    { "last_tag",                  id },
+    { "unstaged_deleted_files",    tonumber },
+    { "staged_new_files",          tonumber },
+    { "staged_deleted_files",      tonumber },
+    { "push_remote",               id },
+    { "push_remote_url",           id },
+    { "commits_ahead_pushremote",  tonumber },
+    { "commits_behind_pushremote", tonumber },
+    { "files_skip_worktree",       tonumber },
+    { "files_assume_unchanged",    tonumber },
+    { "message_encoding",          id },
+    { "message",                   id },
 }
 
 
-function Gitstatus:get_status(dir)
+function M:get(dir)
     local status = {}
     if not dir then
         return status
@@ -145,12 +146,4 @@ function Gitstatus:get_status(dir)
     return status
 end
 
-local instance
-function Gitstatus.instance()
-    if not instance then
-        instance = Gitstatus:new()
-    end
-    return instance
-end
-
-return Gitstatus
+return M:new()
