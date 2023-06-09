@@ -29,15 +29,90 @@
 
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  boot.initrd.luks.devices.root = {
-    name = "root";
-    device = "/dev/disk/by-uuid/28172ac8-55d8-4d6b-93f9-b849aa46187c";
-    preLVM = true;
-    allowDiscards = true;
-  };
+  services.fstrim.enable = true;
+  networking.hostId = "8425e349";
+  boot.zfs.requestEncryptionCredentials = true;
+  boot.initrd.systemd.enable = true;
+  boot.initrd.postDeviceCommands = ''
+    if ! grep -q zfs_no_rollback /proc/cmdline; then
+      zpool import -N rpool
+      zfs rollback -r rpool/nixos/empty@start
+      zpool export -a
+    fi
+  '';
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.devNodes = "/dev/disk/by-partlabel/";
 
-  # Supposedly better for the SSD.
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+  fileSystems."/" =
+    {
+      device = "rpool/nixos/empty";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/.root" =
+    {
+      device = "rpool/nixos/root";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/home" =
+    {
+      device = "rpool/nixos/home";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "relatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/lib" =
+    {
+      device = "rpool/nixos/var/lib";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/log" =
+    {
+      device = "rpool/nixos/var/log";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/nix" =
+    {
+      device = "/.root/nix";
+      fsType = "none";
+      options = [ "bind" "X-mount.mkdir" "noatime" ];
+    };
+
+  fileSystems."/etc/nixos" =
+    {
+      device = "/.root/etc/nixos";
+      fsType = "none";
+      options = [ "bind" "X-mount.mkdir" "noatime" ];
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-partlabel/EFI";
+      options = [ "X-mount.mkdir" "noatime" ];
+      fsType = "vfat";
+    };
+
+  swapDevices =
+    [{
+      device = "/dev/disk/by-partlabel/swap";
+      discardPolicy = "both";
+      randomEncryption = {
+        enable = true;
+        allowDiscards = true;
+      };
+    }];
 
   environment.systemPackages = with pkgs; [
     powertop
@@ -56,5 +131,6 @@
       PowerKeyIgnoreInhibited=yes
     '';
   };
-  services.tlp.enable = true;
+
+  powerManagement.cpuFreqGovernor = "performance";
 }

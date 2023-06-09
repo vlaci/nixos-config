@@ -2,6 +2,7 @@
 
 {
   networking.hostName = "razorback";
+  services.automatic-timezoned.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./hardware-customization.nix
@@ -35,5 +36,5 @@
     };
   };
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 }

@@ -13,25 +13,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/mapper/vg00-nix";
-      fsType = "xfs";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D4BF-2263";
-      fsType = "vfat";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/mapper/vg00-nix--home";
-      fsType = "xfs";
-    };
-
-  swapDevices =
-    [ { device = "/dev/mapper/vg00-swap"; }
-    ];
-
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
