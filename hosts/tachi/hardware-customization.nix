@@ -29,21 +29,94 @@
   services.xserver.videoDrivers = [ "modesetting" ];
 
   services.fstrim.enable = true;
+  networking.hostId = "8425e349";
+  boot.zfs.requestEncryptionCredentials = true;
+  boot.initrd.systemd.enable = true;
+  boot.initrd.postDeviceCommands = ''
+    if ! grep -q zfs_no_rollback /proc/cmdline; then
+      zpool import -N rpool
+      zfs rollback -r rpool/nixos/empty@start
+      zpool export -a
+    fi
+  '';
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.devNodes = "/dev/disk/by-partlabel/";
 
-  boot.initrd.luks.devices.root = {
-    device = "/dev/disk/by-uuid/d49073d3-599a-452d-ba9f-2903a0bab3a2";
-    preLVM = true;
-    allowDiscards = true;
-  };
+  fileSystems."/" =
+    {
+      device = "rpool/nixos/empty";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
 
-  # Supposedly better for the SSD.
-  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+  fileSystems."/.root" =
+    {
+      device = "rpool/nixos/root";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/home" =
+    {
+      device = "rpool/nixos/home";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "relatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/lib" =
+    {
+      device = "rpool/nixos/var/lib";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/log" =
+    {
+      device = "rpool/nixos/var/log";
+      fsType = "zfs";
+      options = [ "X-mount.mkdir" "noatime" ];
+      neededForBoot = true;
+    };
+
+  fileSystems."/nix" =
+    {
+      device = "/.root/nix";
+      fsType = "none";
+      options = [ "bind" "X-mount.mkdir" "noatime" ];
+    };
+
+  fileSystems."/etc/nixos" =
+    {
+      device = "/.root/etc/nixos";
+      fsType = "none";
+      options = [ "bind" "X-mount.mkdir" "noatime" ];
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-partlabel/EFI";
+      options = [ "X-mount.mkdir" "noatime" ];
+      fsType = "vfat";
+    };
+
+  swapDevices =
+    [{
+      device = "/dev/disk/by-partlabel/swap";
+      discardPolicy = "both";
+      randomEncryption = {
+        enable = true;
+        allowDiscards = true;
+      };
+    }];
 
   environment.systemPackages = with pkgs; [
     brightnessctl
     powertop
     blueman
-    throttled
   ];
 
   services.tlp = {

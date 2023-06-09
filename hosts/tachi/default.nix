@@ -36,7 +36,6 @@
       _.tools.enable = true;
       _.emacs.enable = true;
       _.sway.enable = true;
-      home.packages = with pkgs; [ thunderbird-bin ];
       _.hyprland.enable = true;
     };
   };
@@ -45,5 +44,5 @@
   networking.firewall.checkReversePath = "loose";
   services.printing.enable = true;
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 }
