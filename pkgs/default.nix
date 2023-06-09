@@ -12,7 +12,7 @@ let
     linuxPackages_acs_override = callPackage ./linux_acs_override { };
     # shortcut to allow build-pkgs task to find this derivation
     _kernel_acs_override = linuxPackages_acs_override.kernel;
-    _emacs = pkgs.emacsVlaci;
+    _emacs = pkgs.emacsVlaci or null;
   };
 in
 self
