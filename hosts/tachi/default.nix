@@ -2,7 +2,7 @@
 
 {
   networking.hostName = "tachi";
-  services.tzupdate.enable = true;
+  services.automatic-timezoned.enable = true;
   imports = [
     ./hardware-configuration.nix
     ./hardware-customization.nix
