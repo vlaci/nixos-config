@@ -7,7 +7,7 @@
     enable = true;
     extraConfig = with builtins; (
       replaceStrings
-        [ "HWP_Mode: False" ]
+        [ "# HWP_Mode: False" ]
         [ "HWP_Mode: True" ]
         (readFile "${pkgs.throttled}/etc/throttled.conf")
     );
