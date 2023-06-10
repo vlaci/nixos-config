@@ -64,6 +64,26 @@
         },
         "version": "5f700af890769185ad99d4aae9f53496bb2aa6f2"
     },
+    "nu-scripts": {
+        "cargoLocks": null,
+        "date": "2023-06-09",
+        "extract": null,
+        "name": "nu-scripts",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nushell",
+            "repo": "nu_scripts",
+            "rev": "039930b4e45003c167cad3f0e2567e57510a6a47",
+            "sha256": "sha256-wA05HTKqPMVvrlSJPMAJWMHtvSLtC6mJXTSBVULsg2o=",
+            "type": "github"
+        },
+        "version": "039930b4e45003c167cad3f0e2567e57510a6a47"
+    },
     "wezterm-nightly": {
         "cargoLocks": {
             "Cargo.lock": [

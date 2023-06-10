@@ -4,37 +4,37 @@
   catpuccin-bat = {
     pname = "catpuccin-bat";
     version = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "bat";
       rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
       fetchSubmodules = false;
       sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-    });
+    };
     date = "2022-11-10";
   };
   hexdiff = {
     pname = "hexdiff";
     version = "3e96f27e65167c619ede35ab04232163dc273e69";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "ahroach";
       repo = "hexdiff";
       rev = "3e96f27e65167c619ede35ab04232163dc273e69";
       fetchSubmodules = false;
       sha256 = "sha256-G6Qi7e4o+0ahcslJ8UfJrdoc8NNkY+nl6kyDlkJCo9I=";
-    });
+    };
     date = "2018-01-24";
   };
   mujmap = {
     pname = "mujmap";
     version = "5f700af890769185ad99d4aae9f53496bb2aa6f2";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "elizagamedev";
       repo = "mujmap";
       rev = "5f700af890769185ad99d4aae9f53496bb2aa6f2";
       fetchSubmodules = false;
       sha256 = "sha256-mSJ6uyZSaWWdhqiYNcIm7lC6PZZrZ8PSdxfu+s9MZD0=";
-    });
+    };
     cargoLock."Cargo.lock" = {
       lockFile = ./mujmap-5f700af890769185ad99d4aae9f53496bb2aa6f2/Cargo.lock;
       outputHashes = {
@@ -43,16 +43,28 @@
     };
     date = "2023-05-15";
   };
+  nu-scripts = {
+    pname = "nu-scripts";
+    version = "039930b4e45003c167cad3f0e2567e57510a6a47";
+    src = fetchFromGitHub {
+      owner = "nushell";
+      repo = "nu_scripts";
+      rev = "039930b4e45003c167cad3f0e2567e57510a6a47";
+      fetchSubmodules = false;
+      sha256 = "sha256-wA05HTKqPMVvrlSJPMAJWMHtvSLtC6mJXTSBVULsg2o=";
+    };
+    date = "2023-06-09";
+  };
   wezterm-nightly = {
     pname = "wezterm-nightly";
     version = "95e44f2199d9779e353bccf387a1eb2dbaf41f44";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "wez";
       repo = "wezterm";
       rev = "95e44f2199d9779e353bccf387a1eb2dbaf41f44";
       fetchSubmodules = true;
       sha256 = "sha256-w/iQoWng7nrE+HAg0umpq8RCU0bjw5JogR2HHufspI8=";
-    });
+    };
     cargoLock."Cargo.lock" = {
       lockFile = ./wezterm-nightly-95e44f2199d9779e353bccf387a1eb2dbaf41f44/Cargo.lock;
       outputHashes = {
@@ -65,48 +77,48 @@
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
     version = "41cb143ccc3b8cc444bf20257276cb43275f65c4";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "djui";
       repo = "alias-tips";
       rev = "41cb143ccc3b8cc444bf20257276cb43275f65c4";
       fetchSubmodules = false;
       sha256 = "sha256-ZFWrwcwwwSYP5d8k7Lr/hL3WKAZmgn51Q9hYL3bq9vE=";
-    });
+    };
     date = "2023-01-19";
   };
   zsh-calc = {
     pname = "zsh-calc";
     version = "5b4c85977b693c15eb052cde6b5cef0d6610f567";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "arzzen";
       repo = "calc.plugin.zsh";
       rev = "5b4c85977b693c15eb052cde6b5cef0d6610f567";
       fetchSubmodules = false;
       sha256 = "sha256-N4FBN7iyyiEyZX/opj63D5acA1Oh0YpFXdz83oIOWPE=";
-    });
+    };
     date = "2021-03-24";
   };
   zsh-fast-syntax-highlighting = {
     pname = "zsh-fast-syntax-highlighting";
     version = "v1.55";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "zdharma-continuum";
       repo = "fast-syntax-highlighting";
       rev = "v1.55";
       fetchSubmodules = false;
       sha256 = "sha256-DWVFBoICroKaKgByLmDEo4O+xo6eA8YO792g8t8R7kA=";
-    });
+    };
   };
   zsh-git-prompt-useremail = {
     pname = "zsh-git-prompt-useremail";
     version = "902541b73a23061e6cbeb889e0a7f179a87d047e";
-    src = fetchFromGitHub ({
+    src = fetchFromGitHub {
       owner = "mroth";
       repo = "git-prompt-useremail";
       rev = "902541b73a23061e6cbeb889e0a7f179a87d047e";
       fetchSubmodules = false;
       sha256 = "sha256-lTyqIs2OqnWVVG/yMC9KYvI2bLL77SuIX9NsmWUepNg=";
-    });
+    };
     date = "2017-04-12";
   };
 }

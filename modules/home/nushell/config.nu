@@ -540,3 +540,13 @@ let-env config = {
     }
   ]
 }
+
+def "nu-complete nix" [context: string, offset: int] {
+  let item = ($context | split row ' ' | skip 1 )
+  let c = ($item | length)
+  NIX_GET_COMPLETIONS=$c run-external nix $item --redirect-stdout | lines | skip 1
+}
+
+extern "nix" [
+  ...args: any@"nu-complete nix"
+]

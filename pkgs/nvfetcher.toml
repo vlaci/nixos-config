@@ -11,6 +11,10 @@ src.git = "https://github.com/elizagamedev/mujmap"
 fetch.github = "elizagamedev/mujmap"
 cargo_locks = [ "Cargo.lock" ]
 
+[nu-scripts]
+src.git = "https://github.com/nushell/nu_scripts"
+fetch.github = "nushell/nu_scripts"
+
 [wezterm-nightly]
 src.git = "https://github.com/wez/wezterm"
 fetch.github = "wez/wezterm"
