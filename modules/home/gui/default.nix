@@ -56,8 +56,9 @@ mkProfile "gui" {
   ];
 
   services.flameshot.enable = true;
-  systemd.user.services.flameshot.Unit = {
-    PartOf = [ "sway-session.target" ];
+  systemd.user.services.flameshot = {
+    Unit.PartOf = [ "sway-session.target" ];
+    Service.Environment = lib.mkForce "PATH=${config.home.profileDirectory}/bin XDG_CURRENT_DESKTOP=sway";
   };
 
   programs.waybar = {
