@@ -31,14 +31,30 @@
   services.fstrim.enable = true;
   networking.hostId = "8425e349";
   boot.zfs.requestEncryptionCredentials = true;
-  boot.initrd.systemd.enable = true;
-  boot.initrd.postDeviceCommands = ''
-    if ! grep -q zfs_no_rollback /proc/cmdline; then
-      zpool import -N rpool
-      zfs rollback -r rpool/nixos/empty@start
-      zpool export -a
-    fi
-  '';
+  boot.initrd.systemd = {
+    enable = true;
+    services.revert-root = {
+      after = [
+        "zfs-import-rpool.service"
+      ];
+      requiredBy = [ "initrd.target" ];
+      before = [
+        "sysroot.mount"
+      ];
+      path = with pkgs; [
+        zfs
+      ];
+      unitConfig = {
+        DefaultDependencies = "no";
+        ConditionKernelCommandLine = [ "!zfs_no_rollback" ];
+      };
+      serviceConfig.Type = "oneshot";
+
+      script = ''
+        zfs rollback -r rpool/nixos/empty@start
+      '';
+    };
+  };
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/disk/by-partlabel/";
 
