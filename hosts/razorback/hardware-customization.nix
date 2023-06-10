@@ -30,8 +30,22 @@
   services.xserver.videoDrivers = [ "modesetting" ];
 
   services.fstrim.enable = true;
+
   networking.hostId = "8425e349";
-  boot.zfs.requestEncryptionCredentials = true;
+
+  boot.supportedFilesystems = [ "zfs" ];
+
+  boot.zfs = {
+    allowHibernation = true;
+    devNodes = "/dev/disk/by-partlabel/";
+    requestEncryptionCredentials = true;
+    forceImportRoot = false;
+  };
+
+  services.zfs.autoScrub.enable = true;
+
+  virtualisation.docker.storageDriver = "zfs";
+
   boot.initrd.systemd = {
     enable = true;
     services.revert-root = {
@@ -56,8 +70,6 @@
       '';
     };
   };
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.devNodes = "/dev/disk/by-partlabel/";
 
   fileSystems."/" =
     {
