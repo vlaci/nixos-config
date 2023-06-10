@@ -124,6 +124,13 @@
       options = [ "bind" "X-mount.mkdir" "noatime" ];
     };
 
+  fileSystems."/etc/ssh" =
+    {
+      device = "/.root/etc/ssh";
+      fsType = "none";
+      options = [ "bind" "X-mount.mkdir" ];
+    };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-partlabel/EFI";
