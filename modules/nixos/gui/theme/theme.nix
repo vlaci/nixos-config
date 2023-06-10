@@ -44,7 +44,7 @@
     cursorTheme.name = "pixelfun3";
     cursorTheme.package = pkgs.xcursor-pixelfun;
 
-    gtkTheme.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
+    gtkTheme.name = "Catppuccin-Mocha-Standard-Lavender";
     gtkTheme.package = pkgs.catppuccin-gtk.override {
       accents = [ "lavender" ];
       variant = "mocha";

@@ -62,7 +62,7 @@ lib.mkProfile "gui" {
 
             exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
             # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
-            exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
+            exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name}-Dark ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
 
             bindsym Mod4+shift+e exec swaynag \
               -t warning \
