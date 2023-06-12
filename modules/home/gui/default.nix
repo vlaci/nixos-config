@@ -425,18 +425,7 @@ mkProfile "gui" {
 
   services.darkman = {
     enable = true;
-
     settings.usegeoclue = true;
-
-    darkModeScripts.color-scheme-dark = ''
-      ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-      ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${config.gtk.theme.name}-Dark'"
-    '';
-
-    lightModeScripts.color-scheme-light = ''
-      ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
-      ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${config.gtk.theme.name}'"
-    '';
   };
 
   services.gammastep = {

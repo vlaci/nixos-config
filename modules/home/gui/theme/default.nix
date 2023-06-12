@@ -57,15 +57,59 @@ in
     '';
 
     programs.bat = {
-      config.theme = "_theme";
+      config.theme = "theme-dark";
       themes = {
-        _theme = builtins.readFile "${pkgs.pkgsrcs.catpuccin-bat.src}/Catppuccin-mocha.tmTheme";
+        theme-light = builtins.readFile "${pkgs.pkgsrcs.catpuccin-bat.src}/Catppuccin-latte.tmTheme";
+        theme-dark = builtins.readFile "${pkgs.pkgsrcs.catpuccin-bat.src}/Catppuccin-mocha.tmTheme";
+      };
+    };
+
+    programs.bash.shellAliases."bat" = ''bat --theme $([[ $(< $XDG_RUNTIME_DIR/color-scheme) = light ]] && echo theme-light || echo theme-dark)'';
+    programs.zsh.shellAliases."bat" = ''bat --theme $([[ $(< $XDG_RUNTIME_DIR/color-scheme) = light ]] && echo theme-light || echo theme-dark)'';
+    programs.nushell.shellAliases."bat" = ''bat --theme (if (try { open $"($env.XDG_RUNTIME_DIR)/color-scheme" | str trim} catch { "dark" }) == "light" { echo "theme-light" } else { echo "theme-dark"})'';
+
+    programs.git =
+      let
+        deltaCommand = ''${pkgs.delta}/bin/delta --features "navigate $([[ $(< $XDG_RUNTIME_DIR/color-scheme) == light ]] && echo theme-light || echo theme-dark)"'';
+      in
+      {
+        iniContent = {
+          core.pager = lib.mkForce deltaCommand;
+          interactive.diffFilter = lib.mkForce "${deltaCommand} --color-only";
+        };
+        delta = {
+          options = {
+            theme-light = {
+              light = true;
+              syntax-theme = "theme-light";
+            };
+            theme-dark = {
+              light = false;
+              syntax-theme = "theme-dark";
+            };
+          };
+        };
       };
 
-    };
+
     xdg.configFile."colors.sh".text = concatStrings (mapAttrsToList (n: v: "export ${n}='${v}'\n") theme.colors);
     xresources.properties = (theme.colors // {
       wallpaper = toString theme.wallpaper;
     });
+
+
+    services.darkman = {
+      darkModeScripts.color-scheme-dark = ''
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${config.gtk.theme.name}-Dark'"
+        echo dark > $XDG_RUNTIME_DIR/color-scheme
+      '';
+
+      lightModeScripts.color-scheme-light = ''
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${config.gtk.theme.name}'"
+        echo light > $XDG_RUNTIME_DIR/color-scheme
+      '';
+    };
   };
 }
