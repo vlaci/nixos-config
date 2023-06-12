@@ -99,7 +99,7 @@ lib.mkProfile "gui" {
           makeWrapper $out/lib/slack/slack $out/bin/slack \
           --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
           --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-          --add-flags "--enable-features=WebRTCPipeWireCapturer %U"
+          --add-flags "--enable-features=WebRTCPipeWireCapturer"
         '';
       });
     })
