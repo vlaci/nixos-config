@@ -68,8 +68,8 @@ mkProfile "gui" {
         layer = "top";
         position = "top";
 
-        modules-left = [ "clock" "sway/mode" ];
-        modules-center = [ "wlr/workspaces" "sway/workspaces" ];
+        modules-left = [ "wlr/workspaces" "sway/workspaces" "sway/mode" ];
+        modules-center = [ "clock" ];
         modules-right = [ "sway/language" "pulseaudio" "idle_inhibitor" "disk" "disk#home" "battery" "tray" ];
 
         "wlr/workspaces" = {
@@ -159,22 +159,28 @@ mkProfile "gui" {
         clock =
           {
             format = "{:%H:%M}  ";
-            format-alt = "{:%A; %B %d; %Y (%R)}  ";
+            format-alt = "{:%A; %B %d, %Y (%R)}  ";
             tooltip-format = "<tt><small>{calendar}</small></tt>";
             calendar = {
-              mode = "year";
+              "mode" = "year";
               mode-mon-col = 3;
               weeks-pos = "right";
               on-scroll = 1;
               on-click-right = "mode";
-              format =
-                {
-                  months = "<span color='#ffead3'><b>{}</b></span>";
-                  days = "<span color='#ecc6d9'><b>{}</b></span>";
-                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                  today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-                };
+              format = {
+                "months" = "<span color='#ffead3'><b>{}</b></span>";
+                days = "<span color='#ecc6d9'><b>{}</b></span>";
+                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+              };
+            };
+            actions = {
+              on-click-right = "mode";
+              on-click-forward = "tz_up";
+              on-click-backward = "tz_down";
+              on-scroll-up = "shift_up";
+              on-scroll-down = "shift_down";
             };
           };
 
@@ -242,16 +248,12 @@ mkProfile "gui" {
       in
       ''
         * {
-            font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif, Material Icons;
+            font-family: FontAwesome, monospace, Material Icons;
             font-size: 13px;
             font-weight: bold;
         }
 
         @import "${theme_css}";
-
-        window#waybar {
-            background-color: @background;
-        }
 
         #workspaces button {
             padding: 0 5px;
@@ -289,9 +291,6 @@ mkProfile "gui" {
         #mode {
             background: @red;
             color: @background;
-        }
-
-        #clock {
         }
 
         #language {
