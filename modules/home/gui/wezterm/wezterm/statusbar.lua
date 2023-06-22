@@ -73,35 +73,35 @@ function M.setup()
             local info = string.format(" %s ", git.branch)
 
             if git.commits_behind_upstream ~= 0 then
-                info = info .. string.format("⇣%s", git.commits_behind_upstream)
+                info = string.format("%s ⇣%s", info, git.commits_behind_upstream)
             end
 
             if git.commits_ahead_upstream ~= 0 then
-                info = info .. string.format("⇡%s ", git.commits_ahead_upstream)
+                info = string.format("%s ⇡%s", info, git.commits_ahead_upstream)
             end
 
             if git.commits_behind_pushremote ~= 0 then
-                info = info .. string.format("⇠%s", git.commits_behind_pushremote)
+                info = string.format("%s ⇠%s", info, git.commits_behind_pushremote)
             end
 
             if git.commits_ahead_pushremote ~= 0 then
-                info = info .. string.format("⇢%s ", git.commits_ahead_pushremote)
+                info = string.format("%s ⇢%s", info, git.commits_ahead_pushremote)
             end
 
             if git.stashes ~= 0 then
-                info = info .. string.format("*%s ", git.stashes)
+                info = string.format("%s *%s", info, git.stashes)
             end
 
             if git.staged_changes ~= 0 then
-                info = info .. string.format("+%s ", git.staged_changes)
+                info = string.format("%s +%s", info, git.staged_changes)
             end
 
             if git.unstaged_changes ~= 0 then
-                info = info .. string.format("!%s ", git.unstaged_changes)
+                info = string.format("%s !%s", info, git.unstaged_changes)
             end
 
             if git.files_untracked ~= 0 then
-                info = info .. string.format("?%s ", git.files_untracked)
+                info = string.format("%s ?%s", info, git.files_untracked)
             end
 
             table.insert(cells, info)
@@ -152,6 +152,5 @@ function M.setup()
         window:set_right_status(wezterm.format(elements))
     end)
 end
-
 
 return M
