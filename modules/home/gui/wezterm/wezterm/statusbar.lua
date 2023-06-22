@@ -70,7 +70,18 @@ function M.setup()
 
         local git = gitstatus:get(cwd)
         if git.is_git then
-            local info = string.format(" %s ", git.branch)
+            local info
+            if git.branch ~= "" then
+                info = string.format(" %s", git.branch)
+            elseif git.last_tag ~= "" then
+                info = string.format(" #%s", git.last_tag)
+            else
+                info = string.format(" @%s", git.hash:sub(1, 8))
+            end
+
+            if git.upstream ~= "" and git.upstream ~= git.branch then
+               info = string.format("%s:%s", info, git.upstream)
+            end
 
             if git.commits_behind_upstream ~= 0 then
                 info = string.format("%s ⇣%s", info, git.commits_behind_upstream)
