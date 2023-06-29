@@ -47,7 +47,7 @@ lib.mkProfile "gui" {
     enable = true;
     settings.default_session.command =
       let
-        theme = config._.theme.gtkTheme;
+        theme = config._.theme.gtkTheme.dark;
         sway-greeter-config =
           let
             xkb_variant = builtins.replaceStrings [ " " ] [ "" ] config.services.xserver.xkbVariant;
@@ -62,7 +62,7 @@ lib.mkProfile "gui" {
 
             exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
             # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
-            exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name}-Dark ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
+            exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
 
             bindsym Mod4+shift+e exec swaynag \
               -t warning \

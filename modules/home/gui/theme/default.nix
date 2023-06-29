@@ -6,7 +6,11 @@ let
 in
 {
   config = {
-    gtk = { enable = true; inherit (theme) iconTheme; theme = theme.gtkTheme; };
+    gtk = { enable = true; inherit (theme) iconTheme; theme = theme.gtkTheme.dark; };
+    home.packages = [
+      theme.gtkTheme.dark.package
+      theme.gtkTheme.light.package
+    ];
     home.pointerCursor = (theme.cursorTheme // { x11 = { enable = true; }; });
     programs.kitty.settings = theme.colors // {
       selection_foreground = "#1E1E2E";
@@ -101,13 +105,13 @@ in
     services.darkman = {
       darkModeScripts.color-scheme-dark = ''
         ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${config.gtk.theme.name}-Dark'"
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${nixosConfig._.theme.gtkTheme.dark.name}'"
         echo dark > $XDG_RUNTIME_DIR/color-scheme
       '';
 
       lightModeScripts.color-scheme-light = ''
         ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
-        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${config.gtk.theme.name}'"
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${nixosConfig._.theme.gtkTheme.light.name}'"
         echo light > $XDG_RUNTIME_DIR/color-scheme
       '';
     };

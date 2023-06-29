@@ -72,19 +72,14 @@ in
     cursorTheme.name = mkOption { };
     cursorTheme.package = mkOption { };
 
-    gtkTheme.name = mkOption { };
-    gtkTheme.package = mkOption { };
+    gtkTheme.dark.name = mkOption { };
+    gtkTheme.dark.package = mkOption { };
+    gtkTheme.light.name = mkOption { };
+    gtkTheme.light.package = mkOption { };
 
     iconTheme.name = mkOption { };
     iconTheme.package = mkOption { };
 
     name = mkOption { };
-  };
-
-  config.services.xserver.displayManager.lightdm = {
-    background = config._.theme.wallpaper;
-    greeters.enso = {
-      inherit (config._.theme) cursorTheme iconTheme; theme = config._.theme.gtkTheme;
-    };
   };
 }

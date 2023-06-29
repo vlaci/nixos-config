@@ -44,10 +44,15 @@
     cursorTheme.name = "pixelfun3";
     cursorTheme.package = pkgs.xcursor-pixelfun;
 
-    gtkTheme.name = "Catppuccin-Mocha-Standard-Lavender";
-    gtkTheme.package = pkgs.catppuccin-gtk.override {
+    gtkTheme.dark.name = "Catppuccin-Mocha-Standard-Lavender-dark";
+    gtkTheme.dark.package = pkgs.catppuccin-gtk.override {
       accents = [ "lavender" ];
       variant = "mocha";
+    };
+    gtkTheme.light.name = "Catppuccin-Latte-Standard-Lavender-light";
+    gtkTheme.light.package = pkgs.catppuccin-gtk.override {
+      accents = [ "lavender" ];
+      variant = "latte";
     };
 
     iconTheme.name = "Papirus-Light";
