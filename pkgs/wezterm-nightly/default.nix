@@ -9,8 +9,4 @@ rustPlatform.buildRustPackage rec {
   postPatch = wezterm.postPatch + ''
     echo ${pkgsrcs.wezterm-nightly.date}-${version} > .tag
   '';
-
-  patches = [
-    ./0001-Revert-x11-wayland-improve-non-latin-ctrl-alt-keypre.patch
-  ];
 }

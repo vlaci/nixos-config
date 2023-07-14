@@ -45,34 +45,35 @@
   };
   nu-scripts = {
     pname = "nu-scripts";
-    version = "ab0d3aaad015ca8ac2c2004d728cc8bac32cda1b";
+    version = "e271caf044be7b5ba0ff8c1d7e084fb70f192603";
     src = fetchFromGitHub {
       owner = "nushell";
       repo = "nu_scripts";
-      rev = "ab0d3aaad015ca8ac2c2004d728cc8bac32cda1b";
+      rev = "e271caf044be7b5ba0ff8c1d7e084fb70f192603";
       fetchSubmodules = false;
-      sha256 = "sha256-9WpG6XxTKPgL4T4TquBT0JCA2W7FCWgWXwZAf7VYmkE=";
+      sha256 = "sha256-TByWDymua5i8sQo9NDjZJPoqjXSrMBiTtw2jekqiyTs=";
     };
-    date = "2023-06-27";
+    date = "2023-07-10";
   };
   wezterm-nightly = {
     pname = "wezterm-nightly";
-    version = "9a24f61c22eb2216acc4c483afdcee1c235b96fe";
+    version = "115e629ec14757430462ce4d0ba8e8bd4e193fab";
     src = fetchFromGitHub {
       owner = "wez";
       repo = "wezterm";
-      rev = "9a24f61c22eb2216acc4c483afdcee1c235b96fe";
+      rev = "115e629ec14757430462ce4d0ba8e8bd4e193fab";
       fetchSubmodules = true;
-      sha256 = "sha256-fAi1oT5TMC8c2Ir0aaXTJv/HgVSkkf6V7XrdkiFve0M=";
+      sha256 = "sha256-zbmZGmNDFTc1TijhnnCxvNANzR6NdcwJou42T2GLZLA=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-nightly-9a24f61c22eb2216acc4c483afdcee1c235b96fe/Cargo.lock;
+      lockFile = ./wezterm-nightly-115e629ec14757430462ce4d0ba8e8bd4e193fab/Cargo.lock;
       outputHashes = {
-        "xcb-imdkit-0.2.0" = "sha256-QOT9HLlA26DVPUF4ViKH2ckexUsu45KZMdJwoUhW+hA=";
+        "xcb-1.2.1" = "sha256-zkuW5ATix3WXBAj2hzum1MJ5JTX3+uVQ01R1vL6F1rY=";
+        "xcb-imdkit-0.2.0" = "sha256-L+NKD0rsCk9bFABQF4FZi9YoqBHr4VAZeKAWgsaAegw=";
         "image-0.24.5" = "sha256-fTajVwm88OInqCPZerWcSAm1ga46ansQ3EzAmbT58Js=";
       };
     };
-    date = "2023-06-22";
+    date = "2023-07-13";
   };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
