@@ -84,6 +84,26 @@
         },
         "version": "e271caf044be7b5ba0ff8c1d7e084fb70f192603"
     },
+    "swaylock-dpms": {
+        "cargoLocks": null,
+        "date": "2023-04-03",
+        "extract": null,
+        "name": "swaylock-dpms",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "gartnera",
+            "repo": "swaylock",
+            "rev": "a5802d0b99fd0fdcd59fb112ae0258610e5af0fa",
+            "sha256": "sha256-wY+axSmIwcYCU5teXVIWgQnh4G8ZmQgX+YLucpsyQHQ=",
+            "type": "github"
+        },
+        "version": "a5802d0b99fd0fdcd59fb112ae0258610e5af0fa"
+    },
     "wezterm-nightly": {
         "cargoLocks": {
             "Cargo.lock": [

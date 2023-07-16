@@ -374,7 +374,7 @@ mkProfile "gui" {
   };
   services.swayidle =
     let
-      lockCommand = "${pkgs.swaylock}/bin/swaylock --daemonize";
+      lockCommand = "${config.programs.swaylock.package}/bin/swaylock --daemonize";
       dpms = cmd: "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
     in
     {
@@ -392,8 +392,12 @@ mkProfile "gui" {
       systemdTarget = "graphical-session.target";
     };
 
-  programs.swaylock.settings = {
-    color = "000000";
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-dpms;
+    settings = {
+      color = "000000";
+    };
   };
 
   services.mako = {
