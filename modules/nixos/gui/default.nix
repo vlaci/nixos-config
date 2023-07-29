@@ -19,7 +19,7 @@ lib.mkProfile "gui" {
   ];
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       berkeley-mono-typeface
       noto-fonts
       noto-fonts-emoji
