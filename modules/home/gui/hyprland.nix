@@ -19,7 +19,6 @@ lib.mkProfile "hyprland" {
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor=,preferred,auto,auto
 
-
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Execute your favorite apps at launch
@@ -66,12 +65,14 @@ lib.mkProfile "hyprland" {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
           rounding = 10
-          blur = yes
-          blur_size = 3
-          blur_passes = 1
-          blur_new_optimizations = on
 
-          drop_shadow = yes
+          blur {
+              enabled = true
+              size = 3
+              passes = 1
+          }
+
+          drop_shadow = true
           shadow_range = 4
           shadow_render_power = 3
           col.shadow = rgba(1a1a1aee)
