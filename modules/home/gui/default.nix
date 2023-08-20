@@ -13,6 +13,51 @@ mkProfile "gui" {
   ];
 
   programs.firefox.enable = true;
+  programs.qutebrowser = {
+    enable = true;
+    package = pkgs.qutebrowser-qt6;
+    keyBindings = {
+      normal = {
+        ",pp" = "spawn --userscript qute-bitwarden -t";
+        ",pu" = "spawn --userscript qute-bitwarden --username-only";
+        ",ps" = "spawn --userscript qute-bitwarden --password-only";
+        ",pt" = "spawn --userscript qute-bitwarden --totp-only";
+        "<Ctrl-g>" = "clear-keychain ;; search ;; fullscreen --leave";
+      };
+      caret = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+      command = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+      hint = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+      insert = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+      passthrough = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+      prompt = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+      register = {
+        "<Ctrl-g>" = "mode-leave";
+      };
+    };
+    searchEngines = {
+      w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
+      nw = "https://nixos.wiki/index.php?search={}";
+      g = "https://www.google.com/search?hl=en&q={}";
+    };
+    settings = {
+      spellcheck.languages = [ "en-US" "hu-HU" ];
+      qt.environ = {
+        "NODE_PATH" = "${pkgs.qutebrowser-js-env}/libexec/qutebrowser-js-env/node_modules";
+      };
+    };
+  };
 
   home.sessionVariables = {
     GTK_USE_PORTAL = 1;

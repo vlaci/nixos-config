@@ -12,6 +12,7 @@ let
     wezterm-nightly = callPackage ./wezterm-nightly { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
     linuxPackages_acs_override = callPackage ./linux_acs_override { };
+    qutebrowser-js-env = callPackage ./qutebrowser-js-env { };
     # shortcut to allow build-pkgs task to find this derivation
     _kernel_acs_override = linuxPackages_acs_override.kernel;
     _kernel_acs_override_dev = linuxPackages_acs_override.kernel.dev;

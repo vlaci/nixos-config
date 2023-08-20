@@ -1,0 +1,9 @@
+{
+    "name": "qutebrowser-js-env",
+    "version": "0.0.0",
+    "dependencies": {
+        "@mozilla/readability": "^0.4.4",
+        "jsdom": "^22.1.0",
+        "qutejs": "^1.1.1"
+    }
+}
