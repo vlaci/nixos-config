@@ -15,9 +15,10 @@
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    nvfetcher.url = "github:berberman/nvfetcher";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, nvfetcher, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -39,6 +40,7 @@
       overlays = lib.importDir ./overlays // {
         emacsVlaci = emacsVlaci.overlay;
         hyprland = hyprland.overlays.default;
+        nvfetcher = nvfetcher.overlays.default;
         git-agecrypt = git-agecrypt.overlay;
         default = final: prev:
           let
