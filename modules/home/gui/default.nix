@@ -15,7 +15,6 @@ mkProfile "gui" {
   programs.firefox.enable = true;
   programs.qutebrowser = {
     enable = true;
-    package = pkgs.qutebrowser-qt6;
     keyBindings = {
       normal = {
         ",pp" = "spawn --userscript qute-bitwarden -t";
