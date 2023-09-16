@@ -52,10 +52,12 @@ mkProfile "gui" {
     };
     settings = {
       spellcheck.languages = [ "en-US" "hu-HU" ];
-      qt.environ = {
-        "NODE_PATH" = "${pkgs.qutebrowser-js-env}/libexec/qutebrowser-js-env/node_modules";
-      };
     };
+    extraConfig = ''
+      c.qt.environ = {
+        "NODE_PATH": "${pkgs.qutebrowser-js-env}/libexec/qutebrowser-js-env/node_modules"
+      }
+    '';
   };
 
   home.sessionVariables = {
