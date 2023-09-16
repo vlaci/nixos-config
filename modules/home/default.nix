@@ -12,6 +12,7 @@
     ./gpg.nix
     ./homedir.nix
     ./keyboardio.nix
+    ./persist.nix
     ./programs.nix
     ./services.nix
     ./work.nix

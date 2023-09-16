@@ -11,4 +11,8 @@ lib.mkProfile "networkmanager" {
   ] ++ lib.optionals config._.gui.enable [ networkmanagerapplet ]);
 
   _.users.defaultGroups = [ "networkmanager" ];
+
+  _.persist.directories = [
+    "/etc/NetworkManager/system-connections"
+  ];
 }

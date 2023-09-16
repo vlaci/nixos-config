@@ -88,6 +88,16 @@ mkProfile "gui" {
 
   services.syncthing.enable = true;
 
+  _.persist.directories = [
+    ".config/qutebrowser"
+    ".config/syncthing"
+    ".local/share/qutebrowser"
+    ".mozilla"
+  ];
+  _.persist.files = [
+    ".cache/rofi3.druncache"
+  ];
+
   home.keyboard = null;
 
   home.packages = with pkgs; [

@@ -12,6 +12,7 @@
     ./locale.nix
     ./networkmanager.nix
     ./nix.nix
+    ./persist.nix
     ./secrets.nix
     ./services.nix
     ./security.nix

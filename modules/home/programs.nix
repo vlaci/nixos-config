@@ -68,4 +68,12 @@ mkProfile "tools" {
     controlPersist = "10m";
     serverAliveInterval = 300;
   };
+
+  _.persist = {
+    directories = [
+      ".local/share/direnv"
+      ".local/share/zoxide"
+    ];
+    files = [ ".ssh/known_hosts" ];
+  };
 }

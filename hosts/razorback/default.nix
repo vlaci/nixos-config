@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixos-hardware, ... }:
+{ nixos-hardware, ... }:
 
 {
   networking.hostName = "razorback";
@@ -11,6 +11,8 @@
     (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
   ];
 
+  fileSystems."/.persistent".neededForBoot = true;
+
   _.cachix.enable = true;
   _.networkmanager.enable = true;
   _.sshd.enable = true;
@@ -21,6 +23,7 @@
   _.email.enable = true;
   _.podman.enable = true;
   _.keyboardio.enable = true;
+  _.persist.enable = true;
 
   _.users.users.vlaci = {
     isAdmin = true;
@@ -33,6 +36,10 @@
       _.emacs.enable = true;
       _.sway.enable = true;
       _.hyprland.enable = true;
+
+      _.persist.directories = [
+        { directory = "devel"; method = "symlink"; }
+      ];
     };
   };
 

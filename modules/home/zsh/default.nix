@@ -134,4 +134,5 @@ in
   home.packages = with pkgs; [
     meslo-lgs-nf
   ];
+  _.persist.files = [ ".config/zsh/.zsh_history" ];
 }

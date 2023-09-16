@@ -15,12 +15,18 @@
           X11Forwarding = true;
         };
       };
+      _.persist.directories = [
+        "/etc/ssh"
+      ];
     })
     (lib.mkProfile "libvirt" {
       virtualisation.libvirtd.enable = true;
       virtualisation.spiceUSBRedirection.enable = true;
       _.users.defaultGroups = [ "libvirtd" ];
       services.dbus.packages = with pkgs; [ dconf ];
+      _.persist.directories = [
+        "/var/lib/libvirt"
+      ];
     })
     (lib.mkProfile "docker" {
       virtualisation.docker = {
@@ -30,6 +36,9 @@
       _.users.defaultGroups = [ "docker" ];
       environment.systemPackages = with pkgs; [
         docker-compose
+      ];
+      _.persist.directories = [
+        "/var/lib/docker"
       ];
     })
     (lib.mkProfile "podman" {

@@ -76,6 +76,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1694925805,
+        "narHash": "sha256-UNMivSc89undITtNoy6o6bf3Dck4v75rzGiMEXAPEB0=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "9ab96378f8cf602d5f3ce5a32f2c339509288d8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "eglot-x": {
       "flake": false,
       "locked": {
@@ -124,6 +144,7 @@
         "combobulate": "combobulate",
         "eglot-x": "eglot-x",
         "emacs-overlay": "emacs-overlay",
+        "evil-quick-diff": "evil-quick-diff",
         "explain-pause-mode": "explain-pause-mode",
         "flake-utils": "flake-utils",
         "fromElisp": "fromElisp",
@@ -135,16 +156,33 @@
         "nushell-mode": "nushell-mode"
       },
       "locked": {
-        "lastModified": 1694804295,
-        "narHash": "sha256-bhzyO4do6PCJC6c/CqJp5DhUCugwQXQckTo3DwKnmOU=",
-        "owner": "vlaci",
-        "repo": "emacs.d",
-        "rev": "e2438fc8c3a7ac9fff8446980df313aa3cdb6d35",
-        "type": "github"
+        "lastModified": 1694804435,
+        "narHash": "sha256-J9RBpgi7aHSZ2lvuLXfdDSUcqvyVSqu4JeX4c2vamhk=",
+        "ref": "refs/heads/evil",
+        "rev": "3c8c31de2c38755555f416959f95a9d5539aafad",
+        "revCount": 563,
+        "type": "git",
+        "url": "file:///home/vlaci/devel/git/github.com/vlaci/emacs.d"
       },
       "original": {
         "owner": "vlaci",
         "repo": "emacs.d",
+        "type": "github"
+      }
+    },
+    "evil-quick-diff": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1575189609,
+        "narHash": "sha256-oGzl1ayW9rIuq0haoiFS7RZsS8NFMdEA7K1BSozgnJU=",
+        "owner": "rgrinberg",
+        "repo": "evil-quick-diff",
+        "rev": "69c883720b30a892c63bc89f49d4f0e8b8028908",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rgrinberg",
+        "repo": "evil-quick-diff",
         "type": "github"
       }
     },
@@ -381,6 +419,21 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1694622745,
+        "narHash": "sha256-z397+eDhKx9c2qNafL1xv75lC0Q4nOaFlhaU1TINqb8=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "e9643d08d0d193a2e074a19d4d90c67a874d932e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "ligature": {
       "flake": false,
       "locked": {
@@ -535,11 +588,13 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "disko": "disko",
         "emacsVlaci": "emacsVlaci",
         "flake-utils": "flake-utils_3",
         "git-agecrypt": "git-agecrypt",
         "home-manager": "home-manager_2",
         "hyprland": "hyprland",
+        "impermanence": "impermanence",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nvfetcher": "nvfetcher"

@@ -16,9 +16,12 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     nvfetcher.url = "github:berberman/nvfetcher";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, nvfetcher, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, nvfetcher, disko, impermanence, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -29,8 +32,8 @@
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ emacsVlaci.lib.hmModule hyprland.homeManagerModules.default ];
-        nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default ];
+        hmModules = [ emacsVlaci.lib.hmModule hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence ];
+        nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence ];
       } // inputs);
     in
     {
@@ -43,10 +46,13 @@
         git-agecrypt = git-agecrypt.overlay;
         default = final: prev:
           let
-            pkgsrcs = import ./pkgs { pkgs = prev; };
+            pkgsrcs = import ./pkgs {
+              pkgs = prev;
+            };
           in
           {
             inherit lib pkgsrcs;
+            inherit (disko.packages.${final.system}) disko;
           };
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")
