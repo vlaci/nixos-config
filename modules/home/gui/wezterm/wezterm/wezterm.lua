@@ -30,7 +30,7 @@ config.tab_max_width = 50
 config.quick_select_patterns = {
     "[^ .]+[.][^ .]+"
 }
-config.quick_select_alphabet = "arstqwfpzxcdneioluyhgmvjbh"
+config.quick_select_alphabet = "arstqwfpzxcdneioluygmvjbh"
 
 
 return config
