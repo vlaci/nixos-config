@@ -26,7 +26,6 @@
       mkPkgs = system: import nixpkgs { inherit system; overlays = lib.attrValues self.overlays; };
 
       system = "x86_64-linux";
-      secretRules = import ./secrets/secrets.nix;
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
