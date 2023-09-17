@@ -2,7 +2,7 @@
 
 let
   cfg = config._.emacs;
-  inherit (lib) mkEnableOption mkOption types;
+  inherit (lib) mkEnableOption mkIf mkOption types;
 in
 {
   options = {
@@ -18,7 +18,7 @@ in
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     emacsVlaci = {
       enable = true;
       settings = rec {
