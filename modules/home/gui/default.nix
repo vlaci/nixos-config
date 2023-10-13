@@ -124,11 +124,11 @@ mkProfile "gui" {
         layer = "top";
         position = "top";
 
-        modules-left = [ "wlr/workspaces" "sway/workspaces" "sway/mode" ];
+        modules-left = [ "hyprland/workspaces" "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
         modules-right = [ "sway/language" "pulseaudio" "idle_inhibitor" "disk" "disk#home" "battery" "tray" ];
 
-        "wlr/workspaces" = {
+        "hyprland/workspaces" = {
           "format" = "{icon}";
           "on-click" = "activate";
           "format-icons" = {
