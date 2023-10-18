@@ -63,8 +63,14 @@ in
     programs.bat = {
       config.theme = "theme-dark";
       themes = {
-        theme-light = builtins.readFile "${pkgs.pkgsrcs.catpuccin-bat.src}/Catppuccin-latte.tmTheme";
-        theme-dark = builtins.readFile "${pkgs.pkgsrcs.catpuccin-bat.src}/Catppuccin-mocha.tmTheme";
+        theme-light = {
+          inherit (pkgs.pkgsrcs.catpuccin-bat) src;
+          file = "Catppuccin-latte.tmTheme";
+        };
+        theme-dark = {
+          inherit (pkgs.pkgsrcs.catpuccin-bat) src;
+          file = "Catppuccin-mocha.tmTheme";
+        };
       };
     };
 
