@@ -64,13 +64,12 @@ end
 
 
 local function get_current_working_folder_name(tab)
-    local cwd_uri = (tab.active_pane.current_working_dir or ""):sub(8)
-
-    local slash = cwd_uri:find("/")
-    local cwd = cwd_uri
-    if slash then
-        cwd = cwd_uri:sub(slash)
+    local cwd_uri = tab.active_pane.current_working_dir
+    local cwd = ''
+    if cwd_uri then
+        cwd = cwd_uri.file_path
     end
+
     if cwd == wezterm.home_dir then
         return "  ~"
     end
