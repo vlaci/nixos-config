@@ -121,5 +121,6 @@ in
         echo light > $XDG_RUNTIME_DIR/color-scheme
       '';
     };
+    systemd.user.services.darkman.Service.Environment = "PATH=${lib.makeBinPath [ pkgs.bash ]}";
   };
 }
