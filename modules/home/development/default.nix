@@ -54,23 +54,23 @@ lib.mkProfile "development" {
   programs.helix = {
     enable = true;
     languages = {
-      language = [
-        {
-          name = "python";
-          language-server = {
-            command = "${pkgs.pyright}/bin/pyright-langserver";
-            args = [ "--stdio" ];
-          };
+      language-server = {
+        pyright = {
+          command = "${pkgs.pyright}/bin/pyright-langserver";
+          args = [ "--stdio" ];
           config.python.analysis = {
             autoSearchPaths = true;
             diagnosticMode = "workspace";
           };
-        }
+        };
+        rust-analyzer.config.checkOnSave = {
+          command = "clippy";
+        };
+      };
+      language = [
         {
-          name = "rust";
-          config.checkOnSave = {
-            command = "clippy";
-          };
+          name = "python";
+          language-servers = [ "pyright" ];
         }
       ];
     };
