@@ -14,6 +14,7 @@ mkProfile "gui" {
   programs.firefox.enable = true;
   programs.qutebrowser = {
     enable = true;
+    package = pkgs.qutebrowser.override { enableVulkan=false; };
     keyBindings = {
       normal = {
         ",pp" = "spawn --userscript qute-bitwarden -t";
