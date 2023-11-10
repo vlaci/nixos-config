@@ -67,6 +67,9 @@ in
       EDITOR = "emacsclient -t";
       VISUAL = "emacsclient -c -a emacs";
     };
-    _.persist.directories = [ ".config/emacs/var" ];
+    _.persist.directories = [
+      ".config/emacs/var"
+      ".config/enchant"
+    ];
   };
 }
