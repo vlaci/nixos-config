@@ -49,6 +49,7 @@ mkProfile "tools" {
 
   programs.atuin = {
     enable = true;
+    package = pkgs.atuin-zfs;
     flags = [ "--disable-up-arrow" ];
     settings = {
       filter_mode = "directory";
@@ -71,6 +72,7 @@ mkProfile "tools" {
 
   _.persist = {
     directories = [
+      ".local/share/atuin"
       ".local/share/direnv"
       ".local/share/zoxide"
     ];
