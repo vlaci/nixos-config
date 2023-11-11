@@ -32,6 +32,7 @@ jobs:
         with:
           name: vlaci
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - run: rm -rf /opt/hostedtoolcache
       - run: nix flake lock --override-input nixpkgs github:vlaci/nixpkgs/staging
       - run: nix run nixpkgs\#just -- build-pkgs
 
@@ -55,6 +56,7 @@ jobs:
         with:
           name: vlaci
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - run: rm -rf /opt/hostedtoolcache
       - run: nix flake lock --override-input nixpkgs github:vlaci/nixpkgs/staging
       - run: nix run nixpkgs\#just -- build-host "${{ matrix.host }}"
 
