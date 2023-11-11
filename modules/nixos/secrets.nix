@@ -1,15 +1,14 @@
 { lib, config, pkgs, agenix, ... }:
 
 let
-  inherit (builtins) pathExists;
-  inherit (lib) fileContents hasSuffix mkOption;
+  inherit (lib) fileContents hasInfix mkOption;
 
-  isEncrypted = src: hasSuffix " data" (fileContents (pkgs.runCommandLocal "is-encrypted"
+  isEncrypted = src: hasInfix "age encrypted file" (fileContents (pkgs.runCommandLocal "is-encrypted"
     {
       inherit src;
       buildInputs = [ pkgs.file ];
     } ''
-    file $src > $out
+    file -b $src > $out
   ''
   ));
   tryImport = path:
