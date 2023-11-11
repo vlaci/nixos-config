@@ -45,12 +45,21 @@ in
       enableCompletion = false;
       enableVteIntegration = true;
       inherit dotDir;
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;
-        ignoreSpace = true;
-        path = "$HOME/${dotDir}/.zsh_history";
-      };
+      history =
+        let
+          prefix =
+            if config._.persist.enable then
+              config._.persist.root
+            else
+              "$HOME"
+          ;
+        in
+        {
+          expireDuplicatesFirst = true;
+          extended = true;
+          ignoreSpace = true;
+          path = "${prefix}/${dotDir}/.zsh_history";
+        };
       plugins = [
         {
           name = "command_not_found";
@@ -134,5 +143,4 @@ in
   home.packages = with pkgs; [
     meslo-lgs-nf
   ];
-  _.persist.files = [ ".config/zsh/.zsh_history" ];
 }
