@@ -1,18 +1,19 @@
-{ config, lib, ... }:
+{ config, ... }:
 
-let
-  inherit (lib) filterAttrs hasPrefix mapAttrsToList removePrefix;
-in
 {
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
   };
 
-  _.persist.directories =
-    let
-      home = "${config.home.homeDirectory}/";
-    in
-    mapAttrsToList (name: dir: removePrefix home dir)
-      (filterAttrs (n: v: builtins.typeOf v == "string" && hasPrefix home v) config.xdg.userDirs);
+  _.persist.directories = with config.xdg.userDirs; [
+    desktop
+    documents
+    download
+    music
+    pictures
+    publicShare
+    templates
+    videos
+  ];
 }
