@@ -2,7 +2,7 @@
 
 let
   cfg = config._.persist;
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkIf mkOption types;
 in
 {
   options._.persist = {
