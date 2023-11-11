@@ -15,14 +15,11 @@
   environment.systemPackages =
     let
       prep = pkgs.writeShellScriptBin "prep" ''
-        swapon /dev/mapper/vg-swap
-        mount -oremount,size=7G /nix/.rw-store/
-        mount /dev/mapper/vg-root /mnt/
-        mkdir -p /mnt/boot /mnt/etc/nixos
-        mount /dev/vda1 /mnt/boot/
-        mount nixos-config -t9p -otrans=virtio /mnt/etc/nixos/
-        nixos-install --flake path:/mnt/etc/nixos#vm
+        mount nixos-config -t9p -otrans=virtio /etc/nixos/
+      '';
+      run-disko = pkgs.writeShellScriptBin "run-disko" ''
+        disko -m disko /etc/nixos/hosts/razorback/disko-config.nix --arg disks '[ "/dev/vda" ]'
       '';
     in
-    [ prep ];
+    with pkgs; [ prep run-disko disko zellij ];
 }
