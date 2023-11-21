@@ -28,4 +28,13 @@ in
   environment.systemPackages = with pkgs; [
     nix-index
   ];
+
+  system.activationScripts.diff = ''
+    PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+    echo
+    echo =================================  [ Changes ]  =================================
+    ${pkgs.nvd}/bin/nvd diff /run/current-system "$systemConfig"
+    echo =================================================================================
+    echo
+  '';
 }
