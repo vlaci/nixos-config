@@ -11,6 +11,7 @@
     ./git.nix
     ./gpg.nix
     ./homedir.nix
+    ./jujutsu.nix
     ./keyboardio.nix
     ./persist.nix
     ./programs.nix
