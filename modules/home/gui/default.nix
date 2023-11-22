@@ -11,6 +11,12 @@ mkProfile "gui" {
     ./sway.nix
   ];
 
+  dconf.settings."org/gnome/desktop/interface" = with nixosConfig.fonts.fontconfig.defaultFonts; {
+    font-name = builtins.head sansSerif;
+    monospace-font-name = builtins.head monospace;
+  };
+
+
   programs.firefox.enable = true;
   programs.qutebrowser = {
     enable = true;
