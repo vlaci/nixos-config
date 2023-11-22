@@ -1,4 +1,4 @@
-{ lib, pkgs, config, nixosConfig, ... }:
+{ lib, nixosConfig, ... }:
 
 let
   inherit (lib) mkIf mkProfile;
