@@ -66,7 +66,7 @@
     },
     "nu-scripts": {
         "cargoLocks": null,
-        "date": "2023-11-09",
+        "date": "2023-12-01",
         "extract": null,
         "name": "nu-scripts",
         "passthru": null,
@@ -78,11 +78,11 @@
             "name": null,
             "owner": "nushell",
             "repo": "nu_scripts",
-            "rev": "93c8ea20d7fcc5b23ba1c0f89fdcf433559a4338",
-            "sha256": "sha256-5G1S4F1qA7X1S/wIc1iUQ9+Ox2iTvqI5DYmSrJqvJKw=",
+            "rev": "55ef44ad3e052ebda6e08fed17af1fd30df32e66",
+            "sha256": "sha256-rPsXHtpJDbvlNNMqnP3kh0id3seUZCru6bIejLVDFSM=",
             "type": "github"
         },
-        "version": "93c8ea20d7fcc5b23ba1c0f89fdcf433559a4338"
+        "version": "55ef44ad3e052ebda6e08fed17af1fd30df32e66"
     },
     "swaylock-dpms": {
         "cargoLocks": null,
@@ -107,14 +107,14 @@
     "wezterm-nightly": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-nightly-f0e3eecba6faec0aa963a6f0067577afc99e11db/Cargo.lock",
+                "./wezterm-nightly-6d58e5196bb3a433880643a05fe5d6f19e49572a/Cargo.lock",
                 {
                     "xcb-1.2.1": "sha256-zkuW5ATix3WXBAj2hzum1MJ5JTX3+uVQ01R1vL6F1rY=",
                     "xcb-imdkit-0.2.0": "sha256-L+NKD0rsCk9bFABQF4FZi9YoqBHr4VAZeKAWgsaAegw="
                 }
             ]
         },
-        "date": "2023-11-07",
+        "date": "2023-12-01",
         "extract": null,
         "name": "wezterm-nightly",
         "passthru": null,
@@ -126,11 +126,11 @@
             "name": null,
             "owner": "wez",
             "repo": "wezterm",
-            "rev": "f0e3eecba6faec0aa963a6f0067577afc99e11db",
-            "sha256": "sha256-VxN3qv+uRuS1Yo51zWkooZdJkodEbZ4F50iYRihCQIU=",
+            "rev": "6d58e5196bb3a433880643a05fe5d6f19e49572a",
+            "sha256": "sha256-RDaDHlxbfgjO7EYQUKDPCQ8wmcebYLdaOn3lYgcSM+g=",
             "type": "github"
         },
-        "version": "f0e3eecba6faec0aa963a6f0067577afc99e11db"
+        "version": "6d58e5196bb3a433880643a05fe5d6f19e49572a"
     },
     "zsh-alias-tips": {
         "cargoLocks": null,
