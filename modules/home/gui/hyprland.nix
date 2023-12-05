@@ -17,7 +17,7 @@ lib.mkProfile "hyprland" {
       #
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor=,preferred,auto,auto
+      monitor=,preferred,auto,1
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -114,6 +114,8 @@ lib.mkProfile "hyprland" {
       device:epic mouse V1 {
           sensitivity = -0.5
       }
+
+      misc:focus_on_activate = true
 
       # Example windowrule v1
       # windowrule = float, ^(kitty)$
