@@ -4,7 +4,7 @@ let
   inherit (lib) mkDefault;
 in
 {
-  nix.package = mkDefault pkgs.nixUnstable;
+  nix.package = mkDefault pkgs.nixVersions.nix_2_18;
   nix.extraOptions = mkDefault ''
     experimental-features = nix-command flakes
     keep-outputs = true
