@@ -34,9 +34,9 @@ lib.mkProfile "email" (mkIf vlaci.available {
     enable = true;
     settings = {
       email = nixosConfig._.secrets.vlaci.value.bitwarden.email;
+      pinentry = "qt";
     };
   };
-
 
   accounts.email = {
     accounts = (
