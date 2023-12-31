@@ -77,6 +77,9 @@ in
     gtkTheme.light.name = mkOption { };
     gtkTheme.light.package = mkOption { };
 
+    kvantumTheme.name = mkOption { };
+    kvantumTheme.package = mkOption { };
+
     iconTheme.name = mkOption { };
     iconTheme.package = mkOption { };
 

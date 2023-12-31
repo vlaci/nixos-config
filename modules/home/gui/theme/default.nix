@@ -7,6 +7,20 @@ in
 {
   config = {
     gtk = { enable = true; inherit (theme) iconTheme; theme = theme.gtkTheme.dark; };
+    qt = {
+      enable = true;
+      platformTheme = "gtk3";
+      style.name = "kvantum";
+    };
+
+    xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+      theme=${theme.kvantumTheme.name}
+    '';
+
+    xdg.configFile."Kvantum/${theme.kvantumTheme.name}" = {
+      source = "${theme.kvantumTheme.package}/share/Kvantum/${theme.kvantumTheme.name}";
+    };
+
     home.packages = [
       theme.gtkTheme.dark.package
       theme.gtkTheme.light.package
