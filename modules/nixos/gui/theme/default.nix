@@ -82,7 +82,5 @@ in
 
     iconTheme.name = mkOption { };
     iconTheme.package = mkOption { };
-
-    name = mkOption { };
   };
 }

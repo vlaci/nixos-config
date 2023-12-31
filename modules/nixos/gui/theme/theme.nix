@@ -58,7 +58,6 @@
     iconTheme.name = "Papirus-Light";
     iconTheme.package = pkgs.papirus-icon-theme;
 
-    name = "Nord";
     kvantumTheme.name = "Catppuccin-Mocha-Lavender";
     kvantumTheme.package = pkgs.catppuccin-kvantum.override { accent = "Lavender"; variant = "Mocha"; };
   };
