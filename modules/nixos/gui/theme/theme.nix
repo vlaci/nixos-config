@@ -1,64 +1,60 @@
 { pkgs, ... }:
 
 {
-  _.theme = {
-    colors = {
-      foreground = "#CDD6F4";
-      background = "#1E1E2E";
+  stylix = {
+    image = ./wallpaper.jpeg;
 
-      # black
-      color0 = "#45475A";
-      color8 = "#585B70";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
-      # red
-      color1 = "#F38BA8";
-      color9 = "#F38BA8";
+    fonts = {
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
 
-      # green
-      color2 = "#A6E3A1";
-      color10 = "#A6E3A1";
+      sansSerif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
+      };
 
-      # yellow
-      color3 = "#F9E2AF";
-      color11 = "#F9E2AF";
+      monospace = {
+        package = pkgs.berkeley-mono-typeface;
+        name = "Berkeley Mono";
+      };
 
-      # blue
-      color4 = "#89B4FA";
-      color12 = "#89B4FA";
-
-      # magenta
-      color5 = "#F5C2E7";
-      color13 = "#F5C2E7";
-
-      # cyan
-      color6 = "#94E2D5";
-      color14 = "#94E2D5";
-
-      # white
-      color7 = "#BAC2DE";
-      color15 = "#A6ADC8";
+      sizes = {
+        desktop = 12;
+        popups = 12;
+      };
     };
 
-    wallpaper = ./wallpaper.jpeg;
+    cursor = {
+      package = pkgs.xcursor-pixelfun;
+      name = "pixelfun3";
+    };
+  };
 
-    cursorTheme.name = "pixelfun3";
-    cursorTheme.package = pkgs.xcursor-pixelfun;
-
+  _.theme = {
     gtkTheme.dark.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
     gtkTheme.dark.package = pkgs.catppuccin-gtk.override {
       accents = [ "lavender" ];
       variant = "mocha";
     };
+
     gtkTheme.light.name = "Catppuccin-Latte-Standard-Lavender-Light";
     gtkTheme.light.package = pkgs.catppuccin-gtk.override {
       accents = [ "lavender" ];
       variant = "latte";
     };
 
+    kvantumTheme.name = "Catppuccin-Mocha-Lavender";
+    kvantumTheme.package = pkgs.catppuccin-kvantum.override {
+      accent = "Lavender";
+      variant = "Mocha";
+    };
+
     iconTheme.name = "Papirus-Light";
     iconTheme.package = pkgs.papirus-icon-theme;
 
-    kvantumTheme.name = "Catppuccin-Mocha-Lavender";
-    kvantumTheme.package = pkgs.catppuccin-kvantum.override { accent = "Lavender"; variant = "Mocha"; };
   };
 }

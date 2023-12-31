@@ -1,8 +1,7 @@
 configuration {
-  font:                       "Monospace Extrabold 13";
   show-icons:                 true;
   icon-theme:                 "Papirus";
-  display-drun:               "";
+  display-drun:               "󰍉";
   drun-display-format:        "{name}";
   disable-history:            false;
   sidebar-mode:               false;
@@ -17,7 +16,7 @@ window {
   border:                     2px;
   border-color:               @ac;
   border-radius:              8px;
-  width:                      18%;
+  width:                      33%;
   location:                   center;
   x-offset:                   0;
   y-offset:                   0;
@@ -28,12 +27,11 @@ prompt {
   padding:                    0.30% 1% 0% -0.5%;
   background-color:           @al;
   text-color:                 @tx;
-  font:                       "Font Awesome 16";
 }
 
 entry {
   background-color:           @al;
-  text-color:                 #7AA2F7;
+  text-color:                 @tx;
   placeholder-color:          @bg;
   expand:                     true;
   horizontal-align:           0;

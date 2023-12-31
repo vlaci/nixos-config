@@ -19,9 +19,10 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, nvfetcher, disko, impermanence, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, nvfetcher, disko, impermanence, stylix, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -33,7 +34,7 @@
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
         hmModules = [ emacsVlaci.lib.hmModule hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence ];
-        nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence ];
+        nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix ];
       } // inputs);
     in
     {

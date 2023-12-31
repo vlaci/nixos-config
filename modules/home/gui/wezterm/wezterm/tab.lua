@@ -4,46 +4,46 @@ local colors = require "colors"
 local M = {}
 
 local function get_process(tab)
-    local palette = tab.is_active and colors.opposite or colors.palette
+    local palette = colors.scheme
     local process_icons = {
         ["bat"] = {
-            { Foreground = { Color = palette.flamingo } },
+            { Foreground = { Color = palette.ansi[2] } },
             { Text = "󰭟" },
         },
         ["docker"] = {
-            { Foreground = { Color = palette.blue } },
+            { Foreground = { Color = palette.ansi[5] } },
             { Text = wezterm.nerdfonts.dev_docker },
         },
         ["bash"] = {
-            { Foreground = { Color = palette.yellow } },
+            { Foreground = { Color = palette.ansi[4] } },
             { Text = wezterm.nerdfonts.cod_terminal_bash },
         },
         ["nu"] = {
-            { Foreground = { Color = palette.green } },
+            { Foreground = { Color = palette.ansi[3] } },
             { Text = "❯_" },
         },
         ["zsh"] = {
-            { Foreground = { Color = palette.teal } },
+            { Foreground = { Color = palette.brights[5] } },
             { Text = "" },
         },
         ["btm"] = {
-            { Foreground = { Color = palette.rosewater } },
+            { Foreground = { Color = palette.ansi[2] } },
             { Text = "" },
         },
         ["cargo"] = {
-            { Foreground = { Color = palette.peach } },
+            { Foreground = { Color = palette.brights[2] } },
             { Text = wezterm.nerdfonts.dev_rust },
         },
         ["git"] = {
-            { Foreground = { Color = palette.peach } },
+            { Foreground = { Color = palette.brights[2] } },
             { Text = wezterm.nerdfonts.dev_git },
         },
         ["python3"] = {
-            { Foreground = { Color = palette.sapphire } },
+            { Foreground = { Color = palette.brights[3] } },
             { Text = wezterm.nerdfonts.dev_python },
         },
         ["ssh"] = {
-            { Foreground = { Color = palette.red } },
+            { Foreground = { Color = palette.ansi[2] } },
             { Text = "󰣀" },
         },
     }
@@ -58,7 +58,7 @@ local function get_process(tab)
 
     return wezterm.format(
         process_icons[process_name]
-        or { { Foreground = { Color = colors.palette.sky } }, { Text = string.format("[%s]", process_name) } }
+        or { { Foreground = { Color = colors.scheme.brights[5] } }, { Text = string.format("[%s]", process_name) } }
     )
 end
 
@@ -81,16 +81,16 @@ end
 function M.setup()
     wezterm.on("format-tab-title", function(tab)
         return wezterm.format({
-            { Foreground = { Color = colors.palette.crust } },
+            { Foreground = { Color = colors.scheme.tab_bar.inactive_tab.bg_color } },
             { Text = tab.tab_index > 0 and "" or " " },
             { Attribute = { Intensity = "Half" } },
-            { Foreground = { Color = colors.palette.overlay0 } },
+            { Foreground = { Color = colors.scheme.tab_bar.active_tab.fg_color } },
             { Text = string.format(" %s  ", tab.tab_index + 1) },
             "ResetAttributes",
             { Text = get_process(tab) },
             { Text = " " },
             { Text = get_current_working_folder_name(tab) },
-            { Foreground = { Color = colors.palette.crust } },
+            { Foreground = { Color = colors.scheme.tab_bar.inactive_tab.bg_color } },
             { Text = "" },
         })
     end)

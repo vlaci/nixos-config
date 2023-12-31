@@ -11,12 +11,6 @@ mkProfile "gui" {
     ./sway.nix
   ];
 
-  dconf.settings."org/gnome/desktop/interface" = with nixosConfig.fonts.fontconfig.defaultFonts; {
-    font-name = builtins.head sansSerif;
-    monospace-font-name = builtins.head monospace;
-  };
-
-
   programs.firefox.enable = true;
   programs.qutebrowser = {
     enable = true;
@@ -130,9 +124,9 @@ mkProfile "gui" {
         layer = "top";
         position = "top";
 
-        modules-left = [ "hyprland/workspaces" "sway/workspaces" "sway/mode" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/submap" "sway/workspaces" "sway/mode" ];
         modules-center = [ "clock" ];
-        modules-right = [ "sway/language" "pulseaudio" "idle_inhibitor" "disk" "disk#home" "battery" "tray" ];
+        modules-right = [ "idle_inhibitor" "sway/language" "hyprland/language" "pulseaudio" "disk" "disk#home" "battery" "tray" ];
 
         "hyprland/workspaces" = {
           "format" = "{icon}";
@@ -184,29 +178,34 @@ mkProfile "gui" {
           on-click = "minimize-raise";
         };
 
-        "sway/language" = {
-          format = "{}";
-          on-click = "swaymsg input type:keyboard xkb_switch_layout next";
-        };
-
-        "pulseaudio" = {
-          format = "{volume}% {icon}";
-          format-bluetooth = "{volume}% {icon}";
-          format-muted = "";
-          format-icons = {
-            headphone = "";
-            default = [ "" "" ];
-          };
-          scroll-step = 1;
-          on-click = "pavucontrol";
-        };
-
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
             activated = "";
             deactivated = "";
           };
+        };
+
+        "sway/language" = {
+          format = "{}";
+          on-click = "swaymsg input type:keyboard xkb_switch_layout next";
+        };
+
+        "hyprland/language" = {
+          format = "{}";
+          on-click = "hyprctl switchxkblayout";
+        };
+
+        "pulseaudio" = {
+          format = "{icon}";
+          format-bluetooth = "{icon} ";
+          format-muted = "󰝟";
+          format-icons = {
+            headphone = "";
+            default = [ "" "" ];
+          };
+          scroll-step = 1;
+          on-click = "pavucontrol";
         };
 
         disk = {
@@ -283,149 +282,44 @@ mkProfile "gui" {
         };
       }
     ];
-    style =
-      let
-        colors = nixosConfig._.theme.colors;
-        theme_css = pkgs.writeText "theme.css" ''
-          @define-color background ${colors.background};
-          @define-color foreground ${colors.foreground};
-          @define-color black ${colors.color0};
-          @define-color red   ${colors.color1};
-          @define-color green ${colors.color2};
-          @define-color yellow ${colors.color3};
-          @define-color blue  ${colors.color4};
-          @define-color magenta ${colors.color5};
-          @define-color cyan  ${colors.color6};
-          @define-color white ${colors.color7};
-
-          @define-color magenta_b ${colors.color13};
-          @define-color cyan_b   ${colors.color14};
-          @define-color yellow_b ${colors.color11};
-          @define-color white_b  ${colors.color15};
-          @define-color black_b  ${colors.color8};
-          @define-color red_b    ${colors.color9};
-          @define-color green_b  ${colors.color10};
-          @define-color blue_b   ${colors.color12};
-        '';
-      in
+    style = lib.mkAfter
       ''
         * {
             font-family: FontAwesome, monospace, Material Icons;
             font-size: 13px;
             font-weight: bold;
+            min-height: 0;
         }
 
-        @import "${theme_css}";
+        window#waybar {
+            background: @theme_base_color;
+            color: @theme_text_color;
+        }
 
         #workspaces button {
-            padding: 0 5px;
-            background: transparent;
-            color: @foreground;
-            /* Avoid rounded borders under each workspace name */
             border: none;
             border-radius: 0;
         }
 
-        /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-        #workspaces button:hover {
-            background: shade(@background, 1.5);
-        }
-
-        #workspaces button.active {
-            background-color: @cyan;
-            color: @background;
-        }
-
-        #workspaces button.focused {
-            background-color: @cyan;
-            color: @background;
-        }
-
-        #workspaces button.urgent {
-            background-color: @red;
-        }
-
-        #mode, #clock, #battery {
-            padding: 0 10px;
-            margin: 0 5px;
-        }
-
-        #mode {
-            background: @red;
-            color: @background;
-        }
-
-        #language {
-            padding: 0 0px;
-            margin: 0 5px;
-            min-width: 24px;
-            color: @green_b;
-        }
-
-        #disk {
-            color: @blue;
-        }
-
+        #submap,
+        #mode,
+        #clock,
+        #pulseaudio,
+        #disk,
+        #battery,
+        #language,
+        #tray,
         #idle_inhibitor {
-            color: @yellow;
+            border-bottom: 3px solid transparent;
         }
 
         #idle_inhibitor.activated {
-            background-color: @yellow_b;
-            color: @background;
-        }
-
-        #pulseaudio {
-            color: @magenta;
-        }
-
-        #pulseaudio.muted {
-            background-color: @black_b;
-        }
-
-        #battery.charging {
-            color: @background;
-            background-color: @yellow;
-        }
-
-        #battery.charging {
-            color: @background;
-            background-color: @green;
-        }
-
-        @keyframes blink {
-            to {
-                background-color: @white_b;
-                color: @background;
-            }
-        }
-
-        #clock,
-        #battery,
-        #cpu,
-        #memory,
-        #disk,
-        #temperature,
-        #backlight,
-        #network,
-        #pulseaudio,
-        #custom-media,
-        #tray,
-        #mode,
-        #idle_inhibitor,
-        #mpd {
-             padding: 0 18px;
-             margin: 0 3px;
-        }
-
-        #window,
-        #workspaces {
-            margin: 0 4px;
+            border-bottom: 3px solid @base06;
         }
 
         #battery.warning:not(.charging) {
-            background: @red;
-            color: @white_b;
+            background: @base08;
+            color: @base05;
             animation-name: blink;
             animation-duration: 0.5s;
             animation-timing-function: linear;
@@ -457,15 +351,11 @@ mkProfile "gui" {
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-dpms;
-    settings = {
-      color = "000000";
-    };
   };
 
   services.mako = {
     enable = true;
     anchor = "top-center";
-    font = "sans 11";
     borderSize = 2;
     iconPath =
       let

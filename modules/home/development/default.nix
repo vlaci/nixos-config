@@ -75,7 +75,6 @@ lib.mkProfile "development" {
       ];
     };
     settings = {
-      theme = "catppuccin_mocha";
       editor = {
         line-number = "relative";
         cursorline = true;

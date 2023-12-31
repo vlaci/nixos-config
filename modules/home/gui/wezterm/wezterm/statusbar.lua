@@ -118,13 +118,13 @@ function M.setup()
         local LEFT_SEP = ""
 
         local palette = {
-            colors.palette.red,
-            colors.palette.maroon,
-            colors.palette.peach,
-            colors.palette.yellow,
+            colors.scheme.ansi[2],
+            colors.scheme.ansi[3],
+            colors.scheme.ansi[4],
+            colors.scheme.ansi[5],
         }
 
-        local text_fg = colors.palette.base
+        local text_fg = colors.scheme.tab_bar.background;
 
         local elements = {}
         local num_cells = 0

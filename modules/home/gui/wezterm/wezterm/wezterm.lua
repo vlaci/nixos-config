@@ -17,7 +17,7 @@ config:set_strict_mode(true)
 
 config.keys = keys
 
-config.color_scheme = colors.selected
+config.color_scheme = "stylix"
 config.font = wezterm.font "monospace"
 
 config.scrollback_lines = 100000

@@ -1,15 +1,16 @@
-{ pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
-  home.packages = with pkgs; [ gitstatus wezterm-nightly ];
+  home.packages = with pkgs; [ gitstatus ];
 
-  xdg.configFile."wezterm".source = ./wezterm;
-
-  programs.bash.initExtra = ''
-    source ${pkgs.wezterm}/etc/profile.d/wezterm.sh
-  '';
-
-  programs.zsh.initExtra = ''
-    source ${pkgs.wezterm}/etc/profile.d/wezterm.sh
-  '';
+  programs.wezterm = {
+    enable = true;
+    package = pkgs.wezterm-nightly;
+    extraConfig = builtins.readFile ./wezterm/wezterm.lua;
+  };
+  xdg.configFile = lib.pipe ./wezterm [
+    builtins.readDir
+    (lib.filterAttrs (name: type: type == "regular" && name != "wezterm.lua"))
+    (lib.mapAttrs' (name: value: lib.nameValuePair "wezterm/${name}" { source = ./wezterm + "/${name}"; }))
+  ];
 }

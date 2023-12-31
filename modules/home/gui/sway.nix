@@ -27,45 +27,7 @@ in
           bars = [{
             command = "waybar";
           }];
-          colors = {
-            background = colors.background;
-            focused = {
-              background = colors.color8;
-              border = colors.color7;
-              childBorder = colors.color4;
-              indicator = colors.color11;
-              text = colors.foreground;
-            };
-            focusedInactive = {
-              background = colors.color8;
-              border = colors.color8;
-              childBorder = colors.color0;
-              indicator = colors.color1;
-              text = colors.foreground;
-            };
-            "placeholder" = {
-              background = colors.color0;
-              border = colors.color0;
-              childBorder = colors.color0;
-              indicator = colors.color0;
-              text = colors.foreground;
-            };
-            unfocused = {
-              background = colors.color0;
-              border = colors.color0;
-              childBorder = colors.color8;
-              indicator = colors.color0;
-              text = colors.foreground;
-            };
-            urgent = {
-              background = colors.color1;
-              border = colors.color1;
-              childBorder = colors.color3;
-              indicator = colors.color11;
-              text = colors.foreground;
-            };
-          };
-          output = { "*" = { bg = "${nixosConfig._.theme.wallpaper} fill"; }; };
+          output = { "*" = { bg = "${config.stylix.image} fill"; }; };
           left = left;
           down = down;
           up = up;
@@ -95,7 +57,6 @@ in
           ];
           fonts = {
             names = [ "Sans" "Fontawesome" "Material Design Icons" ];
-            size = 11.0;
           };
           keybindings = {
             #
