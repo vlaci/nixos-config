@@ -6,7 +6,8 @@ in
 lib.mkProfile "hyprland" {
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = {
+    plugins = [ pkgs.hy3 ];
+    settings = with config.lib.stylix.colors; {
       monitor = ",preferred,auto,1";
       exec-once = "hyprpaper & waybar";
       input = {
@@ -22,7 +23,7 @@ lib.mkProfile "hyprland" {
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        layout = "dwindle";
+        layout = "hy3";
       };
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -77,12 +78,25 @@ lib.mkProfile "hyprland" {
         force_default_wallpaper = 0;
         focus_on_activate = true;
       };
-      
+
       windowrule = [
         "float,title:^(Firefox — Sharing Indicator)$"
         "move 50%-38 100%-32,title:^(Firefox — Sharing Indicator)$"
         "pin,title:^(Firefox — Sharing Indicator)$"
       ];
+
+      "plugin:hy3" = {
+        tabs = {
+          height = 20;
+          text_height = config.stylix.fonts.sizes.desktop;
+          "col.active" = "rgb(${base00})";
+          "col.text.active" = "rgb(${base05})";
+          "col.inactive" = "rgb(${base03})";
+          "col.text.inactive" = "rgb(${base05})";
+          "col.urgent" = "rgb(${base09})";
+          "col.text.urgent" = "rgb(${base05})";
+        };
+      };
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       "$mainMod" = "SUPER";
@@ -92,7 +106,7 @@ lib.mkProfile "hyprland" {
         "$mainMod, Return, exec, wezterm"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, E, exec, swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Hyprland? This will end your Wayland session.' -b 'Yes, exit' 'hyprctl dispatch exit'"
-        "$mainMod, V, togglefloating,"
+        "$mainMod SHIFT, Space, togglefloating,"
         "$mainMod, D, exec, rofi -show drun"
         "ALT CTRL, L, exec, systemctl --user kill --signal SIGUSR1 swayidle.service"
         "$mainMod, P, pseudo," # dwindle
@@ -102,10 +116,10 @@ lib.mkProfile "hyprland" {
         "$mainMod, PERIOD, changegroupactive, f" # dwindle
 
         # Move focus with mainMod + arrow keys
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        "$mainMod, left, hy3:movefocus, l"
+        "$mainMod, right, hy3:movefocus, r"
+        "$mainMod, up, hy3:movefocus, u"
+        "$mainMod, down, hy3:movefocus, d"
 
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, moveworkspacetomonitor, 1 current"
@@ -148,11 +162,35 @@ lib.mkProfile "hyprland" {
         # Scratchpad
         "$mainMod, Minus, togglespecialworkspace"
         "$mainMod SHIFT, Minus, movetoworkspace, special"
+
+        # hy3
+        "$mainMod, B, hy3:makegroup, h"
+        "$mainMod, V, hy3:makegroup, v"
+        "$mainMod, T, hy3:makegroup, tab"
+        "$mainMod, R, hy3:changegroup, opposite"
+
+        "$mainMod SHIFT, left, hy3:movewindow, l, once"
+        "$mainMod SHIFT, down, hy3:movewindow, d, once"
+        "$mainMod SHIFT, up, hy3:movewindow, u, once"
+        "$mainMod SHIFT, right, hy3:movewindow, r, once"
+
+        "$mainMod CONTROL SHIFT, left, hy3:movewindow, l, once, visible"
+        "$mainMod CONTROL SHIFT, down, hy3:movewindow, d, once, visible"
+        "$mainMod CONTROL SHIFT, up, hy3:movewindow, u, once, visible"
+        "$mainMod CONTROL SHIFT, right, hy3:movewindow, r, once, visible"
+        "$mainMod, A, hy3:changefocus, raise"
+        "$mainMod SHIFT, A, hy3:changefocus, lower"
       ];
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+
+      bindn = [
+        ", mouse:272, hy3:focustab, mouse"
+        ", mouse_down, hy3:focustab, l, require_hovered"
+        ", mouse_up, hy3:focustab, r, require_hovered"
       ];
     };
   };

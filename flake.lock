@@ -536,6 +536,26 @@
         "type": "github"
       }
     },
+    "hy3": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1704027000,
+        "narHash": "sha256-sMJguaGNfwmzkyRLwBuQhyFBs2CB08O6dIUwJ51eoJU=",
+        "owner": "outfoxxed",
+        "repo": "hy3",
+        "rev": "a92314b57a1c611e3e24cfa31c14c4dc3ea638e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "outfoxxed",
+        "repo": "hy3",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
@@ -775,6 +795,7 @@
         "flake-utils": "flake-utils_3",
         "git-agecrypt": "git-agecrypt",
         "home-manager": "home-manager_2",
+        "hy3": "hy3",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "nixos-hardware": "nixos-hardware",
