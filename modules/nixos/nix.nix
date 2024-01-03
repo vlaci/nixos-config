@@ -25,9 +25,8 @@ in
     dates = [ "weekly" ];
   };
 
-  environment.systemPackages = with pkgs; [
-    nix-index
-  ];
+  programs.command-not-found.enable = false;
+  programs.nix-index-database.comma.enable = true;
 
   system.activationScripts.diff = ''
     PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}

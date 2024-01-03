@@ -62,18 +62,6 @@ in
         };
       plugins = [
         {
-          name = "command_not_found";
-          src = pkgs.runCommand "plugin"
-            {
-              inherit nixpkgs system;
-              nix_index = pkgs.nix-index;
-              plugin = ./plugins/command_not_found/command_not_found.plugin.zsh;
-            } ''
-            mkdir $out
-            substituteAll $plugin $out/command_not_found.plugin.zsh
-          '';
-        }
-        {
           name = "colors";
           src = ./plugins/colors;
         }
