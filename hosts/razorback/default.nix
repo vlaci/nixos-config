@@ -28,6 +28,11 @@
   _.users.users.vlaci = {
     isAdmin = true;
     uid = 1000;
+
+    persist.directories = [
+      "devel"
+    ];
+
     home-manager = {
       _.git.enable = true;
       _.gpg.enable = true;
@@ -36,10 +41,6 @@
       _.emacs.enable = true;
       _.sway.enable = true;
       _.hyprland.enable = true;
-
-      _.persist.directories = [
-        { directory = "devel"; method = "symlink"; }
-      ];
     };
   };
 

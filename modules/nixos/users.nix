@@ -14,6 +14,7 @@ in
     type = types.bool;
     default = true;
   };
+  options._.users.ignoredAttrs = mkOption { type = with types; listOf str; default = [ ]; };
   options._.users.users = mkOption {
     description = "Wrapper around `users.users` with sane defaults.";
     type = with types; attrsOf (submodule ({ options, config, ... }: {
@@ -37,7 +38,7 @@ in
       config = {
         isNormalUser = mkDefault true;
         extraGroups = if config.isAdmin then [ "wheel" ] else [ ];
-        forwarded = filterAttrs (n: v: !(options ? ${n}) || n == "extraGroups") config;
+        forwarded = filterAttrs (n: v: !(options ? ${n}) && !(any (i: n == i) cfg.ignoredAttrs) || n == "extraGroups") config;
       };
     }));
     default = { };
