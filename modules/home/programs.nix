@@ -68,6 +68,7 @@ mkProfile "tools" {
     controlMaster = "auto";
     controlPersist = "10m";
     serverAliveInterval = 300;
+    userKnownHostsFile = "${config._.persist.root}/.ssh/known_hosts";
   };
 
   _.persist = {
@@ -76,6 +77,5 @@ mkProfile "tools" {
       ".local/share/direnv"
       ".local/share/zoxide"
     ];
-    files = [ ".ssh/known_hosts" ];
   };
 }
