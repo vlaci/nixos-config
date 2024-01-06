@@ -17,6 +17,14 @@ in
     }));
   };
 
+  options.fileSystems = mkOption {
+    type = with lib.types; attrsOf (submodule ({ config, ... }: {
+      options.neededForBoot = mkOption {
+        apply = orig: (config.mountPoint == cfg.root || lib.hasPrefix "${cfg.root}/" config.mountPoint) || orig;
+      };
+    }));
+  };
+
   config = mkMerge [
     {
       _.users.ignoredAttrs = [ "persist" ];

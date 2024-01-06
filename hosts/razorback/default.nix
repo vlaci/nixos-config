@@ -11,7 +11,6 @@
     (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
   ];
 
-  fileSystems."/.persistent".neededForBoot = true;
 
   _.cachix.enable = true;
   _.networkmanager.enable = true;
