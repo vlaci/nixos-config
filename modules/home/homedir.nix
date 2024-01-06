@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 {
   xdg.userDirs = {
@@ -6,7 +6,7 @@
     createDirectories = true;
   };
 
-  _.persist.directories = with config.xdg.userDirs; [
+  _.persist.directories = map (lib.removePrefix "${config.home.homeDirectory}/") (with config.xdg.userDirs; [
     desktop
     documents
     download
@@ -15,5 +15,5 @@
     publicShare
     templates
     videos
-  ];
+  ]);
 }
