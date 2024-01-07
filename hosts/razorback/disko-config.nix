@@ -75,7 +75,7 @@
         datasets = {
           "razorback" = {
             type = "zfs_fs";
-            mountpoint = "/.persistent";
+            mountpoint = "/persist";
             options.mountpoint = "legacy";
             options.compression = "zstd";
           };
@@ -99,7 +99,7 @@
           "razorback/home/vlaci" = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
-            mountpoint = "/.persistent/home/vlaci";
+            mountpoint = "/persist/home/vlaci";
           };
           "razorback/var" = {
             type = "zfs_fs";
@@ -114,7 +114,7 @@
           "razorback/var/lib/libvirt" = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
-            mountpoint = "/.persistent/var/lib/libvirt";
+            mountpoint = "/persist/var/lib/libvirt";
           };
         };
       };

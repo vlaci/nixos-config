@@ -7,7 +7,7 @@ in
 {
   options._.persist = {
     enable = mkEnableOption "persist";
-    root = mkOption { default = "/.persistent"; };
+    root = mkOption { default = "/persist"; };
     directories = mkOption { type = with types; listOf anything; default = [ ]; };
   };
 
