@@ -25,10 +25,16 @@
   _.email.work.enable = true;
   _.keyboardio.enable = true;
   _.work.enable = true;
+  _.persist.enable = true;
 
   _.users.users.vlaci = {
     isAdmin = true;
     uid = 1000;
+
+    persist.directories = [
+      "devel"
+    ];
+
     home-manager = {
       _.git.enable = true;
       _.gpg.enable = true;
@@ -44,5 +50,5 @@
   networking.firewall.checkReversePath = "loose";
   services.printing.enable = true;
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

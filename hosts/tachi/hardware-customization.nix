@@ -7,8 +7,8 @@
     enable = true;
     extraConfig = with builtins; (
       replaceStrings
-        [ "# HWP_Mode: False" ]
-        [ "HWP_Mode: True" ]
+        [ "# HWP_Mode: False" "cTDP: 0" ]
+        [ "HWP_Mode: True" "cTDP: 2" ]
         (readFile "${pkgs.throttled}/etc/throttled.conf")
     );
   };
@@ -30,14 +30,14 @@
 
   services.fstrim.enable = true;
 
-  networking.hostId = "8425e349";
+  networking.hostId = "7d185cbc";
+
 
   boot.supportedFilesystems = [ "zfs" ];
 
   boot.zfs = {
     allowHibernation = true;
-    devNodes = "/dev/disk/by-partlabel/";
-    requestEncryptionCredentials = true;
+    devNodes = "/dev/mapper";
     forceImportRoot = false;
   };
 
@@ -47,15 +47,17 @@
 
   boot.initrd.systemd = {
     enable = true;
+    emergencyAccess = true;
     services.revert-root = {
       after = [
         "zfs-import-rpool.service"
       ];
-      requiredBy = [ "initrd.target" ];
+      wantedBy = [ "zfs.target" ];
       before = [
         "sysroot.mount"
       ];
       path = with pkgs; [
+        coreutils
         zfs
       ];
       unitConfig = {
@@ -65,88 +67,14 @@
       serviceConfig.Type = "oneshot";
 
       script = ''
-        zfs rollback -r rpool/nixos/empty@start
+        zfs rollback -r rpool/tachi/root@blank
       '';
     };
   };
 
-  fileSystems."/" =
-    {
-      device = "rpool/nixos/empty";
-      fsType = "zfs";
-      options = [ "X-mount.mkdir" "noatime" ];
-      neededForBoot = true;
-    };
-
-  fileSystems."/.root" =
-    {
-      device = "rpool/nixos/root";
-      fsType = "zfs";
-      options = [ "X-mount.mkdir" "noatime" ];
-      neededForBoot = true;
-    };
-
-  fileSystems."/home" =
-    {
-      device = "rpool/nixos/home";
-      fsType = "zfs";
-      options = [ "X-mount.mkdir" "relatime" ];
-      neededForBoot = true;
-    };
-
-  fileSystems."/var/lib" =
-    {
-      device = "rpool/nixos/var/lib";
-      fsType = "zfs";
-      options = [ "X-mount.mkdir" "noatime" ];
-      neededForBoot = true;
-    };
-
-  fileSystems."/var/log" =
-    {
-      device = "rpool/nixos/var/log";
-      fsType = "zfs";
-      options = [ "X-mount.mkdir" "noatime" ];
-      neededForBoot = true;
-    };
-
-  fileSystems."/nix" =
-    {
-      device = "/.root/nix";
-      fsType = "none";
-      options = [ "bind" "X-mount.mkdir" "noatime" ];
-    };
-
-  fileSystems."/etc/nixos" =
-    {
-      device = "/.root/etc/nixos";
-      fsType = "none";
-      options = [ "bind" "X-mount.mkdir" "noatime" ];
-    };
-
-  fileSystems."/etc/ssh" =
-    {
-      device = "/.root/etc/ssh";
-      fsType = "none";
-      options = [ "bind" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-partlabel/EFI";
-      options = [ "X-mount.mkdir" "noatime" ];
-      fsType = "vfat";
-    };
-
-  swapDevices =
-    [{
-      device = "/dev/disk/by-partlabel/swap";
-      discardPolicy = "both";
-      randomEncryption = {
-        enable = true;
-        allowDiscards = true;
-      };
-    }];
+  disko.devices = (pkgs.callPackage ./disko-config.nix {
+    disks = [ "/dev/nvme0n1" ];
+  }).disko.devices;
 
   environment.systemPackages = with pkgs; [
     brightnessctl
