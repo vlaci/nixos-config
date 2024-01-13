@@ -8,5 +8,8 @@ lib.mkProfile "work" {
     directories = [
       ".config/Slack"
     ];
+    files = [
+      ".docker/config.json"
+    ];
   };
 }
