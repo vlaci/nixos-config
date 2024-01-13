@@ -11,7 +11,15 @@ mkProfile "gui" {
     ./sway.nix
   ];
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = with pkgs; firefox.override {
+      nativeMessagingHosts = [
+        tridactyl-native
+      ];
+    };
+  };
+
   programs.qutebrowser = {
     enable = true;
     package = pkgs.qutebrowser.override { enableVulkan = false; };
