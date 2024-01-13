@@ -34,7 +34,6 @@ lib.mkProfile "development" {
     dune_3
     ocaml
     ocamlPackages.utop
-    rustup
     mitmproxy
     sqlite-interactive
     tcpdump
