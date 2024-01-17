@@ -34,7 +34,6 @@ lib.mkProfile "development" {
     dune_3
     ocaml
     ocamlPackages.utop
-    mitmproxy
     sqlite-interactive
     tcpdump
     unixtools.xxd # hexdump
