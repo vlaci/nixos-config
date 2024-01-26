@@ -12,6 +12,10 @@ lib.mkProfile "gui" {
     pulse.enable = true;
   };
 
+  _.users.forAllUsers.persist.directories = [
+    ".local/state/wireplumber"
+  ];
+
   environment.systemPackages = with pkgs; [
     pavucontrol
     xcursor-pixelfun

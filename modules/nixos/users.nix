@@ -14,18 +14,13 @@ in
     type = types.bool;
     default = true;
   };
-  options._.users.ignoredAttrs = mkOption { type = with types; listOf str; default = [ ]; };
   options._.users.users = mkOption {
     description = "Wrapper around `users.users` with sane defaults.";
     type = with types; attrsOf (submodule ({ options, config, ... }: {
       freeformType = attrsOf anything;
       options = {
         extraGroups = mkOption {
-          apply = groups:
-            if config.isNormalUser then
-              cfg.defaultGroups ++ groups
-            else
-              groups;
+          apply = groups: groups ++ (optionals config.isNormalUser cfg.defaultGroups);
         };
         isAdmin = mkEnableOption "sudo access";
         home-manager = mkOption {
@@ -35,15 +30,23 @@ in
 
         forwarded = mkOption { };
       };
-      config = {
-        isNormalUser = mkDefault true;
-        extraGroups = if config.isAdmin then [ "wheel" ] else [ ];
-        forwarded = filterAttrs (n: v: !(options ? ${n}) && !(any (i: n == i) cfg.ignoredAttrs) || n == "extraGroups") config;
-      };
+      config = mkMerge [
+        cfg.forAllUsers
+        {
+          isNormalUser = mkDefault true;
+          extraGroups = if config.isAdmin then [ "wheel" ] else [ ];
+          forwarded = (filterAttrs (n: v: !(options ? ${n}) || n == "extraGroups")) config;
+        }
+      ];
     }));
     default = { };
   };
-
+  options._.users.forAllUsers = mkOption {
+    type = with types; (submodule {
+      freeformType = attrsOf anything;
+    });
+    default = { };
+  };
 
   config = mkIf cfg.enable {
     users.mutableUsers = false;
