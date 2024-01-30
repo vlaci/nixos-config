@@ -97,13 +97,9 @@ lib.mkProfile "gui" {
   nixpkgs.overlays = [
     (self: super: {
       slack = super.slack.overrideAttrs (old: {
-        installPhase = old.installPhase + ''
-          rm $out/bin/slack
-
-          makeWrapper $out/lib/slack/slack $out/bin/slack \
-          --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-          --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-          --add-flags "--enable-features=WebRTCPipeWireCapturer"
+        postFixup = ''
+          # https://github.com/flathub/com.slack.Slack/commit/4d655060447be5c1e09ea3ad822fa786a6e3d9a3
+          sed -i 's/WebRTCPipeWireCapturer/LebRTCPipeWireCapturer/g' $out/lib/slack/resources/app.asar
         '';
       });
     })
