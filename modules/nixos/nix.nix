@@ -28,11 +28,13 @@ in
   programs.nix-index-database.comma.enable = true;
 
   system.activationScripts.diff = ''
-    PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
-    echo
-    echo =================================  [ Changes ]  =================================
-    ${pkgs.nvd}/bin/nvd diff /run/current-system "$systemConfig"
-    echo =================================================================================
-    echo
+    if [[ -L /run/current-system ]]; then
+      PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+      echo
+      echo =================================  [ Changes ]  =================================
+      ${pkgs.nvd}/bin/nvd diff /run/current-system "$systemConfig"
+      echo =================================================================================
+      echo
+    fi
   '';
 }
