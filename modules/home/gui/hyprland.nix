@@ -10,10 +10,10 @@ lib.mkProfile "hyprland" {
     settings = with config.lib.stylix.colors; {
       monitor = ",preferred,auto,1";
       exec-once = "hyprpaper & waybar";
-      input = {
-        kb_layout = nixosConfig.services.xserver.layout;
-        kb_variant = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbVariant;
-        kb_options = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbOptions;
+      input = with nixosConfig.services.xserver.xkb; {
+        kb_layout = layout;
+        kb_variant = builtins.replaceStrings [ " " ] [ "" ] variant;
+        kb_options = builtins.replaceStrings [ " " ] [ "" ] options;
         follow_mouse = 1;
         touchpad.natural_scroll = false;
         sensitivity = 0;

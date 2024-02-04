@@ -33,19 +33,19 @@ in
           up = up;
           right = right;
           modifier = mod;
-          input = {
+          input = with nixosConfig.services.xserver.xkb; {
             "type:keyboard" = mkMerge [
               {
-                xkb_layout = nixosConfig.services.xserver.layout;
+                xkb_layout = layout;
               }
               (
-                let xkb_variant = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbVariant;
+                let xkb_variant = builtins.replaceStrings [ " " ] [ "" ] variant;
                 in mkIf (xkb_variant != "") {
                   inherit xkb_variant;
                 }
               )
               (
-                let xkb_options = builtins.replaceStrings [ " " ] [ "" ] nixosConfig.services.xserver.xkbOptions;
+                let xkb_options = builtins.replaceStrings [ " " ] [ "" ] options;
                 in mkIf (xkb_options != "") {
                   inherit xkb_options;
                 }

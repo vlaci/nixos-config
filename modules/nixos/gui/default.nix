@@ -54,13 +54,14 @@ lib.mkProfile "gui" {
         theme = config._.theme.gtkTheme.dark;
         sway-greeter-config =
           let
-            xkb_variant = builtins.replaceStrings [ " " ] [ "" ] config.services.xserver.xkbVariant;
-            xkb_options = builtins.replaceStrings [ " " ] [ "" ] config.services.xserver.xkbOptions;
+            inherit (config.services.xserver) xkb;
+            xkb_variant = builtins.replaceStrings [ " " ] [ "" ] xkb.variant;
+            xkb_options = builtins.replaceStrings [ " " ] [ "" ] xkb.options;
           in
           pkgs.writeText "sway-greeter.config" ''
             input "type:keyboard" {
-              xkb_layout ${config.services.xserver.layout}
-              ${lib.optionalString (xkb_variant != "") "xkb_layout ${xkb_variant}"}
+              xkb_layout ${xkb.layout}
+              ${lib.optionalString (xkb_variant != "") "xkb_variant ${xkb_variant}"}
               ${lib.optionalString (xkb_options != "") "xkb_options ${xkb_options}"}
             }
 
