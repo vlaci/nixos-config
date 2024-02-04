@@ -8,7 +8,7 @@
   environment.systemPackages = [ pkgs.colemak-dh ];
 
   services.xserver.layout = "col-lv,altgr-weur,us,hu";
-  services.xserver.xkbOptions = "grp:alt_space_toggle, compose:rctrl, caps:escape";
+  services.xserver.xkbOptions = "grp:alt_altgr_toggle, compose:rctrl, caps:escape";
   services.xserver.extraLayouts."col-lv" = {
     description = "English (Colemak)";
     languages = [ "eng" ];
