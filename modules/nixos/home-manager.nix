@@ -1,4 +1,4 @@
-{ config, options, lib, decrypt, ... }:
+{ config, options, lib, pkgs, decrypt, ... }:
 
 let
   inherit (lib) attrNames attrValues concatStringsSep genAttrs intersectLists mergedAttrs mkDefault mkIf mkOption types;
@@ -44,5 +44,15 @@ in
         "ln -sn ${cfg.home.activationPackage} $out/home-manager/${cfg.home.username}"
       )
       (attrValues config.home-manager.users));
+    system.activationScripts = lib.mapAttrs' (n: v: lib.nameValuePair "diff-hm-${n}" ''
+      if [[ -L /run/current-system/home-manager/${n} ]]; then
+        PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+        echo
+        echo =================================  [ Changes ${n} ]  ============================
+        ${pkgs.nvd}/bin/nvd diff /run/current-system/home-manager/${n} "${v.home.activationPackage}"
+        echo =================================================================================
+        echo
+      fi
+    '') config.home-manager.users;
   };
 }
