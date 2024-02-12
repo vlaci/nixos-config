@@ -3,18 +3,14 @@
 lib.mkProfile "nushell" {
   programs.nushell = {
     enable = true;
-    configFile.text = ''
-      source ${./config.nu}
-      use ${pkgs.nu-scripts}/custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/btm/btm-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/cargo/cargo-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/git/git-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/just/just-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/make/make-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/npm/npm-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/poetry/poetry-completions.nu *
-      use ${pkgs.nu-scripts}/custom-completions/yarn/yarn-completion.nu *
-      use ${pkgs.nu-scripts}/custom-completions/zellij/zellij-completions.nu *
+    configFile.source = pkgs.runCommand "config-nu" { } ''
+      echo "source ${./config.nu}" > $out
+      for f in ${pkgs.nu-scripts}/custom-completions/*/*.nu; do
+        if [[ $f == *fish* ]]; then
+          continue
+        fi
+        echo "use $f *" >> $out
+      done
     '';
     envFile.source = ./env.nu;
   };
