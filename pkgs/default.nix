@@ -4,7 +4,6 @@ let
   callPackage = pkgs.newScope (pkgs // self);
   self = rec {
     pkgsrcs = pkgs.callPackage ./_sources/generated.nix { };
-    atuin-zfs = callPackage ./atuin { inherit (pkgs) atuin; };
     berkeley-mono-typeface = callPackage ./berkeley-mono-typeface { };
     hexdiff = callPackage ./hexdiff { };
     mujmap = callPackage ./mujmap { };
