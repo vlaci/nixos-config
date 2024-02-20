@@ -18,7 +18,6 @@ lib.mkProfile "hyprland" {
         touchpad.natural_scroll = false;
         sensitivity = 0;
       };
-      "device:yubico-yubikey-otp+fido+ccid".kb_layout = "us";
       general = {
         gaps_in = 5;
         gaps_out = 20;
@@ -83,6 +82,7 @@ lib.mkProfile "hyprland" {
         "float,title:^(Firefox — Sharing Indicator)$"
         "move 50%-38 100%-32,title:^(Firefox — Sharing Indicator)$"
         "pin,title:^(Firefox — Sharing Indicator)$"
+        "float,title:^(MainPicker)$"
       ];
 
       "plugin:hy3" = {
@@ -193,6 +193,12 @@ lib.mkProfile "hyprland" {
         ", mouse_up, hy3:focustab, r, require_hovered"
       ];
     };
+    extraConfig = ''
+      device {
+        name=yubico-yubikey-otp+fido+ccid
+        kb_layout=us
+      }
+    '';
   };
 
   home.packages = with pkgs; [
