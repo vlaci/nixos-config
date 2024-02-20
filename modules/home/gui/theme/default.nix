@@ -38,34 +38,6 @@ in
     '';
     stylix.targets.rofi.enable = false;
 
-    programs.bash.shellAliases."bat" = ''bat --theme $([[ $(< $XDG_RUNTIME_DIR/color-scheme) = light ]] && echo theme-light || echo theme-dark)'';
-    programs.zsh.shellAliases."bat" = ''bat --theme $([[ $(< $XDG_RUNTIME_DIR/color-scheme) = light ]] && echo theme-light || echo theme-dark)'';
-    programs.nushell.shellAliases."bat" = ''bat --theme (if (try { open $"($env.XDG_RUNTIME_DIR)/color-scheme" | str trim} catch { "dark" }) == "light" { echo "theme-light" } else { echo "theme-dark"})'';
-
-    programs.git =
-      let
-        deltaCommand = ''${pkgs.delta}/bin/delta --features "navigate $([[ $(< $XDG_RUNTIME_DIR/color-scheme) == light ]] && echo theme-light || echo theme-dark)"'';
-      in
-      {
-        iniContent = {
-          core.pager = lib.mkForce deltaCommand;
-          interactive.diffFilter = lib.mkForce "${deltaCommand} --color-only";
-        };
-        delta = {
-          options = {
-            theme-light = {
-              light = true;
-              syntax-theme = "theme-light";
-            };
-            theme-dark = {
-              light = false;
-              syntax-theme = "theme-dark";
-            };
-          };
-        };
-      };
-
-
     services.darkman = {
       darkModeScripts.color-scheme-dark = ''
         ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
