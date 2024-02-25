@@ -17,7 +17,6 @@
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     hy3.url = "github:outfoxxed/hy3";
     hy3.inputs.hyprland.follows = "hyprland";
-    nvfetcher.url = "github:berberman/nvfetcher";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
@@ -26,7 +25,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, hy3, nvfetcher, disko, impermanence, stylix, nix-index-database, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, hy3, disko, impermanence, stylix, nix-index-database, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -47,7 +46,6 @@
       overlays = lib.importDir ./overlays // {
         emacsVlaci = emacsVlaci.overlay;
         hyprland = hyprland.overlays.default;
-        nvfetcher = nvfetcher.overlays.default;
         git-agecrypt = git-agecrypt.overlay;
         default = final: prev:
           let
