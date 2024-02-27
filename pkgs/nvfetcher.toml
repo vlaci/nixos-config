@@ -15,10 +15,6 @@ cargo_locks = [ "Cargo.lock" ]
 src.git = "https://github.com/nushell/nu_scripts"
 fetch.github = "nushell/nu_scripts"
 
-[swaylock-dpms]
-src.git = "https://github.com/gartnera/swaylock"
-fetch.github = "gartnera/swaylock"
-
 [wezterm-nightly]
 src.git = "https://github.com/wez/wezterm"
 fetch.github = "wez/wezterm"

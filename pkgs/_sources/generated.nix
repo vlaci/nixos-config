@@ -45,45 +45,33 @@
   };
   nu-scripts = {
     pname = "nu-scripts";
-    version = "6309a9f29bf7dd25bbea26a08379106a342854a4";
+    version = "6585a0f515fba0089fe203d270e9e8d8d8664725";
     src = fetchFromGitHub {
       owner = "nushell";
       repo = "nu_scripts";
-      rev = "6309a9f29bf7dd25bbea26a08379106a342854a4";
+      rev = "6585a0f515fba0089fe203d270e9e8d8d8664725";
       fetchSubmodules = false;
-      sha256 = "sha256-pZgUuUv9DYJBS8RYfZzkvuRPjXKePDwHbTdPNgZQbuo=";
+      sha256 = "sha256-b2frg10PKvAha3l1H1K491ztkS0Gl0vXw0xBGU8DOL4=";
     };
-    date = "2024-02-22";
-  };
-  swaylock-dpms = {
-    pname = "swaylock-dpms";
-    version = "a5802d0b99fd0fdcd59fb112ae0258610e5af0fa";
-    src = fetchFromGitHub {
-      owner = "gartnera";
-      repo = "swaylock";
-      rev = "a5802d0b99fd0fdcd59fb112ae0258610e5af0fa";
-      fetchSubmodules = false;
-      sha256 = "sha256-wY+axSmIwcYCU5teXVIWgQnh4G8ZmQgX+YLucpsyQHQ=";
-    };
-    date = "2023-04-03";
+    date = "2024-02-26";
   };
   wezterm-nightly = {
     pname = "wezterm-nightly";
-    version = "95581d8697f3749f84ccb1402ac94ea6582b227f";
+    version = "22424c3280cb21af43317cb58ef7bc34a8cbcc91";
     src = fetchFromGitHub {
       owner = "wez";
       repo = "wezterm";
-      rev = "95581d8697f3749f84ccb1402ac94ea6582b227f";
+      rev = "22424c3280cb21af43317cb58ef7bc34a8cbcc91";
       fetchSubmodules = true;
-      sha256 = "sha256-Ygs7y02eMgp/uVpc6YjmNgjC8dS1Phrv62WR5Qp/9g4=";
+      sha256 = "sha256-EQb0gNAb98e4IFwBv5XODtq9Er519wM/h5EglD8Lrhc=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-nightly-95581d8697f3749f84ccb1402ac94ea6582b227f/Cargo.lock;
+      lockFile = ./wezterm-nightly-22424c3280cb21af43317cb58ef7bc34a8cbcc91/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
       };
     };
-    date = "2024-02-21";
+    date = "2024-02-26";
   };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
