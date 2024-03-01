@@ -5,19 +5,30 @@ let
 in
 lib.mkProfile "work" (lib.mkIf work.available {
 
-  age.secrets."docker-client.key" = {
-    file = ../../secrets/work/client.pem.age;
-    path = "/etc/docker/certs.d/${config._.secrets.vlaci.value.docker.work.registry}/client.key";
-  };
-
-  age.secrets."docker-client.cert" = {
-    file = ../../secrets/work/client.pem.age;
-    path = "/etc/docker/certs.d/${config._.secrets.vlaci.value.docker.work.registry}/client.cert";
-  };
-
-  age.secrets."work.certkey" = {
-    file = ../../secrets/work/client.pem.age;
-    owner = "vlaci";
+  age.secrets = (lib.pipe config._.secrets.vlaci.value.docker.work.registries [
+    (lib.concatMap (url: [
+      {
+        name = "docker-client-${url}.key";
+        value = {
+          file = ../../secrets/work/client.pem.age;
+          path = "/etc/docker/certs.d/${url}/client.key";
+        };
+      }
+      {
+        name = "docker-client-${url}.cert";
+        value = {
+          file = ../../secrets/work/client.pem.age;
+          path = "/etc/docker/certs.d/${url}/client.cert";
+        };
+      }
+    ]))
+    builtins.listToAttrs
+  ]) //
+  {
+    "work.certkey" = {
+      file = ../../secrets/work/client.pem.age;
+      owner = "vlaci";
+    };
   };
 
   security.pki = {
