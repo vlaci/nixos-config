@@ -7,6 +7,7 @@ let
     berkeley-mono-typeface = callPackage ./berkeley-mono-typeface { };
     hexdiff = callPackage ./hexdiff { };
     mujmap = callPackage ./mujmap { };
+    nix-patched = callPackage ./nix { };
     nu-scripts = callPackage ./nu-scripts { };
     wezterm-nightly = callPackage ./wezterm-nightly { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };

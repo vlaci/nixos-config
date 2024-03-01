@@ -24,6 +24,8 @@ in
     dates = [ "weekly" ];
   };
 
+  nix.package = pkgs.nix-patched;
+
   programs.command-not-found.enable = false;
   programs.nix-index-database.comma.enable = true;
 
