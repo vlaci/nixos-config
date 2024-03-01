@@ -70,6 +70,11 @@ mkProfile "tools" {
     userKnownHostsFile = "${config._.persist.root}/.ssh/known_hosts";
   };
 
+  services.pueue = {
+    enable = true;
+    settings.shared = { };
+  };
+
   _.persist = {
     directories = [
       ".local/share/atuin"
