@@ -55,6 +55,18 @@
     };
     date = "2024-02-26";
   };
+  swaylock = {
+    pname = "swaylock";
+    version = "376cc5fcd486a3065b4c04ee4a1573606fb09038";
+    src = fetchFromGitHub {
+      owner = "swaywm";
+      repo = "swaylock";
+      rev = "376cc5fcd486a3065b4c04ee4a1573606fb09038";
+      fetchSubmodules = false;
+      sha256 = "sha256-AhVLVx/hk/9JbaDR5NQOK+Y/yYTbI9bCrmkHY/oZ2xU=";
+    };
+    date = "2024-02-23";
+  };
   wezterm-nightly = {
     pname = "wezterm-nightly";
     version = "22424c3280cb21af43317cb58ef7bc34a8cbcc91";

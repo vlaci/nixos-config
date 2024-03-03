@@ -84,6 +84,26 @@
         },
         "version": "6585a0f515fba0089fe203d270e9e8d8d8664725"
     },
+    "swaylock": {
+        "cargoLocks": null,
+        "date": "2024-02-23",
+        "extract": null,
+        "name": "swaylock",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "swaywm",
+            "repo": "swaylock",
+            "rev": "376cc5fcd486a3065b4c04ee4a1573606fb09038",
+            "sha256": "sha256-AhVLVx/hk/9JbaDR5NQOK+Y/yYTbI9bCrmkHY/oZ2xU=",
+            "type": "github"
+        },
+        "version": "376cc5fcd486a3065b4c04ee4a1573606fb09038"
+    },
     "wezterm-nightly": {
         "cargoLocks": {
             "Cargo.lock": [

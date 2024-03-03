@@ -356,7 +356,10 @@ mkProfile "gui" {
       systemdTarget = "graphical-session.target";
     };
 
-  programs.swaylock.enable = true;
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-dpms;
+  };
 
   services.mako = {
     enable = true;

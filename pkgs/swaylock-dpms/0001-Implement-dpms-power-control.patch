@@ -1,0 +1,277 @@
+From 5e75ead442680cf5d0b6fdbea340f6315f49b57e Mon Sep 17 00:00:00 2001
+From: Alex Gartner <git@agartner.com>
+Date: Mon, 27 Mar 2023 23:02:50 -0700
+Subject: [PATCH 1/2] Implement dpms/power control
+
+---
+ include/swaylock.h                          |   3 +
+ main.c                                      |   9 ++
+ meson.build                                 |   1 +
+ password.c                                  |  34 ++++++
+ wlr-output-power-management-unstable-v1.xml | 128 ++++++++++++++++++++
+ 5 files changed, 175 insertions(+)
+ create mode 100644 wlr-output-power-management-unstable-v1.xml
+
+diff --git a/include/swaylock.h b/include/swaylock.h
+index c373fff..1c755d7 100644
+--- a/include/swaylock.h
++++ b/include/swaylock.h
+@@ -82,6 +82,8 @@ struct swaylock_state {
+ 	struct loop_timer *input_idle_timer; // timer to reset input state to IDLE
+ 	struct loop_timer *auth_idle_timer; // timer to stop displaying AUTH_STATE_INVALID
+ 	struct loop_timer *clear_password_timer;  // clears the password buffer
++	struct loop_timer *power_off_timer;  // powers off the display
++	bool needs_power_on;
+ 	struct wl_display *display;
+ 	struct wl_compositor *compositor;
+ 	struct wl_subcompositor *subcompositor;
+@@ -106,6 +108,7 @@ struct swaylock_surface {
+ 	cairo_surface_t *image;
+ 	struct swaylock_state *state;
+ 	struct wl_output *output;
++	struct zwlr_output_power_v1 *wlr_output_power;
+ 	uint32_t output_global_name;
+ 	struct wl_surface *surface; // surface for background
+ 	struct wl_surface *child; // indicator surface made into subsurface
+diff --git a/main.c b/main.c
+index 549d6f6..57e810e 100644
+--- a/main.c
++++ b/main.c
+@@ -26,6 +26,9 @@
+ #include "seat.h"
+ #include "swaylock.h"
+ #include "ext-session-lock-v1-client-protocol.h"
++#include "wlr-output-power-management-unstable-v1-client-protocol.h"
++
++struct zwlr_output_power_manager_v1 *wlr_output_power_manager = NULL;
+ 
+ static uint32_t parse_color(const char *color) {
+ 	if (color[0] == '#') {
+@@ -315,10 +318,16 @@ static void handle_global(void *data, struct wl_registry *registry,
+ 		surface->output_global_name = name;
+ 		wl_output_add_listener(surface->output, &_wl_output_listener, surface);
+ 		wl_list_insert(&state->surfaces, &surface->link);
++		surface->wlr_output_power = zwlr_output_power_manager_v1_get_output_power(
++					wlr_output_power_manager, surface->output);
+ 	} else if (strcmp(interface, ext_session_lock_manager_v1_interface.name) == 0) {
+ 		state->ext_session_lock_manager_v1 = wl_registry_bind(registry, name,
+ 				&ext_session_lock_manager_v1_interface, 1);
+ 	}
++	else if ( strcmp(interface, zwlr_output_power_manager_v1_interface.name) == 0 ) {
++		wlr_output_power_manager = wl_registry_bind(registry, name,
++				&zwlr_output_power_manager_v1_interface, version);
++	}
+ }
+ 
+ static void handle_global_remove(void *data, struct wl_registry *registry,
+diff --git a/meson.build b/meson.build
+index a0f02a2..4a379de 100644
+--- a/meson.build
++++ b/meson.build
+@@ -69,6 +69,7 @@ wayland_scanner_client = generator(
+ 
+ client_protocols = [
+ 	wl_protocol_dir / 'staging/ext-session-lock/ext-session-lock-v1.xml',
++	'wlr-output-power-management-unstable-v1.xml'
+ ]
+ 
+ protos_src = []
+diff --git a/password.c b/password.c
+index cae568e..017fe27 100644
+--- a/password.c
++++ b/password.c
+@@ -12,6 +12,8 @@
+ #include "swaylock.h"
+ #include "unicode.h"
+ 
++#include "wlr-output-power-management-unstable-v1-client-protocol.h"
++
+ void clear_buffer(char *buf, size_t size) {
+ 	// Use volatile keyword so so compiler can't optimize this out.
+ 	volatile char *buffer = buf;
+@@ -131,9 +133,39 @@ static void update_highlight(struct swaylock_state *state) {
+ 		(state->highlight_start + (rand() % 1024) + 512) % 2048;
+ }
+ 
++static void power_off(void *data) {
++	struct swaylock_state *state = data;
++	struct swaylock_surface *surface;
++	state->needs_power_on = true;
++	wl_list_for_each(surface, &(state->surfaces), link) {
++		zwlr_output_power_v1_set_mode(surface->wlr_output_power, ZWLR_OUTPUT_POWER_V1_MODE_OFF);
++	}
++}
++
++void schedule_power_off(struct swaylock_state *state) {
++	if (state->power_off_timer) {
++		loop_remove_timer(state->eventloop, state->power_off_timer);
++	}
++	state->power_off_timer = loop_add_timer(
++			state->eventloop, 15000, power_off, state);
++}
++
++static void power_on(struct swaylock_state *state) {
++	struct swaylock_surface *surface;
++	wl_list_for_each(surface, &(state->surfaces), link) {
++		zwlr_output_power_v1_set_mode(surface->wlr_output_power, ZWLR_OUTPUT_POWER_V1_MODE_ON);
++	}
++}
++
+ void swaylock_handle_key(struct swaylock_state *state,
+ 		xkb_keysym_t keysym, uint32_t codepoint) {
+ 
++	if (state->needs_power_on) {
++		power_on(state);
++		state->needs_power_on = false;
++	}
++	schedule_power_off(state);
++
+ 	switch (keysym) {
+ 	case XKB_KEY_KP_Enter: /* fallthrough */
+ 	case XKB_KEY_Return:
+@@ -170,6 +202,8 @@ void swaylock_handle_key(struct swaylock_state *state,
+ 	case XKB_KEY_Shift_R:
+ 	case XKB_KEY_Control_L:
+ 	case XKB_KEY_Control_R:
++		power_on(state);
++		break;
+ 	case XKB_KEY_Meta_L:
+ 	case XKB_KEY_Meta_R:
+ 	case XKB_KEY_Alt_L:
+diff --git a/wlr-output-power-management-unstable-v1.xml b/wlr-output-power-management-unstable-v1.xml
+new file mode 100644
+index 0000000..a977839
+--- /dev/null
++++ b/wlr-output-power-management-unstable-v1.xml
+@@ -0,0 +1,128 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<protocol name="wlr_output_power_management_unstable_v1">
++  <copyright>
++    Copyright © 2019 Purism SPC
++
++    Permission is hereby granted, free of charge, to any person obtaining a
++    copy of this software and associated documentation files (the "Software"),
++    to deal in the Software without restriction, including without limitation
++    the rights to use, copy, modify, merge, publish, distribute, sublicense,
++    and/or sell copies of the Software, and to permit persons to whom the
++    Software is furnished to do so, subject to the following conditions:
++
++    The above copyright notice and this permission notice (including the next
++    paragraph) shall be included in all copies or substantial portions of the
++    Software.
++
++    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
++    DEALINGS IN THE SOFTWARE.
++  </copyright>
++
++  <description summary="Control power management modes of outputs">
++    This protocol allows clients to control power management modes
++    of outputs that are currently part of the compositor space. The
++    intent is to allow special clients like desktop shells to power
++    down outputs when the system is idle.
++
++    To modify outputs not currently part of the compositor space see
++    wlr-output-management.
++
++    Warning! The protocol described in this file is experimental and
++    backward incompatible changes may be made. Backward compatible changes
++    may be added together with the corresponding interface version bump.
++    Backward incompatible changes are done by bumping the version number in
++    the protocol and interface names and resetting the interface version.
++    Once the protocol is to be declared stable, the 'z' prefix and the
++    version number in the protocol and interface names are removed and the
++    interface version number is reset.
++  </description>
++
++  <interface name="zwlr_output_power_manager_v1" version="1">
++    <description summary="manager to create per-output power management">
++      This interface is a manager that allows creating per-output power
++      management mode controls.
++    </description>
++
++    <request name="get_output_power">
++      <description summary="get a power management for an output">
++        Create a output power management mode control that can be used to
++        adjust the power management mode for a given output.
++      </description>
++      <arg name="id" type="new_id" interface="zwlr_output_power_v1"/>
++      <arg name="output" type="object" interface="wl_output"/>
++    </request>
++
++    <request name="destroy" type="destructor">
++      <description summary="destroy the manager">
++        All objects created by the manager will still remain valid, until their
++        appropriate destroy request has been called.
++      </description>
++    </request>
++  </interface>
++
++  <interface name="zwlr_output_power_v1" version="1">
++    <description summary="adjust power management mode for an output">
++      This object offers requests to set the power management mode of
++      an output.
++    </description>
++
++    <enum name="mode">
++      <entry name="off" value="0"
++             summary="Output is turned off."/>
++      <entry name="on" value="1"
++             summary="Output is turned on, no power saving"/>
++    </enum>
++
++    <enum name="error">
++      <entry name="invalid_mode" value="1" summary="inexistent power save mode"/>
++    </enum>
++
++    <request name="set_mode">
++      <description summary="Set an outputs power save mode">
++        Set an output's power save mode to the given mode. The mode change
++        is effective immediately. If the output does not support the given
++        mode a failed event is sent.
++      </description>
++      <arg name="mode" type="uint" enum="mode" summary="the power save mode to set"/>
++    </request>
++
++    <event name="mode">
++      <description summary="Report a power management mode change">
++        Report the power management mode change of an output.
++
++        The mode event is sent after an output changed its power
++        management mode. The reason can be a client using set_mode or the
++        compositor deciding to change an output's mode.
++        This event is also sent immediately when the object is created
++        so the client is informed about the current power management mode.
++      </description>
++      <arg name="mode" type="uint" enum="mode"
++           summary="the output's new power management mode"/>
++    </event>
++
++    <event name="failed">
++      <description summary="object no longer valid">
++        This event indicates that the output power management mode control
++        is no longer valid. This can happen for a number of reasons,
++        including:
++        - The output doesn't support power management
++        - Another client already has exclusive power management mode control
++          for this output
++        - The output disappeared
++
++        Upon receiving this event, the client should destroy this object.
++      </description>
++    </event>
++
++    <request name="destroy" type="destructor">
++      <description summary="destroy this power management">
++        Destroys the output power management mode control object.
++      </description>
++    </request>
++  </interface>
++</protocol>
+-- 
+2.43.1
+

@@ -9,6 +9,7 @@ let
     mujmap = callPackage ./mujmap { };
     nix-patched = callPackage ./nix { };
     nu-scripts = callPackage ./nu-scripts { };
+    swaylock-dpms = callPackage ./swaylock-dpms { };
     wezterm-nightly = callPackage ./wezterm-nightly { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
     linuxPackages_acs_override = callPackage ./linux_acs_override { };

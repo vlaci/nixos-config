@@ -1,0 +1,38 @@
+From 00eb6f7449f5c98aad85785e184ba3617412acf9 Mon Sep 17 00:00:00 2001
+From: Alex Gartner <git@agartner.com>
+Date: Mon, 3 Apr 2023 21:21:54 -0700
+Subject: [PATCH 2/2] schedule power off on start
+
+---
+ include/swaylock.h | 1 +
+ main.c             | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/include/swaylock.h b/include/swaylock.h
+index 1c755d7..beeb96c 100644
+--- a/include/swaylock.h
++++ b/include/swaylock.h
+@@ -146,5 +146,6 @@ void schedule_auth_idle(struct swaylock_state *state);
+ void initialize_pw_backend(int argc, char **argv);
+ void run_pw_backend_child(void);
+ void clear_buffer(char *buf, size_t size);
++void schedule_power_off(struct swaylock_state *state);
+ 
+ #endif
+diff --git a/main.c b/main.c
+index 57e810e..33d2715 100644
+--- a/main.c
++++ b/main.c
+@@ -1291,6 +1291,9 @@ int main(int argc, char **argv) {
+ 	sigemptyset(&sa.sa_mask);
+ 	sa.sa_flags = SA_RESTART;
+ 	sigaction(SIGUSR1, &sa, NULL);
++	signal(SIGUSR1, do_sigusr);
++	signal(SIGUSR1, do_sigusr);
++	schedule_power_off(&state);
+ 
+ 	state.run_display = true;
+ 	while (state.run_display) {
+-- 
+2.43.1
+
