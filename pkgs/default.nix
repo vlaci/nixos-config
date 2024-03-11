@@ -5,6 +5,7 @@ let
   self = rec {
     pkgsrcs = pkgs.callPackage ./_sources/generated.nix { };
     berkeley-mono-typeface = callPackage ./berkeley-mono-typeface { };
+    flameshot-git = callPackage ./flameshot-git { };
     hexdiff = callPackage ./hexdiff { };
     mujmap = callPackage ./mujmap { };
     nix-patched = callPackage ./nix { };

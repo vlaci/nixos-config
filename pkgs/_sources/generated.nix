@@ -13,6 +13,18 @@
     };
     date = "2022-11-10";
   };
+  flameshot = {
+    pname = "flameshot";
+    version = "3d21e4967b68e9ce80fb2238857aa1bf12c7b905";
+    src = fetchFromGitHub {
+      owner = "flameshot-org";
+      repo = "flameshot";
+      rev = "3d21e4967b68e9ce80fb2238857aa1bf12c7b905";
+      fetchSubmodules = false;
+      sha256 = "sha256-OLRtF/yjHDN+sIbgilBZ6sBZ3FO6K533kFC1L2peugc=";
+    };
+    date = "2023-11-25";
+  };
   hexdiff = {
     pname = "hexdiff";
     version = "3e96f27e65167c619ede35ab04232163dc273e69";

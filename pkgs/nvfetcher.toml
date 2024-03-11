@@ -6,6 +6,10 @@ fetch.github = "ahroach/hexdiff"
 src.git = "https://github.com/catppuccin/bat"
 fetch.github = "catppuccin/bat"
 
+[flameshot]
+src.git = "https://github.com/flameshot-org/flameshot"
+fetch.github = "flameshot-org/flameshot"
+
 [mujmap]
 src.git = "https://github.com/elizagamedev/mujmap"
 fetch.github = "elizagamedev/mujmap"

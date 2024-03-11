@@ -110,7 +110,7 @@ mkProfile "gui" {
 
   home.packages = with pkgs; [
     evince
-    flameshot
+    flameshot-git
     gimp
     material-design-icons
     signal-desktop
@@ -119,7 +119,11 @@ mkProfile "gui" {
     wl-clipboard
   ];
 
-  services.flameshot.enable = true;
+  services.flameshot = {
+    enable = true;
+    package = pkgs.flameshot-git;
+  };
+
   systemd.user.services.flameshot = {
     Unit.PartOf = [ "sway-session.target" ];
     Service.Environment = lib.mkForce "PATH=${config.home.profileDirectory}/bin XDG_CURRENT_DESKTOP=sway";

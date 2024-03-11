@@ -19,6 +19,26 @@
         },
         "version": "ba4d16880d63e656acced2b7d4e034e4a93f74b1"
     },
+    "flameshot": {
+        "cargoLocks": null,
+        "date": "2023-11-25",
+        "extract": null,
+        "name": "flameshot",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "flameshot-org",
+            "repo": "flameshot",
+            "rev": "3d21e4967b68e9ce80fb2238857aa1bf12c7b905",
+            "sha256": "sha256-OLRtF/yjHDN+sIbgilBZ6sBZ3FO6K533kFC1L2peugc=",
+            "type": "github"
+        },
+        "version": "3d21e4967b68e9ce80fb2238857aa1bf12c7b905"
+    },
     "hexdiff": {
         "cargoLocks": null,
         "date": "2018-01-24",
