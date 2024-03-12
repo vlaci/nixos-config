@@ -26,7 +26,6 @@ lib.mkProfile "development" {
     ]))
     openssl
     pandoc
-    rnix-lsp
     cargo-edit
     clang
     lldb
