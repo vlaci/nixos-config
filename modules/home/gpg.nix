@@ -51,6 +51,6 @@ lib.mkProfile "gpg" {
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 }
