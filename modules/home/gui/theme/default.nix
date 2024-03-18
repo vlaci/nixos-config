@@ -37,6 +37,7 @@ in
       }
     '';
     stylix.targets.rofi.enable = false;
+    stylix.opacity.terminal = 0.85;
 
     services.darkman = {
       darkModeScripts.color-scheme-dark = ''

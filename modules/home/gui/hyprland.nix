@@ -27,17 +27,22 @@ lib.mkProfile "hyprland" {
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-        rounding = 10;
+        rounding = 6;
 
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 16;
+          passes = 2;
         };
 
         drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
+        shadow_offset = "4 4";
+        shadow_range = 10;
+        shadow_render_power = 1;
+        "col.shadow" = lib.mkForce "rgba(0e0e0eb0)";
+
+        dim_inactive = true;
+        dim_strength = 0.1;
       };
 
       animations = {
