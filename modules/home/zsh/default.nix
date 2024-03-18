@@ -41,7 +41,7 @@ in
     }
     {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = false;
       enableVteIntegration = true;
       inherit dotDir;
