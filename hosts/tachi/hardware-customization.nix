@@ -72,7 +72,7 @@
     };
   };
 
-  disko.devices = (pkgs.callPackage ./disko-config.nix {
+  disko.devices = (import ./disko-config.nix {
     disks = [ "/dev/nvme0n1" ];
   }).disko.devices;
 
