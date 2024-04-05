@@ -3,27 +3,27 @@
 {
   catpuccin-bat = {
     pname = "catpuccin-bat";
-    version = "2bafe4454d8db28491e9087ff3a1382c336e7d27";
+    version = "b19bea35a85a32294ac4732cad5b0dc6495bed32";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "bat";
-      rev = "2bafe4454d8db28491e9087ff3a1382c336e7d27";
+      rev = "b19bea35a85a32294ac4732cad5b0dc6495bed32";
       fetchSubmodules = false;
-      sha256 = "sha256-yHt3oIjUnljARaihalcWSNldtaJfVDfmfiecYfbzGs0=";
+      sha256 = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=";
     };
-    date = "2024-03-11";
+    date = "2024-03-14";
   };
   flameshot = {
     pname = "flameshot";
-    version = "3d21e4967b68e9ce80fb2238857aa1bf12c7b905";
+    version = "f2884330cc67502e85148dc5b4308f161f4ecb68";
     src = fetchFromGitHub {
       owner = "flameshot-org";
       repo = "flameshot";
-      rev = "3d21e4967b68e9ce80fb2238857aa1bf12c7b905";
+      rev = "f2884330cc67502e85148dc5b4308f161f4ecb68";
       fetchSubmodules = false;
-      sha256 = "sha256-OLRtF/yjHDN+sIbgilBZ6sBZ3FO6K533kFC1L2peugc=";
+      sha256 = "sha256-tXi4+EfgrMAwMUB23i43PWgQRtovqh1XE0BwHojHmSI=";
     };
-    date = "2023-11-25";
+    date = "2024-03-29";
   };
   hexdiff = {
     pname = "hexdiff";
@@ -57,15 +57,15 @@
   };
   nu-scripts = {
     pname = "nu-scripts";
-    version = "45f5310e51d32e2fb2517fbdc145f1ab69c3b28d";
+    version = "df90d65eeca2528a078a4b62ece1c626174fd168";
     src = fetchFromGitHub {
       owner = "nushell";
       repo = "nu_scripts";
-      rev = "45f5310e51d32e2fb2517fbdc145f1ab69c3b28d";
+      rev = "df90d65eeca2528a078a4b62ece1c626174fd168";
       fetchSubmodules = false;
-      sha256 = "sha256-1UTXjjt0mAAAUrvJklY8eTO34O9MxA9cf5YFF7s8mpk=";
+      sha256 = "sha256-eUNTcc48MLq+39C5kvb9C4nbDjNCui1Pr77/fAzmGxA=";
     };
-    date = "2024-03-12";
+    date = "2024-04-03";
   };
   swaylock = {
     pname = "swaylock";
@@ -81,21 +81,21 @@
   };
   wezterm-nightly = {
     pname = "wezterm-nightly";
-    version = "22424c3280cb21af43317cb58ef7bc34a8cbcc91";
+    version = "4de4061bf3b0ba805fc20643b7340d2b4958bea8";
     src = fetchFromGitHub {
       owner = "wez";
       repo = "wezterm";
-      rev = "22424c3280cb21af43317cb58ef7bc34a8cbcc91";
+      rev = "4de4061bf3b0ba805fc20643b7340d2b4958bea8";
       fetchSubmodules = true;
-      sha256 = "sha256-EQb0gNAb98e4IFwBv5XODtq9Er519wM/h5EglD8Lrhc=";
+      sha256 = "sha256-52qem3tIkteb2R6wHYrYDiP/zBXdwLAsUV7A4HSPeT4=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-nightly-22424c3280cb21af43317cb58ef7bc34a8cbcc91/Cargo.lock;
+      lockFile = ./wezterm-nightly-4de4061bf3b0ba805fc20643b7340d2b4958bea8/Cargo.lock;
       outputHashes = {
         "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
       };
     };
-    date = "2024-02-26";
+    date = "2024-04-05";
   };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
