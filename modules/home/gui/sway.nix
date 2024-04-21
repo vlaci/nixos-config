@@ -13,6 +13,7 @@ in
   config = mkIf cfg.enable {
     wayland.windowManager.sway = {
       enable = true;
+      package = pkgs.swayfx;
       wrapperFeatures.gtk = true;
       config =
         let
@@ -52,9 +53,6 @@ in
               )
             ];
           };
-          startup = [
-            { command = "${pkgs.swaykbdd}/bin/swaykbdd"; }
-          ];
           fonts = {
             names = [ "Sans" "Fontawesome" "Material Design Icons" ];
           };
@@ -232,6 +230,12 @@ in
               ${mode_gaps_right} = mkGaps "right";
             };
         };
+      extraConfig = ''
+        blur enable
+        shadows enable
+        corner_radius 5
+        layer_effects waybar blur enable; shadows enable
+      '';
       checkConfig = false;
     };
   };

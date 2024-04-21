@@ -304,7 +304,7 @@ mkProfile "gui" {
         }
 
         window#waybar {
-            background: @theme_base_color;
+            background: alpha(@theme_base_color, 0.9);
             color: @theme_text_color;
         }
 
