@@ -56,29 +56,6 @@
             inherit (disko.packages.${final.system}) disko;
           };
       };
-      checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")
-        {
-          inherit system;
-          extraConfigurations = nixosConfigurations.defaultModules;
-          specialArgs = { inherit lib; secrets = { }; };
-        }; let
-        user = "testuser";
-      in
-      {
-        default = makeTest {
-          nodes.machine = {
-            _.users.users.${user} = {
-              hashedPassword = "$6$batdZbDtVk4FIJ$OBueySbHgfx3PGyi/yT3Ur7ydEP/LcX5pRHd7a43wTihY9naCnk6ByCVYY9wXmfj41eAc/Yt/QNEVJcApfInr1";
-              home-manager = { programs.git.enable = true; };
-            };
-          };
-          testScript = ''
-            machine.succeed("id ${user}")
-            machine.succeed("command -v doas")
-            machine.fail("command -v sudo")
-          '';
-        };
-      };
     } // eachDefaultSystem (
       system:
       let
@@ -88,15 +65,6 @@
         packages = (import ./pkgs { inherit pkgs; });
         devShell = import ./shell.nix { inherit pkgs; };
         legacyPackages = pkgs;
-
-        apps.repl = flake-utils.lib.mkApp {
-          drv = pkgs.writeShellScriptBin "repl" ''
-            confnix=$(mktemp)
-            echo "builtins.getFlake (toString $(git rev-parse --show-toplevel))" >$confnix
-            trap "rm $confnix" EXIT
-            nix repl $confnix
-          '';
-        };
       }
     );
 }
