@@ -15,8 +15,6 @@
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
-    hy3.url = "github:outfoxxed/hy3";
-    hy3.inputs.hyprland.follows = "hyprland";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
@@ -25,7 +23,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, hy3, disko, impermanence, stylix, nix-index-database, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, disko, impermanence, stylix, nix-index-database, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -56,7 +54,6 @@
           {
             inherit lib pkgsrcs;
             inherit (disko.packages.${final.system}) disko;
-            inherit (hy3.packages.x86_64-linux) hy3;
           };
       };
       checks.${system} = with import (nixpkgs + "/nixos/lib/testing-python.nix")

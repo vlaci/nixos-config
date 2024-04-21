@@ -536,26 +536,6 @@
         "type": "github"
       }
     },
-    "hy3": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ]
-      },
-      "locked": {
-        "lastModified": 1713686902,
-        "narHash": "sha256-PqVld+oFziSt7VZTNBomPyboaMEAIkerPQFwNJL/Wjw=",
-        "owner": "outfoxxed",
-        "repo": "hy3",
-        "rev": "3331340702ecf69229eea3f9268cc05e82c0298e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "outfoxxed",
-        "repo": "hy3",
-        "type": "github"
-      }
-    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -861,7 +841,6 @@
         "flake-utils": "flake-utils_3",
         "git-agecrypt": "git-agecrypt",
         "home-manager": "home-manager_2",
-        "hy3": "hy3",
         "hyprland": "hyprland",
         "impermanence": "impermanence",
         "nix-index-database": "nix-index-database",
