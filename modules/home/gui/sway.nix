@@ -232,6 +232,7 @@ in
               ${mode_gaps_right} = mkGaps "right";
             };
         };
+      checkConfig = false;
     };
   };
 }
