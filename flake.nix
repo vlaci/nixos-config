@@ -5,7 +5,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:vlaci/nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    emacsVlaci.url = "github:vlaci/emacs.d";
+    emacsVlaci.url = "sourcehut:~vlaci/emacs-config";
     emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
@@ -34,7 +34,7 @@
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ emacsVlaci.lib.hmModule hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence ];
+        hmModules = [ emacsVlaci.homeManagerModules.default hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence ];
         nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index ];
       } // inputs);
     in
@@ -42,7 +42,6 @@
       inherit lib;
       nixosConfigurations = nixosConfigurations.hostsFromDir ./hosts;
       overlays = lib.importDir ./overlays // {
-        emacsVlaci = emacsVlaci.overlay;
         hyprland = hyprland.overlays.default;
         git-agecrypt = git-agecrypt.overlay;
         default = final: prev:
