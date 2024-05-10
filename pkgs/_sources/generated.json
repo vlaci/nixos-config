@@ -1,7 +1,7 @@
 {
     "catpuccin-bat": {
         "cargoLocks": null,
-        "date": "2024-03-14",
+        "date": "2024-04-25",
         "extract": null,
         "name": "catpuccin-bat",
         "passthru": null,
@@ -13,15 +13,15 @@
             "name": null,
             "owner": "catppuccin",
             "repo": "bat",
-            "rev": "b19bea35a85a32294ac4732cad5b0dc6495bed32",
-            "sha256": "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=",
+            "rev": "d714cc1d358ea51bfc02550dabab693f70cccea0",
+            "sha256": "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=",
             "type": "github"
         },
-        "version": "b19bea35a85a32294ac4732cad5b0dc6495bed32"
+        "version": "d714cc1d358ea51bfc02550dabab693f70cccea0"
     },
     "flameshot": {
         "cargoLocks": null,
-        "date": "2024-03-29",
+        "date": "2024-05-06",
         "extract": null,
         "name": "flameshot",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "flameshot-org",
             "repo": "flameshot",
-            "rev": "f2884330cc67502e85148dc5b4308f161f4ecb68",
-            "sha256": "sha256-tXi4+EfgrMAwMUB23i43PWgQRtovqh1XE0BwHojHmSI=",
+            "rev": "5f30631a415a7202b474fddc68de5b3904cd5d87",
+            "sha256": "sha256-tt9Q8HWNIXwmwjY6/8SpJSOCIKJ+P56BYpANykGxfYM=",
             "type": "github"
         },
-        "version": "f2884330cc67502e85148dc5b4308f161f4ecb68"
+        "version": "5f30631a415a7202b474fddc68de5b3904cd5d87"
     },
     "hexdiff": {
         "cargoLocks": null,
@@ -86,7 +86,7 @@
     },
     "nu-scripts": {
         "cargoLocks": null,
-        "date": "2024-04-03",
+        "date": "2024-05-10",
         "extract": null,
         "name": "nu-scripts",
         "passthru": null,
@@ -98,11 +98,11 @@
             "name": null,
             "owner": "nushell",
             "repo": "nu_scripts",
-            "rev": "df90d65eeca2528a078a4b62ece1c626174fd168",
-            "sha256": "sha256-eUNTcc48MLq+39C5kvb9C4nbDjNCui1Pr77/fAzmGxA=",
+            "rev": "f1b0432ad96637ae24848f3750af9b6544b9ee9c",
+            "sha256": "sha256-hH0EC6ZqtDBMWkupm2kD6cGQoNjsfPZFyaUOTyhpc3g=",
             "type": "github"
         },
-        "version": "df90d65eeca2528a078a4b62ece1c626174fd168"
+        "version": "f1b0432ad96637ae24848f3750af9b6544b9ee9c"
     },
     "swaylock": {
         "cargoLocks": null,
@@ -127,13 +127,14 @@
     "wezterm-nightly": {
         "cargoLocks": {
             "Cargo.lock": [
-                "./wezterm-nightly-4de4061bf3b0ba805fc20643b7340d2b4958bea8/Cargo.lock",
+                "./wezterm-nightly-ca27f921e2f5b25fa1a1b4395f972676d685b62c/Cargo.lock",
                 {
+                    "sqlite-cache-0.1.3": "sha256-sBAC8MsQZgH+dcWpoxzq9iw5078vwzCijgyQnMOWIkk=",
                     "xcb-imdkit-0.3.0": "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI="
                 }
             ]
         },
-        "date": "2024-04-05",
+        "date": "2024-05-10",
         "extract": null,
         "name": "wezterm-nightly",
         "passthru": null,
@@ -145,11 +146,11 @@
             "name": null,
             "owner": "wez",
             "repo": "wezterm",
-            "rev": "4de4061bf3b0ba805fc20643b7340d2b4958bea8",
-            "sha256": "sha256-52qem3tIkteb2R6wHYrYDiP/zBXdwLAsUV7A4HSPeT4=",
+            "rev": "ca27f921e2f5b25fa1a1b4395f972676d685b62c",
+            "sha256": "sha256-J4L5+qtXsd8GMUS9SBSKl0HCQvxI1txUdGNfgeJCIno=",
             "type": "github"
         },
-        "version": "4de4061bf3b0ba805fc20643b7340d2b4958bea8"
+        "version": "ca27f921e2f5b25fa1a1b4395f972676d685b62c"
     },
     "zsh-alias-tips": {
         "cargoLocks": null,
