@@ -13,7 +13,7 @@
     git-agecrypt.url = "github:vlaci/git-agecrypt";
     git-agecrypt.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
