@@ -8,7 +8,6 @@
   isoImage.makeEfiBootable = true;
   isoImage.makeUsbBootable = true;
   isoImage.isoName = lib.mkForce "nixos.iso";
-  nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
