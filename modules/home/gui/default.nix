@@ -22,7 +22,7 @@ mkProfile "gui" {
 
   programs.qutebrowser = {
     enable = true;
-    package = pkgs.qutebrowser.override { enableVulkan = false; };
+    package = pkgs.buildEnv { name = "qutebrowser-env"; paths = with pkgs; [ bitwarden-cli keyutils qutebrowser ]; };
     keyBindings = {
       normal = {
         ",pp" = "spawn --userscript qute-bitwarden -t";
