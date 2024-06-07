@@ -81,6 +81,9 @@ mkProfile "gui" {
       scrollback_lines = 20000;
       scrollback_pager_history_size = 20; # 10k line / MiB
     };
+    extraConfig = lib.mkAfter ''
+      include themes.conf
+    '';
   };
 
   programs.zsh.initExtra = ''
