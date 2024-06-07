@@ -91,7 +91,7 @@ lib.mkProfile "gui" {
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr.enable = lib.mkForce true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
