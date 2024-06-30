@@ -53,6 +53,7 @@ in
     users.allowNoPasswordLogin = !vlaci.available && (warn "Secrets are not available, users won't be able to log in!" true);
     users.users = mapAttrs (n: v: v.forwarded) cfg.users;
     home-manager.users = mapAttrs (n: v: { imports = v.home-manager; }) cfg.users;
+    programs._1password-gui.polkitPolicyOwners = builtins.attrNames cfg.users;
 
     age.identityPaths = options.age.identityPaths.default ++ [ "/home/vlaci/.ssh/id_ed25519" ];
 
