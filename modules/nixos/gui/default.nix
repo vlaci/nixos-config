@@ -46,6 +46,10 @@ lib.mkProfile "gui" {
   };
 
   location.provider = "geoclue2";
+  services.geoclue2 = {
+    enable = true;
+    geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM";
+  };
 
   services.greetd = {
     enable = true;
