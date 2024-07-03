@@ -70,6 +70,11 @@ mkProfile "tools" {
     userKnownHostsFile = "${config._.persist.root}/.ssh/known_hosts";
   };
 
+
+  programs._1password-shell-plugins = {
+    enable = true;
+  };
+
   services.pueue = {
     enable = true;
     settings.shared = { };

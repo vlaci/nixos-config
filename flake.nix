@@ -21,9 +21,10 @@
     stylix.url = "github:danth/stylix";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    onepassword-shell-plugins.url = "github:1Password/shell-plugins";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, disko, impermanence, stylix, nix-index-database, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -34,7 +35,7 @@
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ emacsVlaci.homeManagerModules.default hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence ];
+        hmModules = [ emacsVlaci.homeManagerModules.default hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence onepassword-shell-plugins.hmModules.default ];
         nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index ];
       } // inputs);
     in
