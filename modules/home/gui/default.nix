@@ -8,6 +8,7 @@ mkProfile "gui" {
     ./theme
     ./wezterm
     ./hyprland.nix
+    ./river.nix
     ./sway.nix
   ];
 
@@ -139,7 +140,7 @@ mkProfile "gui" {
         layer = "top";
         position = "top";
 
-        modules-left = [ "hyprland/workspaces" "hyprland/submap" "sway/workspaces" "sway/mode" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/submap" "sway/workspaces" "sway/mode" "river/tags" "river/mode" ];
         modules-center = [ "clock" ];
         modules-right = [ "idle_inhibitor" "sway/language" "hyprland/language" "pulseaudio" "disk" "disk#home" "battery" "tray" ];
 
