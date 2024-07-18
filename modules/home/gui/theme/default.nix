@@ -25,18 +25,6 @@ in
       theme.gtkTheme.dark.package
       theme.gtkTheme.light.package
     ];
-    programs.rofi.theme = ./rofi.rasi;
-    xdg.dataFile."rofi/themes/colors.rasi".text = with config.lib.stylix.colors.withHashtag; ''
-      * {
-        al:  #00000000;
-        tx:  ${base05};
-        bg:  ${base00};
-        se:  ${base0C};
-        fg:  ${base05};
-        ac:  ${base03};
-      }
-    '';
-    stylix.targets.rofi.enable = false;
     stylix.opacity.terminal = 0.85;
 
     services.darkman = {

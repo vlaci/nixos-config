@@ -213,8 +213,6 @@ lib.mkProfile "niri"
     };
   };
 
-  programs.fuzzel.enable = true;
-
   home.packages = with pkgs; [
     xwayland-satellite
   ];

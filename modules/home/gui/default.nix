@@ -94,10 +94,7 @@ mkProfile "gui" {
     }
   '';
 
-  programs.rofi = {
-    enable = true;
-    package = pkgs.rofi-wayland;
-  };
+  programs.fuzzel.enable = true;
 
   services.syncthing.enable = true;
 
@@ -108,7 +105,7 @@ mkProfile "gui" {
     ".mozilla"
   ];
   _.persist.files = [
-    ".cache/rofi3.druncache"
+    ".cache/fuzzel"
   ];
 
   home.keyboard = null;

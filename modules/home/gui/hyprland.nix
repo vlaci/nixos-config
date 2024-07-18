@@ -98,7 +98,7 @@ lib.mkProfile "hyprland" {
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod SHIFT, E, exec, swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Hyprland? This will end your Wayland session.' -b 'Yes, exit' 'hyprctl dispatch exit'"
         "$mainMod, V, togglefloating,"
-        "$mainMod, D, exec, rofi -show drun"
+        "$mainMod, D, exec, fuzzel"
         "ALT CTRL, L, exec, systemctl --user kill --signal SIGUSR1 swayidle.service"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, J, togglesplit," # dwindle
