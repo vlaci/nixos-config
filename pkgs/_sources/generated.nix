@@ -15,15 +15,15 @@
   };
   flameshot = {
     pname = "flameshot";
-    version = "5f30631a415a7202b474fddc68de5b3904cd5d87";
+    version = "ccb5a27b136a633911b3b1006185530d9beeea5d";
     src = fetchFromGitHub {
       owner = "flameshot-org";
       repo = "flameshot";
-      rev = "5f30631a415a7202b474fddc68de5b3904cd5d87";
+      rev = "ccb5a27b136a633911b3b1006185530d9beeea5d";
       fetchSubmodules = false;
-      sha256 = "sha256-tt9Q8HWNIXwmwjY6/8SpJSOCIKJ+P56BYpANykGxfYM=";
+      sha256 = "sha256-JIXsdVUR/4183aJ0gvNGYPTyCzX7tCrk8vRtR8bcdhE=";
     };
-    date = "2024-05-06";
+    date = "2024-07-02";
   };
   hexdiff = {
     pname = "hexdiff";
@@ -57,46 +57,27 @@
   };
   nu-scripts = {
     pname = "nu-scripts";
-    version = "f1b0432ad96637ae24848f3750af9b6544b9ee9c";
+    version = "ca309b988e7908f4d8a92f4a7bc6a4b9970a8867";
     src = fetchFromGitHub {
       owner = "nushell";
       repo = "nu_scripts";
-      rev = "f1b0432ad96637ae24848f3750af9b6544b9ee9c";
+      rev = "ca309b988e7908f4d8a92f4a7bc6a4b9970a8867";
       fetchSubmodules = false;
-      sha256 = "sha256-hH0EC6ZqtDBMWkupm2kD6cGQoNjsfPZFyaUOTyhpc3g=";
+      sha256 = "sha256-GZBZ4aVcSjtjPeB/wr/CIVahtmJJb02mNPDCzNM86b8=";
     };
-    date = "2024-05-10";
+    date = "2024-07-16";
   };
   swaylock = {
     pname = "swaylock";
-    version = "f9ce3f193bc2f035790372b550547686075f4923";
+    version = "b70d85ec145520ba3ebaa4c51921a2761bc0c7f0";
     src = fetchFromGitHub {
       owner = "swaywm";
       repo = "swaylock";
-      rev = "f9ce3f193bc2f035790372b550547686075f4923";
+      rev = "b70d85ec145520ba3ebaa4c51921a2761bc0c7f0";
       fetchSubmodules = false;
-      sha256 = "sha256-YlfOR1KpeddJxk6kKOzk/DTxsRETPRHXvBqZf/5XZ54=";
+      sha256 = "sha256-g9Xjti9eyD4juxal4ch2rctVMW9SXI+oZ9r5hGfyZQ4=";
     };
-    date = "2024-03-05";
-  };
-  wezterm-nightly = {
-    pname = "wezterm-nightly";
-    version = "ca27f921e2f5b25fa1a1b4395f972676d685b62c";
-    src = fetchFromGitHub {
-      owner = "wez";
-      repo = "wezterm";
-      rev = "ca27f921e2f5b25fa1a1b4395f972676d685b62c";
-      fetchSubmodules = true;
-      sha256 = "sha256-J4L5+qtXsd8GMUS9SBSKl0HCQvxI1txUdGNfgeJCIno=";
-    };
-    cargoLock."Cargo.lock" = {
-      lockFile = ./wezterm-nightly-ca27f921e2f5b25fa1a1b4395f972676d685b62c/Cargo.lock;
-      outputHashes = {
-        "xcb-imdkit-0.3.0" = "sha256-fTpJ6uNhjmCWv7dZqVgYuS2Uic36XNYTbqlaly5QBjI=";
-        "sqlite-cache-0.1.3" = "sha256-sBAC8MsQZgH+dcWpoxzq9iw5078vwzCijgyQnMOWIkk=";
-      };
-    };
-    date = "2024-05-10";
+    date = "2024-06-14";
   };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
