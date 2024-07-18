@@ -119,7 +119,12 @@ mkProfile "gui" {
     gimp
     material-design-icons
     signal-desktop
-    vivaldi
+    (vivaldi.overrideAttrs (super: {
+      postFixup = (super.postFixup or "") + ''
+        substituteInPlace $out/share/applications/vivaldi-stable.desktop \
+          --replace "Exec=$out/bin/vivaldi" "Exec=$out/bin/vivaldi --ozone-platform-hint=auto" \
+      '';
+    }))
     slurp
     wl-clipboard
   ];
