@@ -3,6 +3,7 @@
 lib.mkProfile "gui" {
   imports = [
     ./hyprland.nix
+    ./niri.nix
     ./theme
   ];
 

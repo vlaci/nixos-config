@@ -26,6 +26,7 @@
   _.keyboardio.enable = true;
   _.work.enable = true;
   _.persist.enable = true;
+  _.gui.niri.enable = true;
 
   _.users.users.vlaci = {
     isAdmin = true;
@@ -43,6 +44,7 @@
       _.emacs.enable = true;
       _.sway.enable = true;
       _.hyprland.enable = true;
+      _.niri.enable = true;
     };
   };
   networking.firewall.interfaces."virbr0".allowedTCPPorts = [ 139 445 ];

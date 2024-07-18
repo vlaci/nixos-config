@@ -8,6 +8,7 @@ mkProfile "gui" {
     ./theme
     ./wezterm
     ./hyprland.nix
+    ./niri.nix
     ./river.nix
     ./sway.nix
   ];
