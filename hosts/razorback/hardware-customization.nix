@@ -24,7 +24,7 @@
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
+  hardware.graphics.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau ];
   hardware.opengl.driSupport32Bit = true;
 
   services.xserver.videoDrivers = [ "modesetting" ];

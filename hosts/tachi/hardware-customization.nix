@@ -24,7 +24,7 @@
   boot.kernelParams = [ "mitigations=off" "intel_iommu=on" "msr.allow_writes=on" "psmouse.synaptics_intertouch=0" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
+  hardware.graphics.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
 
   services.xserver.videoDrivers = [ "modesetting" ];
 
