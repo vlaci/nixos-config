@@ -4,6 +4,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:vlaci/nixpkgs";
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     emacsVlaci.url = "sourcehut:~vlaci/emacs-config";
     emacsVlaci.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +27,7 @@
     onepassword-shell-plugins.url = "github:1Password/shell-plugins";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, ... }@inputs:
+  outputs = { self, nixpkgs, lix-module, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -36,7 +39,7 @@
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
         hmModules = [ emacsVlaci.homeManagerModules.default hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence onepassword-shell-plugins.hmModules.default ];
-        nixosModules = [ home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index ];
+        nixosModules = [ lix-module.nixosModules.default home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index ];
       } // inputs);
     in
     {
