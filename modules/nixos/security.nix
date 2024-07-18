@@ -20,5 +20,14 @@ lib.mkMerge [
     _.users.forAllUsers.persist.directories = [
       ".config/1Password"
     ];
+
+    environment.etc = {
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          vivaldi-bin
+        '';
+        mode = "0755";
+      };
+    };
   })
 ]
