@@ -23,12 +23,6 @@ fetch.github = "nushell/nu_scripts"
 src.git = "https://github.com/swaywm/swaylock"
 fetch.github = "swaywm/swaylock"
 
-[wezterm-nightly]
-src.git = "https://github.com/wez/wezterm"
-fetch.github = "wez/wezterm"
-git.fetchSubmodules = true
-cargo_locks = [ "Cargo.lock" ]
-
 [zsh-alias-tips]
 src.git = "https://github.com/djui/alias-tips"
 fetch.github = "djui/alias-tips"

@@ -5,7 +5,6 @@
 
   programs.wezterm = {
     enable = true;
-    package = pkgs.wezterm-nightly;
     extraConfig = builtins.readFile ./wezterm/wezterm.lua;
   };
   xdg.configFile = lib.pipe ./wezterm [
