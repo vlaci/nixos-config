@@ -52,43 +52,12 @@ lib.mkProfile "gui" {
     geoProviderUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM";
   };
 
-  services.greetd = {
+  services.displayManager.sddm = {
     enable = true;
-    settings.default_session.command =
-      let
-        theme = config._.theme.gtkTheme.dark;
-        sway-greeter-config =
-          let
-            inherit (config.services.xserver) xkb;
-            xkb_variant = builtins.replaceStrings [ " " ] [ "" ] xkb.variant;
-            xkb_options = builtins.replaceStrings [ " " ] [ "" ] xkb.options;
-          in
-          pkgs.writeText "sway-greeter.config" ''
-            input "type:keyboard" {
-              xkb_layout ${xkb.layout}
-              ${lib.optionalString (xkb_variant != "") "xkb_variant ${xkb_variant}"}
-              ${lib.optionalString (xkb_options != "") "xkb_options ${xkb_options}"}
-            }
-
-            exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-            # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
-            exec "GTK_DATA_PREFIX=${theme.package} GTK_THEME=${theme.name} ${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${pkgs.sway}/bin/swaymsg exit"
-
-            bindsym Mod4+shift+e exec swaynag \
-              -t warning \
-              -m 'What do you want to do?' \
-              -b 'Poweroff' 'systemctl poweroff' \
-              -b 'Reboot' 'systemctl reboot'
-
-            #include /etc/sway/config.d/*
-          '';
-      in
-      "${pkgs.sway}/bin/sway --config ${sway-greeter-config}";
+    wayland.enable = true;
+    catppuccin.enable = true;
+    package = pkgs.kdePackages.sddm;
   };
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-    sway
-  '';
 
   programs.sway = {
     enable = true;
