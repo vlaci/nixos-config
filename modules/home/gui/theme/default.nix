@@ -27,6 +27,8 @@ in
     ];
     stylix.opacity.terminal = 0.85;
 
+    stylix.targets.kitty.variant256Colors = true;
+
     services.darkman = {
       darkModeScripts.color-scheme-dark = ''
         ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
