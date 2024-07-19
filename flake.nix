@@ -16,8 +16,6 @@
     git-agecrypt.url = "github:vlaci/git-agecrypt";
     git-agecrypt.inputs.nixpkgs.follows = "nixpkgs";
     git-agecrypt.inputs.flake-utils.follows = "flake-utils";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
@@ -29,7 +27,7 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { self, nixpkgs, lix-module, home-manager, flake-utils, emacsVlaci, git-agecrypt, hyprland, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, niri, catppuccin, ... }@inputs:
+  outputs = { self, nixpkgs, lix-module, home-manager, flake-utils, emacsVlaci, git-agecrypt, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, niri, catppuccin, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
@@ -40,8 +38,8 @@
 
       nixosConfigurations = lib.nixosConfigurations ({
         inherit lib system;
-        hmModules = [ emacsVlaci.homeManagerModules.default hyprland.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence onepassword-shell-plugins.hmModules.default ];
-        nixosModules = [ lix-module.nixosModules.default home-manager.nixosModules.home-manager hyprland.nixosModules.default disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index niri.nixosModules.niri catppuccin.nixosModules.catppuccin ];
+        hmModules = [ emacsVlaci.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence onepassword-shell-plugins.hmModules.default ];
+        nixosModules = [ lix-module.nixosModules.default home-manager.nixosModules.home-manager disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index niri.nixosModules.niri catppuccin.nixosModules.catppuccin ];
       } // inputs);
     in
     {
@@ -49,7 +47,6 @@
       nixosConfigurations = nixosConfigurations.hostsFromDir ./hosts;
       overlays = lib.importDir ./overlays // {
         inherit (niri.overlays) niri;
-        hyprland = hyprland.overlays.default;
         git-agecrypt = git-agecrypt.overlay;
         default = final: prev:
           let
