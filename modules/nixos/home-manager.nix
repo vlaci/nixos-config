@@ -1,4 +1,4 @@
-{ config, options, lib, pkgs, decrypt, ... }:
+{ config, options, lib, pkgs, ... }:
 
 let
   inherit (lib) attrNames attrValues concatStringsSep genAttrs intersectLists mergedAttrs mkDefault mkIf mkOption types;
@@ -32,7 +32,6 @@ in
   config = {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.extraSpecialArgs = { inherit decrypt; };
 
     _.home-manager.forAllUsers.home.stateVersion = mkDefault "20.09";
 
