@@ -86,6 +86,7 @@ in
     security.pam.u2f.enable = mkDefault true;
     security.pam.use2Factor = mkDefault true;
     security.pam.services."doas".use2Factor = mkDefault false;
+    security.pam.services."polkit-1".use2Factor = mkDefault false;
     security.pam.services."sudo".use2Factor = mkDefault false;
     security.pam.services."su".use2Factor = mkDefault false;
   };
