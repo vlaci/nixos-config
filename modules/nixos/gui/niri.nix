@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
@@ -10,5 +10,6 @@ in
   };
   config = mkIf cfg.enable {
     programs.niri.enable = true;
+    programs.niri.package = pkgs.niri-unstable;
   };
 }
