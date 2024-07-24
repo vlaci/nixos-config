@@ -4,27 +4,35 @@ let
   inherit (lib) mkDefault;
 in
 {
-  nix.extraOptions = mkDefault ''
-    experimental-features = nix-command flakes
-    keep-outputs = true
-    keep-derivations = true
-  '';
+  nix = {
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
+
+    package = pkgs.nix-patched;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      keep-outputs = true;
+      keep-env-derivations = true;
+      keep-derivations = true;
+      trusted-users = [ "root" "@wheel" ];
+    };
+  };
+
   nixpkgs.config = {
     allowUnfree = true;
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
-  };
-
-  nix.optimise = {
-    automatic = true;
-    dates = [ "weekly" ];
-  };
-
-  nix.package = pkgs.nix-patched;
 
   programs.command-not-found.enable = false;
   programs.nix-index-database.comma.enable = true;
@@ -39,4 +47,7 @@ in
       echo
     fi
   '';
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.package = pkgs.nix-ld-rs;
 }
