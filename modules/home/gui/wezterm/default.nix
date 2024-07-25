@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, wezterm, ... }:
 
 {
   home.packages = with pkgs; [ gitstatus ];
@@ -6,6 +6,7 @@
   programs.wezterm = {
     enable = true;
     extraConfig = builtins.readFile ./wezterm/wezterm.lua;
+    package = wezterm.packages.${pkgs.system}.default;
   };
   xdg.configFile = lib.pipe ./wezterm [
     builtins.readDir

@@ -25,9 +25,10 @@
     onepassword-shell-plugins.url = "github:1Password/shell-plugins";
     niri.url = "github:sodiboo/niri-flake";
     catppuccin.url = "github:catppuccin/nix";
+    wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
-  outputs = { self, nixpkgs, lix-module, home-manager, flake-utils, emacsVlaci, git-agecrypt, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, niri, catppuccin, ... }@inputs:
+  outputs = { self, nixpkgs, lix-module, home-manager, flake-utils, emacsVlaci, git-agecrypt, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, niri, catppuccin, wezterm, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
