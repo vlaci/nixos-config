@@ -27,6 +27,7 @@ in
     ];
     stylix.opacity.terminal = 0.85;
 
+    stylix.targets.kde.enable = false;
     stylix.targets.kitty.variant256Colors = true;
 
     services.darkman = {
