@@ -9,7 +9,7 @@ in
     gtk = { enable = true; inherit (theme) iconTheme; theme = lib.mkForce theme.gtkTheme.dark; };
     qt = {
       enable = true;
-      platformTheme = "gtk3";
+      platformTheme.name = "gtk3";
       style.name = "kvantum";
     };
 
