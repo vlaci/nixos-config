@@ -5,7 +5,10 @@ lib.mkProfile "niri"
   programs.niri.settings = {
     prefer-no-csd = true;
     input = {
-      focus-follows-mouse = true;
+      focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "0%";
+      };
       keyboard.xkb = with nixosConfig.services.xserver.xkb; {
         inherit variant layout options;
       };
@@ -211,6 +214,10 @@ lib.mkProfile "niri"
       # // moving the mouse or pressing any other key.
       "Mod+Shift+P".action = power-off-monitors;
     };
+    spawn-at-startup = [
+      { command = [ "waybar" ]; }
+      { command = [ "xwayland-satellite" ]; }
+    ];
   };
 
   home.packages = with pkgs; [
