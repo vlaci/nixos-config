@@ -483,11 +483,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722821805,
-        "narHash": "sha256-FGrUPUD+LMDwJsYyNSxNIzFMldtCm8wXiQuyL2PHSrM=",
+        "lastModified": 1723080788,
+        "narHash": "sha256-C5LbM5VMdcolt9zHeLQ0bYMRjUL+N+AL5pK7/tVTdes=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "0257e44f4ad472b54f19a6dd1615aee7fa48ed49",
+        "rev": "ffc1f95f6c28e1c6d1e587b51a2147027a3e45ed",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
         "ws-butler": "ws-butler"
       },
       "locked": {
-        "lastModified": 1721907833,
-        "narHash": "sha256-+TqJBL88aroTRzx9NpNpMFCLQAKRqn7Y3D8NCNGbRhY=",
+        "lastModified": 1723148689,
+        "narHash": "sha256-m46CFm3F28xfsWhJD86lSy7qj1+NtNPM4AECSQ31O00=",
         "owner": "~vlaci",
         "repo": "emacs-config",
-        "rev": "330cfcf8a25ac0c7dd74d12f5e7381abef8a2aed",
+        "rev": "fec34c4f07d91c2fd8477ad5ed28196674cda49a",
         "type": "sourcehut"
       },
       "original": {
@@ -1270,11 +1270,11 @@
         "xwayland-satellite": "xwayland-satellite"
       },
       "locked": {
-        "lastModified": 1722921541,
-        "narHash": "sha256-d+T1uCSKElKQb8cWJYNg1hBpCLWc15uf1yRee2CFgIs=",
+        "lastModified": 1723136616,
+        "narHash": "sha256-GQROjilK9uzE16HoN44FsSCflytaIzIc/16JQU3naVM=",
         "owner": "sodiboo",
         "repo": "niri-flake",
-        "rev": "07565b17fc1a668fa364d2c350974fa8664bf19e",
+        "rev": "620a3c32c6d9a026defe9fd35954e2e1b5a17334",
         "type": "github"
       },
       "original": {
