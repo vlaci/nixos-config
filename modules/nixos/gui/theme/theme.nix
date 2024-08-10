@@ -37,26 +37,7 @@
   };
 
   _.theme = {
-    gtkTheme.dark.name = "Catppuccin-Mocha-Standard-Lavender-Dark";
-    gtkTheme.dark.package = pkgs.catppuccin-gtk.override {
-      accents = [ "lavender" ];
-      variant = "mocha";
-    };
-
-    gtkTheme.light.name = "Catppuccin-Latte-Standard-Lavender-Light";
-    gtkTheme.light.package = pkgs.catppuccin-gtk.override {
-      accents = [ "lavender" ];
-      variant = "latte";
-    };
-
-    kvantumTheme.name = "Catppuccin-Mocha-Lavender";
-    kvantumTheme.package = pkgs.catppuccin-kvantum.override {
-      accent = "Lavender";
-      variant = "Mocha";
-    };
-
     iconTheme.name = "Papirus-Light";
     iconTheme.package = pkgs.papirus-icon-theme;
-
   };
 }

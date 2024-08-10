@@ -6,25 +6,13 @@ let
 in
 {
   config = {
-    gtk = { enable = true; inherit (theme) iconTheme; theme = lib.mkForce theme.gtkTheme.dark; };
+    gtk = { enable = true; inherit (theme) iconTheme; };
     qt = {
       enable = true;
-      platformTheme.name = "gtk3";
-      style.name = "kvantum";
+      platformTheme.name = "adwaita";
+      style.name = "adwaita";
     };
 
-    xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-      theme=${theme.kvantumTheme.name}
-    '';
-
-    xdg.configFile."Kvantum/${theme.kvantumTheme.name}" = {
-      source = "${theme.kvantumTheme.package}/share/Kvantum/${theme.kvantumTheme.name}";
-    };
-
-    home.packages = [
-      theme.gtkTheme.dark.package
-      theme.gtkTheme.light.package
-    ];
     stylix.opacity.terminal = 0.85;
 
     stylix.targets.kde.enable = false;
@@ -33,13 +21,11 @@ in
     services.darkman = {
       darkModeScripts.color-scheme-dark = ''
         ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${nixosConfig._.theme.gtkTheme.dark.name}'"
         echo dark > $XDG_RUNTIME_DIR/color-scheme
       '';
 
       lightModeScripts.color-scheme-light = ''
         ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
-        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'${nixosConfig._.theme.gtkTheme.light.name}'"
         echo light > $XDG_RUNTIME_DIR/color-scheme
       '';
     };
