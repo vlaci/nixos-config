@@ -17,6 +17,7 @@
   _.sshd.enable = true;
   _.gui.enable = true;
   _.gui.hyprland.enable = true;
+  _.gui.niri.enable = true;
   _.libvirt.enable = true;
   _.development.enable = true;
   _.email.enable = true;
@@ -40,6 +41,7 @@
       _.emacs.enable = true;
       _.sway.enable = true;
       _.hyprland.enable = true;
+      _.niri.enable = true;
     };
   };
 
