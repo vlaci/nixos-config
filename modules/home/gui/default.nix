@@ -136,217 +136,287 @@ mkProfile "gui" {
     Service.Environment = lib.mkForce "PATH=${config.home.profileDirectory}/bin XDG_CURRENT_DESKTOP=sway";
   };
 
-  programs.waybar = {
-    enable = true;
-    settings = [
-      {
-        layer = "top";
-        position = "top";
+  programs.waybar =
+    let
+      workspaces_nu = pkgs.writeScriptBin "workspaces" ''
+        #!${pkgs.nushell}/bin/nu
 
-        modules-left = [ "hyprland/workspaces" "hyprland/submap" "sway/workspaces" "sway/mode" "river/tags" "river/mode" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "idle_inhibitor" "sway/language" "hyprland/language" "pulseaudio" "disk" "disk#home" "battery" "tray" ];
+        def main [output_name] {
+          loop {
+            sleep 1sec
 
-        "hyprland/workspaces" = {
-          "format" = "{icon}";
-          "on-click" = "activate";
-          "format-icons" = {
-            "1" = "𐘹";
-            "2" = "𐝐";
-            "3" = "𐙁";
-            "4" = "𐚒";
-            "5" = "𐙢";
-            "6" = "𐘠";
-            "7" = "𐘴";
-            "8" = "𐘢";
-            "9" = "𐚐";
-            "10" = "𐝀";
-          };
-          "sort-by-number" = true;
-        };
-
-        "sway/workspaces" = {
-          "disable-scroll" = true;
-          "all-outputs" = true;
-          "format" = "{icon}";
-          "format-icons" = {
-            "1" = "𐘹";
-            "2" = "𐝐";
-            "3" = "𐙁";
-            "4" = "𐚒";
-            "5" = "𐙢";
-            "6" = "𐘠";
-            "7" = "𐘴";
-            "8" = "𐘢";
-            "9" = "𐚐";
-            "10" = "𐝀";
-          };
-        };
-
-        "sway/mode" = {
-          format = " {}";
-          max-length = 60;
-        };
-
-        "sway/window" = {
-          icon = true;
-        };
-
-        "wlr/taskbar" = {
-          format = "{icon} {title:.15}";
-          on-click = "minimize-raise";
-        };
-
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-        };
-
-        "sway/language" = {
-          format = "{}";
-          on-click = "swaymsg input type:keyboard xkb_switch_layout next";
-        };
-
-        "hyprland/language" = {
-          format = "{}";
-          on-click = "hyprctl switchxkblayout";
-        };
-
-        "pulseaudio" = {
-          format = "{icon}";
-          format-bluetooth = "{icon} ";
-          format-muted = "󰝟";
-          format-icons = {
-            headphone = "";
-            default = [ "" "" ];
-          };
-          scroll-step = 1;
-          on-click = "pavucontrol";
-        };
-
-        disk = {
-          path = "/";
-          format = "󰉋 {percentage_used}%";
-        };
-        "disk#home" = {
-          path = "/home";
-          format = "󱂵 {percentage_used}%";
-        };
-
-        clock =
-          {
-            format = "{:%H:%M}  ";
-            format-alt = "{:%A; %B %d, %Y (%R)}  ";
-            tooltip-format = "<tt><small>{calendar}</small></tt>";
-            calendar = {
-              "mode" = "year";
-              mode-mon-col = 3;
-              weeks-pos = "right";
-              on-scroll = 1;
-              on-click-right = "mode";
-              format = {
-                "months" = "<span color='#ffead3'><b>{}</b></span>";
-                days = "<span color='#ecc6d9'><b>{}</b></span>";
-                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-              };
-            };
-            actions = {
-              on-click-right = "mode";
-              on-click-forward = "tz_up";
-              on-click-backward = "tz_down";
-              on-scroll-up = "shift_up";
-              on-scroll-down = "shift_down";
-            };
-          };
-
-        battery = {
-          format = "{icon}";
-
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-          states = {
-            battery-10 = 10;
-            battery-20 = 20;
-            battery-30 = 30;
-            battery-40 = 40;
-            battery-50 = 50;
-            battery-60 = 60;
-            battery-70 = 70;
-            battery-80 = 80;
-            battery-90 = 90;
-            battery-100 = 100;
-          };
-
-          format-plugged = "󰚥";
-          format-charging-battery-10 = "󰢜";
-          format-charging-battery-20 = "󰂆";
-          format-charging-battery-30 = "󰂇";
-          format-charging-battery-40 = "󰂈";
-          format-charging-battery-50 = "󰢝";
-          format-charging-battery-60 = "󰂉";
-          format-charging-battery-70 = "󰢞";
-          format-charging-battery-80 = "󰂊";
-          format-charging-battery-90 = "󰂋";
-          format-charging-battery-100 = "󰂅";
-          tooltip-format = "{capacity}% {timeTo}";
-        };
-
-        tray = {
-          icon-size = 21;
-          spacing = 10;
-        };
-      }
-    ];
-    style = lib.mkAfter
-      ''
-        * {
-            font-family: FontAwesome, monospace, Material Icons;
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 0;
-        }
-
-        window#waybar {
-            background: alpha(@theme_base_color, 0.9);
-            color: @theme_text_color;
-        }
-
-        #workspaces button {
-            border: none;
-            border-radius: 0;
-        }
-
-        #submap,
-        #mode,
-        #clock,
-        #pulseaudio,
-        #disk,
-        #battery,
-        #language,
-        #tray,
-        #idle_inhibitor {
-            border-bottom: 3px solid transparent;
-        }
-
-        #idle_inhibitor.activated {
-            border-bottom: 3px solid @base06;
-        }
-
-        #battery.warning:not(.charging) {
-            background: @base08;
-            color: @base05;
-            animation-name: blink;
-            animation-duration: 0.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
+            print (
+              niri msg -j workspaces
+                | from json
+                | where output == $output_name
+                | each {|ws| if $ws.is_active { '󰪥' } else { '󰄰' } }
+                | str join " "
+            )
+          }
         }
       '';
-  };
+      window_nu = pkgs.writeScriptBin "window" ''
+        #!${pkgs.nushell}/bin/nu
+
+        let out = {
+          text: "",
+          tooltip: ""
+        }
+
+        loop {
+          sleep 1sec
+
+          let fw = niri msg -j focused-window | from json
+
+          print (
+            $out
+            | try { update text $fw.title | update tooltip $"($fw.title) | ($fw.app_id)" }
+            | to json -r
+          )
+        }
+      '';
+    in
+    {
+      enable = true;
+      settings = [
+        {
+          layer = "top";
+          position = "top";
+
+          modules-left = [
+            "custom/workspaces"
+            "hyprland/workspaces"
+            "hyprland/submap"
+            "sway/workspaces"
+            "sway/mode"
+            "river/tags"
+            "river/mode"
+          ];
+          modules-center = [ "custom/window" ];
+          modules-right = [
+            "idle_inhibitor"
+            "sway/language"
+            "hyprland/language"
+            "pulseaudio"
+            "disk"
+            "disk#home"
+            "battery"
+            "tray"
+            "clock"
+          ];
+
+          "custom/workspaces" = {
+            exec = ''${workspaces_nu}/bin/workspaces "$WAYBAR_OUTPUT_NAME"'';
+            format = " {} ";
+          };
+
+          "custom/window" = {
+            return-type = "json";
+            escape = true;
+            exec = "${window_nu}/bin/window";
+            format = "<i>{}</i>";
+          };
+
+          "hyprland/workspaces" = {
+            "format" = "{icon}";
+            "on-click" = "activate";
+            "format-icons" = {
+              "1" = "𐘹";
+              "2" = "𐝐";
+              "3" = "𐙁";
+              "4" = "𐚒";
+              "5" = "𐙢";
+              "6" = "𐘠";
+              "7" = "𐘴";
+              "8" = "𐘢";
+              "9" = "𐚐";
+              "10" = "𐝀";
+            };
+            "sort-by-number" = true;
+          };
+
+          "sway/workspaces" = {
+            "disable-scroll" = true;
+            "all-outputs" = true;
+            "format" = "{icon}";
+            "format-icons" = {
+              "1" = "𐘹";
+              "2" = "𐝐";
+              "3" = "𐙁";
+              "4" = "𐚒";
+              "5" = "𐙢";
+              "6" = "𐘠";
+              "7" = "𐘴";
+              "8" = "𐘢";
+              "9" = "𐚐";
+              "10" = "𐝀";
+            };
+          };
+
+          "sway/mode" = {
+            format = " {}";
+            max-length = 60;
+          };
+
+          "sway/window" = {
+            icon = true;
+          };
+
+          "wlr/taskbar" = {
+            format = "{icon} {title:.15}";
+            on-click = "minimize-raise";
+          };
+
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = "";
+              deactivated = "";
+            };
+          };
+
+          "sway/language" = {
+            format = "{}";
+            on-click = "swaymsg input type:keyboard xkb_switch_layout next";
+          };
+
+          "hyprland/language" = {
+            format = "{}";
+            on-click = "hyprctl switchxkblayout";
+          };
+
+          "pulseaudio" = {
+            format = "{icon}";
+            format-bluetooth = "{icon} ";
+            format-muted = "󰝟";
+            format-icons = {
+              headphone = "";
+              default = [ "" "" ];
+            };
+            scroll-step = 1;
+            on-click = "pavucontrol";
+          };
+
+          disk = {
+            path = "/";
+            format = "󰉋 {percentage_used}%";
+          };
+          "disk#home" = {
+            path = "/home";
+            format = "󱂵 {percentage_used}%";
+          };
+
+          clock =
+            {
+              format = "{:%H:%M}  ";
+              format-alt = "{:%A; %B %d, %Y (%R)}  ";
+              tooltip-format = "<tt><small>{calendar}</small></tt>";
+              calendar = {
+                "mode" = "year";
+                mode-mon-col = 3;
+                weeks-pos = "right";
+                on-scroll = 1;
+                on-click-right = "mode";
+                format = {
+                  "months" = "<span color='#ffead3'><b>{}</b></span>";
+                  days = "<span color='#ecc6d9'><b>{}</b></span>";
+                  weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+                  weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+                  today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+                };
+              };
+              actions = {
+                on-click-right = "mode";
+                on-click-forward = "tz_up";
+                on-click-backward = "tz_down";
+                on-scroll-up = "shift_up";
+                on-scroll-down = "shift_down";
+              };
+            };
+
+          battery = {
+            format = "{icon}";
+
+            format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+            states = {
+              battery-10 = 10;
+              battery-20 = 20;
+              battery-30 = 30;
+              battery-40 = 40;
+              battery-50 = 50;
+              battery-60 = 60;
+              battery-70 = 70;
+              battery-80 = 80;
+              battery-90 = 90;
+              battery-100 = 100;
+            };
+
+            format-plugged = "󰚥";
+            format-charging-battery-10 = "󰢜";
+            format-charging-battery-20 = "󰂆";
+            format-charging-battery-30 = "󰂇";
+            format-charging-battery-40 = "󰂈";
+            format-charging-battery-50 = "󰢝";
+            format-charging-battery-60 = "󰂉";
+            format-charging-battery-70 = "󰢞";
+            format-charging-battery-80 = "󰂊";
+            format-charging-battery-90 = "󰂋";
+            format-charging-battery-100 = "󰂅";
+            tooltip-format = "{capacity}% {timeTo}";
+          };
+
+          tray = {
+            icon-size = 21;
+            spacing = 10;
+          };
+        }
+      ];
+      style = lib.mkAfter
+        ''
+          * {
+              font-family: FontAwesome, monospace, Material Icons;
+              font-size: 13px;
+              font-weight: bold;
+              min-height: 0;
+          }
+
+          window#waybar {
+              background: alpha(@theme_base_color, 0.9);
+              color: @theme_text_color;
+          }
+
+          #workspaces button {
+              border: none;
+              border-radius: 0;
+          }
+
+          #submap,
+          #mode,
+          #clock,
+          #pulseaudio,
+          #disk,
+          #battery,
+          #language,
+          #tray,
+          #idle_inhibitor {
+              border-bottom: 3px solid transparent;
+          }
+
+          #idle_inhibitor.activated {
+              border-bottom: 3px solid @base06;
+          }
+
+          #battery.warning:not(.charging) {
+              background: @base08;
+              color: @base05;
+              animation-name: blink;
+              animation-duration: 0.5s;
+              animation-timing-function: linear;
+              animation-iteration-count: infinite;
+              animation-direction: alternate;
+          }
+        '';
+    };
   services.swayidle =
     let
       lockCommand = "${config.programs.swaylock.package}/bin/swaylock --daemonize";
