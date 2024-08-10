@@ -34,21 +34,14 @@ lib.mkProfile "niri"
       "Mod+K".action = focus-window-up;
       "Mod+L".action = focus-column-right;
 
-      "Mod+Ctrl+Left".action = move-column-left;
-      "Mod+Ctrl+Down".action = move-window-down;
-      "Mod+Ctrl+Up".action = move-window-up;
-      "Mod+Ctrl+Right".action = move-column-right;
-      "Mod+Ctrl+H".action = move-column-left;
-      "Mod+Ctrl+J".action = move-window-down;
-      "Mod+Ctrl+K".action = move-window-up;
-      "Mod+Ctrl+L".action = move-column-right;
-
-      # // Alternative commands that move across workspaces when reaching
-      # // the first or last window in a column.
-      # // Mod+J     { focus-window-or-workspace-down; }
-      # // Mod+K     { focus-window-or-workspace-up; }
-      # // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-      # // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+      "Mod+Ctrl+Left".action = move-column-left-or-to-monitor-left;
+      "Mod+Ctrl+Down".action = move-window-down-or-to-workspace-down;
+      "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
+      "Mod+Ctrl+Right".action = move-column-right-or-to-monitor-right;
+      "Mod+Ctrl+H".action = move-column-left-or-to-monitor-left;
+      "Mod+Ctrl+J".action = move-window-down-or-to-workspace-down;
+      "Mod+Ctrl+K".action = move-window-up-or-to-workspace-up;
+      "Mod+Ctrl+L".action = move-column-right-or-to-monitor-right;
 
       "Mod+Home".action = focus-column-first;
       "Mod+End".action = focus-column-last;
