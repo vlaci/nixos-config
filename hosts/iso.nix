@@ -21,4 +21,11 @@
       '';
     in
     with pkgs; [ prep run-disko disko zellij ];
+
+  xdg = {
+    # niri module sets these unconditionally
+    autostart.enable = lib.mkForce false;
+    icons.enable = lib.mkForce false;
+    mime.enable = lib.mkForce false;
+  };
 }
