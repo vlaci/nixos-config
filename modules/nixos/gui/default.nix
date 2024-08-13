@@ -59,6 +59,10 @@ lib.mkProfile "gui" {
     package = pkgs.kdePackages.sddm;
   };
 
+  _.persist.directories = [
+    "/var/lib/sddm"
+  ];
+
   programs.sway = {
     enable = true;
   };
@@ -83,4 +87,5 @@ lib.mkProfile "gui" {
   services.accounts-daemon.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
+  programs.hyprlock.enable = true;
 }

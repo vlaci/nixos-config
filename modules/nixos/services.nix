@@ -29,16 +29,19 @@
       ];
     })
     (lib.mkProfile "docker" {
+      virtualisation.containerd = {
+        #enable = true;
+        #settings.plugins."io.containerd.grpc.v1.cri".containerd.snapshotter = "overlayfs";
+      };
       virtualisation.docker = {
         enable = true;
         autoPrune.enable = true;
+        extraPackages = [ pkgs.openssh ];
+        #daemon.settings.features.containerd-snapshotter = true;
       };
       _.users.defaultGroups = [ "docker" ];
       environment.systemPackages = with pkgs; [
         docker-compose
-      ];
-      _.persist.directories = [
-        "/var/lib/docker"
       ];
     })
     (lib.mkProfile "podman" {

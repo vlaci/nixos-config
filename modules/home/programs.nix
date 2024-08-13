@@ -70,6 +70,24 @@ mkProfile "tools" {
     userKnownHostsFile = "${config._.persist.root}/.ssh/known_hosts";
   };
 
+  programs.zellij = {
+    enable = true;
+    # settings = {
+    #   themes.default = {
+    #     fg = 1;
+    #     bg = 10;
+    #     black = 0;
+    #     red = 160;
+    #     green = 76;
+    #     yellow = 226;
+    #     blue = 20;
+    #     magenta = 200;
+    #     cyan = 80;
+    #     white = 7;
+    #     orange = 202;
+    #   };
+    # };
+  };
 
   programs._1password-shell-plugins = {
     enable = true;

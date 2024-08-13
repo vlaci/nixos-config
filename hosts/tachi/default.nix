@@ -44,6 +44,7 @@
       _.emacs.enable = true;
       _.sway.enable = true;
       _.hyprland.enable = true;
+      _.river.enable = true;
       _.niri.enable = true;
     };
   };

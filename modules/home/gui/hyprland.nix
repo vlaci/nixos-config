@@ -6,6 +6,10 @@ in
 lib.mkProfile "hyprland" {
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprexpo
+      hyprscroller
+    ];
     settings = {
       monitor = ",preferred,auto,1";
       exec-once = "hyprpaper & waybar";
@@ -17,11 +21,17 @@ lib.mkProfile "hyprland" {
         touchpad.natural_scroll = false;
         sensitivity = 0;
       };
+
+      device = {
+        name = "yubico-yubikey-otp+fido+ccid";
+        kb_layout = "us";
+      };
+
       general = {
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        layout = "dwindle";
+        layout = "scroller";
       };
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -107,10 +117,12 @@ lib.mkProfile "hyprland" {
         "$mainMod, PERIOD, changegroupactive, f" # dwindle
 
         # Move focus with mainMod + arrow keys
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        # "$mainMod, left, movefocus, l"
+        # "$mainMod, right, movefocus, r"
+        # "$mainMod, up, movefocus, u"
+        # "$mainMod, down, movefocus, d"
+
+        "$mainMod, grave, hyprexpo:expo, toggle"
 
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, moveworkspacetomonitor, 1 current"
@@ -159,12 +171,168 @@ lib.mkProfile "hyprland" {
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
+
+      plugin = {
+        hyprexpo = {
+          columns = 3;
+          gap_size = 5;
+          bg_col = "rgb(111111)";
+          workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+
+          enable_gesture = true; # laptop touchpad
+          gesture_fingers = 3; # 3 or 4
+          gesture_distance = 300; # how far is the "max"
+          gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        };
+        scroller = {
+          column_default_width = "twothirds";
+          focus_wrap = false;
+        };
+      };
     };
     extraConfig = ''
-      device {
-        name=yubico-yubikey-otp+fido+ccid
-        kb_layout=us
-      }
+      # Move focus with mainMod + arrow keys
+      bind = $mainMod, left, scroller:movefocus, l
+      bind = $mainMod, right, scroller:movefocus, r
+      bind = $mainMod, up, scroller:movefocus, u
+      bind = $mainMod, down, scroller:movefocus, d
+      bind = $mainMod, home, scroller:movefocus, begin
+      bind = $mainMod, end, scroller:movefocus, end
+
+      # Movement
+      bind = $mainMod CTRL, left, scroller:movewindow, l
+      bind = $mainMod CTRL, right, scroller:movewindow, r
+      bind = $mainMod CTRL, up, scroller:movewindow, u
+      bind = $mainMod CTRL, down, scroller:movewindow, d
+      bind = $mainMod CTRL, home, scroller:movewindow, begin
+      bind = $mainMod CTRL, end, scroller:movewindow, end
+
+      # Modes
+      bind = $mainMod, bracketleft, scroller:setmode, row
+      bind = $mainMod, bracketright, scroller:setmode, col
+
+      # Sizing keys
+      bind = $mainMod, equal, scroller:cyclesize, next
+      bind = $mainMod, minus, scroller:cyclesize, prev
+
+      # Admit/Expel
+      bind = $mainMod, I, scroller:admitwindow,
+      bind = $mainMod, O, scroller:expelwindow,
+
+      # Center submap
+      # will switch to a submap called center
+      bind = $mainMod, C, submap, center
+      # will start a submap called "center"
+      submap = center
+      # sets repeatable binds for resizing the active window
+      bind = , C, scroller:alignwindow, c
+      bind = , C, submap, reset
+      bind = , right, scroller:alignwindow, r
+      bind = , right, submap, reset
+      bind = , left, scroller:alignwindow, l
+      bind = , left, submap, reset
+      bind = , up, scroller:alignwindow, u
+      bind = , up, submap, reset
+      bind = , down, scroller:alignwindow, d
+      bind = , down, submap, reset
+      # use reset to go back to the global submap
+      bind = , escape, submap, reset
+      # will reset the submap, meaning end the current one and return to the global one
+      submap = reset
+
+      # Resize submap
+      # will switch to a submap called resize
+      bind = $mainMod SHIFT, R, submap, resize
+      # will start a submap called "resize"
+      submap = resize
+      # sets repeatable binds for resizing the active window
+      binde = , right, resizeactive, 100 0
+      binde = , left, resizeactive, -100 0
+      binde = , up, resizeactive, 0 -100
+      binde = , down, resizeactive, 0 100
+      # use reset to go back to the global submap
+      bind = , escape, submap, reset
+      # will reset the submap, meaning end the current one and return to the global one
+      submap = reset
+
+      # Fit size submap
+      # will switch to a submap called fitsize
+      bind = $mainMod, W, submap, fitsize
+      # will start a submap called "fitsize"
+      submap = fitsize
+      # sets binds for fitting columns/windows in the screen
+      bind = , W, scroller:fitsize, visible
+      bind = , W, submap, reset
+      bind = , right, scroller:fitsize, toend
+      bind = , right, submap, reset
+      bind = , left, scroller:fitsize, tobeg
+      bind = , left, submap, reset
+      bind = , up, scroller:fitsize, active
+      bind = , up, submap, reset
+      bind = , down, scroller:fitsize, all
+      bind = , down, submap, reset
+      # use reset to go back to the global submap
+      bind = , escape, submap, reset
+      # will reset the submap, meaning end the current one and return to the global one
+      submap = reset
+
+      # overview keys
+      # bind key to toggle overview (normal)
+      bind = $mainMod, tab, scroller:toggleoverview
+      # overview submap
+      # will switch to a submap called overview
+      bind = $mainMod, tab, submap, overview
+      # will start a submap called "overview"
+      submap = overview
+      bind = , right, scroller:movefocus, right
+      bind = , left, scroller:movefocus, left
+      bind = , up, scroller:movefocus, up
+      bind = , down, scroller:movefocus, down
+      # use reset to go back to the global submap
+      bind = , escape, scroller:toggleoverview,
+      bind = , escape, submap, reset
+      bind = , return, scroller:toggleoverview,
+      bind = , return, submap, reset
+      bind = $mainMod, tab, scroller:toggleoverview,
+      bind = $mainMod, tab, submap, reset
+      # will reset the submap, meaning end the current one and return to the global one
+      submap = reset
+
+      # Marks
+      bind = $mainMod, M, submap, marksadd
+      submap = marksadd
+      bind = , a, scroller:marksadd, a
+      bind = , a, submap, reset
+      bind = , b, scroller:marksadd, b
+      bind = , b, submap, reset
+      bind = , c, scroller:marksadd, c
+      bind = , c, submap, reset
+      bind = , escape, submap, reset
+      submap = reset
+
+      bind = $mainMod SHIFT, M, submap, marksdelete
+      submap = marksdelete
+      bind = , a, scroller:marksdelete, a
+      bind = , a, submap, reset
+      bind = , b, scroller:marksdelete, b
+      bind = , b, submap, reset
+      bind = , c, scroller:marksdelete, c
+      bind = , c, submap, reset
+      bind = , escape, submap, reset
+      submap = reset
+
+      bind = $mainMod, apostrophe, submap, marksvisit
+      submap = marksvisit
+      bind = , a, scroller:marksvisit, a
+      bind = , a, submap, reset
+      bind = , b, scroller:marksvisit, b
+      bind = , b, submap, reset
+      bind = , c, scroller:marksvisit, c
+      bind = , c, submap, reset
+      bind = , escape, submap, reset
+      submap = reset
+
+      bind = $mainMod CTRL, M, scroller:marksreset
     '';
   };
 

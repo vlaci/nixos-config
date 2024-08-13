@@ -1,7 +1,7 @@
 {
     "catpuccin-bat": {
         "cargoLocks": null,
-        "date": "2024-04-25",
+        "date": "2024-08-05",
         "extract": null,
         "name": "catpuccin-bat",
         "passthru": null,
@@ -13,15 +13,15 @@
             "name": null,
             "owner": "catppuccin",
             "repo": "bat",
-            "rev": "d714cc1d358ea51bfc02550dabab693f70cccea0",
-            "sha256": "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=",
+            "rev": "d3feec47b16a8e99eabb34cdfbaa115541d374fc",
+            "sha256": "sha256-s0CHTihXlBMCKmbBBb8dUhfgOOQu9PBCQ+uviy7o47w=",
             "type": "github"
         },
-        "version": "d714cc1d358ea51bfc02550dabab693f70cccea0"
+        "version": "d3feec47b16a8e99eabb34cdfbaa115541d374fc"
     },
     "flameshot": {
         "cargoLocks": null,
-        "date": "2024-07-02",
+        "date": "2024-08-02",
         "extract": null,
         "name": "flameshot",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "flameshot-org",
             "repo": "flameshot",
-            "rev": "ccb5a27b136a633911b3b1006185530d9beeea5d",
-            "sha256": "sha256-JIXsdVUR/4183aJ0gvNGYPTyCzX7tCrk8vRtR8bcdhE=",
+            "rev": "fd3772e2abb0b852573fcaa549ba13517f13555c",
+            "sha256": "sha256-WXUxrirlevqJ+dnXZbN1C1l5ibuSI/DBi5fqPx9nOGQ=",
             "type": "github"
         },
-        "version": "ccb5a27b136a633911b3b1006185530d9beeea5d"
+        "version": "fd3772e2abb0b852573fcaa549ba13517f13555c"
     },
     "hexdiff": {
         "cargoLocks": null,
@@ -86,7 +86,7 @@
     },
     "nu-scripts": {
         "cargoLocks": null,
-        "date": "2024-07-16",
+        "date": "2024-08-12",
         "extract": null,
         "name": "nu-scripts",
         "passthru": null,
@@ -98,11 +98,11 @@
             "name": null,
             "owner": "nushell",
             "repo": "nu_scripts",
-            "rev": "ca309b988e7908f4d8a92f4a7bc6a4b9970a8867",
-            "sha256": "sha256-GZBZ4aVcSjtjPeB/wr/CIVahtmJJb02mNPDCzNM86b8=",
+            "rev": "1b5584a71d3b1143f7398688bc46b98c0756d6e1",
+            "sha256": "sha256-eVPWCfQdleV+bVoGQMS6tNVFHHexakj9M6cO4/w1p8g=",
             "type": "github"
         },
-        "version": "ca309b988e7908f4d8a92f4a7bc6a4b9970a8867"
+        "version": "1b5584a71d3b1143f7398688bc46b98c0756d6e1"
     },
     "swaylock": {
         "cargoLocks": null,

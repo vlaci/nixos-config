@@ -3,27 +3,27 @@
 {
   catpuccin-bat = {
     pname = "catpuccin-bat";
-    version = "d714cc1d358ea51bfc02550dabab693f70cccea0";
+    version = "d3feec47b16a8e99eabb34cdfbaa115541d374fc";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "bat";
-      rev = "d714cc1d358ea51bfc02550dabab693f70cccea0";
+      rev = "d3feec47b16a8e99eabb34cdfbaa115541d374fc";
       fetchSubmodules = false;
-      sha256 = "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=";
+      sha256 = "sha256-s0CHTihXlBMCKmbBBb8dUhfgOOQu9PBCQ+uviy7o47w=";
     };
-    date = "2024-04-25";
+    date = "2024-08-05";
   };
   flameshot = {
     pname = "flameshot";
-    version = "ccb5a27b136a633911b3b1006185530d9beeea5d";
+    version = "fd3772e2abb0b852573fcaa549ba13517f13555c";
     src = fetchFromGitHub {
       owner = "flameshot-org";
       repo = "flameshot";
-      rev = "ccb5a27b136a633911b3b1006185530d9beeea5d";
+      rev = "fd3772e2abb0b852573fcaa549ba13517f13555c";
       fetchSubmodules = false;
-      sha256 = "sha256-JIXsdVUR/4183aJ0gvNGYPTyCzX7tCrk8vRtR8bcdhE=";
+      sha256 = "sha256-WXUxrirlevqJ+dnXZbN1C1l5ibuSI/DBi5fqPx9nOGQ=";
     };
-    date = "2024-07-02";
+    date = "2024-08-02";
   };
   hexdiff = {
     pname = "hexdiff";
@@ -57,15 +57,15 @@
   };
   nu-scripts = {
     pname = "nu-scripts";
-    version = "ca309b988e7908f4d8a92f4a7bc6a4b9970a8867";
+    version = "1b5584a71d3b1143f7398688bc46b98c0756d6e1";
     src = fetchFromGitHub {
       owner = "nushell";
       repo = "nu_scripts";
-      rev = "ca309b988e7908f4d8a92f4a7bc6a4b9970a8867";
+      rev = "1b5584a71d3b1143f7398688bc46b98c0756d6e1";
       fetchSubmodules = false;
-      sha256 = "sha256-GZBZ4aVcSjtjPeB/wr/CIVahtmJJb02mNPDCzNM86b8=";
+      sha256 = "sha256-eVPWCfQdleV+bVoGQMS6tNVFHHexakj9M6cO4/w1p8g=";
     };
-    date = "2024-07-16";
+    date = "2024-08-12";
   };
   swaylock = {
     pname = "swaylock";
