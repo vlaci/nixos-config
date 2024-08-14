@@ -19,7 +19,6 @@ in
       dates = [ "weekly" ];
     };
 
-    package = pkgs.nix-patched;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       keep-outputs = true;

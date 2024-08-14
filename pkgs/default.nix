@@ -8,7 +8,6 @@ let
     flameshot-git = callPackage ./flameshot-git { };
     hexdiff = callPackage ./hexdiff { };
     mujmap = callPackage ./mujmap { };
-    nix-patched = callPackage ./nix { };
     nu-scripts = callPackage ./nu-scripts { };
     swaylock-dpms = callPackage ./swaylock-dpms { };
     xcursor-pixelfun = callPackage ./xcursor-pixelfun { };
