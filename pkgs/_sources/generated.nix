@@ -57,27 +57,27 @@
   };
   nu-scripts = {
     pname = "nu-scripts";
-    version = "1b5584a71d3b1143f7398688bc46b98c0756d6e1";
+    version = "614b0733104a7753ed7d775224fe5918877b71de";
     src = fetchFromGitHub {
       owner = "nushell";
       repo = "nu_scripts";
-      rev = "1b5584a71d3b1143f7398688bc46b98c0756d6e1";
+      rev = "614b0733104a7753ed7d775224fe5918877b71de";
       fetchSubmodules = false;
-      sha256 = "sha256-eVPWCfQdleV+bVoGQMS6tNVFHHexakj9M6cO4/w1p8g=";
+      sha256 = "sha256-EmlwDTEby2PAOQBUAhjiBJ8ymVW3H23V78dFaF8DQKw=";
     };
-    date = "2024-08-12";
+    date = "2024-08-30";
   };
   swaylock = {
     pname = "swaylock";
-    version = "b70d85ec145520ba3ebaa4c51921a2761bc0c7f0";
+    version = "de0731de6a44d99532fcd46c5894cff5f10e65a6";
     src = fetchFromGitHub {
       owner = "swaywm";
       repo = "swaylock";
-      rev = "b70d85ec145520ba3ebaa4c51921a2761bc0c7f0";
+      rev = "de0731de6a44d99532fcd46c5894cff5f10e65a6";
       fetchSubmodules = false;
-      sha256 = "sha256-g9Xjti9eyD4juxal4ch2rctVMW9SXI+oZ9r5hGfyZQ4=";
+      sha256 = "sha256-1+AXxw1gH0SKAxUa0JIhSzMbSmsfmBPCBY5IKaYtldg=";
     };
-    date = "2024-06-14";
+    date = "2024-08-23";
   };
   zsh-alias-tips = {
     pname = "zsh-alias-tips";
