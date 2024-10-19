@@ -164,8 +164,8 @@ lib.mkProfile "niri"
       "Mod+Period".action = expel-window-from-column;
 
       # // There are also commands that consume or expel a single window to the side.
-      # // Mod+BracketLeft  { consume-or-expel-window-left; }
-      # // Mod+BracketRight { consume-or-expel-window-right; }
+      "Mod+BracketLeft".action = consume-or-expel-window-left;
+      "Mod+BracketRight".action = consume-or-expel-window-right;
 
       "Mod+R".action = switch-preset-column-width;
       "Mod+Shift+R".action = reset-window-height;
