@@ -23,7 +23,7 @@ mkProfile "gui" {
   };
 
   programs.qutebrowser = {
-    enable = true;
+    enable = false;
     package = pkgs.buildEnv { name = "qutebrowser-env"; paths = with pkgs; [ bitwarden-cli keyutils qutebrowser ]; };
     keyBindings = {
       normal = {
