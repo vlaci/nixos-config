@@ -5,7 +5,7 @@ lib.mkMerge [
     security.doas = {
       enable = true;
       extraRules = [
-        { groups = [ "wheel" ]; persist = true; keepEnv = true; }
+        { groups = [ "wheel" ]; persist = true; keepEnv = true; setEnv = [ "PATH" ]; }
       ];
     };
     security.sudo.enable = false;
