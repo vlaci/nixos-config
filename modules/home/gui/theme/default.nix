@@ -1,4 +1,10 @@
-{ config, lib, pkgs, nixosConfig, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  nixosConfig,
+  ...
+}:
 
 let
   theme = nixosConfig._.theme;
@@ -6,7 +12,10 @@ let
 in
 {
   config = {
-    gtk = { enable = true; inherit (theme) iconTheme; };
+    gtk = {
+      enable = true;
+      inherit (theme) iconTheme;
+    };
     qt = {
       enable = true;
       platformTheme.name = "adwaita";

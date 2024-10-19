@@ -1,4 +1,10 @@
-{ config, lib, pkgs, nixos-hardware, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  nixos-hardware,
+  ...
+}:
 
 {
   networking.hostName = "tachi";
@@ -48,7 +54,10 @@
       _.niri.enable = true;
     };
   };
-  networking.firewall.interfaces."virbr0".allowedTCPPorts = [ 139 445 ];
+  networking.firewall.interfaces."virbr0".allowedTCPPorts = [
+    139
+    445
+  ];
   services.tailscale.enable = true;
   networking.firewall.checkReversePath = "loose";
   services.printing.enable = true;

@@ -1,4 +1,11 @@
-{ options, config, lib, decrypt, ... }: with lib;
+{
+  options,
+  config,
+  lib,
+  decrypt,
+  ...
+}:
+with lib;
 
 let
   cfg = config._.users;
@@ -16,48 +23,60 @@ in
   };
   options._.users.users = mkOption {
     description = "Wrapper around `users.users` with sane defaults.";
-    type = with types; attrsOf (submodule ({ options, config, ... }: {
-      freeformType = attrsOf anything;
-      options = {
-        extraGroups = mkOption {
-          apply = groups: groups ++ (optionals config.isNormalUser cfg.defaultGroups);
-        };
-        isAdmin = mkEnableOption "sudo access";
-        home-manager = mkOption {
-          type = mergedAttrs;
-          default = { };
-        };
+    type =
+      with types;
+      attrsOf (
+        submodule (
+          { options, config, ... }:
+          {
+            freeformType = attrsOf anything;
+            options = {
+              extraGroups = mkOption {
+                apply = groups: groups ++ (optionals config.isNormalUser cfg.defaultGroups);
+              };
+              isAdmin = mkEnableOption "sudo access";
+              home-manager = mkOption {
+                type = mergedAttrs;
+                default = { };
+              };
 
-        forwarded = mkOption { };
-      };
-      config = mkMerge [
-        cfg.forAllUsers
-        {
-          isNormalUser = mkDefault true;
-          extraGroups = if config.isAdmin then [ "wheel" ] else [ ];
-          forwarded = (filterAttrs (n: v: !(options ? ${n}) || n == "extraGroups")) config;
-        }
-      ];
-    }));
+              forwarded = mkOption { };
+            };
+            config = mkMerge [
+              cfg.forAllUsers
+              {
+                isNormalUser = mkDefault true;
+                extraGroups = if config.isAdmin then [ "wheel" ] else [ ];
+                forwarded = (filterAttrs (n: v: !(options ? ${n}) || n == "extraGroups")) config;
+              }
+            ];
+          }
+        )
+      );
     default = { };
   };
   options._.users.forAllUsers = mkOption {
-    type = with types; (submodule {
-      freeformType = attrsOf anything;
-    });
+    type =
+      with types;
+      (submodule {
+        freeformType = attrsOf anything;
+      });
     default = { };
   };
 
   config = mkIf cfg.enable {
     users.mutableUsers = false;
-    users.allowNoPasswordLogin = !vlaci.available && (warn "Secrets are not available, users won't be able to log in!" true);
+    users.allowNoPasswordLogin =
+      !vlaci.available && (warn "Secrets are not available, users won't be able to log in!" true);
     users.users = mapAttrs (n: v: v.forwarded) cfg.users;
     home-manager.users = mapAttrs (n: v: { imports = v.home-manager; }) cfg.users;
     programs._1password-gui.polkitPolicyOwners = builtins.attrNames cfg.users;
 
     age.identityPaths = options.age.identityPaths.default ++ [ "/home/vlaci/.ssh/id_ed25519" ];
 
-    _.users.users.root = { isNormalUser = false; };
+    _.users.users.root = {
+      isNormalUser = false;
+    };
     _.users.users.vlaci = mkIf vlaci.available {
       description = vlaci.value.fullName;
       initialHashedPassword = vlaci.value.passwordHash;

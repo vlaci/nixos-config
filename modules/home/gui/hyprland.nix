@@ -1,4 +1,10 @@
-{ lib, pkgs, nixosConfig, config, ... }:
+{
+  lib,
+  pkgs,
+  nixosConfig,
+  config,
+  ...
+}:
 
 let
   colors = nixosConfig._.theme.colors;

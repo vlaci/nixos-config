@@ -1,4 +1,8 @@
-{ rustPlatform, pkgsrcs, notmuch }:
+{
+  rustPlatform,
+  pkgsrcs,
+  notmuch,
+}:
 
 rustPlatform.buildRustPackage {
   inherit (pkgsrcs.mujmap) pname version src;

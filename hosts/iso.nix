@@ -1,4 +1,10 @@
-{ modulesPath, pkgs, lib, ... }: {
+{
+  modulesPath,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
@@ -20,7 +26,13 @@
         disko -m disko /etc/nixos/hosts/razorback/disko-config.nix --arg disks '[ "/dev/vda" ]'
       '';
     in
-    with pkgs; [ prep run-disko disko zellij ];
+    with pkgs;
+    [
+      prep
+      run-disko
+      disko
+      zellij
+    ];
 
   xdg = {
     # niri module sets these unconditionally

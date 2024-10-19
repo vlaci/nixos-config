@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "Minimalistic cursor theme with a piece of old-school";
-    homepage = https://www.gnome-look.org/p/999913/;
+    homepage = "https://www.gnome-look.org/p/999913/";
     license = lib.licenses.gpl2;
     platforms = lib.platforms.all;
   };

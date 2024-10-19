@@ -1,4 +1,9 @@
-{ lib, config, nixosConfig, ... }:
+{
+  lib,
+  config,
+  nixosConfig,
+  ...
+}:
 
 let
   cfg = config._.persist;
@@ -6,10 +11,19 @@ let
 in
 {
   options._.persist = {
-    enable = mkOption { default = nixosConfig._.persist.enable; type = types.bool; };
+    enable = mkOption {
+      default = nixosConfig._.persist.enable;
+      type = types.bool;
+    };
     root = mkOption { default = "${nixosConfig._.persist.root}${config.home.homeDirectory}"; };
-    directories = mkOption { type = with types; listOf anything; default = [ ]; };
-    files = mkOption { type = with types; listOf anything; default = [ ]; };
+    directories = mkOption {
+      type = with types; listOf anything;
+      default = [ ];
+    };
+    files = mkOption {
+      type = with types; listOf anything;
+      default = [ ];
+    };
   };
 
   config = mkIf cfg.enable {

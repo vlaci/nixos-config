@@ -1,4 +1,11 @@
-{ config, lib, pkgs, system, nixpkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  system,
+  nixpkgs,
+  ...
+}:
 
 let
   dotDir = ".config/zsh";
@@ -48,12 +55,7 @@ in
       inherit dotDir;
       history =
         let
-          prefix =
-            if config._.persist.enable then
-              config._.persist.root
-            else
-              "$HOME"
-          ;
+          prefix = if config._.persist.enable then config._.persist.root else "$HOME";
         in
         {
           expireDuplicatesFirst = true;
@@ -76,24 +78,28 @@ in
         }
         {
           name = "up";
-          src = pkgs.runCommand "plugin"
-            {
-              inherit (pkgs) up;
-              plugin = ./plugins/up/up.plugin.zsh;
-            } ''
-            mkdir $out
-            substituteAll $plugin $out/up.plugin.zsh
-          '';
+          src =
+            pkgs.runCommand "plugin"
+              {
+                inherit (pkgs) up;
+                plugin = ./plugins/up/up.plugin.zsh;
+              }
+              ''
+                mkdir $out
+                substituteAll $plugin $out/up.plugin.zsh
+              '';
         }
         {
           name = "alias-tips"; # Depends: python
-          src = pkgs.runCommand "plugin"
-            {
-              plugin = pkgs.pkgsrcs.zsh-alias-tips.src;
-            } ''
-            cp -a $plugin $out
-            substituteInPlace $out/alias-tips.plugin.zsh --replace python3 ${pkgs.python3}/bin/python
-          '';
+          src =
+            pkgs.runCommand "plugin"
+              {
+                plugin = pkgs.pkgsrcs.zsh-alias-tips.src;
+              }
+              ''
+                cp -a $plugin $out
+                substituteInPlace $out/alias-tips.plugin.zsh --replace python3 ${pkgs.python3}/bin/python
+              '';
         }
         {
           name = "calc";

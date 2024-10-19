@@ -4,26 +4,28 @@ lib.mkProfile "development" {
   home.enableDebugInfo = true;
   home.packages = with pkgs; [
     julia-bin
-    (vscode.fhsWithPackages (pkgs: with pkgs; [
-      zsh
-      # for live share
-      gcr
-      liburcu
-      krb5
-      zlib
-      icu69
-      gnome-keyring
-      libsecret
-      desktop-file-utils
-      xorg.xprop
-      openssl
-      pkg-config
-      binutils
-      zlib.dev
-      neovim
-      gcc
-      util-linux
-    ]))
+    (vscode.fhsWithPackages (
+      pkgs: with pkgs; [
+        zsh
+        # for live share
+        gcr
+        liburcu
+        krb5
+        zlib
+        icu69
+        gnome-keyring
+        libsecret
+        desktop-file-utils
+        xorg.xprop
+        openssl
+        pkg-config
+        binutils
+        zlib.dev
+        neovim
+        gcc
+        util-linux
+      ]
+    ))
     openssl
     pandoc
     cargo-edit

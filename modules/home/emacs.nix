@@ -2,19 +2,32 @@
 
 let
   cfg = config._.emacs;
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
 in
 {
   options = {
     _.emacs.enable = mkEnableOption "emacs";
     accounts.email.accounts = mkOption {
-      type = with types; attrsOf (submodule ({ config, ... }:
-        {
-          options = {
-            mu4e.extraConfig = mkOption { type = types.separatedString "\n"; default = ""; };
-          };
-        }
-      ));
+      type =
+        with types;
+        attrsOf (
+          submodule (
+            { config, ... }:
+            {
+              options = {
+                mu4e.extraConfig = mkOption {
+                  type = types.separatedString "\n";
+                  default = "";
+                };
+              };
+            }
+          )
+        );
     };
   };
 

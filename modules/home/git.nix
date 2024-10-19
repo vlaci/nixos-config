@@ -1,52 +1,68 @@
-{ lib, pkgs, config, nixosConfig, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  nixosConfig,
+  ...
+}:
 
 let
-  inherit (lib) listToAttrs mkDefault mkIf mkProfile nameValuePair;
+  inherit (lib)
+    listToAttrs
+    mkDefault
+    mkIf
+    mkProfile
+    nameValuePair
+    ;
   inherit (nixosConfig._.secrets) vlaci;
 in
-lib.mkProfile "git" (mkIf vlaci.available {
-  programs.git = {
-    enable = true;
-    delta.enable = true;
-    aliases = {
-      lol = ''log --graph --pretty=format:"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%ae%Creset %s"'';
-    };
-    extraConfig = {
-      absorb.maxStack = 50;
-      merge.conflictStyle = "diff3";
-      init.defaultBranch = "main";
-      "http.${vlaci.value.git.work.httpsRemote}" = mkIf
-        (nixosConfig.age.secrets ? "work.certkey")
-        {
+lib.mkProfile "git" (
+  mkIf vlaci.available {
+    programs.git = {
+      enable = true;
+      delta.enable = true;
+      aliases = {
+        lol = ''log --graph --pretty=format:"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%ae%Creset %s"'';
+      };
+      extraConfig = {
+        absorb.maxStack = 50;
+        merge.conflictStyle = "diff3";
+        init.defaultBranch = "main";
+        "http.${vlaci.value.git.work.httpsRemote}" = mkIf (nixosConfig.age.secrets ? "work.certkey") {
           sslCert = nixosConfig.age.secrets."work.certkey".path;
           sslKey = nixosConfig.age.secrets."work.certkey".path;
         };
-      diff.submodule = "diff";
-      diff.colorMoved = "default";
-      status.submoduleSummary = true;
+        diff.submodule = "diff";
+        diff.colorMoved = "default";
+        status.submoduleSummary = true;
+      };
+      ignores = [
+        "\\#*\\#"
+        ".\\#*"
+        ".direnv"
+      ];
+      lfs.enable = true;
+      userName = vlaci.value.fullName;
+      userEmail = mkDefault vlaci.value.git.home.address;
+      extraConfig.emailprompt =
+        listToAttrs (map (e: nameValuePair e { prompt = ""; }) vlaci.value.email.addresses.github)
+        // listToAttrs (map (e: nameValuePair e { prompt = "𓄎"; }) vlaci.value.email.addresses.home)
+        // listToAttrs (map (e: nameValuePair e { prompt = ""; }) vlaci.value.email.addresses.work);
+      includes = [
+        {
+          condition = "hasconfig:remote.*.url:${vlaci.value.git.work.remote}/**";
+          contents = {
+            user.email = vlaci.value.git.work.address;
+          };
+        }
+      ];
     };
-    ignores = [ "\\#*\\#" ".\\#*" ".direnv" ];
-    lfs.enable = true;
-    userName = vlaci.value.fullName;
-    userEmail = mkDefault vlaci.value.git.home.address;
-    extraConfig.emailprompt =
-      listToAttrs (map (e: nameValuePair e { prompt = ""; }) vlaci.value.email.addresses.github)
-      // listToAttrs (map (e: nameValuePair e { prompt = "𓄎"; }) vlaci.value.email.addresses.home)
-      // listToAttrs (map (e: nameValuePair e { prompt = ""; }) vlaci.value.email.addresses.work);
-    includes = [
-      {
-        condition = "hasconfig:remote.*.url:${vlaci.value.git.work.remote}/**";
-        contents = {
-          user.email = vlaci.value.git.work.address;
-        };
-      }
-    ];
-  };
 
-  home.packages = with pkgs.gitAndTools; [
-    git-absorb
-    git-branchless
-    git-filter-repo
-    git-remote-gcrypt
-  ];
-})
+    home.packages = with pkgs.gitAndTools; [
+      git-absorb
+      git-branchless
+      git-filter-repo
+      git-remote-gcrypt
+    ];
+  }
+)

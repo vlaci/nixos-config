@@ -20,11 +20,17 @@ in
     };
 
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       keep-outputs = true;
       keep-env-derivations = true;
       keep-derivations = true;
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
   };
 
@@ -32,13 +38,17 @@ in
     allowUnfree = true;
   };
 
-
   programs.command-not-found.enable = false;
   programs.nix-index-database.comma.enable = true;
 
   system.activationScripts.diff = ''
     if [[ -L /run/current-system ]]; then
-      PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+      PATH=$PATH:${
+        lib.makeBinPath [
+          pkgs.nvd
+          pkgs.nix
+        ]
+      }
       echo
       echo =================================  [ Changes ]  =================================
       ${pkgs.nvd}/bin/nvd diff /run/current-system "$systemConfig"

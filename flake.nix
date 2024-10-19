@@ -28,20 +28,59 @@
     wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
-  outputs = { self, nixpkgs, lix-module, home-manager, flake-utils, emacsVlaci, git-agecrypt, disko, impermanence, stylix, nix-index-database, onepassword-shell-plugins, niri, catppuccin, wezterm, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      lix-module,
+      home-manager,
+      flake-utils,
+      emacsVlaci,
+      git-agecrypt,
+      disko,
+      impermanence,
+      stylix,
+      nix-index-database,
+      onepassword-shell-plugins,
+      niri,
+      catppuccin,
+      wezterm,
+      ...
+    }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem;
 
       lib = nixpkgs.lib.extend (self: super: (import ./lib) { lib = super; });
-      mkPkgs = system: import nixpkgs { inherit system; overlays = lib.attrValues self.overlays; };
+      mkPkgs =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = lib.attrValues self.overlays;
+        };
 
       system = "x86_64-linux";
 
-      nixosConfigurations = lib.nixosConfigurations ({
-        inherit lib system;
-        hmModules = [ emacsVlaci.homeManagerModules.default impermanence.nixosModules.home-manager.impermanence onepassword-shell-plugins.hmModules.default ];
-        nixosModules = [ lix-module.nixosModules.default home-manager.nixosModules.home-manager disko.nixosModules.disko impermanence.nixosModules.impermanence stylix.nixosModules.stylix nix-index-database.nixosModules.nix-index niri.nixosModules.niri catppuccin.nixosModules.catppuccin ];
-      } // inputs);
+      nixosConfigurations = lib.nixosConfigurations (
+        {
+          inherit lib system;
+          hmModules = [
+            emacsVlaci.homeManagerModules.default
+            impermanence.nixosModules.home-manager.impermanence
+            onepassword-shell-plugins.hmModules.default
+          ];
+          nixosModules = [
+            lix-module.nixosModules.default
+            home-manager.nixosModules.home-manager
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+            stylix.nixosModules.stylix
+            nix-index-database.nixosModules.nix-index
+            niri.nixosModules.niri
+            catppuccin.nixosModules.catppuccin
+          ];
+        }
+        // inputs
+      );
     in
     {
       inherit lib;
@@ -49,7 +88,8 @@
       overlays = lib.importDir ./overlays // {
         inherit (niri.overlays) niri;
         git-agecrypt = git-agecrypt.overlay;
-        default = final: prev:
+        default =
+          final: prev:
           let
             pkgsrcs = import ./pkgs {
               pkgs = prev;
@@ -60,7 +100,8 @@
             inherit (disko.packages.${final.system}) disko;
           };
       };
-    } // eachDefaultSystem (
+    }
+    // eachDefaultSystem (
       system:
       let
         pkgs = mkPkgs system;

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   console.packages = [ pkgs.terminus_font ];
@@ -20,10 +25,9 @@
     extraLayouts."altgr-weur" = {
       description = "English (Western European AltGr dead keys)";
       languages = [ "eng" ];
-      symbolsFile =
-        pkgs.runCommand "altgr-weur-mod" { src = ./keymaps/symbols/altgr-weur; } ''
-          sed $src  -E -e 's/\b(o|u)circumflex/\1doubleacute/g' > $out
-        '';
+      symbolsFile = pkgs.runCommand "altgr-weur-mod" { src = ./keymaps/symbols/altgr-weur; } ''
+        sed $src  -E -e 's/\b(o|u)circumflex/\1doubleacute/g' > $out
+      '';
     };
   };
 }

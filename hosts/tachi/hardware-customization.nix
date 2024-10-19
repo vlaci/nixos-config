@@ -5,12 +5,19 @@
   services.fwupd.enable = true;
   services.throttled = {
     enable = true;
-    extraConfig = with builtins; (
-      replaceStrings
-        [ "# HWP_Mode: False" "cTDP: 0" ]
-        [ "HWP_Mode: True" "cTDP: 2" ]
+    extraConfig =
+      with builtins;
+      (replaceStrings
+        [
+          "# HWP_Mode: False"
+          "cTDP: 0"
+        ]
+        [
+          "HWP_Mode: True"
+          "cTDP: 2"
+        ]
         (readFile "${pkgs.throttled}/etc/throttled.conf")
-    );
+      );
   };
 
   services.udev.extraRules = ''
@@ -21,7 +28,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
   boot.tmp.useTmpfs = true;
-  boot.kernelParams = [ "mitigations=off" "intel_iommu=on" "msr.allow_writes=on" "psmouse.synaptics_intertouch=0" ];
+  boot.kernelParams = [
+    "mitigations=off"
+    "intel_iommu=on"
+    "msr.allow_writes=on"
+    "psmouse.synaptics_intertouch=0"
+  ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
@@ -31,7 +43,6 @@
   services.fstrim.enable = true;
 
   networking.hostId = "7d185cbc";
-
 
   boot.supportedFilesystems = [ "zfs" ];
 
@@ -49,13 +60,9 @@
     enable = true;
     emergencyAccess = true;
     services.revert-root = {
-      after = [
-        "zfs-import-rpool.service"
-      ];
+      after = [ "zfs-import-rpool.service" ];
       wantedBy = [ "zfs.target" ];
-      before = [
-        "sysroot.mount"
-      ];
+      before = [ "sysroot.mount" ];
       path = with pkgs; [
         coreutils
         zfs
@@ -74,9 +81,7 @@
     services.create-needed-for-boot-dirs.after = lib.mkForce [ "revert-root.service" ];
   };
 
-  disko.devices = (import ./disko-config.nix {
-    disks = [ "/dev/nvme0n1" ];
-  }).disko.devices;
+  disko.devices = (import ./disko-config.nix { disks = [ "/dev/nvme0n1" ]; }).disko.devices;
 
   environment.systemPackages = with pkgs; [
     brightnessctl

@@ -1,4 +1,10 @@
-{ flameshot, pkgsrcs, libsForQt5, buildEnv, grim }:
+{
+  flameshot,
+  pkgsrcs,
+  libsForQt5,
+  buildEnv,
+  grim,
+}:
 
 let
   flameshot-git = flameshot.overrideAttrs (super: {
@@ -14,5 +20,8 @@ let
 in
 buildEnv {
   name = "flameshot-env";
-  paths = [ flameshot-git grim ];
+  paths = [
+    flameshot-git
+    grim
+  ];
 }

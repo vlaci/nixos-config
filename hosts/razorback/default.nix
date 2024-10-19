@@ -11,7 +11,6 @@
     (nixos-hardware + "/common/pc/laptop/acpi_call.nix")
   ];
 
-
   _.cachix.enable = true;
   _.networkmanager.enable = true;
   _.sshd.enable = true;

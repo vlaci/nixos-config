@@ -20,7 +20,14 @@
   boot.extraModprobeConfig = ''
     options vfio-pci ids=10de:1b81,10de:10f0,1b21:2142
   '';
-  boot.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" "dm_thin_pool" "dm_mirror" ];
+  boot.kernelModules = [
+    "vfio_pci"
+    "vfio"
+    "vfio_iommu_type1"
+    "vfio_virqfd"
+    "dm_thin_pool"
+    "dm_mirror"
+  ];
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -49,16 +56,10 @@
     enable = true;
     emergencyAccess = true;
     services.revert-root = {
-      after = [
-        "zfs-import-rpool.service"
-      ];
+      after = [ "zfs-import-rpool.service" ];
       requiredBy = [ "initrd.target" ];
-      before = [
-        "sysroot.mount"
-      ];
-      path = with pkgs; [
-        zfs
-      ];
+      before = [ "sysroot.mount" ];
+      path = with pkgs; [ zfs ];
       unitConfig = {
         DefaultDependencies = "no";
         ConditionKernelCommandLine = [ "!zfs_no_rollback" ];
@@ -73,13 +74,9 @@
     services.create-needed-for-boot-dirs.after = lib.mkForce [ "revert-root.service" ];
   };
 
-  disko.devices = (import ./disko-config.nix {
-    disks = [ "/dev/nvme0n1" ];
-  }).disko.devices;
+  disko.devices = (import ./disko-config.nix { disks = [ "/dev/nvme0n1" ]; }).disko.devices;
 
-  environment.systemPackages = with pkgs; [
-    powertop
-  ];
+  environment.systemPackages = with pkgs; [ powertop ];
 
   hardware.bluetooth = {
     enable = true;

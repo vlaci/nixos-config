@@ -1,7 +1,9 @@
 let
   flakePkgs = builtins.getFlake (toString ./.);
 in
-{ pkgs ? flakePkgs.legacyPackages.${builtins.currentSystem} }:
+{
+  pkgs ? flakePkgs.legacyPackages.${builtins.currentSystem},
+}:
 
 with pkgs;
 

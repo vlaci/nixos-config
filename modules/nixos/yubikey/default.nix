@@ -1,36 +1,52 @@
-{ config, pkgs, lib, ... }: with lib;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib;
 
 let
   parentConfig = config;
-  overrideServices = { name, config, ... }: {
-    options = {
-      use2Factor = mkOption {
-        description = "If set to true u2f is used as 2nd factor.";
-        default = parentConfig.security.pam.use2Factor;
-      };
-      u2fModuleArgs = mkOption {
-        description = "Additional arguments to pass to pam_u2f.so";
-        default = parentConfig.security.pam.u2fModuleArgs;
-      };
-      text = mkOption {
-        apply = svc:
-          if parentConfig._.yubikey.pamU2f.enable then
-            builtins.readFile
-              (
+  overrideServices =
+    { name, config, ... }:
+    {
+      options = {
+        use2Factor = mkOption {
+          description = "If set to true u2f is used as 2nd factor.";
+          default = parentConfig.security.pam.use2Factor;
+        };
+        u2fModuleArgs = mkOption {
+          description = "Additional arguments to pass to pam_u2f.so";
+          default = parentConfig.security.pam.u2fModuleArgs;
+        };
+        text = mkOption {
+          apply =
+            svc:
+            if parentConfig._.yubikey.pamU2f.enable then
+              builtins.readFile (
                 pkgs.runCommand "pam-${name}-u2f"
-                  { inherit svc; passAsFile = [ "svc" ]; } ''
-                  ${./post-process-pam-service.sh} \
-                    $svcPath \
-                    $out \
-                    ${escapeShellArgs [ config.use2Factor config.u2fModuleArgs ]}
-                ''
+                  {
+                    inherit svc;
+                    passAsFile = [ "svc" ];
+                  }
+                  ''
+                    ${./post-process-pam-service.sh} \
+                      $svcPath \
+                      $out \
+                      ${
+                        escapeShellArgs [
+                          config.use2Factor
+                          config.u2fModuleArgs
+                        ]
+                      }
+                  ''
               )
-          else
-            svc
-        ;
+            else
+              svc;
+        };
       };
     };
-  };
   cfg = config._.yubikey;
 in
 {
@@ -72,11 +88,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      yubikey-personalization
-    ] ++ optionals config._.gui.enable [
-      yubikey-personalization-gui
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        yubikey-personalization
+      ]
+      ++ optionals config._.gui.enable [
+        yubikey-personalization-gui
+      ];
 
     services.pcscd.enable = true;
     services.udev.packages = with pkgs; [

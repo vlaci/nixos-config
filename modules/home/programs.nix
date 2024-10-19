@@ -1,34 +1,44 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkProfile optionals;
 in
 mkProfile "tools" {
-  home.packages = with pkgs; ([
-    atool
-    bottom # top
-    cntr
-    diskus
-    du-dust
-    fd
-    hexyl
-    hyperfine # benchmark
-    mc
-    procs # ps on steroids
-    python311
-    ranger
-    # for emacs too
-    ripgrep
-    rm-improved
-    sd # sed
-    tokei # loc
-    unzip
-    zenith # top
-    zip
-    watchexec
-  ] ++ optionals config._.gui.enable [
-    libreoffice-fresh
-  ]);
+  home.packages =
+    with pkgs;
+    (
+      [
+        atool
+        bottom # top
+        cntr
+        diskus
+        du-dust
+        fd
+        hexyl
+        hyperfine # benchmark
+        mc
+        procs # ps on steroids
+        python311
+        ranger
+        # for emacs too
+        ripgrep
+        rm-improved
+        sd # sed
+        tokei # loc
+        unzip
+        zenith # top
+        zip
+        watchexec
+      ]
+      ++ optionals config._.gui.enable [
+        libreoffice-fresh
+      ]
+    );
 
   xdg.configFile."ripgreprc".text = ''
     --smart-case

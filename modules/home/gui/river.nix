@@ -1,4 +1,10 @@
-{ lib, config, pkgs, nixosConfig, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  nixosConfig,
+  ...
+}:
 
 lib.mkProfile "river" {
   wayland.windowManager.river = {
@@ -20,7 +26,9 @@ lib.mkProfile "river" {
         ];
         map = {
           normal = {
-            "${mod} Return" = { spawn = "kitty"; };
+            "${mod} Return" = {
+              spawn = "kitty";
+            };
           };
         };
         map-pointer = {
@@ -30,7 +38,11 @@ lib.mkProfile "river" {
             "${mod} BTN_MIDDLE" = "toggle-float";
           };
         };
-        keyboard-layout = with nixosConfig.services.xserver.xkb; "${lib.optionalString (variant != "") "-variant ${lib.escapeShellArg variant}"} -options ${lib.escapeShellArg options} ${lib.escapeShellArg layout}";
+        keyboard-layout =
+          with nixosConfig.services.xserver.xkb;
+          "${
+            lib.optionalString (variant != "") "-variant ${lib.escapeShellArg variant}"
+          } -options ${lib.escapeShellArg options} ${lib.escapeShellArg layout}";
       };
     extraConfig = ''
       rivertile -view-padding 6 -outer-padding 6 &

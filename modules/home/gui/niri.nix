@@ -1,7 +1,12 @@
-{ lib, config, pkgs, nixosConfig, ... }:
-
-lib.mkProfile "niri"
 {
+  lib,
+  config,
+  pkgs,
+  nixosConfig,
+  ...
+}:
+
+lib.mkProfile "niri" {
   programs.niri.settings = {
     prefer-no-csd = true;
     input = {
@@ -13,7 +18,10 @@ lib.mkProfile "niri"
         inherit variant layout options;
       };
     };
-    outputs.eDP-1.position = { x = 0; y = 0; };
+    outputs.eDP-1.position = {
+      x = 0;
+      y = 0;
+    };
     binds = with config.lib.niri.actions; {
       "Mod+Shift+Slash".action = show-hotkey-overlay;
       "Mod+D".action = spawn "fuzzel";

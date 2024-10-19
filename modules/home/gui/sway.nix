@@ -1,7 +1,19 @@
-{ lib, config, pkgs, nixosConfig, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  nixosConfig,
+  ...
+}:
 
 let
-  inherit (lib) mkEnableOption mkIf mkMerge mkOption types;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
   colors = nixosConfig._.theme.colors;
   cfg = config._.sway;
 in
@@ -25,10 +37,16 @@ in
           mode_gaps = "Outer Gaps: [I: Inner] [<←↓|↑|→>: Side] (Shift: Global) <H|L>: +/-Horizontal <J|K>: +/- Vertical <+|-|0|9>: All";
         in
         {
-          bars = [{
-            command = "waybar";
-          }];
-          output = { "*" = { bg = "${config.stylix.image} fill"; }; };
+          bars = [
+            {
+              command = "waybar";
+            }
+          ];
+          output = {
+            "*" = {
+              bg = "${config.stylix.image} fill";
+            };
+          };
           left = left;
           down = down;
           up = up;
@@ -40,21 +58,29 @@ in
                 xkb_layout = layout;
               }
               (
-                let xkb_variant = builtins.replaceStrings [ " " ] [ "" ] variant;
-                in mkIf (xkb_variant != "") {
+                let
+                  xkb_variant = builtins.replaceStrings [ " " ] [ "" ] variant;
+                in
+                mkIf (xkb_variant != "") {
                   inherit xkb_variant;
                 }
               )
               (
-                let xkb_options = builtins.replaceStrings [ " " ] [ "" ] options;
-                in mkIf (xkb_options != "") {
+                let
+                  xkb_options = builtins.replaceStrings [ " " ] [ "" ] options;
+                in
+                mkIf (xkb_options != "") {
                   inherit xkb_options;
                 }
               )
             ];
           };
           fonts = {
-            names = [ "Sans" "Fontawesome" "Material Design Icons" ];
+            names = [
+              "Sans"
+              "Fontawesome"
+              "Material Design Icons"
+            ];
           };
           keybindings = {
             #

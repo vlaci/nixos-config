@@ -1,22 +1,37 @@
-{ lib, config, pkgs, agenix, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  agenix,
+  ...
+}:
 
 let
   inherit (lib) fileContents hasInfix mkOption;
 
-  isEncrypted = src: hasInfix "age encrypted file" (fileContents (pkgs.runCommandLocal "is-encrypted"
-    {
-      inherit src;
-      buildInputs = [ pkgs.file ];
-    } ''
-    file -b $src > $out
-  ''
-  ));
-  tryImport = path:
+  isEncrypted =
+    src:
+    hasInfix "age encrypted file" (
+      fileContents (
+        pkgs.runCommandLocal "is-encrypted"
+          {
+            inherit src;
+            buildInputs = [ pkgs.file ];
+          }
+          ''
+            file -b $src > $out
+          ''
+      )
+    );
+  tryImport =
+    path:
     if isEncrypted path then
       { available = false; }
     else
-      { available = true; value = import path; }
-  ;
+      {
+        available = true;
+        value = import path;
+      };
 in
 {
   options = {

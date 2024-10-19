@@ -1,4 +1,10 @@
-{ config, nixosConfig, lib, pkgs, ... }:
+{
+  config,
+  nixosConfig,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkProfile optionalString;
@@ -15,16 +21,25 @@ mkProfile "gui" {
 
   programs.firefox = {
     enable = true;
-    package = with pkgs; firefox.override {
-      nativeMessagingHosts = [
-        tridactyl-native
-      ];
-    };
+    package =
+      with pkgs;
+      firefox.override {
+        nativeMessagingHosts = [
+          tridactyl-native
+        ];
+      };
   };
 
   programs.qutebrowser = {
     enable = false;
-    package = pkgs.buildEnv { name = "qutebrowser-env"; paths = with pkgs; [ bitwarden-cli keyutils qutebrowser ]; };
+    package = pkgs.buildEnv {
+      name = "qutebrowser-env";
+      paths = with pkgs; [
+        bitwarden-cli
+        keyutils
+        qutebrowser
+      ];
+    };
     keyBindings = {
       normal = {
         ",pp" = "spawn --userscript qute-bitwarden -t";
@@ -61,7 +76,10 @@ mkProfile "gui" {
       g = "https://www.google.com/search?hl=en&q={}";
     };
     settings = {
-      spellcheck.languages = [ "en-US" "hu-HU" ];
+      spellcheck.languages = [
+        "en-US"
+        "hu-HU"
+      ];
     };
     extraConfig = ''
       c.qt.environ = {
@@ -122,10 +140,12 @@ mkProfile "gui" {
     material-design-icons
     signal-desktop
     (vivaldi.overrideAttrs (super: {
-      postFixup = (super.postFixup or "") + ''
-        substituteInPlace $out/share/applications/vivaldi-stable.desktop \
-          --replace "Exec=$out/bin/vivaldi" "Exec=$out/bin/vivaldi --ozone-platform-hint=auto" \
-      '';
+      postFixup =
+        (super.postFixup or "")
+        + ''
+          substituteInPlace $out/share/applications/vivaldi-stable.desktop \
+            --replace "Exec=$out/bin/vivaldi" "Exec=$out/bin/vivaldi --ozone-platform-hint=auto" \
+        '';
     }))
     slurp
     wl-clipboard
@@ -261,7 +281,10 @@ mkProfile "gui" {
           format-muted = "󰝟";
           format-icons = {
             headphone = "";
-            default = [ "" "" ];
+            default = [
+              ""
+              ""
+            ];
           };
           scroll-step = 1;
           on-click = "pavucontrol";
@@ -276,38 +299,48 @@ mkProfile "gui" {
           format = "󱂵 {percentage_used}%";
         };
 
-        clock =
-          {
-            format = "{:%H:%M}  ";
-            format-alt = "{:%A; %B %d, %Y (%R)}  ";
-            tooltip-format = "<tt><small>{calendar}</small></tt>";
-            calendar = {
-              "mode" = "year";
-              mode-mon-col = 3;
-              weeks-pos = "right";
-              on-scroll = 1;
-              on-click-right = "mode";
-              format = {
-                "months" = "<span color='#ffead3'><b>{}</b></span>";
-                days = "<span color='#ecc6d9'><b>{}</b></span>";
-                weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-                weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-                today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-              };
-            };
-            actions = {
-              on-click-right = "mode";
-              on-click-forward = "tz_up";
-              on-click-backward = "tz_down";
-              on-scroll-up = "shift_up";
-              on-scroll-down = "shift_down";
+        clock = {
+          format = "{:%H:%M}  ";
+          format-alt = "{:%A; %B %d, %Y (%R)}  ";
+          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          calendar = {
+            "mode" = "year";
+            mode-mon-col = 3;
+            weeks-pos = "right";
+            on-scroll = 1;
+            on-click-right = "mode";
+            format = {
+              "months" = "<span color='#ffead3'><b>{}</b></span>";
+              days = "<span color='#ecc6d9'><b>{}</b></span>";
+              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
             };
           };
+          actions = {
+            on-click-right = "mode";
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
+        };
 
         battery = {
           format = "{icon}";
 
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           states = {
             battery-10 = 10;
             battery-20 = 20;
@@ -341,68 +374,88 @@ mkProfile "gui" {
         };
       }
     ];
-    style = lib.mkAfter
-      ''
-        * {
-            font-family: FontAwesome, monospace, Material Icons;
-            font-size: 13px;
-            font-weight: bold;
-            min-height: 0;
-        }
+    style = lib.mkAfter ''
+      * {
+          font-family: FontAwesome, monospace, Material Icons;
+          font-size: 13px;
+          font-weight: bold;
+          min-height: 0;
+      }
 
-        window#waybar {
-            background: alpha(@theme_base_color, 0.9);
-            color: @theme_text_color;
-        }
+      window#waybar {
+          background: alpha(@theme_base_color, 0.9);
+          color: @theme_text_color;
+      }
 
-        #workspaces button {
-            border: none;
-            border-radius: 0;
-        }
+      #workspaces button {
+          border: none;
+          border-radius: 0;
+      }
 
-        #submap,
-        #mode,
-        #clock,
-        #pulseaudio,
-        #disk,
-        #battery,
-        #language,
-        #tray,
-        #idle_inhibitor {
-            border-bottom: 3px solid transparent;
-        }
+      #submap,
+      #mode,
+      #clock,
+      #pulseaudio,
+      #disk,
+      #battery,
+      #language,
+      #tray,
+      #idle_inhibitor {
+          border-bottom: 3px solid transparent;
+      }
 
-        #idle_inhibitor.activated {
-            border-bottom: 3px solid @base06;
-        }
+      #idle_inhibitor.activated {
+          border-bottom: 3px solid @base06;
+      }
 
-        #battery.warning:not(.charging) {
-            background: @base08;
-            color: @base05;
-            animation-name: blink;
-            animation-duration: 0.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-        }
-      '';
+      #battery.warning:not(.charging) {
+          background: @base08;
+          color: @base05;
+          animation-name: blink;
+          animation-duration: 0.5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
+    '';
   };
   services.swayidle =
     let
       lockCommand = "${config.programs.swaylock.package}/bin/swaylock --daemonize";
-      dpms = cmd: "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
+      dpms =
+        cmd:
+        "true; ${optionalString config._.sway.enable "${pkgs.sway}/bin/swaymsg 'output * dpms ${cmd}';"} ${optionalString config._.hyprland.enable "${pkgs.hyprland}/bin/hyprctl dispatch dpms ${cmd};"}";
     in
     {
       enable = true;
       events = [
-        { event = "lock"; command = "${lockCommand}"; }
-        { event = "before-sleep"; command = "${lockCommand}"; }
-        { event = "after-resume"; command = dpms "on"; }
+        {
+          event = "lock";
+          command = "${lockCommand}";
+        }
+        {
+          event = "before-sleep";
+          command = "${lockCommand}";
+        }
+        {
+          event = "after-resume";
+          command = dpms "on";
+        }
       ];
       timeouts = [
-        { timeout = 290; command = "${pkgs.libnotify}/bin/notify-send -u critical -t 10000 -i system-lock-screen 'Screen will be locked in 10 seconds...'"; }
-        { timeout = 300; command = "${lockCommand}"; }
-        { timeout = 310; command = dpms "off"; resumeCommand = dpms "on"; }
+        {
+          timeout = 290;
+          command = "${pkgs.libnotify}/bin/notify-send -u critical -t 10000 -i system-lock-screen 'Screen will be locked in 10 seconds...'";
+        }
+        {
+          timeout = 300;
+          command = "${lockCommand}";
+        }
+        {
+          timeout = 310;
+          command = dpms "off";
+          resumeCommand = dpms "on";
+        }
       ];
       systemdTarget = "graphical-session.target";
     };
@@ -414,39 +467,38 @@ mkProfile "gui" {
 
   programs.hyprlock = {
     enable = true;
-    settings =
-      {
-        general = {
-          disable_loading_bar = true;
-          grace = 300;
-          hide_cursor = true;
-          no_fade_in = false;
-        };
-
-        background = [
-          {
-            path = "screenshot";
-            blur_passes = 3;
-            blur_size = 8;
-          }
-        ];
-
-        input-field = [
-          {
-            size = "200, 50";
-            position = "0, -80";
-            monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(202, 211, 245)";
-            inner_color = "rgb(91, 96, 120)";
-            outer_color = "rgb(24, 25, 38)";
-            outline_thickness = 5;
-            placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-            shadow_passes = 2;
-          }
-        ];
+    settings = {
+      general = {
+        disable_loading_bar = true;
+        grace = 300;
+        hide_cursor = true;
+        no_fade_in = false;
       };
+
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+
+      input-field = [
+        {
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(202, 211, 245)";
+          inner_color = "rgb(91, 96, 120)";
+          outer_color = "rgb(24, 25, 38)";
+          outline_thickness = 5;
+          placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+          shadow_passes = 2;
+        }
+      ];
+    };
   };
 
   services.mako = {

@@ -1,7 +1,6 @@
 { lib, pkgs, ... }:
 
-lib.mkProfile "development"
-{
+lib.mkProfile "development" {
   documentation.dev.enable = true;
   environment.enableDebugInfo = true;
   environment.systemPackages = with pkgs; [
@@ -16,11 +15,13 @@ lib.mkProfile "development"
         nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
           self.makeWrapper
         ];
-        postInstall = (old.postInstall or "") + ''
-          for bin in $out/bin/*; do
-            wrapProgram $bin --prefix PATH : ${self.stdenv.cc}/bin
-          done
-        '';
+        postInstall =
+          (old.postInstall or "")
+          + ''
+            for bin in $out/bin/*; do
+              wrapProgram $bin --prefix PATH : ${self.stdenv.cc}/bin
+            done
+          '';
       });
     })
   ];
