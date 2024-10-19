@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   boot.loader.systemd-boot.enable = true;
@@ -69,6 +69,8 @@
         zfs rollback -r rpool/razorback/root@blank
       '';
     };
+    services.zfs-import-rpool.after = [ "cryptsetup.target" ];
+    services.create-needed-for-boot-dirs.after = lib.mkForce [ "revert-root.service" ];
   };
 
   disko.devices = (import ./disko-config.nix {
