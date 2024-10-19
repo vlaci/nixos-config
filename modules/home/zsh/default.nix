@@ -37,6 +37,7 @@ in
 
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS[''${POWERLEVEL9K_LEFT_PROMPT_ELEMENTS[(i)vcs]}]=(vcs git_useremail)
       '';
     }
     {
