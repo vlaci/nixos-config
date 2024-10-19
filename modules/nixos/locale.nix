@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  console.font = "Lat2-Terminus16";
+  console.packages = [ pkgs.terminus_font ];
+  console.font = "ter-216b"; # ISO-8859-2 8x16 bold
+  console.earlySetup = true;
   console.useXkbConfig = true;
   i18n.defaultLocale = "hu_HU.UTF-8";
 
