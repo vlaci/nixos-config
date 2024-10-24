@@ -872,11 +872,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1729725457,
-        "narHash": "sha256-m8+gKOJNTEMTWlQKudqf6LxvhUn9m+qKFXJoNEPZPUw=",
+        "lastModified": 1729780584,
+        "narHash": "sha256-bos/CANqJ/hWcJXkc1EkSL7jFMUF5BcDF50zPUzRDeI=",
         "owner": "vlaci",
         "repo": "nixpkgs",
-        "rev": "e259e9fbf56c42c15ff606ee20fabdc65ceca983",
+        "rev": "f6f539907499ada75debbddf1b38861cc24ff987",
         "type": "github"
       },
       "original": {
